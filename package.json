@@ -1,0 +1,16 @@
+{
+  "name": "brindlewood-bay-foundry",
+  "version": "0.1.0-wip.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/validate.mjs"
+  },
+  "devDependencies": {
+    "archiver": "7.0.1",
+    "classic-level": "2.0.0",
+    "handlebars": "4.7.9"
+  }
+}

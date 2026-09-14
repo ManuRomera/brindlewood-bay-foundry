@@ -1,0 +1,276 @@
+[
+  {
+    "_id": "6d937ba849184ac6",
+    "name": "01 · Bienvenidas a Brindlewood Bay",
+    "ownership": {
+      "default": 0
+    },
+    "pages": [
+      {
+        "_id": "3c3208a1c85b5f64",
+        "name": "03 · Resumen y puesta en escena",
+        "type": "text",
+        "sort": 300000,
+        "text": {
+          "format": 1,
+          "content": "<div class=\"bb-reading\"><p>Resumen y puesta en escena</p><p>Resumen Brindlewood Bay es un juego de rol sobre un grupo de señoras mayores, miembros del club de novelas de misterio Expertas del Crimen, que a menudo acaban investigando (¡y resolviendo!) asesinatos enigmáticos en la vida real. Poco a poco, se percatan de la existencia de fuerzas sobrenaturales que conectan los casos en los que intervienen. No tardarán en cruzarse con un culto dedicado a la faceta oscura y monstruosa de la diosa Perséfone. El juego está inspirado en la serie Se ha escrito un crimen, pero también bebe de las obras de H. P . Lovecraft, los misterios de fin de semana de sofá y mantita y las series norteamericanas de los años 70, 80 y 90.</p><p>Puesta en escena Brindlewood Bay es una pequeña comunidad costera de Massachusetts. Pueblo de balleneros en los siglos xviii y xix, ahora es más que nada una localidad turística. Muchos de sus habitantes han convertido su hogar en un hostal y el lugar cuenta con tiendas de antigüedades, restaurantes acogedores, artistas y artesanos de toda clase. Son habituales las excursiones de pesca guiadas.</p><p>Expertas del Crimen Expertas del Crimen es un pequeño club de lectura de novelas de misterio que se reúne en la planta superior de la librería The Candlelight todos los sábados por la tarde desde hace diez años. A las Expertas del Crimen les apasiona sobre todo la saga de Los misterios de la corona de oro, de Robin Masterson, protagonizada por la superdetective trotamundos Amanda Delacourt. Las Expertas son todas mujeres mayores que han enviudado y cuyos hijos hace tiempo que volaron del nido. Ahora pasan sus años dorados en la pintoresca localidad de Brindlewood Bay, cuidan de su hogar a su manera, se dedican a sus hobbies y hallan consuelo y compañía las unas en las otras. Las propias Expertas son también detectives aficionadas y, cuando empieza el juego, ya han cooperado con la Policía local para resolver varios crímenes importantes. En ocasiones, la gente acude a ellas para pedirles ayuda con un caso, pero lo normal es que las Expertas se topen con el misterio por casualidad (para fastidio de las autoridades, a las que siempre escuece su intervención).</p></div><p class=\"bb-source\">Brindlewood Bay, edición española 1.0, p. 3.</p>"
+        }
+      },
+      {
+        "_id": "57f90b0c52f729be",
+        "name": "04 · Resumen y puesta en escena",
+        "type": "text",
+        "sort": 400000,
+        "text": {
+          "format": 1,
+          "content": "<div class=\"bb-reading\"><p>Resumen y puesta en escena</p><p>Las Matronas del Vacío Fragante ¿Por qué se producen tantos asesinatos en Brindlewood Bay y alrededores? ¿ Y por qué siempre están en medio las Expertas del Crimen? Hay quien especula con que las propias Expertas perpetran los crímenes y aplican lo aprendido en las novelas de misterio para implicar a otros. Pero eso, por supuesto, es ridículo. De hecho, el motivo por el que Brindlewood Bay es el epicentro de tanta muerte es su importancia geográfica e histórica para un culto siniestro llamado las Matronas del Vacío Fragante. Al comienzo del juego, las Expertas no saben nada de las Matronas, pero nosotros sí: son una secta de nihilistas consagrada a traer al mundo a los «vástagos de Perséfone», unas monstruosidades ctónicas heraldos del Fin de Todas las Cosas. Su interés en Brindlewood Bay es histórico: a finales del siglo xix, la tripulación de un ballenero mató por accidente a un vástago de Perséfone, creyendo que era una ballena, y vendió sus partes a museos de todo el mundo. La riqueza generada por esa captura tan particular se empleó en convertir el pueblo de Brindlewood Bay en lo que es hoy en día. Esta conexión tan íntima con un vástago de Perséfone hace de Brindlewood Bay un lugar de poder para las Matronas del Vacío Fragante. A medida que avance el juego, las Expertas serán más conscientes de las conexiones sobrenaturales entre los asesinatos que están investigando y, finalmente, se darán cuenta del papel de las Matronas del Vacío Fragante. Puede que empiecen a investigar en lo oculto para combatir las fuerzas oscuras que se alinean en su contra y se enfrenten cara a cara con un vástago de Perséfone, o incluso que sientan la tentación de unirse a las mismísimas Matronas.</p></div><p class=\"bb-source\">Brindlewood Bay, edición española 1.0, p. 4.</p>"
+        }
+      },
+      {
+        "_id": "40ba0b9919031240",
+        "name": "05 · Estructura de juego",
+        "type": "text",
+        "sort": 500000,
+        "text": {
+          "format": 1,
+          "content": "<div class=\"bb-reading\"><p>Estructura de juego</p><p>Estructura de juego (de la segunda sesión en adelante) La siguiente estructura de juego se aplica a partir de la segunda sesión. La primera es independiente de las demás y puede consultarse a partir de la pág. 32.</p><p>Recapitulación de los misterios Los misterios que no se hayan resuelto al final de una sesión se incorporan a la siguiente, pudiendo haber varios misterios activos en todo momento. La Guardiana empleará unos minutos para recordar en qué estado se encuentra cada misterio al principio de la sesión, haciendo hincapié en las Pistas que hayan encontrado para cada uno.</p><p>Resolución de finales abiertos Si la sesión anterior concluyó con uno o varios finales abiertos, se resuelven jugando con normalidad. Seguid la historia hasta que se alcance alguna pausa en la acción, instante en el que se continúa con el siguiente paso, el Comienzo de la sesión.</p><p>Comienzo de la sesión Esta es una pequeña fase de preparación en la que los jugadores plantean las nuevas preguntas de Fin de sesión (si así lo desean) y resuelven los movimientos que tienen lugar al principio de una sesión.</p><p>Retazos de una vida agradable Cada jugador narra una escena corta que muestra cómo su Experta disfruta de la vida en Brindlewood Bay. Han de ser ligeras y despreocupadas, o cálidas y agradables, y mostrar a la Experta enfrascada en sus quehaceres, ayudando en algún proyecto comunitario o trabajando por la casa.</p><p>La Guardiana presenta un nuevo misterio La Guardiana puede presentarles a las Expertas otro misterio. Si no hay ninguno activo, debe añadir uno nuevo. Si ya hay uno o dos activos, la Guardiana decidirá si introduce uno nuevo o no. Pero, si hay tres misterios activos al mismo tiempo, la Guardiana no puede añadir otro. Si la Guardiana presenta un nuevo misterio, informará en primer lugar al grupo del rango de complejidad del misterio, de 6 a 8. Dicha presentación siempre incluirá una pregunta inicial que relacione de modo personal a una o más Expertas con el caso.</p></div><p class=\"bb-source\">Brindlewood Bay, edición española 1.0, p. 5.</p>"
+        }
+      },
+      {
+        "_id": "fcde501079d24863",
+        "name": "06 · Estructura de juego",
+        "type": "text",
+        "sort": 600000,
+        "text": {
+          "format": 1,
+          "content": "<div class=\"bb-reading\"><p>Estructura de juego</p><p>Investigación El grueso de la sesión gira en torno a la investigación de los misterios activos por parte de las Expertas del Crimen. La mesa puede seguir cualquier pista que despierte el interés de las Expertas o pedir escenas de inactividad en las que las veamos relacionándose entre ellas o con otros miembros de la comunidad.</p><p>Escenas de Corona Hay dos secciones especiales en la hoja de personaje: la Corona de la Reina y la Corona del Vacío. Cuando se marque texto de estas secciones durante el juego, la Experta en cuestión debe hacer lo que el texto indique. Esto suele consistir en la narración de un tipo específico de escena que puede relatarse cuando se desee, pero siempre antes del Fin de sesión (véase el apartado Ponerse una Corona en la sección «Anatomía de una hoja de personaje»).</p><p>Fin de sesión La hoja de personaje tiene un apartado llamado Fin de sesión. Al final de la sesión, cada participante lee en alto las preguntas que ha marcado ahí. Por cada una que conteste con un «sí», marca 1 PE (véase Contador de PE, en el apartado Preguntas de fin de sesión de la sección «Anatomía de una hoja de personaje»).</p><p>Estrellas y Deseos La Guardiana y el resto de la mesa se toman unos minutos para compartir sus Estrellas y Deseos. Las Estrellas son todo aquello que os ha gustado de la sesión, mientras que los Deseos son los elementos que desearíais ver en la próxima sesión. Estrellas y Deseos es una técnica de Lu Quade. Para saber más, visita https://www.gauntlet-rpg.com/blog/stars-and-wishes .</p></div><p class=\"bb-source\">Brindlewood Bay, edición española 1.0, p. 6.</p>"
+        }
+      },
+      {
+        "_id": "9a20816b39060a93",
+        "name": "07 · Anatomía de una hoja de personaje",
+        "type": "text",
+        "sort": 700000,
+        "text": {
+          "format": 1,
+          "content": "<div class=\"bb-reading\"><p>Anatomía de una hoja de personaje</p><p>Anatomía de una hoja de personaje Las siguientes secciones engloban las reglas relevantes para cada sección de la hoja de personaje y están dirigidas a los jugadores.</p><p>Nombre Rodea el nombre que quieras e invéntate un apellido. También puedes inventar ambos.</p><p>Estilo El estilo que elijas refleja la visión de la vida que tiene la Experta. Las Expertas no tienen porqué vestirse como marque su estilo.</p><p>Quehacer El quehacer de la Experta encarna su pasatiempo favorito. No puede haber dos</p><p>Expertas con el mismo quehacer.</p><p>Fin de sesión Estas preguntas representan objetivos de interpretación para la sesión. Puedes tener tres preguntas marcadas (la primera de la lista siempre lo está y cuenta). Por cada una a la que contestes «sí» al final de la sesión, ganas un PE. Al principio de cada nueva sesión puedes desmarcar las dos opciones que elegiste y marcar otras dos diferentes, o conservar una o las dos.</p><p>Contador de PE Cuando tengas marcadas las cinco casillas del contador de PE, bórralas cuando quieras y márcate un avance (véase «Avances», a continuación). Hay dos formas de marcar el Contador de PE: (1) contestando «sí» a una pregunta de Fin de sesión y (2) cuando el texto de un movimiento así te lo pida.</p><p>Avances Cuando marques un avance, aplica de inmediato sus efectos en la hoja de personaje. Cuando todos los avances estén marcados, tu Experta ya no podrá ganar PE o avances, pero continuará en juego hasta que la Corona del Vacío la obligue a retirarse o hasta que así lo decidas (véase «Ponerse una Corona»).</p></div><p class=\"bb-source\">Brindlewood Bay, edición española 1.0, p. 7.</p>"
+        }
+      },
+      {
+        "_id": "e09eff08e225b3bc",
+        "name": "08 · Anatomía de una hoja de personaje",
+        "type": "text",
+        "sort": 800000,
+        "text": {
+          "format": 1,
+          "content": "<div class=\"bb-reading\"><p>Anatomía de una hoja de personaje</p><p>Habilidades Son los atributos del personaje que se aplican a la mayoría de las tiradas de dados.</p><p>• Usa Vitalidad si la acción de tu Experta implica fuerza, destreza, resistencia, una acción atlética o simplemente una maniobra física.</p><p>• Usa Compostura si la acción de tu Experta requiere manos firmes, una actitud calmada, una intensa concentración o si intenta evitar una reacción basada en el miedo.</p><p>• Usa Razón si tu Experta está estudiando, investigando un problema, examinando la escena de un crimen o cualquier acción que implique facultades mentales.</p><p>• Usa Presencia si tu Experta trata de encandilar a alguien, intimidar a otra persona o captar su atención.</p><p>• Usa Sensibilidad si la acción de tu Experta implica contacto con fuerzas sobrenaturales; la Guardiana puede decidir si una acción que parece relacionada con una habilidad diferente está en realidad regida por la Sensibilidad debido a su naturaleza extraordinaria, espiritual o mágica.</p><p>Condiciones Las Condiciones son rasgos negativos que te obligan a hacer tiradas de dados con desventaja si ponen claramente en dificultades a tu Experta durante una acción (véase «Lanzar los dados»). Puedes tener hasta tres Condiciones. Si tuvieras que coger una cuarta Condición, en vez de eso, marcas una de tus Coronas (véase «Ponerse una Corona»). Las Condiciones desaparecen como resultado de movimientos o cuando la Guardiana así te lo indique.</p><p>Movimientos expertos A diferencia de los movimientos básicos de la hoja de referencia, un movimiento experto solo puede usarse si lo tienes escrito en tu hoja de personaje. Es una de las formas de personalizar a tu Experta del Crimen.</p></div><p class=\"bb-source\">Brindlewood Bay, edición española 1.0, p. 8.</p>"
+        }
+      },
+      {
+        "_id": "eab64c7d76c00b6c",
+        "name": "09 · Anatomía de una hoja de personaje",
+        "type": "text",
+        "sort": 900000,
+        "text": {
+          "format": 1,
+          "content": "<div class=\"bb-reading\"><p>Anatomía de una hoja de personaje</p><p>Ponerse una Corona (la Corona de la Reina y la Corona del Vacío) La siguiente sección de la hoja de personaje se divide en dos partes: la Corona de la Reina y la Corona del Vacío. De vez en cuando se te requerirá que «te pongas una Corona», en cuyo caso leerás las instrucciones específicas en la hoja de personaje y marcarás la casilla de una de esas dos partes. Luego tendrás que hacer lo que indique el texto marcado antes de que acabe la sesión. La Corona de la Reina representa la idea de tu Experta como mujer. El texto comprende flashbacks de su vida como pareja, madre y hermana, así como escenas actuales que muestran su actitud romántica o sexual o su complicada vida interior. Las opciones pueden marcarse en cualquier orden. La Corona del Vacío representa los efectos de la conspiración siniestra sobre tu Experta. El texto siempre se marca en orden y el último cuadro es el preámbulo de la retirada de tu Experta.</p><p>Hogar, dulce hogar En esta sección de la hoja de personaje se anotan los objetos interesantes y distintivos que pueden encontrarse en la casa de tu Experta. Esta sección también funciona como una lista de equipo, ya que lo llevará la Experta durante las escenas en las que sea razonable que lo tenga consigo. Los objetos de tu hogar pueden marcarse para obtener ventaja en una tirada de dados (véase «Lanzar los dados»). En general, no pueden desmarcarse, aunque los objetos marcados permanecen en tu dulce hogar para futuras escenas. En caso de que los utilizaras posteriormente, se añadirían a la situación ficticia donde tuvieran lugar las acciones de tu Experta, pero sin otorgar bonificación en la tirada de dados. Al principio de la primera escena, cada participante tendrá la oportunidad de añadir objetos a su Hogar, dulce hogar. Posteriormente se podrán agregar más objetos como resultado de movimientos o cuando la Guardiana lo diga.</p></div><p class=\"bb-source\">Brindlewood Bay, edición española 1.0, p. 9.</p>"
+        }
+      },
+      {
+        "_id": "f075d237cc39dfc4",
+        "name": "10 · Lanzar los dados",
+        "type": "text",
+        "sort": 1000000,
+        "text": {
+          "format": 1,
+          "content": "<div class=\"bb-reading\"><p>Lanzar los dados</p><p>Lanzar los dados La Guardiana no lanza los dados en las partidas de Brindlewood Bay, así que esta sección es para el resto. 2d6 + modificador de habilidad En la mayoría de los casos, cuando tiras los dados porque un movimiento te dice que lo hagas, lanzas dos dados de 6 caras, los sumas y luego añades el modificador de la habilidad involucrada. Después compruebas el resultado con el texto del movimiento. Cuando un movimiento se refiere a un «éxito», significa un resultado de 7 o más. Si habla de «fallo», el resultado es de 6 o menos.</p><p>Ventaja Cuando tienes una ventaja, lanzas tres dados, sumas los dos mayores y luego añades el modificador de la habilidad en cuestión. Generalmente, tendrás una ventaja por una de estas razones:</p><p>• Un movimiento te da una ventaja.</p><p>• Tu Experta está usando en la acción un objeto no marcado de su Hogar, dulce hogar.</p><p>Desventaja Cuando estás en desventaja, lanzas tres dados, sumas los dos menores y luego añades el modificador de habilidad. Generalmente, tendrás una desventaja por uno de estos motivos:</p><p>• Una Condición tiene un impacto negativo en la acción de tu Experta.</p><p>• La Guardiana cree que es apropiado, dadas las circunstancias del momento. ¿Ventaja y desventaja? Si las circunstancias hacen que tengas tanto una ventaja como una desventaja en una acción, se cancelan la una a la otra y haces una tirada normal. Sin embargo, ten en cuenta que la ventaja y la desventaja no se «apilan», ni puede una sobrepasar a la otra. Por ejemplo, si tienes dos Condiciones que podrían suponer cada una de ellas una desventaja y un movimiento experto te otorga una ventaja, se hace un lanzamiento de dados normal, sin ventajas ni desventajas.</p></div><p class=\"bb-source\">Brindlewood Bay, edición española 1.0, p. 10.</p>"
+        }
+      },
+      {
+        "_id": "28155e3e53f15f00",
+        "name": "11 · Lanzar los dados",
+        "type": "text",
+        "sort": 1100000,
+        "text": {
+          "format": 1,
+          "content": "<div class=\"bb-reading\"><p>Lanzar los dados</p><p>La Corona y las tiradas de dados En Brindlewood Bay, la Guardiana siempre será dura contigo porque posees una herramienta que te permite resistir sus movimientos: ponerse una Corona. Tras lanzar los dados, y después de que el resultado se haya narrado , puedes elegir Ponerte una Corona e incrementar el resultado de la tirada en un nivel (es decir, un fallo se convierte en un 7-9; un 7-9, en un 10-11; y un 10-11, en un 12). En ese caso, narraremos un resultado diferente y lo que se contó con anterioridad no sucede (diremos que fue una línea temporal alternativa que teníamos que experimentar entre todos, pero que en realidad no ocurre).</p><p>Un ejemplo: El personaje de Oli, Hyacinth, trata de escapar de las garras de un gánster cabreado porque acaba de descubrir que es el asesino en un caso. Oli activa un movimiento, lanza los dados y obtiene un fallo. La Guardiana describe cómo el gánster coge a Hyacinth y la lanza por un acantilado — por lo que muere— para evitar que lleve las pruebas a la policía. Oli decide que no le gusta este desenlace y se pone una Corona, lo que transforma su tirada fallida en un 7-9. Esta vez Hyacinth escapa, pero deja una pista que el gánster puede usar para encontrarla más tarde. Seguro que te estás preguntando: «¿Por qué dejar que la Guardiana narre todo un resultado que se sabe que se va a descartar con una Corona?». Respuesta: ¡Porque es divertido! La Corona nos permite echarles un vistazo a otras líneas temporales, interpretarlas, saborearlas, experimentar la angustia y el terror, y luego... hacer algo diferente. Es como uno de esos viejos libros de Elige tu propia aventura : parte de la diversión es tomar una mala decisión para ver el desastre que cae sobre tu personaje. Ponerse una Corona es como dejar el dedo en la página anterior de estos libros: así puedes volver y escoger algo diferente si metes la pata.</p></div><p class=\"bb-source\">Brindlewood Bay, edición española 1.0, p. 11.</p>"
+        }
+      }
+    ]
+  },
+  {
+    "_id": "a64b0ea087bebfdf",
+    "name": "02 · Movimientos básicos",
+    "ownership": {
+      "default": 0
+    },
+    "pages": [
+      {
+        "_id": "f04af7d221c18495",
+        "name": "12 · Hay dos tipos de movimientos: básicos y expertos. Las Expertas tienen acceso",
+        "type": "text",
+        "sort": 1200000,
+        "text": {
+          "format": 1,
+          "content": "<div class=\"bb-reading\"><p>Hay dos tipos de movimientos: básicos y expertos. Las Expertas tienen acceso a todos los básicos, además de a uno o más movimientos expertos específicos para ellas. Donde el texto de un movimiento experto contradiga uno básico, el experto tendrá prioridad. Los movimientos expertos pueden verse en la hoja de movimientos expertos. Los básicos se encuentran en la hoja de referencia y se desarrollan a continuación.</p><p>Movimiento Diurno Cuando hagas algo arriesgado o te enfrentes a algo a lo que tienes miedo , di qué temes que suceda si fallas o si pierdes los nervios y luego lanza los dados con la habilidad apropiada.</p><p>• Con un 10+, haces lo que pretendías o mantienes la calma; describe cómo es.</p><p>• Entre 7 y 9, la Guardiana te dice de qué modo tus acciones te dejarían vulnerable y tú eliges si echarte atrás o seguir delante de todos modos. Si sigues, la</p><p>Guardiana describe la situación.</p><p>• Con 12+, haces lo que pretendías o mantienes la calma y la Guardiana te dice el beneficio extra o la ventaja que recibes. Describe lo que sucede. El movimiento Diurno engloba todas las acciones que tienen lugar durante el día. La Guardiana tiene la última palabra sobre la habilidad que se emplea para la tirada.</p><p>Movimiento Nocturno Cuando hagas algo arriesgado o te enfrentes a algo a lo que tienes miedo , di qué temes que suceda si fallas o si pierdes los nervios. La Guardiana te contará en qué es peor de lo que imaginas. Puedes elegir retroceder o seguir adelante. Si sigues, lanza los dados con la habilidad apropiada.</p><p>• Con un 10+, haces lo que pretendías o mantienes la calma; describe cómo es.</p><p>• Entre 7 y 9, lo consigues, pero hay un coste o una complicación; la Guardiana describe lo que ocurre.</p><p>• Con 12+, haces lo que pretendías o mantienes la calma y la Guardiana te concede algún beneficio extra o ventaja. Describe lo que sucede. El movimiento Nocturno engloba todas las acciones que tienen lugar durante la noche. Como realizar acciones en esas horas es más peligroso que hacerlo durante el día, el movimiento Nocturno conlleva más consecuencias para las Expertas que el movimiento Diurno. La Guardiana tiene la última palabra sobre la habilidad que se emplea para la tirada.</p></div><p class=\"bb-source\">Brindlewood Bay, edición española 1.0, p. 12.</p>"
+        }
+      },
+      {
+        "_id": "192b2aff4a87d895",
+        "name": "13 · Movimiento Metomentodo",
+        "type": "text",
+        "sort": 1300000,
+        "text": {
+          "format": 1,
+          "content": "<div class=\"bb-reading\"><p>Movimiento Metomentodo Cuando busques una pista, dirijas una investigación o reúnas información de alguna forma, describe cómo lo haces y lanza los dados con la habilidad adecuada.</p><p>• Con un éxito, encuentras una Pista. La Guardiana te dice lo que es.</p><p>• Entre 7 y 9, surge una complicación, ya sea en la propia Pista o por algo que encuentras mientras buscas. La Guardiana te dirá lo que es.</p><p>• Con 12+, también encuentras una Pista del Vacío O descubres algo sobre la conspiración siniestra en Brindlewood Bay (a elección de la Guardiana). El movimiento Metomentodo es el principal modo de reunir Pistas de una Experta. Está diseñado para cubrir todas aquellas acciones destinadas a recabar información, y la habilidad que uses en la tirada debe coincidir con la acción que lleves a cabo. Por ejemplo, si una Experta está sacando información adulando a un oficial de las fuerzas del orden, se lanzará con Presencia. Si está escuchando una conversación que se supone que no debe oír, optará por Compostura. Si se sumerge en la lectura en la biblioteca local, usará Razón. La Guardiana decidirá en última instancia qué habilidad se usa para la tirada.</p><p>Movimiento Afable Cuando compartas un momento de intimidad con otra Experta mientras una de las dos está afanada en su quehacer , puedes quitarte una Condición. Si se trata de tu quehacer, también das con una Pista relevante para el misterio activo. Dile a la Guardiana lo que es. La Pista no puede resolver el misterio por sí misma. Este movimiento sirve en la práctica para eliminar Condiciones, pero se diseñó sobre todo para mostrar las relaciones personales entre las Expertas del Crimen, así como ofrecer retazos de su vida en la comunidad de Brindlewood Bay.</p></div><p class=\"bb-source\">Brindlewood Bay, edición española 1.0, p. 13.</p>"
+        }
+      },
+      {
+        "_id": "2b5d4d7ef7519552",
+        "name": "14 · Movimiento Misterios de la corona de oro",
+        "type": "text",
+        "sort": 1400000,
+        "text": {
+          "format": 1,
+          "content": "<div class=\"bb-reading\"><p>Movimiento Misterios de la corona de oro Una vez por partida, cuando cualquier Experta diga: «¡Esto me recuerda a lo que le ocurrió a Amanda Delacourt!», trabaja con los demás para describir qué aspecto de la situación en la que se encuentran les recuerda a un pasaje de Los misterios de la corona de Oro . Como mínimo, debéis proporcionar la siguiente información:</p><p>• El nombre del misterio de la corona de oro en cuestión (¡no vale repetir, por favor!).</p><p>• En qué es similar el problema o la situación en la que Amanda se encontraba a lo que las Expertas están viviendo.</p><p>• Cómo resolvió el problema o superó la situación Amanda. Después, considera que en una tirada relevante ha salido un 12+ o declara un hecho sobre la situación que la Guardiana debe incorporar. Las Expertas del Crimen comparten su adoración por las novelas de Amanda Delacourt, escritas por la autora misteriosa Robin Masterson, y con frecuencia se refieren a estos casos mientras investigan sus propios misterios. Este movimiento es muy poderoso y, por lo general, solo puede usarse una vez por sesión.</p><p>Movimiento Ocultista Si intervienes en una actividad relacionada con lo sobrenatural o lo oculto por primera vez, imagina cómo serían tus acciones como si estuvieras llevando a cabo un movimiento. Di lo que lo activa y tira por Sensibilidad.</p><p>• Con un éxito, funciona. Describe el movimiento con la Guardiana: ahora pueden usarlo todas las Expertas durante el resto de la partida y tu tirada se conserva.</p><p>• Entre 7 y 9, también marcas la Corona del Vacío.</p><p>• Con un fallo, es algo que las Expertas nunca podrán hacer y también marcas la Corona del Vacío. Al principio de la partida, las Expertas del Crimen tienen poca o ninguna idea sobre ocultismo e ignoran totalmente las oscuras maquinaciones de las Matronas del Vacío Fragante. Pero, a medida que el juego avanza, serán más conscientes de la existencia de misterios más profundos... e incluso ellas mismas llegarán a coquetear con la magia. Este movimiento está concebido para esas situaciones y crea nuevos movimientos basados en lo que hagan las Expertas. Pero ¡cuidado! Este movimiento es extremadamente peligroso y hasta un éxito podría poner a las Expertas un pasito más cerca del retiro.</p></div><p class=\"bb-source\">Brindlewood Bay, edición española 1.0, p. 14.</p>"
+        }
+      },
+      {
+        "_id": "71621d9d4854b3cf",
+        "name": "15 · Movimiento Teorizar",
+        "type": "text",
+        "sort": 1500000,
+        "text": {
+          "format": 1,
+          "content": "<div class=\"bb-reading\"><p>Movimiento Teorizar Cuando las Expertas discuten sobre la solución de un misterio bas ándose en las Pistas que han descubierto y llegan a un consenso, se realiza una tirada de dados. Después se suma el número de Pistas incorporadas a la teoría o explicadas y se resta el valor de complejidad del misterio.</p><p>• Con 10+, la solución es correcta. La Guardiana les presentará la oportunidad de atrapar al responsable o de arreglar la situación.</p><p>• Entre 7 y 9, la solución es correcta, pero la Guardiana añadirá una complicación molesta a la propia solución. También puede presentarles una oportunidad problemática o peligrosa de atrapar al responsable o de arreglar la situación.</p><p>• Con 6 o menos, la solución es incorrecta y la Guardiana reacciona en consecuencia.</p><p>• Con 12+, además, una persona involucrada en la conspiración siniestra de</p><p>Brindlewood Bay se da a conocer a las Expertas. Teorizar es un movimiento muy divertido y sirve para emular aquellas grandes escenas de las historias de misterio donde los protagonistas discuten sobre quién puede ser el responsable. Téngase en cuenta que no importa quién lance los dados para Teorizar llegado el momento. Tampoco está sujeto a modificadores en la tirada (ventajas, efectos del movimiento Misterios de la corona de oro, etc.) ni puede verse afectado por ponerse una Corona.</p></div><p class=\"bb-source\">Brindlewood Bay, edición española 1.0, p. 15.</p>"
+        }
+      }
+    ]
+  },
+  {
+    "_id": "23c1b94876d8c3a9",
+    "name": "03 · Primera sesión",
+    "ownership": {
+      "default": 0
+    },
+    "pages": [
+      {
+        "_id": "5d7a7d8bc933b14a",
+        "name": "33 · 1. Lee el juego y reúne los materiales para la partida",
+        "type": "text",
+        "sort": 3300000,
+        "text": {
+          "format": 1,
+          "content": "<div class=\"bb-reading\"><p>1. Lee el juego y reúne los materiales para la partida La Guardiana ha de leer este reglamento al completo y luego hacerse con los materiales para la primera sesión de juego. Necesitarás:</p><p>• Al menos dos dados de seis caras, aunque es mejor tener más.</p><p>• Fichas de cartulina para hacer tarjetas identificadoras para los personajes.</p><p>• Utensilios de escritura.</p><p>• Una hoja de personaje por participante.</p><p>• Al menos una hoja de referencia, aunque es mejor una por persona.</p><p>• Al menos una hoja de movimientos expertos.</p><p>• La hoja de misterio del caso escogido (para la primera sesión se recomienda</p><p>Papá por la borda).</p><p>• La hoja de conspiración siniestra. 2. Presentación de la Guardiana y los jugadores Por turnos, cada participante dice su nombre, su tratamiento y cualquier cosa sobre sí que pueda ser interesante para el grupo. 3. CAT S CATS es un acrónimo que significa Concepto, Agenda, Tono y Seguridad. Suele presentarlo la Guardiana y ayuda a establecer expectativas básicas de cómo va a desarrollarse el juego. También es una forma sencilla de que la Guardiana se vaya acostumbrando a ser el foco de atención. Si eres la Guardiana, puedes desarrollar tus propios CATS para Brindlewood</p><p>Bay o simplemente leer en voz alta lo siguiente: «Concepto: Brindlewood Bay es un juego de rol que trata de un grupo de señoras mayores, miembros del club de novelas de misterio Expertas del Crimen, que a menudo acaban investigando (¡y resolviendo!) asesinatos enigmáticos en la vida real. Poco a poco, se percatan de la existencia de fuerzas sobrenaturales que conectan los casos en los que intervienen. No tardarán en cruzarse con un culto dedicado a la faceta oscura y monstruosa de la diosa Perséfone. El juego está inspirado en la serie Se ha escrito un crimen, pero también bebe de las obras de H. P . Lovecraft, los misterios de fin de semana de sofá y mantita y las series norteamericanas de los años 70, 80 y 90».</p></div><p class=\"bb-source\">Brindlewood Bay, edición española 1.0, p. 33.</p>"
+        }
+      },
+      {
+        "_id": "3bb5d9c8a5002700",
+        "name": "34 · «Agenda: Hoy vamos a empezar creando los personajes. Después, los",
+        "type": "text",
+        "sort": 3400000,
+        "text": {
+          "format": 1,
+          "content": "<div class=\"bb-reading\"><p>«Agenda: Hoy vamos a empezar creando los personajes. Después, los presentaremos y rellenaremos una sección especial de la hoja de personaje llamada Hogar, dulce hogar. Tras eso, nos tomaremos un descanso y, cuando volvamos, comenzaremos la sesión con una serie de escenas especiales llamadas Retazos de una vida agradable. Luego, presentaré el misterio que vuestros personajes están investigando. A partir de ahí, empezaremos la partida normal. Al final de la sesión os haré unas preguntas breves. En las siguientes sesiones, presentaré nuevos misterios al principio y nos sumergiremos directamente en la partida normal». «Tono: El tono de este juego oscila entre lo afable y lo espeluznante. La mayor parte del tiempo será alegre, pero en ocasiones la cosa se pondrá muy siniestra y amenazadora. Se permite un poco de humor ligero —siempre que tenga que ver con algunas de las fuentes de inspiración del juego—, pero, por encima de todo, vuestros personajes deberían tomarse en serio lo que hacen a pesar de echarse unas risas de vez en cuando». «Seguridad: El tema a veces se torna inquietante y desagradable, en especial cuando la secta secreta asoma la cabeza. Para evitar que se arruine la diversión de nadie por tocar algún tema espinoso, vamos a usar las siguientes herramientas de seguridad...» Para la última parte, explica las diferentes herramientas de seguridad que se usarán. El autor de este juego prefiere Líneas y velos y la Tarjeta X, pero puedes utilizar cualquiera con la que tu grupo esté cómodo. CATS es un sistema de Patrick O’Leary, aunque se ha modificado un poco para este reglamento. Para saber más, sigue este enlace: http://proleary. com/2016/04/25/the-cats-method-a-story-telling-game-opening-ritual/ 4. Creación de los personajes Aquí están los pasos para crear personajes. Todos pueden seguirlos como deseen, pero se debe parar al llegar a la sección de la hoja llamada Hogar, dulce hogar. 1. Rodea un nombre y piensa en un apellido. 2. Rodea un estilo. 3. Rodea un quehacer (no puede haber dos Expertas con el mismo). 4. Asigna 1 punto a una de las habilidades y luego escribe los modificadores finales de dichas habilidades. 5. Escoge un movimiento experto de la hoja de movimientos expertos (al principio no puede haber dos Expertas con el mismo movimiento experto, y no puede escogerse Dale Cooper si ya se eligió Fox Mulder o viceversa). 6. Espera a que todo el mundo termine.</p></div><p class=\"bb-source\">Brindlewood Bay, edición española 1.0, p. 34.</p>"
+        }
+      },
+      {
+        "_id": "e13221fe022bf409",
+        "name": "35 · 5. Presentación de los personajes y de su Hogar, dulce hogar .",
+        "type": "text",
+        "sort": 3500000,
+        "text": {
+          "format": 1,
+          "content": "<div class=\"bb-reading\"><p>5. Presentación de los personajes y de su Hogar, dulce hogar . Haz una ronda por la mesa para que cada uno presente a su Experta del Crimen con su nombre, estilo, quehacer y movimiento experto. Luego haz otra ronda para que describan tres aspectos clave de la vida anterior de su Experta:</p><p>• Su pareja fallecida.</p><p>• Sus hijos, si tiene (también valen mascotas).</p><p>• Su carrera antes de retirarse a Brindlewood Bay. Después de que todos compartan estos tres puntos, la Guardiana y el resto de la mesa dirán un objeto que pueda encontrarse en la casa de cada personaje. Cada jugador anota estos objetos en la parte de la hoja de personaje llamada Hogar, dulce hogar. Al final del proceso todos tendrán entre tres y cinco objetos, aunque, si es necesario, se pueden decir dos objetos. 6. Descanso Tomaos cinco minutos de descanso para beber agua y pensar un poco en el personaje. 7 . Comienzo de la sesión Cada jugador marca dos preguntas de Final de sesión además de la primera, que siempre está marcada. Si alguna de las Expertas tiene movimientos expertos que se activan al principio de la sesión, resuélvelos ahora. 8. Retazos de una vida agradable Cada jugador narra una escena corta que muestra cómo su Experta disfruta de su vida en Brindlewood Bay. Han de ser ligeras y despreocupadas, o cálidas y agradables, y mostrar a la Experta enfrascada en sus quehaceres, ayudando en un proyecto comunitario o trabajando por la casa. 9. La Guardiana presenta un Misterio La Guardiana sitúa una o varias escenas en las que se les presenta un asesinato misterioso a las Expertas. Informará a la mesa de la complejidad del misterio, de 6 a 8. Dicha presentación siempre incluirá una pregunta inicial que relacione de modo personal a una o más Expertas con el caso.</p></div><p class=\"bb-source\">Brindlewood Bay, edición española 1.0, p. 35.</p>"
+        }
+      },
+      {
+        "_id": "5301c4028455e765",
+        "name": "36 · 10. Investigación",
+        "type": "text",
+        "sort": 3600000,
+        "text": {
+          "format": 1,
+          "content": "<div class=\"bb-reading\"><p>10. Investigación El grueso de la sesión gira en torno a la investigación de los misterios activos por parte de las Expertas del Crimen. Los jugadores pueden seguir cualquier pista que despierte el interés de las Expertas o pedir escenas de inactividad en las que las veamos relacionándose entre ellas o con otros miembros de la comunidad. La Guardiana tiene potestad para pausar la sesión con un descanso de cuando en cuando, según haga falta. Hay que tener en cuenta que puede que las Expertas no resuelvan el misterio en esta sesión. No pasa nada: se continúa en la siguiente. 11. Escenas de Corona Cuando se marque texto de estas secciones durante el juego, la Experta en cuestión debe hacer lo que el texto indique. Esto suele consistir en la narración de un tipo específico de escena que puede relatarse cuando se desee, pero siempre antes del Fin de sesión. Cuando falten unos quince minutos del tiempo de juego planeado, la Guardiana cerrará cualquier escena que esté teniendo lugar y pedirá las escenas de Corona que queden pendientes. 12. Preguntas de Fin de sesión Haz una ronda por la mesa para que cada uno lea en alto sus preguntas de Fin de sesión. Por cada una respondida con un «Sí», marcan 1 PE. 13. Estrellas y deseos La Guardiana y los demás deben tomarse unos minutos para compartir sus estrellas y deseos. Las estrellas son las cosas que los participantes han disfrutado. Los deseos son las cosas que esperan ver en la próxima sesión.</p></div><p class=\"bb-source\">Brindlewood Bay, edición española 1.0, p. 36.</p>"
+        }
+      }
+    ]
+  },
+  {
+    "_id": "455f8e213268b7d5",
+    "name": "04 · Movimientos expertos",
+    "ownership": {
+      "default": 0
+    },
+    "pages": [
+      {
+        "_id": "be990127b955aa38",
+        "name": "74 · MOVIMIENTOS EXPERTOS",
+        "type": "text",
+        "sort": 7400000,
+        "text": {
+          "format": 1,
+          "content": "<div class=\"bb-reading\"><p>MOVIMIENTOS EXPERTOS Escoge uno al comienzo del juego. No puede haber dos Expertas con el mismo movimiento Experto al principio. Tampoco puede haber una Experta con Dale Cooper si otra tiene Fox Mulder o viceversa, aunque una sola Experta puede adquirir ambas durante el transcurso de la partida.</p><p>M. A. Baracus Una vez por sesión, si tú o alguna de tus compañeras Expertas sufr ís daño físico, puedes describir cómo evitáis ese daño por los pelos.</p><p>Frank Colombo</p><p>Hay algo en ti que hace que las élites de la sociedad no te tomen muy en serio. ¿Qué es? Una vez por sesión, cuando hagas el movimiento Metomentodo en un lugar ocupado por ricos y famosos, encontrarás una Pista adicional incluso con un fallo y una Pista del</p><p>Vacío adicional con un 12+.</p><p>Dale Cooper Añade 1 a tu Sensibilidad (máx. +3). Al principio de cada sesión, la Guardiana te dará una</p><p>Pista del Vacío en forma de un sueño extraño y perturbador. Este movimiento no lo pueden tener dos Expertas a la vez.</p><p>Sonny Crockett</p><p>Tienes un estilo de vestir particular, algo que provoca que la gente diga «¡Guau!» al verte. Describe lo que llevas puesto y añádelo a tu Hogar, dulce hogar. Cuando uses el atuendo para obtener ventaja en una tirada, no lo marques.</p><p>Frank Dowling Tienes un poderoso trasfondo religioso. Descríbelo. Cuando uses este movimiento, describe cómo tu fe te ayuda a resistir el Vacío.</p><p>Luego, desmarca un número de cuadros de la</p><p>Corona del Vacío igual a tu Sensibilidad más 1. El número mínimo de cuadros que puedes desmarcar es 1. Si desmarcas la Pepita de granada, sigues teniendo la Condición «Obsesionada con el Vacío». Solo puedes usar este movimiento una vez.</p><p>Tom Hanson Puedes pasar perfectamente por alguien mucho más joven. Si estás en una situación o un lugar donde ser más joven te beneficia, lanzas los dados con ventaja.</p><p>Milton Hardcastle Tienes una pregunta de Fin de sesión adicional que siempre se considera marcada: «¿Te has tomado la justicia por tu mano con algún malhechor?»</p><p>Jonathan Hart</p><p>Solías llevar una vida lujosa alrededor del mundo y aún posees un toque de glamur que nunca se desvanece. Añade 1 a tu Presencia (máx. +3).</p><p>Angus MacGyver Cuando improvisas en una situación utilizando lo que tengas a mano, pídeles a las demás jugadoras y a la Guardiana que nombren tres objetos que haya alrededor. Mientras puedas dar una explicación plausible de cómo te ayudan estos objetos en una acción, dispones de ventaja en una sola tirada relacionada con esa acción.</p><p>Thomas Magnum</p><p>Aunque lo llevas en secreto, eres amiga íntima de Robin Masterson, la misteriosa autora de las novelas de Los misterios de la corona de oro. Tienes acceso a los recursos de Robin siempre que estés fuera de Brindlewood Bay (a su casa, su vehículo e incluso su cuenta bancaria) y, una vez por sesión, tienes un uso adicional del movimiento Misterios de la corona de oro.</p></div><p class=\"bb-source\">Brindlewood Bay, edición española 1.0, p. 74.</p>"
+        }
+      },
+      {
+        "_id": "df855c2d4eca644f",
+        "name": "75 · Fox Mulder",
+        "type": "text",
+        "sort": 7500000,
+        "text": {
+          "format": 1,
+          "content": "<div class=\"bb-reading\"><p>Fox Mulder</p><p>Alguien relacionado con la conspiración siniestra te ayuda entre bastidores. Dile a la</p><p>Guardiana que los requisitos para cada capa de la conspiración siniestra se reducen en una Pista del Vacío. Una vez por misterio, puedes convocar una reunión secreta con este informante, que siempre permanece entre las sombras y en el anonimato. Vale con que describas cómo es la escena (el lugar, el entorno, cómo llega el personaje misterioso, etc.). El contenido de la conversación se queda fuera de escena. Luego, obtén una bonificación para tu próxima tirada igual al número de Pistas del Vacío descubiertas durante el misterio en cuestión (como siempre, la bonificación no puede usarse para Teorizar). La identidad del informante solo se revelará por completo durante el Misterio del Vacío, momento en el que puedes compartir escenas normales con esa persona. No puede haber dos Expertas con este movimiento a la vez.</p><p>Michael Knight</p><p>Tienes un medio de transporte fiable (un sedán de gran tamaño, una motocicleta, una vieja camioneta...) que te ha sacado de más de una situación peliaguda. Dale un nombre y añádelo a tu Hogar, dulce hogar. Cuando lo utilices para obtener ventaja en un lanzamiento de dados, déjalo sin marcar.</p><p>Rick &amp; A. J.</p><p>Tienes un hermano que es tu polo opuesto en cuestiones de estética y personalidad. Describe a este familiar y dale un nombre. Siempre puedes pedir una escena con esta persona.</p><p>También puedes solicitar su ayuda, en cuyo caso tendrás ventaja en cualquier tirada para realizar acciones junto a él. Sin embargo, eso siempre tiene un coste.</p><p>R. Quincy</p><p>Tienes formación en Medicina. Descríbelo.</p><p>Luego, añade «Maletín médico» a tu Hogar, dulce hogar. Cuando lo uses para obtener ventaja en una tirada, déjalo sin marcar.</p><p>Jim Rockford Al principio de cada sesión, la Guardiana narrará un mensaje que recibirás en el contestador automático. El mensaje siempre será de la misma persona anónima y siempre te pedirá que hagas alguna tarea en particular, a menudo relacionada con uno de los misterios activos. Cuando completes la tarea, ya sea en esta sesión o en el futuro, márcate 1 PE. Los mensajes y las tareas serán más extraños y perturbadores cuantas más marcas tengas en la Corona del Vacío. Dos Expertas no pueden tener este movimiento al mismo tiempo. «Espantapájaros»</p><p>Al principio de la sesión, un desconocido te pone algo en la mano o lo deja en un lugar donde lo encuentras. La Guardiana te dirá lo que es. Funciona como una Pista, pero al principio no está relacionado con ninguno de los misterios en particular. Puedes decidir asignarlo a un misterio activo siempre que quieras.</p><p>Colt Seavers</p><p>Una vez por sesión, puedes obtener un 12+ en cualquier tirada relacionada con una acción física peligrosa u osada.</p><p>Gordon Shumway Tienes una amistad felina con la que compartes un fuerte lazo. Este extraordinario minino puede hacer trucos y seguir órdenes sencillas. Ponle nombre y añádelo a tu Hogar, dulce hogar. Cuando uses al gato para obtener ventaja en una tirada, déjalo sin marcar.</p><p>Remington Steele</p><p>Tienes mucho talento para hacerte pasar por quien no eres. Si hay un objeto identificativo o un disfraz que podría ayudarte en caso de apuro, lo tienes. Di lo que es y añádelo a tu Hogar, dulce hogar.</p></div><p class=\"bb-source\">Brindlewood Bay, edición española 1.0, p. 75.</p>"
+        }
+      }
+    ]
+  },
+  {
+    "_id": "594c16a41465280d",
+    "name": "05 · Hoja de referencia",
+    "ownership": {
+      "default": 0
+    },
+    "pages": [
+      {
+        "_id": "f15acddcf4333dc9",
+        "name": "76 · HOJA DE REFERENCIA",
+        "type": "text",
+        "sort": 7600000,
+        "text": {
+          "format": 1,
+          "content": "<div class=\"bb-reading\"><p>HOJA DE REFERENCIA</p><p>Movimiento Diurno Cuando hagas algo arriesgado o te enfrentes a algo a lo que tienes miedo , di qué temes que suceda si fallas o si pierdes los nervios y luego lanza los dados con la habilidad apropiada.</p><p>• Con un 10+, haces lo que pretendías o mantienes la calma; describe cómo es.</p><p>• Entre 7 y 9, la Guardiana te dice de qué modo tus acciones te dejarían vulnerable y tú eliges si echarte atrás o seguir adelante de todos modos. Si sigues, la Guardiana describe la situación.</p><p>• Con 12+, haces lo que pretendías o mantienes la calma y la Guardiana te dice el beneficio extra o la ventaja que recibes. Describe lo que sucede.</p><p>Movimiento Nocturno Cuando hagas algo arriesgado o te enfrentes a algo a lo que tienes miedo , di qué temes que suceda si fallas o si pierdes los nervios. La Guardiana te contará en qué es peor de lo que imaginas. Puedes elegir retroceder o seguir adelante. Si sigues, lanza los dados con la habilidad apropiada.</p><p>• Con un 10+, haces lo que pretendías o mantienes la calma; describe cómo es.</p><p>• Entre 7 y 9, lo consigues, pero hay un coste o una complicación; la Guardiana describe lo que ocurre.</p><p>• Con 12+, haces lo que pretendías o mantienes la calma y la Guardiana te concede algún beneficio extra o ventaja. Describe lo que sucede.</p><p>Movimiento Metomentodo Cuando busques una pista, dirijas una investigación o reúnas información de alguna forma, describe cómo lo haces y lanza los dados con la habilidad adecuada.</p><p>• Con un éxito, encuentras una Pista. La Guardiana te dice lo que es.</p><p>• Entre 7 y 9, surge una complicación, ya sea en la propia Pista o por algo que encuentras mientras buscas. La Guardiana te dirá lo que es.</p><p>• Con 12+, también encuentras una Pista del Vacío o descubres algo sobre la conspiración siniestra en Brindlewood Bay (a elección de la Guardiana).</p><p>Movimiento Afable Cuando compartas un momento de intimidad con otra Experta mientras una de las dos está afanada en su quehacer , puedes quitarte una Condición. Si se trata de tu quehacer, también das con una Pista relevante para el misterio activo. Dile a la Guardiana lo que es. La Pista no puede resolver el misterio por sí misma.</p></div><p class=\"bb-source\">Brindlewood Bay, edición española 1.0, p. 76.</p>"
+        }
+      },
+      {
+        "_id": "436ea4489b7d0510",
+        "name": "77 · Movimiento Misterios de la corona de oro",
+        "type": "text",
+        "sort": 7700000,
+        "text": {
+          "format": 1,
+          "content": "<div class=\"bb-reading\"><p>Movimiento Misterios de la corona de oro Una vez por partida, cuando cualquier Experta diga: «¡Esto me recuerda a lo que le ocurrió a Amanda Delacourt!», trabaja con los demás para describir qué aspecto de la situación en la que se encuentran les recuerda a un pasaje de Los misterios de la corona de oro. Como mínimo, debéis proporcionar la siguiente información:</p><p>• El nombre del misterio de la corona de oro en cuestión (¡no vale repetir, por favor!).</p><p>• En qué es similar el problema o la situación en la que Amanda se encontraba a lo que las</p><p>Expertas están viviendo.</p><p>• Cómo resolvió el problema o superó la situación Amanda. Después, considera que en una tirada relevante ha salido un 12+ O declara un hecho sobre la situación que la Guardiana debe incorporar.</p><p>Nota: Por lo general, solo puede usarse una vez por sesión.</p><p>Movimiento Ocultista Si intervienes en una actividad relacionada con lo sobrenatural o lo oculto por primera vez, imagina cómo serían tus acciones como si estuvieras llevando a cabo un movimiento. Di lo que lo activa y tira por Sensibilidad.</p><p>• Con un éxito, funciona. Describe el movimiento con la Guardiana: ahora pueden usarlo todas las Expertas durante el resto de la partida y tu tirada se conserva.</p><p>• Entre 7 y 9, también marcas la Corona del Vacío.</p><p>• Con un fallo, es algo que las Expertas nunca podrán hacer y también marcas la Corona del Vacío. Nota: La Guardiana puede pedirte que tengas una buena justificación narrativa para hacer este movimiento antes de intentar activarlo.</p><p>Teorizar Cuando las Expertas discuten sobre la solución de un misterio basándose en las Pistas que han descubierto y llegan a un consenso , se realiza una tirada de dados. Después se suma el número de Pistas incorporadas a la teoría o explicadas y se resta el valor de complejidad del misterio.</p><p>• Con 10+, la solución es correcta. La Guardiana les presentará la oportunidad de atrapar al responsable o de arreglar la situación.</p><p>• Entre 7 y 9, la solución es correcta, pero la Guardiana añadirá una complicación molesta a la propia solución. También puede presentarles una oportunidad problemática o peligrosa de atrapar al responsable o de arreglar la situación.</p><p>• Con 6 o menos, la solución es incorrecta y la Guardiana reacciona en consecuencia.</p><p>• Con 12+, además, una persona involucrada en la conspiración siniestra de Brindlewood Bay se da a conocer a las Expertas. Nota: No importa quién lance los dados para Teorizar llegado el momento. Tampoco está sujeto a modificadores en la tirada (ventajas, efectos del movimiento Misterios de la corona de oro, etc.) ni puede verse afectado por ponerse una Corona.</p></div><p class=\"bb-source\">Brindlewood Bay, edición española 1.0, p. 77.</p>"
+        }
+      }
+    ]
+  },
+  {
+    "_id": "8dd2a012be16580b",
+    "name": "06 · Hoja de Experta",
+    "ownership": {
+      "default": 0
+    },
+    "pages": [
+      {
+        "_id": "76ecec1a95cc10d6",
+        "name": "80 · Barbara",
+        "type": "text",
+        "sort": 8000000,
+        "text": {
+          "format": 1,
+          "content": "<div class=\"bb-reading\"><p>Barbara Billy Birdie Daisy Doris Ernestine Georgina Hyacinth Jane Jessica Laura Louise Marilyn Mavis Maxine Muriel Nellie Opal Pearl Rosemary</p><p>Ruby Ruth Violet</p><p>Nombre</p><p>Escoge uno o inventa el tuyo propio. Asistir a eventos benéficos Bordar colchas Cocinar Coleccionar (botones, flores prensadas, sellos, ) Crear álbumes de recortes Cuidar del jardín Hacer calceta Hacer pasteles Modelar objetos con barro Observar aves Pintar Restaurar antigüedades y mobiliario</p><p>Quehacer</p><p>Escoge uno o inventa el tuyo propio. (no puede haber dos Expertas con el mismo quehacer). A la última ¡A pescar! Alexis Carrington Colby Boutique de alta costura Cárdigan Dorothy Zbornak Hippy Jackie O Jogging Oficina Taconazos</p><p>Estilo</p><p>Escoge uno o inventa el tuyo propio.</p><p>Condiciones -1 0 1 1</p><p>Habilidades</p><p>Al principio del juego, añade 1 al modificador de una habilidad.</p><p>Vitalidad Compostura Razón Presencia Sensibilidad 0</p><p>Avances  Incrementa en 1 el modificador de una habilidad (máx. +3).  Incrementa en 1 el modificador de una habilidad (máx. +3).  Escoge un movimiento Experto más.  Escoge un movimiento Experto más.  Desmarca todos los objetos de tu Hogar, dulce hogar .</p><p>Fin de sesión</p><p>La primera pregunta siempre está marcada. Al comenzar la sesión, marca dos más (para tener un total de tres).  ¿Han resuelto las Expertas algún misterio?  ¿Has menoscabado en secreto la autoridad de un oficial local?  ¿Has compartido tu sabiduría con una persona joven?  ¿Has compartido un recuerdo de un miembro de la familia fallecido?  ¿ Te has comportado como una mujer con la mitad de tu edad?  ¿ Te has vuelto loquita por alguien?  ¿Le has demostrado a alguien que «quien tuvo retuvo»?</p><p>Movimientos expertos Al principio del juego, escoge uno de la hoja de movimientos expertos.</p><p>No puede haber dos Expertas con el mismo movimiento experto al principio.</p><p>La Corona de la Reina</p><p>Cuando te pongas esta Corona, marca la opción que quieras.  Narra tu recuerdo más preciado con tu pareja fallecida.  Narra una escena que te muestre como una hermana o hija imperfecta.  Narra una escena que te muestre como una madre imperfecta.  Narra tu recuerdo más preciado con tus hijos.  Narra una escena del presente que muestre un aspecto privado tuyo que pocas personas conocen.  Narra una escena del presente que muestre un romance floreciente.  Narra una escena del presente que muestre cómo satisfaces tus deseos físicos.</p><p>La Corona del Vacío</p><p>Cuando te pongas esta Corona, marca la primera casilla vacía.  Una sombra en el jardín. A partir de ahora, durante los Retazos de una vida agradable o las escenas con movimientos Afables centrados en ti, también tienes que narrar cómo se revelan, de manera sutil, oscuras entidades.  El carruaje. Tu modificador de Razón se reduce en 1 y tu modificador de Sensibilidad aumenta en 1.  La pálida máscara. De ahora en adelante, durante una conversación íntima con otro personaje, debes hacer una referencia casual a la muerte, el envejecimiento, el más allá o El Fin De Todas Las Cosas, sin importar de qué se esté hablando.  Pepitas de granada. Obtienes la Condición «Obsesionada con el Vacío». No puede eliminarse.  El Vacío. Retira a tu personaje de una forma que muestre cuán perdida está en el Vacío.</p><p>Hogar, dulce hogar                        Contador de PE</p></div><p class=\"bb-source\">Brindlewood Bay, edición española 1.0, p. 80.</p>"
+        }
+      }
+    ]
+  }
+]

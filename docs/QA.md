@@ -1,0 +1,52 @@
+# Verificación de la WIP 0.1.0-wip.1
+
+Fecha: 14 de septiembre de 2026. Foundry 13.351 real, servidor local con directorio de datos aislado, Chromium de escritorio a 1440 × 1100. Ningún mundo del usuario se usó como prueba. Código dirigido a Foundry 13; no se declara verificada la versión 14.
+
+## Pruebas automatizadas
+
+22 pruebas de contenido, fórmulas, umbrales de resultados, Coronas, avances, exclusividades iniciales, progresión de la conspiración y conservación de campos de formulario. Validador de manifiesto, versiones, sintaxis y recursos; construcción de seis compendios LevelDB y ZIP.
+
+## Pruebas realizadas dentro de Foundry
+
+- Crear y lanzar un mundo con el sistema; cargar los seis compendios sin errores de esquema.
+- Abrir los seis expedientes: 31 páginas de aventura con contenido, incluidas todas las secciones de preparación.
+- Crear Violet Whitmore desde el asistente con Dale Cooper: reparto inicial correcto y aumento de Sensibilidad aplicado.
+- Abrir y cambiar entre las cuatro secciones de la ficha; los controles nativos de ventana y sus iconos funcionan.
+- Añadir un objeto del hogar, usarlo en Metomentodo, obtener una reserva `3d6kh2 + 1` y comprobar que queda marcado y conservado.
+- Tirar Diurno, aplicar una Corona a un resultado fallido y conservar dados originales, nuevo nivel y escena pendiente.
+- Comprar Jonathan Hart con 5 PE: PE a cero, aumento de Presencia y ambos movimientos conservados.
+- Editar la descripción de Dale Cooper y comprobar que fuente, clave, frecuencia, automatización y uso permanecen intactos. Restaurar después el texto original.
+- Abrir Papá por la borda, revelar una pista con contexto y comprobar que el Actor público contiene únicamente lo revelado.
+- Teorizar como Guardiana: pista seleccionada y fórmula `2d6 + 1 - 6`; sin modificadores ordinarios.
+- Entrar desde una segunda sesión como jugadora propietaria de la Experta. El salón no muestra los controles de Guardiana ni las capas secretas; el tablero público permite Teorizar aunque sea de solo lectura.
+- Resolver una escena de Corona y cerrar la sesión con una respuesta afirmativa: +1 PE. El segundo cierre se rechaza y no vuelve a conceder experiencia.
+- Crear un diario privado de trabajo al abrir el expediente. El original de compendio permanece separado de las notas de campaña.
+
+## Errores encontrados y corregidos durante la prueba
+
+1. `tab` es una acción reservada de ApplicationV2. Las pestañas propias emplean `switchTab`.
+2. Foundry desactiva botones en documentos de solo lectura. Se habilita exclusivamente Teorizar para observadoras del misterio; no los controles de edición o revelación.
+3. Los estilos generales de botones alteraban los iconos nativos y el tamaño del título de ventana. Se separaron sus reglas visuales.
+4. El valor original de los dados podía confundirse con el nivel revisado de Corona. La tarjeta muestra el nivel efectivo y conserva los dados en un desplegable identificado.
+
+## Alcance de los permisos
+
+Las notas de campaña se guardan en diarios con propiedad por defecto 0. El Actor público no contiene la lista de pistas aún no descubiertas ni las biografías secretas de los sospechosos. Los compendios de Guardiana están ocultos del directorio de las jugadoras.
+
+Ocultar un compendio no es un mecanismo contra la inspección técnica: la API de Foundry 13 permite recuperar los documentos del compendio y el contenido publicado en GitHub también es público. Esta adaptación protege la presentación normal y las notas de campaña mediante documentos separados; no promete ocultar el material publicado a quien lo busque deliberadamente.
+
+## Pendiente antes de una versión estable
+
+- Partida completa de campaña y prueba exhaustiva de las 19 habilidades con sus decisiones narrativas.
+- Pruebas con Dice So Nice y combinaciones de módulos de terceros.
+- Pruebas de interrupción de red durante cada operación y edición simultánea de una misma Experta por varios propietarios. La cola actual serializa acciones en un cliente, no constituye una transacción distribuida.
+- Navegadores móviles, lector de pantalla y una auditoría formal de accesibilidad. Se revisaron contraste y controles visibles; no se declara certificación WCAG.
+- Foundry 14 y generaciones posteriores.
+
+Las capturas siguientes pertenecen al mundo de prueba real:
+
+![Salón del club](salon-foundry.png)
+
+![Ficha de Experta](experta-foundry.png)
+
+![Tablero del misterio](misterio-foundry.png)

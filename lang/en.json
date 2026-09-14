@@ -1,0 +1,12 @@
+{
+  "TYPES": {
+    "Actor": {
+      "experta": "Experta del Crimen",
+      "misterio": "Misterio",
+      "pnj": "Persona de interés"
+    },
+    "Item": {
+      "movimiento": "Movimiento"
+    }
+  }
+}

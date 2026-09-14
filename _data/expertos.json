@@ -1,0 +1,249 @@
+[
+  {
+    "_id": "c8ac7843c440e6ac",
+    "name": "M. A. Baracus",
+    "type": "movimiento",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "system": {
+      "description": "Una vez por sesión, si tú o alguna de tus compañeras Expertas sufr ís daño físico, puedes describir cómo evitáis ese daño por los pelos.",
+      "source": "Brindlewood Bay 1.0, p. 74",
+      "key": "0",
+      "frequency": "session",
+      "automatic": false
+    }
+  },
+  {
+    "_id": "179c65fd90792903",
+    "name": "Frank Colombo",
+    "type": "movimiento",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "system": {
+      "description": "Hay algo en ti que hace que las élites de la sociedad no te tomen muy en serio. ¿Qué es? Una vez por sesión, cuando hagas el movimiento Metomentodo en un lugar ocupado por ricos y famosos, encontrarás una Pista adicional incluso con un fallo y una Pista del Vacío adicional con un 12+.",
+      "source": "Brindlewood Bay 1.0, p. 74",
+      "key": "1",
+      "frequency": "session",
+      "automatic": false
+    }
+  },
+  {
+    "_id": "d0c2ea4ce09e45f7",
+    "name": "Dale Cooper",
+    "type": "movimiento",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "system": {
+      "description": "Añade 1 a tu Sensibilidad (máx. +3). Al principio de cada sesión, la Guardiana te dará una Pista del Vacío en forma de un sueño extraño y perturbador. Este movimiento no lo pueden tener dos Expertas a la vez.",
+      "source": "Brindlewood Bay 1.0, p. 74",
+      "key": "2",
+      "frequency": "unlimited",
+      "automatic": true
+    }
+  },
+  {
+    "_id": "687b0e2c689c585c",
+    "name": "Sonny Crockett",
+    "type": "movimiento",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "system": {
+      "description": "Tienes un estilo de vestir particular, algo que provoca que la gente diga «¡Guau!» al verte. Describe lo que llevas puesto y añádelo a tu Hogar, dulce hogar. Cuando uses el atuendo para obtener ventaja en una tirada, no lo marques.",
+      "source": "Brindlewood Bay 1.0, p. 74",
+      "key": "3",
+      "frequency": "unlimited",
+      "automatic": true
+    }
+  },
+  {
+    "_id": "7d450baee3c36b2e",
+    "name": "Frank Dowling",
+    "type": "movimiento",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "system": {
+      "description": "Tienes un poderoso trasfondo religioso. Descríbelo. Cuando uses este movimiento, describe cómo tu fe te ayuda a resistir el Vacío. Luego, desmarca un número de cuadros de la Corona del Vacío igual a tu Sensibilidad más 1. El número mínimo de cuadros que puedes desmarcar es 1. Si desmarcas la Pepita de granada, sigues teniendo la Condición «Obsesionada con el Vacío». Solo puedes usar este movimiento una vez.",
+      "source": "Brindlewood Bay 1.0, p. 74",
+      "key": "4",
+      "frequency": "once",
+      "automatic": true
+    }
+  },
+  {
+    "_id": "0349a5b3cc4d1e68",
+    "name": "Tom Hanson",
+    "type": "movimiento",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "system": {
+      "description": "Puedes pasar perfectamente por alguien mucho más joven. Si estás en una situación o un lugar donde ser más joven te beneficia, lanzas los dados con ventaja.",
+      "source": "Brindlewood Bay 1.0, p. 74",
+      "key": "5",
+      "frequency": "unlimited",
+      "automatic": false
+    }
+  },
+  {
+    "_id": "8e39ddad2232def6",
+    "name": "Milton Hardcastle",
+    "type": "movimiento",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "system": {
+      "description": "Tienes una pregunta de Fin de sesión adicional que siempre se considera marcada: «¿Te has tomado la justicia por tu mano con algún malhechor?»",
+      "source": "Brindlewood Bay 1.0, p. 74",
+      "key": "6",
+      "frequency": "unlimited",
+      "automatic": true
+    }
+  },
+  {
+    "_id": "c83f8eaa0b368649",
+    "name": "Jonathan Hart",
+    "type": "movimiento",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "system": {
+      "description": "Solías llevar una vida lujosa alrededor del mundo y aún posees un toque de glamur que nunca se desvanece. Añade 1 a tu Presencia (máx. +3).",
+      "source": "Brindlewood Bay 1.0, p. 74",
+      "key": "7",
+      "frequency": "unlimited",
+      "automatic": true
+    }
+  },
+  {
+    "_id": "2f57d640cbfaa25d",
+    "name": "Angus MacGyver",
+    "type": "movimiento",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "system": {
+      "description": "Cuando improvisas en una situación utilizando lo que tengas a mano, pídeles a las demás jugadoras y a la Guardiana que nombren tres objetos que haya alrededor. Mientras puedas dar una explicación plausible de cómo te ayudan estos objetos en una acción, dispones de ventaja en una sola tirada relacionada con esa acción.",
+      "source": "Brindlewood Bay 1.0, p. 74",
+      "key": "8",
+      "frequency": "unlimited",
+      "automatic": false
+    }
+  },
+  {
+    "_id": "70e64204ce4da229",
+    "name": "Thomas Magnum",
+    "type": "movimiento",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "system": {
+      "description": "Aunque lo llevas en secreto, eres amiga íntima de Robin Masterson, la misteriosa autora de las novelas de Los misterios de la corona de oro. Tienes acceso a los recursos de Robin siempre que estés fuera de Brindlewood Bay (a su casa, su vehículo e incluso su cuenta bancaria) y, una vez por sesión, tienes un uso adicional del movimiento Misterios de la corona de oro.",
+      "source": "Brindlewood Bay 1.0, p. 74",
+      "key": "9",
+      "frequency": "session",
+      "automatic": true
+    }
+  },
+  {
+    "_id": "7f3b48174e66e2bc",
+    "name": "Fox Mulder",
+    "type": "movimiento",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "system": {
+      "description": "Alguien relacionado con la conspiración siniestra te ayuda entre bastidores. Dile a la Guardiana que los requisitos para cada capa de la conspiración siniestra se reducen en una Pista del Vacío. Una vez por misterio, puedes convocar una reunión secreta con este informante, que siempre permanece entre las sombras y en el anonimato. Vale con que describas cómo es la escena (el lugar, el entorno, cómo llega el personaje misterioso, etc.). El contenido de la conversación se queda fuera de escena. Luego, obtén una bonificación para tu próxima tirada igual al número de Pistas del Vacío descubiertas durante el misterio en cuestión (como siempre, la bonificación no puede usarse para Teorizar). La identidad del informante solo se revelará por completo durante el Misterio del Vacío, momento en el que puedes compartir escenas normales con esa persona. No puede haber dos Expertas con este movimiento a la vez.",
+      "source": "Brindlewood Bay 1.0, p. 75",
+      "key": "10",
+      "frequency": "mystery",
+      "automatic": true
+    }
+  },
+  {
+    "_id": "573b348243f2d145",
+    "name": "Michael Knight",
+    "type": "movimiento",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "system": {
+      "description": "Tienes un medio de transporte fiable (un sedán de gran tamaño, una motocicleta, una vieja camioneta...) que te ha sacado de más de una situación peliaguda. Dale un nombre y añádelo a tu Hogar, dulce hogar. Cuando lo utilices para obtener ventaja en un lanzamiento de dados, déjalo sin marcar.",
+      "source": "Brindlewood Bay 1.0, p. 75",
+      "key": "11",
+      "frequency": "unlimited",
+      "automatic": true
+    }
+  },
+  {
+    "_id": "5275e4f511f91c2c",
+    "name": "Rick & A. J.",
+    "type": "movimiento",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "system": {
+      "description": "Tienes un hermano que es tu polo opuesto en cuestiones de estética y personalidad. Describe a este familiar y dale un nombre. Siempre puedes pedir una escena con esta persona. También puedes solicitar su ayuda, en cuyo caso tendrás ventaja en cualquier tirada para realizar acciones junto a él. Sin embargo, eso siempre tiene un coste.",
+      "source": "Brindlewood Bay 1.0, p. 75",
+      "key": "12",
+      "frequency": "unlimited",
+      "automatic": false
+    }
+  },
+  {
+    "_id": "1620a1e350111957",
+    "name": "R. Quincy",
+    "type": "movimiento",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "system": {
+      "description": "Tienes formación en Medicina. Descríbelo. Luego, añade «Maletín médico» a tu Hogar, dulce hogar. Cuando lo uses para obtener ventaja en una tirada, déjalo sin marcar.",
+      "source": "Brindlewood Bay 1.0, p. 75",
+      "key": "13",
+      "frequency": "unlimited",
+      "automatic": true
+    }
+  },
+  {
+    "_id": "46d70113136fa86f",
+    "name": "Jim Rockford",
+    "type": "movimiento",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "system": {
+      "description": "Al principio de cada sesión, la Guardiana narrará un mensaje que recibirás en el contestador automático. El mensaje siempre será de la misma persona anónima y siempre te pedirá que hagas alguna tarea en particular, a menudo relacionada con uno de los misterios activos. Cuando completes la tarea, ya sea en esta sesión o en el futuro, márcate 1 PE. Los mensajes y las tareas serán más extraños y perturbadores cuantas más marcas tengas en la Corona del Vacío. Dos Expertas no pueden tener este movimiento al mismo tiempo.",
+      "source": "Brindlewood Bay 1.0, p. 75",
+      "key": "14",
+      "frequency": "unlimited",
+      "automatic": false
+    }
+  },
+  {
+    "_id": "39338bc980af836c",
+    "name": "«Espantapájaros»",
+    "type": "movimiento",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "system": {
+      "description": "Al principio de la sesión, un desconocido te pone algo en la mano o lo deja en un lugar donde lo encuentras. La Guardiana te dirá lo que es. Funciona como una Pista, pero al principio no está relacionado con ninguno de los misterios en particular. Puedes decidir asignarlo a un misterio activo siempre que quieras.",
+      "source": "Brindlewood Bay 1.0, p. 75",
+      "key": "15",
+      "frequency": "unlimited",
+      "automatic": false
+    }
+  },
+  {
+    "_id": "4d8cd00ca2a8fa83",
+    "name": "Colt Seavers",
+    "type": "movimiento",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "system": {
+      "description": "Una vez por sesión, puedes obtener un 12+ en cualquier tirada relacionada con una acción física peligrosa u osada.",
+      "source": "Brindlewood Bay 1.0, p. 75",
+      "key": "16",
+      "frequency": "session",
+      "automatic": true
+    }
+  },
+  {
+    "_id": "b8652fe4e1c8ed69",
+    "name": "Gordon Shumway",
+    "type": "movimiento",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "system": {
+      "description": "Tienes una amistad felina con la que compartes un fuerte lazo. Este extraordinario minino puede hacer trucos y seguir órdenes sencillas. Ponle nombre y añádelo a tu Hogar, dulce hogar. Cuando uses al gato para obtener ventaja en una tirada, déjalo sin marcar.",
+      "source": "Brindlewood Bay 1.0, p. 75",
+      "key": "17",
+      "frequency": "unlimited",
+      "automatic": true
+    }
+  },
+  {
+    "_id": "fee8fbbce26cb94f",
+    "name": "Remington Steele",
+    "type": "movimiento",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "system": {
+      "description": "Tienes mucho talento para hacerte pasar por quien no eres. Si hay un objeto identificativo o un disfraz que podría ayudarte en caso de apuro, lo tienes. Di lo que es y añádelo a tu Hogar, dulce hogar.",
+      "source": "Brindlewood Bay 1.0, p. 75",
+      "key": "18",
+      "frequency": "unlimited",
+      "automatic": false
+    }
+  }
+]

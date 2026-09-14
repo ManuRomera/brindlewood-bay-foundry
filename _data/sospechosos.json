@@ -1,0 +1,639 @@
+[
+  {
+    "_id": "b03aed9b3f071cd7",
+    "name": "Sheriff Wyman Dalrymple, oficial de policía",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Gran papada. Barrigón. Habla siempre en tono irritado. Al no tener pistas por donde seguir, tendrá que dejar que los Krause leven anclas y se marchen. Es reticente a pedirles ayuda a las Expertas del Crimen, pero sabe que en el pasado han tenido cierto éxito resolviendo casos. Cita: «¡Créame, a nadie le fastidia más que a mí el pedirle ayuda a un montón de cotorras!».",
+      "source": "Papá por la borda, pp. 38–41"
+    }
+  },
+  {
+    "_id": "c8f9708cb3102261",
+    "name": "Alison Krause, la esposa",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Esbelta. Elegante. Bien vestida. Triste por la muerte de su marido, claro, pero parece igual de afectada por cómo influirá todo esto en el IV Baile Anual del Soldado, un evento benéfico a favor de los veteranos que sufren de cáncer testicular que se celebra la semana que viene y de la que es la anfitriona. Cita: «¡Es muy de Albert coger y matarse ahora, cuando estoy a punto de conseguir la grandeza como recaudadora de fondos benéficos! ¡Qué egocéntrico podía llegar a ser!».",
+      "source": "Papá por la borda, pp. 38–41"
+    }
+  },
+  {
+    "_id": "df8c1b737e7607c3",
+    "name": "Sara Krause, la hija mayor",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Desaliñada. Nerviosa. Fácil de intimidar. Es una ama de casa con tres pequeños en Boston. Parece la única persona que siente de corazón la muerte del señor Krause. Cita: «¿De verdad cree que alguien puede haber asesinado a mi padre? Es... ¡es demasiado horrible para considerarlo siquiera!».",
+      "source": "Papá por la borda, pp. 38–41"
+    }
+  },
+  {
+    "_id": "5f16219677fdcbb7",
+    "name": "David Krause, el hijo",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Insolente. Sentido vanguardista de la moda. Imperturbable. David está impaciente por volver a su galería de arte en Boston. No tiene nada bueno que decir de su padre. Cita: «Me recuerda, claro, a la gran obra del artista Gao Bai, que estaba tan comprometido con su trabajo que se arrojó desde un edificio de cinco plantas. La expresión artística definitiva, si me preguntan. Si al menos la muerte de mi padre hubiese sido tan significante... , pero carecía de visión».",
+      "source": "Papá por la borda, pp. 38–41"
+    }
+  },
+  {
+    "_id": "a7c3b0f280418739",
+    "name": "Emily Krause, la hija menor",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Distante. Friki de los ordenadores. Bastante rarita. Parece indiferente a la muerte de su padre. Muy ocupada con una conversación online que está manteniendo. Cita: «Umm... ¿podemos poner ahí un asterisco un segundo? Tengo que responder ya a este DM».",
+      "source": "Papá por la borda, pp. 38–41"
+    }
+  },
+  {
+    "_id": "a2c9dbf648699add",
+    "name": "Andrew, el mayordomo",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Pelo gris. Refinado. Elocuente. Hace todo lo posible por cuidar de los Krause en este momento tan agitado. Parece idolatrar sobre todo a Alison. Cita: «Señora, la mesa para la cena está dispuesta en proa y aguardando su inspección».",
+      "source": "Papá por la borda, pp. 38–41"
+    }
+  },
+  {
+    "_id": "bda83b5dfc65627f",
+    "name": "Etienne Beauregard, pescadero",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Barba plateada. Robusto. Simpático. Etienne es un viejo amigo de los Krause y ha aceptado guardar el cuerpo de Albert como gesto hacia la familia. Cita: «Haría lo que fuese por los Krause. Todo lo que tengo en esta vida es gracias a ellos. Cuando me dijeron que necesitaban un lugar frío para guardar el cuerpo de Albert, me ofrecí encantado a hacer le un hueco entre los bacalaos y los abadejos».",
+      "source": "Papá por la borda, pp. 38–41"
+    }
+  },
+  {
+    "_id": "b0e2e1362d0e6887",
+    "name": "Elena Visage, actriz",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Seductora. Borracha. Disfraz de vampiresa. Elena es una exactriz de Hollywood y estrella recurrente en las películas de Abner. Parece gustarle el director, aunque acabará dejando caer que al final la relegó a papeles de mujer «madura» en favor de talentos más jóvenes a los que ofrecía los papeles protagonistas. Cita: «O sea, seguro que han visto mi trabajo. En Variety dijeron una vez que mi actuación en La mujer diabólica del planeta X fue lo mejor que habían visto nunca».",
+      "source": "Un grito en Halloween, pp. 42–45"
+    }
+  },
+  {
+    "_id": "31a3bf9e0b5c96b6",
+    "name": "Gordon Thune, banquero",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Estirado. Cargante. Disfraz de monstruo de Frankenstein. Gordon es el banquero local y un pilar de la comunidad. Encuentra a Abner desagradable y, de no ser por la importancia del director como cliente del banco, ni muerto lo verían en esta fiesta. Cita: «¿Quién sabe qué clase de absurda depravación nos habrá preparado Abner en esta fiesta ? Estos tipos de Hollywood... son diferentes a usted y a mí, ¿sabe lo que le digo?».",
+      "source": "Un grito en Halloween, pp. 42–45"
+    }
+  },
+  {
+    "_id": "1f9add2e4e3014fc",
+    "name": "Sam Turlington, socio empresarial",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Amigable. Bullicioso. Disfraz de fantasma de la ópera. Sam es el nuevo socio de Abner (están invirtiendo en algún importante comercio minorista cerca de la bahía). Le gusta Abner y se lo está pasando bomba en la fiesta. Cita: «Le diré algo: Abner Vidal no es solo un director de cine visionario. No, no... También es un genio de los negocios. Los planes que tenemos en marcha para las propiedades de la bahía van a convertir a Brindlewood Bay en un destino vacacional de renombre internacional».",
+      "source": "Un grito en Halloween, pp. 42–45"
+    }
+  },
+  {
+    "_id": "52f7df9162cceefe",
+    "name": "Coco Vidal, la esposa",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Cabecita hueca. Dulce. Disfraz de Cleopatra. Coco conoce a Abner desde que eran adolescentes y solía ser extra en sus primeras películas. Llevan casados casi cuarenta años. Cita: «¿Por qué iba nadie a querer ma tar a Abner? No le haría daño a una mosca. Vale que ronca bastante y que a veces es un pelín tacaño cuando salimos a cenar, pero ¿por qué iba nadie a querer matarlo por eso?».",
+      "source": "Un grito en Halloween, pp. 42–45"
+    }
+  },
+  {
+    "_id": "68c016a8f31c5b65",
+    "name": "Marcus Greaves, el mánager",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Atractivo. Mirada penetrante. Sin disfraz. Lleva los negocios de Abner y ha estado con él desde hace más de veinte años, cuidando de sus asuntos, consiguiendo oportunidades, negociando contratos... y llevándose siempre su diez por ciento. Cita: «Estas fiestas son una pérdida de tiempo. La gente de esta cloaca nunca aceptará a Abner como uno de los suyos, no sé por qué lo intenta siquiera. Tengo que llevarle de vuelta a Hollywood. Los Ángeles echa de menos a Abner Vidal».",
+      "source": "Un grito en Halloween, pp. 42–45"
+    }
+  },
+  {
+    "_id": "10f8e9c56d73e907",
+    "name": "June Willoughby, habitante del pueblo",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Guapa. Elegancia artificial. Disfraz de guateque. Vecina y amiga de los Vidal. Tiene un lío en secreto con Abner. Muy crítica con Coco. Cita: «Pero miren este lugar. Todo es tan pretencioso... Como la idea de Coco de comprar esta bazofia barata. ¡Zhampán! ¿Quién ha oído hablar del Zhampán?».",
+      "source": "Un grito en Halloween, pp. 42–45"
+    }
+  },
+  {
+    "_id": "b57533f1d39800e4",
+    "name": "Señora White, criada",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Cascarrabias. Fisgona. Uniforme de criada con orejas de gato. La señora White siempre está callada... y presente. Sabe mucho de lo que ocurre en casa de los Vidal. Enamorada en secreto de Coco. Cita: «El señor Vidal estaba condenado a acabar matándose algún día. ¡Me sorprende que haya tardado tanto! Quien más me preocupa es la pobre señora Vidal. Alguien tiene que asegurarse de cuidarla».",
+      "source": "Un grito en Halloween, pp. 42–45"
+    }
+  },
+  {
+    "_id": "84daa04756d4f4f9",
+    "name": "Sue Mellon, presentadora",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Sobreexcitada. Hace juegos de palabras. Repartidora de abrazos. Sue fue una humorista de mucho éxito en el Reino Unido. Aceptó este trabajo de presentadora cuando su carrera cómica empezó a estancarse. Siente celos de Paul en secreto, ya que este es la estrella absoluta de The Jolly Good Baking Show. Cita: «¡Reposteros! Un aviso: ¡ quedan cinco minutos para que se descubra el pastel!».",
+      "source": "Brindlewood Bay precocinado, pp. 46–49"
+    }
+  },
+  {
+    "_id": "f39576c443af4cca",
+    "name": "Timothy Boosh, presentador",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Asombrosamente alto. Humor absurdo. Gótico. Se deja llevar. No tiene ni idea de repostería y se siente muy afortunado de haber acabado en este programa. Cita: «¡Reposteros! ¡Os quedan treinta minutos de ronda!» . Se tira un vaso de agua por la cabeza y, por algún motivo, da una voltereta bochornosa.",
+      "source": "Brindlewood Bay precocinado, pp. 46–49"
+    }
+  },
+  {
+    "_id": "742679b983996659",
+    "name": "Jean Leaf, jueza",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Critica con dulzura. Anciana. Elegante. Jane es una celebridad muy querida en el Reino Unido. Ha publicado docenas de libros de cocina y ha hecho cientos de apariciones en televisión en una carrera que se ha extendido durante casi sesenta años. Como el resto de las estrellas de The Jolly Good Baking Show , su contrato está pendiente de renovación y últimamente se ha sentido muy frustrada por las tácticas extremas de negociación de Paul, que amenaza con cerrar el programa. Cita: «No desespere, querida... Su tarta posee un sabor absolutamente adecuado. Tan solo parece un poco... informal».",
+      "source": "Brindlewood Bay precocinado, pp. 46–49"
+    }
+  },
+  {
+    "_id": "05a2ac4183e7f72e",
+    "name": "Scott Lamb, concursante",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Organizado. Enamorado de las pajaritas. Sarasa. Scott fue concursante de The Jolly Good Baking Show tres años atrás. Fue famosa su descalificación tras una explosiva discusión con Paul delante de las cámaras por una bandeja de magdalenas demasiado hechas. Sin embargo, muchos espectadores creen que había más detrás de esa historia, y algunos incluso sugieren que eran amantes en secreto. Retorciendo un poco las normas, los productores del programa han invitado a Scott a participar en este episodio especial. Para ello, han llegado a alquilar para él un apartamento en el pueblo para poder decir que, técnicamente, «vive» en Brindlewood Bay. Cita: «Es muy importante hornear en blanco la masa del pastel para que la base no quede reblandecida, porque, créame, a Paul le gusta que la base sea firme, lisa, perfecta».",
+      "source": "Brindlewood Bay precocinado, pp. 46–49"
+    }
+  },
+  {
+    "_id": "f00cdafecafddaf2",
+    "name": "Melanie Blair, concursante",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Apariencia cansada. Fuerte, aunque no lo parezca. Vestimenta recatada. Melanie ha vivido en Brindlewood Bay toda su vida. Aprendió a cocinar con sus padres, quienes regentaban la panadería The Sweet Sensations antes de cerrar el negocio. Cita: «Sí, es cierto que la panadería de mis padres echó el cierre cuando la cadena de panaderías de Paul abrió un local en Brindlewood Bay, pero no le guardo rencor. Me encanta The Jolly Good Baking Show y es un honor estar aquí».",
+      "source": "Brindlewood Bay precocinado, pp. 46–49"
+    }
+  },
+  {
+    "_id": "a6c314373726f971",
+    "name": "Heath Hendricks, productor",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Severo. Calvicie incipiente. Emplea demasiado el gesto de la cuenta atrás con los dedos. Heath siempre está irritado y hasta arriba de trabajo. Le enfurece que Paul Riviera haya amenazado con dejar el programa si no se cumplen sus (ridículas) exigencias contractuales. Cita: «¿Que si a veces soñaba despierto con que se muriera? Por supuesto. Pero ¿le maté? En absoluto. Paul Riviera podía ser un gilipollas pomposo y arrogante, pero era nuestro gilipollas pomposo y arrogante».",
+      "source": "Brindlewood Bay precocinado, pp. 46–49"
+    }
+  },
+  {
+    "_id": "fabe07645f551fd1",
+    "name": "Buck, cámara",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Jovial. Atractivo. Poético. Buck, estadounidense, solo lleva unos meses en The Jolly Good Baking Show , desde que su amante secreta, Donna Riviera, le consiguió el trabajo. Cita: «Toda esta situación es insoportablemente trágica. The Jolly Good Baking Show es una de las pocas luces que quedan en este mundo oscuro y sombrío. Dígame otro espectáculo que una a la gente como este, jóvenes y mayores, ricos y pobres, negros y blancos. Es algo que pone a todo el mundo de acuerdo, ¿sabe? Y, ahora que se ha ido Paul, nunca será lo mismo. Esa luz brilla ahora un poco menos».",
+      "source": "Brindlewood Bay precocinado, pp. 46–49"
+    }
+  },
+  {
+    "_id": "632eb368e0b2678f",
+    "name": "Donna Riviera, esposa",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Rubia de bote. Estampado de leopardo. Kilos de maquillaje. Como su marido, Donna Riviera es una celebridad, estrella de un reality de corto recorrido llamado The Real Scousewives of Liverpool. Lleva liada con Buck unos cuantos meses. Cita: «No me puedo creer que nadie le matara, o sea. Ya le digo, siempre me sacaba de quicio, si alguien tenía motivo para cargárselo era yo. Pero yo no lo hice. Yahora, si me perdona, necesito un pitillo y una copita para calmar los nervios, o sea».",
+      "source": "Brindlewood Bay precocinado, pp. 46–49"
+    }
+  },
+  {
+    "_id": "57f502457141ec1f",
+    "name": "Caroline Hawthorne, nieta",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Asertiva. Sardónica. Vestido entallado. Caroline es, en la práctica, la cabeza de familia de los Hawthorne. Aunque el dinero de la dinastía procede de tía Amelia, es Caroline quien lo organiza todo y le da forma. Se asegura de que todo el mundo esté atendido, económicamente hablando, y de que tenga lugar el peregrinaje anual para besar el anillo de Amelia. Caroline es hija de Thomas, esposa de Avery y madre de Everett y Skyler. Cita: «Claro que teníamos nuestras diferencias, pero lo que tienen que entender de esta familia es que somos, ante todo, Hawthorne. Eso es más importante que todo y que todos».",
+      "source": "Pero mira cómo mueren, pp. 51–55"
+    }
+  },
+  {
+    "_id": "07ac4b81ecfc4974",
+    "name": "Thomas Hawthorne, hermano",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Cauto. De voz suave. Chaqueta de esmoquin color ciruela. Thomas era el hermano de Amelia y su asesor financiero. Aunque no lo dice, está resentido con su hermana, ya que fue él quien la ayudó con las inversiones que la hicieron rica y, si no fuera por el hecho de que sus padres le dejaron fuera del testamento, podría haber hecho esas inversiones para sí mismo. Thomas es el padre de Caroline y el abuelo de Everett y Skyler. Cita: «Mi hermana era una mujer muy complicada. Tenía un lado oculto, una forma de ser secreta que muy poca gente comprendía. Aunque me fastidie reconocerlo, la echaré de menos».",
+      "source": "Pero mira cómo mueren, pp. 51–55"
+    }
+  },
+  {
+    "_id": "c3e3962463f48475",
+    "name": "Jimmy Hawthorne, hermano",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Cara enrojecida. Borracho. Camiseta de los New England Patriots. Tío Jimmy era hermano de Amelia, divorciado tres veces y oveja negra de la familia Hawthorne. Incapaz de conservar un trabajo y siempre pidiendo dinero a los demás miembros de la familia. Amelia y él se odiaban a muerte el uno al otro, aunque el motivo siempre ha sido desconocido. Cita: «¡Vaya, vaya, la bruja ha muerto!». Se toma otra copa y cae desmayado.",
+      "source": "Pero mira cómo mueren, pp. 51–55"
+    }
+  },
+  {
+    "_id": "4a33d91e5587cd2e",
+    "name": "Magdalena Hawthorne, cuñada",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Sonrisa astuta. Siempre barajando una baraja de cartas de tarot. Cruz plateada ridículamente grande alrededor del cuello. Magdalena es una de las exesposas de Jimmy. Es una mujer profundamente espiritual que mezcla su fe católica con otras creencias más esotéricas. Amelia le dio dinero para abrir su tienda de ocultismo en Los Ángeles a finales de los 80. Magdalena es considerada la única amiga que Amelia tenía. Cita: «Llegué ayer temprano. Saqué una carta de la baraja en cuanto crucé el umbral de la puerta principal: el Nueve de Espadas. Esa es una muy mala señal, símbolo de conflicto, y supe de inmediato que algo terrible iba a suceder. Las cartas nunca mienten...».",
+      "source": "Pero mira cómo mueren, pp. 51–55"
+    }
+  },
+  {
+    "_id": "99ff1ae5c7bb4580",
+    "name": "Everett Hawthorne, sobrino nieto",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Guapísimo. Uso excesivo del gesto de pistola con los dedos. Jersey de cachemir una talla mayor. Everett es una estrella de cine y, probablemente, el único sospechoso que las Expertas reconocen al instante. Es famoso por la saga de películas de espionaje de Turk Huntington, cada una de las cuales es un éxito mundial. Everett es hijo de Caroline y Avery, y hermano de Skyler. Cita: «Confíe en mí: todos los de esta sala, excepto yo, que estoy forrado de cojones, quieren saber cuánto les ha dejado tía Amelia en el testamento. Pero, conociéndola, le habrá legado hasta el último centavo a Chestnut IV y a sus futuros descendientes».",
+      "source": "Pero mira cómo mueren, pp. 51–55"
+    }
+  },
+  {
+    "_id": "71d936db17bb296e",
+    "name": "Skyler Hawthorne, sobrina nieta",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Alta. Bonita. Elegancia bohemia. Skyler es una modelo de pasarela que ha trabajado para algunas de las mayores firmas de moda del mundo. No le gustan los demás Hawthorne, especialmente su hermano, de quien cree que recibe un trato preferencial por parte de los mayores de la familia. Skyler es hija de Caroline y Avery, y hermana de Everett. Cita: «Mi hermano no siempre triunfó en la vida. En la adolescencia era gordo, tenía una nariz enorme y tartamudeaba de lo lindo. Pero la tía Amelia lo quería, casi tanto como a esos malditos perros, y le ayudó. Resulta que con la suficiente pasta puedes convertir a una rana en príncipe».",
+      "source": "Pero mira cómo mueren, pp. 51–55"
+    }
+  },
+  {
+    "_id": "b6d656781677e910",
+    "name": "Avery Partridge, sobrino político",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Amargado. Despreciativo. Polo de golf y pantalones caquis. Avery dirige un negocio inmobiliario exitoso con su mujer, Caroline. No tiene demasiado aprecio por ninguno de los Hawthorne, pero despreciaba a Amelia con todas sus fuerzas por obligarle a dar a sus hijos el apellido Hawthorne como condición para poner el dinero inicial para su negocio. Avery es marido de Caroline y padre de Everett y Skyler. Cita: «¿Han estado ya en el salón navideño de Amelia ese tan horroroso? Vaya pesadilla de color golosina. Para mí que reunió toda esa basura empalagosa en un esfuerzo por apropiarse de la idea de la Navidad y dominarla».",
+      "source": "Pero mira cómo mueren, pp. 51–55"
+    }
+  },
+  {
+    "_id": "de898cbb6a40c659",
+    "name": "Madre Hawthorne, abuela",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Anciana. Ciega de un ojo. Enterrada en pieles. Madre Hawthorne es la abuela de Amelia. Nadie recuerda su verdadero nombre de pila ni se sabe con exactitud cuántos años tiene. Se las ha arreglado para sobrevivir a toda una generación de Hawthornes mucho más jóvenes que ella. Rara vez habla y apenas puede moverse. Le habría sido imposible estrangular a Amelia. Madre Hawthorne es la abuela de Thomas y Jimmy. Cita: «...».",
+      "source": "Pero mira cómo mueren, pp. 51–55"
+    }
+  },
+  {
+    "_id": "ecd6157e9cb28678",
+    "name": "Ambrose Sinclair, el director",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Pelo gris rizado. Mirada penetrante. Juega contantemente con un par de esferas baoding. Ambrose está muy afectado por la muerte de Natassia: la consideraba su protegida y una estrella emergente en el mundo del teatro experimental. Es el marido de Veruca. Cita: «Representar El rey en sombras será mi mayor logro, aquello por lo que el mundo me recordará. ¿Sabían que se desconoce quién es el autor de la obra? De hecho, quizás ni tenga autor. Puede que la obra, simplemente... exista, como una verdad indeleble en el universo».",
+      "source": "La muerte a escena, pp. 56–63"
+    }
+  },
+  {
+    "_id": "f6f699846c67bcb7",
+    "name": "Veruca Sinclair, la Duquesa",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Pelo negro azabache peinado hacia atrás, bien tirante. Carmín rojo sangre. Aroma a planta de tomate. Veruca está descorazonada por lo de Natassia, a quien trataba como una hija. Es la esposa de Ambrose. Cita: «Oh, Dis Pater, jamás cometería la estupidez de decirte que no tomes lo que es tuyo por derecho propio, pero... ¿por qué quitarnos a nuestra Natassia ahora? Era tan joven, Padre de la Noche... Seguro que aún tenía trabajo que cumplir para ti en este mundo...».",
+      "source": "La muerte a escena, pp. 56–63"
+    }
+  },
+  {
+    "_id": "a5b3c8f3e6856b43",
+    "name": "Antony Veit, el Barquero",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Armario empotrado. Barba larga y poblada. Carcajada fácil, atronadora. Antony es de primeras el miembro más amigable y accesible de la compañía teatral. Mientras que los demás se contentan con vestirse de negro y esconderse en las sombras, Antony es algo así como un bon vivant. Es el marido de Belladona. Cita: «¡Este es el mejor trabajo que he tenido en mi vida! Antes de conocer a Belladona era estibador, un trabajo que implica levantarse al alba y muchas horas de romperse la espalda. ¿Ahora? Duermo hasta las 10, me levanto y desayuno con Bella y luego me voy a El Crepúsculo para preparar la función. Sí, bueno, la gente que monta este espectáculo es un poco... particular. Pero ¿no lo somos todos?»",
+      "source": "La muerte a escena, pp. 56–63"
+    }
+  },
+  {
+    "_id": "da57694117c748a1",
+    "name": "Belladona Veit, miembro del coro",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Ropa oscura y traslúcida. Piel pálida. Tatuajes. Belladona parece menos molesta por la muerte de Natassia y, si se la presiona, dirá que piensa presentarse a la audición para el papel de La Viajera ahora que Natassia no está. Es la esposa de Antony. Cita: «Tenía que haberme presentado a la audición para La Viajera la primera vez, por supuesto. Nadie está más íntimamente familiarizada con las palabras de nuestro señor... quiero decir, de la obra... que yo. Pero Ambrose no quería. Siempre era “¡Natassia, Natassia, Natassia! ¡Es una estrella! ¡Es el futuro de este nuevo mundo que estamos creando!”».",
+      "source": "La muerte a escena, pp. 56–63"
+    }
+  },
+  {
+    "_id": "db31323cc4b7e2c2",
+    "name": "Gregor Thune, el Rey Ocluido",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Mirada ausente. Delgado, carne casi transparente. Casi insensible. Gregor Thune no ha sido el mismo desde que tomó el papel del Rey Ocluido. Solía ser un miembro de la compañía dinámico, enérgico, pero ahora apenas rompe su silencio para murmurar unas cuantas palabras crípticas. Es el marido de Giancarla. Cita: «... en la profundidad, en la vastedad... gemas y oro relucientes... riquezas inenarrables... conocimientos ignotos... Él intenta alcanzarnos... llamarnos a su seno... que volvamos al gélido abrazo del Vacío... pero el Vacío nos ha rechazado... y ahora estamos completamente solos... la profundidad... la profundidad... la negra vastedad de la profundidad...»",
+      "source": "La muerte a escena, pp. 56–63"
+    }
+  },
+  {
+    "_id": "44093ca82a359325",
+    "name": "Giancarla Thune, miembro del coro",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Cabello largo con raíces canas. Corona de flores. Temperamento dulce. Giancarla ha sido amiga de Ambrose y Veruca desde hace muchísimo tiempo. Ella, su marido Gregor y los Sinclair eran inseparables, pero las cosas han cambiado desde que Gregor consiguió el papel del Rey Ocluido y se volvió tan... vacío. Ahora tan solo canta en el coro y cuida de Gregor. Giancarla está muy familiarizada con Brindlewood Bay y la historia de la ciudad. Es la esposa de Gregor. Cita: «¿Son de Brindlewood Bay? Lo conozco bien, mi cuñado vive allí. ¿Saben quién es? Banquero, muy engreído... No aprueba a todas estas gentes del teatro con los que Gregor y yo nos relacionamos, si les digo la verdad... ¡Oh! Espero que ustedes no sean tan estiradas como él. ¡Por favor, díganme que no!».",
+      "source": "La muerte a escena, pp. 56–63"
+    }
+  },
+  {
+    "_id": "d19abad19df6ef54",
+    "name": "Otho Fane, el Bellaco",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Obeso mórbido. Rodeado de criados. Olor a lila y polvos de talco. Otho es uno de los nuevos ricos de Boston que amasaron su fortuna tras haber invertido con astucia todo su dinero en acciones de empresas tecnológicas y farmacéuticas. Se unió a la compañía por aburrimiento y descubrió encantado que los Sinclair habían dado con algo realmente rompedor y excitante con El rey en sombras. Es el marido de Delia. Cita: «Ambrose es un visionario, claro está. ¿De qué otro modo explicarían una producción tan valiente, tan excitante, tan... adelantada por completo a su época? No se puede, es obvio. La genialidad siempre desafía toda explicación. Pero estoy muy contento de estar aquí, feliz de ser parte de esta obra tan espléndida. Francamente, me entran escalofríos cuando pienso en ello».",
+      "source": "La muerte a escena, pp. 56–63"
+    }
+  },
+  {
+    "_id": "7b9dd6e10ee48ddb",
+    "name": "Delia Fane, miembro del coro",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Vivaz. Corte de pelo moderno. Se esfuerza por encajar. No comprende El rey en sombras: a ella, la obra —y las actividades que la rodean— le suenan a chino. Lo que quiere es hacer feliz a su marido Otho y no hacer el ridículo delante de los otros miembros de la compañía. Era la suplente titubeante de Natassia. Cita: «Pobre Natassia... Me dicen que era muy buena en el papel de La Viajera. Por supuesto, la he visto interpretar su parte una docena de veces, pero El rey en sombras es tan rematadamente opaca que en realidad no sabría decir qué se considera como bueno o no. Ambrose y Veruca creían que era genial, y Otho me asegura que era brillante, pero el papel ni siquiera tiene frases los primeros treinta minutos y el segundo acto consiste en ella y Antony remando en un bote imaginario, con remos imaginarios, en un río imaginario, interrumpidos de vez en cuando por los lamentos del coro. Quiero decir, no es precisamente ¿Quién teme a Virginia Woolf?».",
+      "source": "La muerte a escena, pp. 56–63"
+    }
+  },
+  {
+    "_id": "366960aa3697307b",
+    "name": "Maxime Gray, el Príncipe",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Apuesto. Aspecto jovial. Jersey negro de cuello alto. Maxime está enloquecido por la muerte de su esposa Natassia. Estaban realmente enamorados. Compartirá gustoso los detalles de cómo se conocieron sobre el escenario de la última obra de Ambrose, cómo se enamoraron y cómo Veruca los desposó en una ceremonia privada y encantadora en el Estigia. Cita: «Quizás lo mejor sería que el Rey Ocluido viniera de verdad a este mundo y estableciera su dominio sobre nosotros. Vivir en su turbio reino sombrío tiene que ser mejor que soportar este vacío en mi corazón».",
+      "source": "La muerte a escena, pp. 56–63"
+    }
+  },
+  {
+    "_id": "48d583a1e9a57b79",
+    "name": "Alvin Deschain, alguacil",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Larguirucho. Ligera joroba. Uniforme arrugado. Alvin ha vivido en Mucky Point toda su vida. No le gustan los forasteros, ni siquiera de lugares tan cercanos como Brindlewood Bay. Cita: «A Cyrus no lo asesinaron, qué va. Esas cosas no suceden en Mucky Point. Somos una comunidad muy unida, nos cuidamos los unos a los otros. Pero supongo que alguien como ustedes no lo entendería, ¿verdad?».",
+      "source": "Un asesinato en aguas oscuras, pp. 64–69"
+    }
+  },
+  {
+    "_id": "c75d25e46a070a8d",
+    "name": "Tara Hill, tabernera",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Fornida. Corte de pelo mullet. Camisa arremangada. Tara se mudó a Mucky Point hace diez años, cuando heredó el Golden Bull de su tío, Milton Hill. Su esposa, Sandy Hill (de soltera Deschain), nació y se crio en Mucky Point y es la única razón de que no se sienta una completa extraña. Cita: «Los de Mucky Point son de una pasta especial. ¿Han hablado ya con Thurgood? ¿No? Bueno, si lo hacen, asegúrense de no pillarlo en medio de uno de sus... episodios. Podrían lamentarlo» .",
+      "source": "Un asesinato en aguas oscuras, pp. 64–69"
+    }
+  },
+  {
+    "_id": "2a4dcdb8b570409d",
+    "name": "Sandy Hill, tabernera",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Rubicunda. Abundante cabellera pelirroja. Delantal arrugado. Sandy ha vivido en Mucky Point toda su vida y casi llegó a irse antes de conocer a Tara. Se enamoraron hace diez años, se casaron y han dirigido juntas el Golden Bull desde entonces. Es hija de Marvin y nieta de Alvin. Cita: «Cyrus Creel era un vejestorio bastardo e insoportable. Lo odiaba todo y a todos... excepto el maldito faro. ¿Saben? El condado intentó derruirlo el año pasado para hacerle hueco al nuevo plan de desarrollo, pero Eleanor y él consiguieron detenerlo. Los dos pelearon muy duro para que lo declararan monumento histórico. Ydejen que les diga algo: hicieron un montón de enemigos durante esa batalla».",
+      "source": "Un asesinato en aguas oscuras, pp. 64–69"
+    }
+  },
+  {
+    "_id": "afe4dd0a799ebd96",
+    "name": "Eleanor Ripley, historiadora",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Bisutería. Mechones de pelo gris. Bufanda de colores. Eleanor dirige el nuevo Museo del Faro de Mucky Point, atendiendo con mimo los libros y las piezas antiguas del faro que conforman la modesta colección del museo. Estaba enamorada de Cyrus y, si se la presiona, admitirá haber tenido una larga relación romántica con él. Cita: «Hay toda clase de cosas fascinantes sobre el faro que poca gente sabe. Por ejemplo, la base de la estructura del faro tiene más de trescientos años y está hecha de una extraña piedra negra que no he visto en ninguna otra parte de la zona. Llevo años intentando que vengan geólogos para que le echen un vistazo, pero por algún motivo siempre cancelan en el último momento».",
+      "source": "Un asesinato en aguas oscuras, pp. 64–69"
+    }
+  },
+  {
+    "_id": "6b32f6788c76dc33",
+    "name": "Marvin Deschain, gasolinero",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Demacrado. Mirada de granito. Mono grasiento. Marvin es el dueño de la estación de servicio Deschain’s Gas & Sundries y trabaja en ella con su hermano Alvin. De jóvenes, Cyrus y él eran los mejores amigos, pero en los últimos años se habían distanciado. Es el padre de Sandy. Cita: «Cyrus era un cabronazo muy duro, ágil como un mono cuando se trataba de andar por el faro. Ni de coña se habría resbalado y caído, me da igual lo que diga mi hermano. Alguien lo mató. Y ¿ sabe qué? ¡Lo más seguro es que el muy desgraciado se lo mereciera!».",
+      "source": "Un asesinato en aguas oscuras, pp. 64–69"
+    }
+  },
+  {
+    "_id": "055cb7e2115a2b39",
+    "name": "George Codswallop, dueño de la tienda",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Voz de pito, estridente. Cojea. El rasgo físico de la pregunta inicial destaca muchísimo en él. George es un hombre de mediana edad que ha trabajado en Bait & Tackle toda su vida. Si los habitantes de Mucky Point son hoscos con los forasteros, George es abiertamente hostil. Cita: «¡A menos que venga a comprar un cubo de gusanos, no tengo nada que decirle!» .",
+      "source": "Un asesinato en aguas oscuras, pp. 64–69"
+    }
+  },
+  {
+    "_id": "584f24ca8a6b9649",
+    "name": "Stephen Blair, farero",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Atractivo. Reflexivo. Uniforme bien planchado. Stephen creció en Brindlewood Bay y se mudó a Mucky Point el año pasado, cuando consiguió el trabajo de ayudante de farero. La mayoría de la gente diría que Cyrus era abiertamente agresivo con él, pero Stephen se reiría y replicaría que el viejo farero era tan solo «complicado». Si se le presiona, Stephen compartirá historias sobre alguno de los extraños sucesos que ha presenciado en los últimos meses (revela una Pista del Vacío). Cita: «Supongo que es raro para alguien de mi generación querer ser farero. Pero siempre me ha fascinado este sitio en particular y de ningún modo iba a seguir trabajando en la panadería de mis padres en Brindlewood Bay».",
+      "source": "Un asesinato en aguas oscuras, pp. 64–69"
+    }
+  },
+  {
+    "_id": "3e602707259e57f8",
+    "name": "Benny «Remolcador» Williams, borrachín",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Nariz roja. Balbuceante. Camisa a cuadros a medio abrochar. Remolcador pasa la mayor parte del tiempo en el Golden Bull y rara vez está sobrio. Como nadie le toma en serio, ha podido observar muchas de las cosas que pasan en Mucky Point y es una buena fuente de información... si las Expertas pueden mantenerlo lúcido, claro. Cita: «He visto cosas terribles, muy tétricas, en Mucky Point. Cosas que l as dejarían a ustedes pálidas como una sábana. Por supuesto, nadie me escucha... Nadie escucha nunca a un borracho».",
+      "source": "Un asesinato en aguas oscuras, pp. 64–69"
+    }
+  },
+  {
+    "_id": "ace32c8e186949f5",
+    "name": "Thurgood Bryant, pescador",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Ojos negros como la pez. Dientes extremadamente pequeños. El rasgo físico de la pregunta inicial destaca muchísimo en él. Thurgood es casi tan hostil con los forasteros como George, su amigo íntimo. A veces se lo puede encontrar sentado en su barcaza, mirando al mar, susurrando fervientemente palabras extrañas e ininteligibles. Cita: «Con frecuencia veo la mar en mis sueños. Me llama. Nos llama a todos. Quiere que volvamos a ella, al vientre helado del que todos salimos reptando. Supongo que por eso me dedico a lo que me dedico. Así estoy cerca de ella».",
+      "source": "Un asesinato en aguas oscuras, pp. 64–69"
+    }
+  },
+  {
+    "_id": "f2ac61aaa077e36e",
+    "name": "Genevieve Deschain, alcaldesa",
+    "type": "pnj",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "ownership": {
+      "default": 0
+    },
+    "system": {
+      "description": "Pelaje brillante. Buena dentadura. Medalla con la inscripción «Alcaldesa» en el cuello. Genevieve es una golden retriever que pertenece a los hermanos Deschain. El pueblo la eligió alcaldesa hace unos años para ganar algo de notoriedad. La mayoría de los días se la puede encontrar al final del muelle, mirando al mar, ladrándoles de vez en cuando a fantasmas que solo ella ve.",
+      "source": "Un asesinato en aguas oscuras, pp. 64–69"
+    }
+  }
+]

@@ -1,0 +1,79 @@
+[
+  {
+    "_id": "674c4609991f751d",
+    "name": "Diurno",
+    "type": "movimiento",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "system": {
+      "description": "Movimientos 12 Movimientos Hay dos tipos de movimientos: básicos y expertos. Las Expertas tienen acceso a todos los básicos, además de a uno o más movimientos expertos específicos para ellas. Donde el texto de un movimiento experto contradiga uno básico, el experto tendrá prioridad. Los movimientos expertos pueden verse en la hoja de movimientos expertos. Los básicos se encuentran en la hoja de referencia y se desarrollan a continuación. Movimiento Diurno Cuando hagas algo arriesgado o te enfrentes a algo a lo que tienes miedo , di qué temes que suceda si fallas o si pierdes los nervios y luego lanza los dados con la habilidad apropiada. • Con un 10+, haces lo que pretendías o mantienes la calma; describe cómo es. • Entre 7 y 9, la Guardiana te dice de qué modo tus acciones te dejarían vulnerable y tú eliges si echarte atrás o seguir delante de todos modos. Si sigues, la Guardiana describe la situación. • Con 12+, haces lo que pretendías o mantienes la calma y la Guardiana te dice el beneficio extra o la ventaja que recibes. Describe lo que sucede. El movimiento Diurno engloba todas las acciones que tienen lugar durante el día. La Guardiana tiene la última palabra sobre la habilidad que se emplea para la tirada. Movimiento Nocturno Cuando hagas algo arriesgado o te enfrentes a algo a lo que tienes miedo , di qué temes que suceda si fallas o si pierdes los nervios. La Guardiana te contará en qué es peor de lo que imaginas. Puedes elegir retroceder o seguir adelante. Si sigues, lanza los dados con la habilidad apropiada. • Con un 10+, haces lo que pretendías o mantienes la calma; describe cómo es. • Entre 7 y 9, lo consigues, pero hay un coste o una complicación; la Guardiana describe lo que ocurre. • Con 12+, haces lo que pretendías o mantienes la calma y la Guardiana te concede algún beneficio extra o ventaja. Describe lo que sucede. El movimiento Nocturno engloba todas las acciones que tienen lugar durante la noche. Como realizar acciones en esas horas es más peligroso que hacerlo durante el día, el movimiento Nocturno conlleva más consecuencias para las Expertas que el movimiento Diurno. La Guardiana tiene la última palabra sobre la habilidad que se emplea para la tirada.",
+      "source": "Brindlewood Bay 1.0, p. 12",
+      "key": "day"
+    }
+  },
+  {
+    "_id": "01cc67885b0924f1",
+    "name": "Nocturno",
+    "type": "movimiento",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "system": {
+      "description": "Movimientos 12 Movimientos Hay dos tipos de movimientos: básicos y expertos. Las Expertas tienen acceso a todos los básicos, además de a uno o más movimientos expertos específicos para ellas. Donde el texto de un movimiento experto contradiga uno básico, el experto tendrá prioridad. Los movimientos expertos pueden verse en la hoja de movimientos expertos. Los básicos se encuentran en la hoja de referencia y se desarrollan a continuación. Movimiento Diurno Cuando hagas algo arriesgado o te enfrentes a algo a lo que tienes miedo , di qué temes que suceda si fallas o si pierdes los nervios y luego lanza los dados con la habilidad apropiada. • Con un 10+, haces lo que pretendías o mantienes la calma; describe cómo es. • Entre 7 y 9, la Guardiana te dice de qué modo tus acciones te dejarían vulnerable y tú eliges si echarte atrás o seguir delante de todos modos. Si sigues, la Guardiana describe la situación. • Con 12+, haces lo que pretendías o mantienes la calma y la Guardiana te dice el beneficio extra o la ventaja que recibes. Describe lo que sucede. El movimiento Diurno engloba todas las acciones que tienen lugar durante el día. La Guardiana tiene la última palabra sobre la habilidad que se emplea para la tirada. Movimiento Nocturno Cuando hagas algo arriesgado o te enfrentes a algo a lo que tienes miedo , di qué temes que suceda si fallas o si pierdes los nervios. La Guardiana te contará en qué es peor de lo que imaginas. Puedes elegir retroceder o seguir adelante. Si sigues, lanza los dados con la habilidad apropiada. • Con un 10+, haces lo que pretendías o mantienes la calma; describe cómo es. • Entre 7 y 9, lo consigues, pero hay un coste o una complicación; la Guardiana describe lo que ocurre. • Con 12+, haces lo que pretendías o mantienes la calma y la Guardiana te concede algún beneficio extra o ventaja. Describe lo que sucede. El movimiento Nocturno engloba todas las acciones que tienen lugar durante la noche. Como realizar acciones en esas horas es más peligroso que hacerlo durante el día, el movimiento Nocturno conlleva más consecuencias para las Expertas que el movimiento Diurno. La Guardiana tiene la última palabra sobre la habilidad que se emplea para la tirada.",
+      "source": "Brindlewood Bay 1.0, p. 12",
+      "key": "night"
+    }
+  },
+  {
+    "_id": "3cc9e538089c943f",
+    "name": "Metomentodo",
+    "type": "movimiento",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "system": {
+      "description": "Movimientos 13 Movimiento Metomentodo Cuando busques una pista, dirijas una investigación o reúnas información de alguna forma, describe cómo lo haces y lanza los dados con la habilidad adecuada. • Con un éxito, encuentras una Pista. La Guardiana te dice lo que es. • Entre 7 y 9, surge una complicación, ya sea en la propia Pista o por algo que encuentras mientras buscas. La Guardiana te dirá lo que es. • Con 12+, también encuentras una Pista del Vacío O descubres algo sobre la conspiración siniestra en Brindlewood Bay (a elección de la Guardiana). El movimiento Metomentodo es el principal modo de reunir Pistas de una Experta. Está diseñado para cubrir todas aquellas acciones destinadas a recabar información, y la habilidad que uses en la tirada debe coincidir con la acción que lleves a cabo. Por ejemplo, si una Experta está sacando información adulando a un oficial de las fuerzas del orden, se lanzará con Presencia. Si está escuchando una conversación que se supone que no debe oír, optará por Compostura. Si se sumerge en la lectura en la biblioteca local, usará Razón. La Guardiana decidirá en última instancia qué habilidad se usa para la tirada. Movimiento Afable Cuando compartas un momento de intimidad con otra Experta mientras una de las dos está afanada en su quehacer , puedes quitarte una Condición. Si se trata de tu quehacer, también das con una Pista relevante para el misterio activo. Dile a la Guardiana lo que es. La Pista no puede resolver el misterio por sí misma. Este movimiento sirve en la práctica para eliminar Condiciones, pero se diseñó sobre todo para mostrar las relaciones personales entre las Expertas del Crimen, así como ofrecer retazos de su vida en la comunidad de Brindlewood Bay.",
+      "source": "Brindlewood Bay 1.0, p. 13",
+      "key": "meddle"
+    }
+  },
+  {
+    "_id": "a0f0aa1f5a08eecc",
+    "name": "Afable",
+    "type": "movimiento",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "system": {
+      "description": "Movimientos 13 Movimiento Metomentodo Cuando busques una pista, dirijas una investigación o reúnas información de alguna forma, describe cómo lo haces y lanza los dados con la habilidad adecuada. • Con un éxito, encuentras una Pista. La Guardiana te dice lo que es. • Entre 7 y 9, surge una complicación, ya sea en la propia Pista o por algo que encuentras mientras buscas. La Guardiana te dirá lo que es. • Con 12+, también encuentras una Pista del Vacío O descubres algo sobre la conspiración siniestra en Brindlewood Bay (a elección de la Guardiana). El movimiento Metomentodo es el principal modo de reunir Pistas de una Experta. Está diseñado para cubrir todas aquellas acciones destinadas a recabar información, y la habilidad que uses en la tirada debe coincidir con la acción que lleves a cabo. Por ejemplo, si una Experta está sacando información adulando a un oficial de las fuerzas del orden, se lanzará con Presencia. Si está escuchando una conversación que se supone que no debe oír, optará por Compostura. Si se sumerge en la lectura en la biblioteca local, usará Razón. La Guardiana decidirá en última instancia qué habilidad se usa para la tirada. Movimiento Afable Cuando compartas un momento de intimidad con otra Experta mientras una de las dos está afanada en su quehacer , puedes quitarte una Condición. Si se trata de tu quehacer, también das con una Pista relevante para el misterio activo. Dile a la Guardiana lo que es. La Pista no puede resolver el misterio por sí misma. Este movimiento sirve en la práctica para eliminar Condiciones, pero se diseñó sobre todo para mostrar las relaciones personales entre las Expertas del Crimen, así como ofrecer retazos de su vida en la comunidad de Brindlewood Bay.",
+      "source": "Brindlewood Bay 1.0, p. 13",
+      "key": "cozy"
+    }
+  },
+  {
+    "_id": "c52e8e49d067afe6",
+    "name": "Misterios de la corona de oro",
+    "type": "movimiento",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "system": {
+      "description": "Movimientos 14 Movimiento Misterios de la corona de oro Una vez por partida, cuando cualquier Experta diga: «¡Esto me recuerda a lo que le ocurrió a Amanda Delacourt!», trabaja con los demás para describir qué aspecto de la situación en la que se encuentran les recuerda a un pasaje de Los misterios de la corona de Oro . Como mínimo, debéis proporcionar la siguiente información: • El nombre del misterio de la corona de oro en cuestión (¡no vale repetir, por favor!). • En qué es similar el problema o la situación en la que Amanda se encontraba a lo que las Expertas están viviendo. • Cómo resolvió el problema o superó la situación Amanda. Después, considera que en una tirada relevante ha salido un 12+ o declara un hecho sobre la situación que la Guardiana debe incorporar. Las Expertas del Crimen comparten su adoración por las novelas de Amanda Delacourt, escritas por la autora misteriosa Robin Masterson, y con frecuencia se refieren a estos casos mientras investigan sus propios misterios. Este movimiento es muy poderoso y, por lo general, solo puede usarse una vez por sesión. Movimiento Ocultista Si intervienes en una actividad relacionada con lo sobrenatural o lo oculto por primera vez, imagina cómo serían tus acciones como si estuvieras llevando a cabo un movimiento. Di lo que lo activa y tira por Sensibilidad. • Con un éxito, funciona. Describe el movimiento con la Guardiana: ahora pueden usarlo todas las Expertas durante el resto de la partida y tu tirada se conserva. • Entre 7 y 9, también marcas la Corona del Vacío. • Con un fallo, es algo que las Expertas nunca podrán hacer y también marcas la Corona del Vacío. Al principio de la partida, las Expertas del Crimen tienen poca o ninguna idea sobre ocultismo e ignoran totalmente las oscuras maquinaciones de las Matronas del Vacío Fragante. Pero, a medida que el juego avanza, serán más conscientes de la existencia de misterios más profundos... e incluso ellas mismas llegarán a coquetear con la magia. Este movimiento está concebido para esas situaciones y crea nuevos movimientos basados en lo que hagan las Expertas. Pero ¡cuidado! Este movimiento es extremadamente peligroso y hasta un éxito podría poner a las Expertas un pasito más cerca del retiro.",
+      "source": "Brindlewood Bay 1.0, p. 14",
+      "key": "gold"
+    }
+  },
+  {
+    "_id": "bb325951bd8cd3a5",
+    "name": "Ocultista",
+    "type": "movimiento",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "system": {
+      "description": "Movimientos 14 Movimiento Misterios de la corona de oro Una vez por partida, cuando cualquier Experta diga: «¡Esto me recuerda a lo que le ocurrió a Amanda Delacourt!», trabaja con los demás para describir qué aspecto de la situación en la que se encuentran les recuerda a un pasaje de Los misterios de la corona de Oro . Como mínimo, debéis proporcionar la siguiente información: • El nombre del misterio de la corona de oro en cuestión (¡no vale repetir, por favor!). • En qué es similar el problema o la situación en la que Amanda se encontraba a lo que las Expertas están viviendo. • Cómo resolvió el problema o superó la situación Amanda. Después, considera que en una tirada relevante ha salido un 12+ o declara un hecho sobre la situación que la Guardiana debe incorporar. Las Expertas del Crimen comparten su adoración por las novelas de Amanda Delacourt, escritas por la autora misteriosa Robin Masterson, y con frecuencia se refieren a estos casos mientras investigan sus propios misterios. Este movimiento es muy poderoso y, por lo general, solo puede usarse una vez por sesión. Movimiento Ocultista Si intervienes en una actividad relacionada con lo sobrenatural o lo oculto por primera vez, imagina cómo serían tus acciones como si estuvieras llevando a cabo un movimiento. Di lo que lo activa y tira por Sensibilidad. • Con un éxito, funciona. Describe el movimiento con la Guardiana: ahora pueden usarlo todas las Expertas durante el resto de la partida y tu tirada se conserva. • Entre 7 y 9, también marcas la Corona del Vacío. • Con un fallo, es algo que las Expertas nunca podrán hacer y también marcas la Corona del Vacío. Al principio de la partida, las Expertas del Crimen tienen poca o ninguna idea sobre ocultismo e ignoran totalmente las oscuras maquinaciones de las Matronas del Vacío Fragante. Pero, a medida que el juego avanza, serán más conscientes de la existencia de misterios más profundos... e incluso ellas mismas llegarán a coquetear con la magia. Este movimiento está concebido para esas situaciones y crea nuevos movimientos basados en lo que hagan las Expertas. Pero ¡cuidado! Este movimiento es extremadamente peligroso y hasta un éxito podría poner a las Expertas un pasito más cerca del retiro.",
+      "source": "Brindlewood Bay 1.0, p. 14",
+      "key": "occult"
+    }
+  },
+  {
+    "_id": "b0480d49e8427ee0",
+    "name": "Teorizar",
+    "type": "movimiento",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "system": {
+      "description": "Movimientos 15 Movimiento Teorizar Cuando las Expertas discuten sobre la solución de un misterio bas ándose en las Pistas que han descubierto y llegan a un consenso, se realiza una tirada de dados. Después se suma el número de Pistas incorporadas a la teoría o explicadas y se resta el valor de complejidad del misterio. • Con 10+, la solución es correcta. La Guardiana les presentará la oportunidad de atrapar al responsable o de arreglar la situación. • Entre 7 y 9, la solución es correcta, pero la Guardiana añadirá una complicación molesta a la propia solución. También puede presentarles una oportunidad problemática o peligrosa de atrapar al responsable o de arreglar la situación. • Con 6 o menos, la solución es incorrecta y la Guardiana reacciona en consecuencia. • Con 12+, además, una persona involucrada en la conspiración siniestra de Brindlewood Bay se da a conocer a las Expertas. Teorizar es un movimiento muy divertido y sirve para emular aquellas grandes escenas de las historias de misterio donde los protagonistas discuten sobre quién puede ser el responsable. Téngase en cuenta que no importa quién lance los dados para Teorizar llegado el momento. Tampoco está sujeto a modificadores en la tirada (ventajas, efectos del movimiento Misterios de la corona de oro, etc.) ni puede verse afectado por ponerse una Corona.",
+      "source": "Brindlewood Bay 1.0, p. 15",
+      "key": "theorize"
+    }
+  }
+]
