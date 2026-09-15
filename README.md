@@ -6,7 +6,7 @@
 
 Sistema nativo en español para Foundry **13.351**. Seis misterios, un club de lectura y un oscuro secreto bajo la bahía. Creado por ManuRomera a partir de la edición española 1.0 de Jason Cordova.
 
-> **WIP · 0.4.0-wip.1.** Versión de trabajo para probar en un mundo nuevo. No se declara compatibilidad con Foundry 14. Consulta [el alcance y la verificación](docs/QA.md).
+> **WIP · 0.5.0-wip.1.** Versión de trabajo para probar en un mundo nuevo. No se declara compatibilidad con Foundry 14. Consulta [el alcance y la verificación](docs/QA.md).
 
 ## Entrar en el club
 
@@ -16,13 +16,13 @@ En Foundry → Game Systems → Install System, pega este manifiesto:
 https://raw.githubusercontent.com/ManuRomera/brindlewood-bay-foundry/main/system.json
 ```
 
-Crea un mundo con **Brindlewood Bay · El club de las Expertas**. Al entrar aparece The Candlelight, el salón del club. También puedes abrirlo desde el directorio de Actores o los ajustes del sistema.
+Crea un mundo con **Brindlewood Bay · El club de las Expertas**. Al entrar aparece el tablero de The Candlelight y se crea su escena de salón de té a pantalla completa, sin cuadrícula, visión de token ni niebla. También puedes abrir el tablero desde el directorio de Actores o los ajustes del sistema.
 
-1. **Crear una Experta:** nombre, estilo, quehacer, habilidad y movimiento. Se comprueban las exclusividades iniciales; el reparto parte de 0 / +1 / +1 / 0 / −1.
-2. **Hogar, dulce hogar:** cuenta su pasado y añade entre tres y cinco objetos junto con la mesa.
-3. **Abrir un misterio:** la Guardiana consulta el expediente y presenta el caso. Se recomienda *Papá por la borda*.
-4. **Revelar al grupo:** publica pistas y presentaciones de sospechosos; sus secretos permanecen en el expediente.
-5. **Teorizar:** seleccionad las pistas que explica vuestra teoría. La fórmula y sus restricciones se aplican automáticamente.
+1. **Crear una Experta:** el asistente completa identidad, estilo, quehacer, habilidad, movimiento, vida anterior, Hogar y objetivos. Cada movimiento puede leerse entero antes de elegirlo.
+2. **Habilidades:** no se eligen ni se tiran libremente. El manual fija Vitalidad 0, Compostura +1, Razón +1, Presencia 0 y Sensibilidad −1; después se suma +1 a una de ellas.
+3. **Creación aleatoria:** «Experta al azar» produce una ficha completa que puede revisarse antes de guardarla. «Castellanizar» utiliza nombres, aficiones, estilos, familias, carreras y objetos reconociblemente españoles.
+4. **Abrir un misterio:** la Guardiana consulta el expediente y presenta el caso. Se recomienda *Papá por la borda*.
+5. **Revelar y Teorizar:** publica pistas y presentaciones; después seleccionad las pistas que explica la teoría. La fórmula y sus restricciones se aplican automáticamente.
 
 No requiere otros módulos. Descarga alternativa: [versiones WIP](https://github.com/ManuRomera/brindlewood-bay-foundry/releases).
 
@@ -37,7 +37,7 @@ No requiere otros módulos. Descarga alternativa: [versiones WIP](https://github
 | La muerte a escena | 8 | 20 + 6 |
 | Un asesinato en aguas oscuras | 8 | 20 + 6 |
 
-Seis compendios incluyen reglas, ayudas, 19 movimientos expertos, siete básicos, los seis expedientes, 49 personas de interés y las herramientas de la Guardiana. Cada entrada identifica su fuente. Los compendios de expedientes y sospechosos se ocultan del directorio de las jugadoras; las copias de trabajo se abren como diarios privados. Las personas pueden aparecer en varios misterios: no hay un culpable establecido de antemano.
+Ocho compendios incluyen reglas, ayudas, 19 movimientos expertos, siete básicos, los seis expedientes, 49 personas de interés, la escena del salón, la macro de anuncios y las herramientas de la Guardiana. Cada entrada identifica su fuente. Los compendios de expedientes y sospechosos se ocultan del directorio de las jugadoras; las copias de trabajo se abren como diarios privados. Las personas pueden aparecer en varios misterios: no hay un culpable establecido de antemano.
 
 ## Una vida plena
 
@@ -45,7 +45,9 @@ Fichas de marfil, verde salvia y rosa antiguo; retratos editables; controles de 
 
 El salón funciona como tablero común: muestra misterios activos, pistas ordinarias y del Vacío, y el progreso de todas las Expertas. Las pistas descubiertas pueden consultarse allí sin abrir varias ventanas. Las ventanas recuerdan su tamaño y ubicación por usuario. La Guardiana dispone de un reinicio de campaña que conserva los compendios y cualquier contenido ajeno al sistema.
 
-El compendio **Macro · Pausa para los anuncios** contiene una macro lista para arrastrar a la barra rápida. El mismo generador se abre desde el salón y combina producto, formato, protagonista, promesa y giro en más de un millón de anuncios posibles.
+El compendio **Macro · Inspiración para anuncios** contiene una ayuda opcional para las jugadoras, lista para arrastrar a la barra rápida. Combina producto, formato, protagonista, promesa y giro en más de un millón de ideas y no publica el resultado. La Guardiana solo da paso al anuncio desde el salón con el indicio sencillo que establece el manual.
+
+La escena **The Candlelight · Salón del club** usa una ilustración original de máximo detalle. El libro central lleva el título del sistema. Los seis libros de caso están incluidos como baldosas ocultas y el sistema los revela y apila sobre la mesa a medida que los misterios pasan a «Resuelto».
 
 Deja el cursor quieto dos segundos sobre movimientos, habilidades, pistas, personajes o controles para consultar su información; se cierra al moverlo. El botón derecho la mantiene abierta y la chincheta la ancla hasta desanclarla o pulsar el aspa. Las fichas de chat muestran el resultado aplicado, los cuatro grados posibles, la habilidad, el modificador, ventaja o desventaja y el objeto utilizado.
 

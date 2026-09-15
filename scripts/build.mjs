@@ -11,12 +11,14 @@ const ROOT = {
   Actor: "actors",
   RollTable: "tables",
   Macro: "macros",
+  Scene: "scenes",
 };
 const EMBEDDED = {
   JournalEntry: ["pages"],
   Actor: ["items", "effects"],
   Item: ["effects"],
   RollTable: ["results"],
+  Scene: ["tiles", "tokens", "walls", "lights", "sounds", "drawings", "notes", "regions", "templates"],
 };
 await fs.mkdir("packs", { recursive: true });
 for (const pack of manifest.packs) {

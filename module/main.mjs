@@ -4,6 +4,7 @@ import { ExpertSheet, MysterySheet, NPCSheet, MoveSheet } from "./sheets.mjs";
 import {
   ClubApp,
   createExpert,
+  createRandomExpert,
   importMystery,
   reveal,
   dossier,
@@ -11,9 +12,10 @@ import {
   customMystery,
   resetCampaign,
 } from "./club.mjs";
-import { advertisement } from "./advertisements.mjs";
+import { advertisement, advertisementInspiration } from "./advertisements.mjs";
 import { guard } from "./ui.mjs";
 import { attachInfo } from "./inspector.mjs";
+import { ensureSalonScene, syncCaseBooks } from "./salon-scene.mjs";
 Hooks.once("init", () => {
   CONFIG.Actor.dataModels = {
     ...CONFIG.Actor.dataModels,
@@ -77,17 +79,20 @@ Hooks.once("init", () => {
   game.brindlewood = {
     open: () => new ClubApp().render(true),
     createExpert,
+    createRandomExpert,
     importMystery,
     reveal,
     dossier,
     useExpert,
     customMystery,
     advertisement,
+    advertisementInspiration,
     resetCampaign,
   };
   Handlebars.registerHelper("eq", (a, b) => a === b);
 });
 Hooks.once("ready", async () => {
+  if (game.user.isGM) await guard(ensureSalonScene)();
   if (game.user.isGM) {
     for (const actor of game.actors) {
       const source = actor._source.system;
@@ -152,6 +157,12 @@ for (const hook of [
     for (const app of foundry.applications.instances.values())
       if (app instanceof ClubApp && app.rendered) app.render();
   });
+Hooks.on("updateActor", (actor, changes) => {
+  if (actor.type === "misterio" && foundry.utils.hasProperty(changes, "system.status")) guard(syncCaseBooks)();
+});
+Hooks.on("deleteActor", (actor) => {
+  if (actor.type === "misterio") guard(syncCaseBooks)();
+});
 Hooks.on("hotbarDrop", (_bar, data, slot) => {
   if (data.type !== "Actor") return;
   guard(async () => {

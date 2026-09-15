@@ -54,25 +54,40 @@ const choice = (list) => list[Math.floor(Math.random() * list.length)];
 export async function advertisement() {
   gm();
   const club = op.club();
-  const fields = Object.entries(OPTIONS).map(([key, values]) =>
-    select(key, labels[key], [["", "Sorpréndeme"], ...values.map((value) => [value, value])]),
-  ).join("");
   const data = await prompt(
     "¡Volvemos en 20 segundos!",
-    `<p>Tras un fallo peligroso o dramático, ofrece una idea de anuncio. Si la jugadora decide narrarlo, vuelve a la escena y resuelve el movimiento como un 10–11.</p>${club.adUsed ? '<p class="bb-note"><b>Ya hubo una pausa para anuncios esta sesión.</b> El manual recomienda una por sesión.</p>' : ""}${fields}`,
-    "Generar el anuncio",
+    `<p>Tras un fallo peligroso o dramático, da a la jugadora un indicio sencillo. Ella puede improvisar el anuncio o recurrir a la macro de inspiración.</p>${club.adUsed ? '<p class="bb-note"><b>Ya hubo una pausa para anuncios esta sesión.</b> El manual recomienda una por sesión.</p>' : ""}${select("product", "Indicio", [["", "Sorpréndeme"], ...OPTIONS.product.map((value) => [value, value])])}`,
+    "Dar paso al anuncio",
   );
   if (!data) return;
-  const result = Object.fromEntries(Object.entries(OPTIONS).map(([key, values]) => [
-    key,
-    data.get(key) || choice(values),
-  ]));
+  const product = data.get("product") || choice(OPTIONS.product);
   await op.saveClub({ ...club, adUsed: true });
   return op.chat(
     null,
     "¡Volvemos en 20 segundos!",
-    `<div class="bb-ad"><p class="bb-eyebrow">PAUSA PARA LOS ANUNCIOS</p><h3>${esc(result.product)}</h3><p><b>Formato:</b> ${esc(result.format)}.</p><p><b>Protagoniza:</b> ${esc(result.star)}.</p><p><b>Promete:</b> ${esc(result.promise)}.</p><p><b>Pero:</b> ${esc(result.twist)}.</p><hr><p>La jugadora puede narrar el anuncio. Si lo hace, regresad a la escena y tratad el fallo como un resultado de <b>10–11</b>.</p></div>`,
+    `<div class="bb-ad"><p class="bb-eyebrow">PAUSA PARA LOS ANUNCIOS</p><h3>${esc(product)}</h3><p>La jugadora puede narrar cualquier anuncio inspirado por este indicio. Si se bloquea, puede usar su macro opcional de inspiración.</p><hr><p>Si narra el anuncio, regresad a la escena y tratad el fallo como un resultado de <b>10–11</b>.</p></div>`,
   );
+}
+
+export async function advertisementInspiration() {
+  const fields = Object.entries(OPTIONS).map(([key, values]) =>
+    select(key, labels[key], [["", "Sorpréndeme"], ...values.map((value) => [value, value])]),
+  ).join("");
+  const data = await prompt(
+    "Necesito una idea para el anuncio",
+    `<p>Esta ayuda es opcional y no lanza dados ni cambia la ficha. Deja todo en «Sorpréndeme» o fija solo aquello que ya tengas claro.</p>${fields}`,
+    "Inspirarme",
+  );
+  if (!data) return;
+  const result = Object.fromEntries(Object.entries(OPTIONS).map(([key, values]) => [key, data.get(key) || choice(values)]));
+  return foundry.applications.api.DialogV2.prompt({
+    window: { title: "Tu anuncio improvisado" },
+    position: { width: 560 },
+    classes: ["bb-app"],
+    content: `<div class="bb-dialog bb-ad"><h3>${esc(result.product)}</h3><p><b>Formato:</b> ${esc(result.format)}.</p><p><b>Protagoniza:</b> ${esc(result.star)}.</p><p><b>Promete:</b> ${esc(result.promise)}.</p><p><b>Pero:</b> ${esc(result.twist)}.</p><p class="bb-note">Úsalo, cámbialo o ignóralo. La idea no se publica en el chat.</p></div>`,
+    ok: { label: "Ya tengo una idea" },
+    rejectClose: false,
+  });
 }
 
 export const advertisementOptionCount = () =>

@@ -1,3 +1,11 @@
+# 0.5.0-wip.1
+
+- El creador de Expertas recorre identidad, distribución fija de habilidades, movimiento experto con descripción completa, vida anterior, Hogar y preguntas de primera sesión.
+- Nuevo botón de creación aleatoria con miles de millones de combinaciones, revisión previa y opción de castellanizar nombres, estilo, quehacer y recuerdos.
+- La ficha reduce y embellece los contadores para devolver espacio a la zona de juego.
+- La Guardiana da paso a los anuncios con un único indicio; la macro opcional de las jugadoras conserva el generador completo para superar bloqueos creativos sin publicar nada.
+- Todo mundo recibe The Candlelight, una escena original de salón de té sin cuadrícula, visión de token ni niebla. Seis baldosas de libros aparecen y se apilan automáticamente al resolver los misterios de campaña.
+
 # 0.4.0-wip.1
 
 - El salón muestra a toda la mesa contadores comunes, pistas desplegables por misterio y el progreso esencial de cada Experta.

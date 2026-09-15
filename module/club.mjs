@@ -1,4 +1,4 @@
-import { ID, BASE, STATS, LIMITS, creationIssue, conspiracyLayer, complexityIssue } from "./rules.mjs";
+import { ID, BASE, STATS, STATS_INFO, QUESTIONS, LIMITS, creationIssue, conspiracyLayer, complexityIssue } from "./rules.mjs";
 import {
   esc,
   field,
@@ -17,54 +17,94 @@ import * as op from "./operations.mjs";
 import { attachInfo } from "./inspector.mjs";
 import { rememberWindow, clearRememberedWindows } from "./window-state.mjs";
 import { advertisement } from "./advertisements.mjs";
+import { creationPool, randomExpert, lifeText, creationQuestionOptions } from "./expert-generator.mjs";
+import { syncCaseBooks } from "./salon-scene.mjs";
 const content = async (name) => {
   const response = await fetch(`systems/${ID}/_data/${name}.json`);
   if (!response.ok) throw Error("No se pudo cargar el contenido.");
   return response.json();
 };
+const suggestionField = (key, label, values, value = "") =>
+  `<label>${esc(label)}<input name="${esc(key)}" value="${esc(value)}" list="bb-${esc(key)}"></label><datalist id="bb-${esc(key)}">${values.map((entry) => `<option value="${esc(entry)}"></option>`).join("")}</datalist>`;
+const frequencyLabel = (frequency) => frequency === "session" ? "Una vez por sesión" : frequency === "once" ? "Una sola vez" : frequency === "mystery" ? "Una vez por misterio" : "Sin límite de usos";
+const moveChoices = (items, selected = "") => `<div class="bb-creation-choices">${items.map((item) => `<label class="bb-creation-choice"><input type="radio" name="expert" value="${item._id}" ${item._id === selected ? "checked" : ""}><span><b>${esc(item.name)}</b><small>${frequencyLabel(item.system.frequency)}</small><p>${esc(item.system.description)}</p></span></label>`).join("")}</div>`;
+const homeFields = (values = []) => Array.from({ length: 5 }, (_, index) => field(`home${index + 1}`, `${index < 3 ? "Objeto obligatorio" : "Objeto opcional"} ${index + 1}`, values[index] ?? "")).join("");
+const questionFields = (selected = [0, 1, 2]) => `<p class="bb-note"><b>Siempre marcada:</b> ${esc(QUESTIONS[0])}</p>${creationQuestionOptions().map(({ index, text }) => check(`q${index}`, text, selected.includes(index))).join("")}`;
+
+async function finishExpert(data, items) {
+  const issue = creationIssue(data, op.experts(), items);
+  if (issue) throw Error(issue);
+  const homes = data.home.map((entry) => entry.trim()).filter(Boolean);
+  if (homes.length < 3 || homes.length > 5) throw Error("Hogar, dulce hogar empieza con entre tres y cinco objetos.");
+  if (data.questions.length !== 3 || !data.questions.includes(0)) throw Error("Escoge exactamente dos preguntas además de la primera.");
+  if (!data.partner.trim() || !data.family.trim() || !data.career.trim()) throw Error("Completa la pareja fallecida, la familia o mascotas y la carrera anterior.");
+  const item = items.find((entry) => entry._id === data.expert);
+  const system = {
+    stats: { ...BASE },
+    style: data.style.trim(),
+    hobby: data.hobby.trim(),
+    description: lifeText(data),
+    home: homes.map((name) => ({ id: foundry.utils.randomID(), name, story: "Un recuerdo de la vida anterior de la Experta.", marked: false, reusable: false })),
+    questions: data.questions,
+    ready: true,
+  };
+  system.stats[data.boost]++;
+  op.applyExpert(system, item);
+  const actor = await Actor.create({
+    name: data.name.trim(),
+    type: "experta",
+    img: `systems/${ID}/assets/teacup.svg`,
+    system,
+    items: [{ ...item, _id: foundry.utils.randomID() }],
+    ownership: { default: 0, [game.user.id]: 3 },
+    prototypeToken: { actorLink: true },
+  });
+  actor.sheet.render(true);
+  return actor;
+}
+
 export async function createExpert() {
   if (!game.user.can("ACTOR_CREATE"))
     throw Error(
       "La Guardiana puede crear tu Experta o habilitar Crear Actores en los permisos del mundo.",
     );
-  const items = await content("expertos");
-  const d = await prompt(
-    "Una nueva Experta del Crimen",
-    `<p>Compostura y Razón +1; Vitalidad y Presencia 0; Sensibilidad −1. Añade un punto a una habilidad y elige un talento.</p>${field("name", "Nombre y apellido", "")}${field("style", "Estilo", "Cárdigan")}${field("hobby", "Quehacer favorito", "")}${select("boost", "Tu habilidad destacada", Object.entries(STATS))}${select(
-      "expert",
-      "Movimiento experto",
-      items.map((i) => [i._id, i.name]),
-    )}${area("life", "Pareja fallecida, hijos o mascotas y carrera anterior")}`,
-    "Crear y abrir mi Experta",
-  );
-  if (!d) return;
+  const items = await content("expertos"), actors = op.experts();
+  const locale = await prompt("Crear una Experta · 1 de 5", `<p>El manual propone nombres y arquetipos de las series anglosajonas que inspiran el juego. Puedes trasladarlos por completo a España.</p>${check("castilian", "Castellanizar nombres, estilos, quehaceres y recuerdos")}`, "Elegir identidad");
+  if (!locale) return;
+  const pool = creationPool(locale.has("castilian"));
+  const identity = await prompt("Crear una Experta · 2 de 5", `<p>Escoge una sugerencia o escribe la tuya. El quehacer debe ser único en el club.</p>${suggestionField("name", "Nombre y apellido", pool.names.flatMap((name) => pool.surnames.slice(0, 4).map((surname) => `${name} ${surname}`)))}${suggestionField("style", "Estilo", pool.styles, pool.styles[0])}${suggestionField("hobby", "Quehacer favorito", pool.hobbies)}`, "Asignar habilidades");
+  if (!identity) return;
+  if (!["name", "style", "hobby"].every((key) => identity.get(key)?.trim())) throw Error("Completa nombre, estilo y quehacer antes de continuar.");
+  const normalizedHobby = identity.get("hobby").normalize("NFKC").toLocaleLowerCase("es").trim();
+  if (actors.some((actor) => !actor.system.retired && actor.system.hobby.normalize("NFKC").toLocaleLowerCase("es").trim() === normalizedHobby)) throw Error("Ya hay una Experta activa con ese quehacer.");
+  const stats = await prompt("Crear una Experta · 3 de 5", `<p><b>Las puntuaciones no se tiran.</b> El manual fija Vitalidad 0, Compostura +1, Razón +1, Presencia 0 y Sensibilidad −1. Añade +1 a una de ellas.</p><div class="bb-stat-preview">${Object.entries(STATS).map(([key, label]) => `<div><b>${esc(label)} ${BASE[key] >= 0 ? "+" : ""}${BASE[key]}</b><small>${esc(STATS_INFO[key])}</small></div>`).join("")}</div>${select("boost", "¿Dónde añades el punto?", Object.entries(STATS).map(([key, label]) => [key, `${label}: ${BASE[key] >= 0 ? "+" : ""}${BASE[key]} → ${BASE[key] + 1 >= 0 ? "+" : ""}${BASE[key] + 1}`]))}`, "Escoger movimiento experto");
+  if (!stats) return;
+  const available = items.filter((item) => !creationIssue({ name: identity.get("name"), style: identity.get("style"), hobby: identity.get("hobby"), boost: stats.get("boost"), expert: item._id }, actors, items));
+  const movement = await prompt("Crear una Experta · 4 de 5", `<p>Lee el efecto completo antes de elegir. Al comienzo no puede repetirse y Dale Cooper entra en conflicto con Fox Mulder.</p>${moveChoices(available)}`, "Completar su vida");
+  if (!movement?.get("expert")) return;
+  const life = await prompt("Crear una Experta · 5 de 5", `<p>Presenta estos tres aspectos y anota entre tres y cinco objetos que la mesa encontraría en su casa.</p>${field("partner", "Su pareja fallecida")}${field("family", "Hijos, familia o mascotas")}${field("career", "Carrera antes de retirarse")}${homeFields()}<h3>Objetivos de la primera sesión</h3><p>Escoge exactamente dos además de la primera, que siempre cuenta.</p>${questionFields()}`, "Crear la Experta completa");
+  if (!life) return;
   return locked("create-expert", async () => {
-    const data = Object.fromEntries(d);
-    const issue = creationIssue(data, op.experts(), items);
-    if (issue) throw Error(issue);
-    const item = items.find((i) => i._id === data.expert);
-    const system = {
-      stats: { ...BASE },
-      style: data.style.trim(),
-      hobby: data.hobby.trim(),
-      description: data.life,
-      home: [],
-      ready: true,
-    };
-    system.stats[data.boost]++;
-    op.applyExpert(system, item);
-    const a = await Actor.create({
-      name: data.name.trim(),
-      type: "experta",
-      img: `systems/${ID}/assets/teacup.svg`,
-      system,
-      items: [{ ...item, _id: foundry.utils.randomID() }],
-      ownership: { default: 0, [game.user.id]: 3 },
-      prototypeToken: { actorLink: true },
-    });
-    a.sheet.render(true);
-    return a;
+    const data = { ...Object.fromEntries(identity), boost: stats.get("boost"), expert: movement.get("expert"), ...Object.fromEntries(life) };
+    data.home = [1, 2, 3, 4, 5].map((index) => data[`home${index}`]);
+    data.questions = [0, ...[1, 2, 3, 4, 5, 6].filter((index) => life.has(`q${index}`))];
+    return finishExpert(data, items);
   });
+}
+
+export async function createRandomExpert() {
+  if (!game.user.can("ACTOR_CREATE")) throw Error("La Guardiana puede crear tu Experta o habilitar Crear Actores en los permisos del mundo.");
+  const locale = await prompt("Experta al azar", `<p>Generaremos nombre, estilo, quehacer, habilidad, movimiento, vida anterior, objetivos y objetos del hogar. Podrás revisarlo todo antes de crearla.</p>${check("castilian", "Castellanizar por completo a la Experta")}`, "Sorprenderme");
+  if (!locale) return;
+  const items = await content("expertos");
+  const draft = randomExpert({ castilian: locale.has("castilian"), moves: items, experts: op.experts() });
+  const move = items.find((item) => item._id === draft.expert);
+  const review = await prompt("Revisar la Experta inesperada", `${field("name", "Nombre y apellido", draft.name)}${field("style", "Estilo", draft.style)}${field("hobby", "Quehacer", draft.hobby)}<div class="bb-note"><b>${esc(STATS[draft.boost])} recibe +1.</b> Las demás puntuaciones siguen la distribución fija del manual.</div><div class="bb-creation-choice selected"><span><b>${esc(move.name)}</b><small>${frequencyLabel(move.system.frequency)}</small><p>${esc(move.system.description)}</p></span></div>${field("partner", "Su pareja fallecida", draft.partner)}${field("family", "Hijos, familia o mascotas", draft.family)}${field("career", "Carrera antes de retirarse", draft.career)}${homeFields(draft.home)}<h3>Objetivos de la primera sesión</h3>${questionFields(draft.questions)}`, "Crear esta Experta");
+  if (!review) return;
+  const data = { ...draft, ...Object.fromEntries(review) };
+  data.home = [1, 2, 3, 4, 5].map((index) => data[`home${index}`]);
+  data.questions = [0, ...[1, 2, 3, 4, 5, 6].filter((index) => review.has(`q${index}`))];
+  return locked("create-expert", () => finishExpert(data, items));
 }
 export async function importMystery() {
   gm();
@@ -390,6 +430,7 @@ export async function resetCampaign() {
   if (itemIds.length) await Item.deleteDocuments(itemIds);
   if (actorIds.length) await Actor.deleteDocuments(actorIds);
   await op.saveClub({ session: 1, goldUsed: false, adUsed: false, novels: [] });
+  await syncCaseBooks();
   clearRememberedWindows();
   ui.notifications.info("Brindlewood Bay vuelve a estar listo para una campaña nueva.");
   new ClubApp().render(true);
@@ -460,6 +501,7 @@ export class ClubApp extends rememberWindow(foundry.applications.api.HandlebarsA
     position: { width: 1040, height: 820 },
     actions: {
       create: guard(createExpert),
+      random: guard(createRandomExpert),
       import: guard(importMystery),
       custom: guard(customMystery),
       open: guard(async function (_e, b) {

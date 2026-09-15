@@ -1,11 +1,12 @@
 [
   {
     "_id": "a4d6e92b187f50c3",
-    "name": "Pausa para los anuncios",
+    "name": "Inspiración para mi anuncio",
     "type": "script",
     "img": "systems/brindlewood-bay/assets/teacup.svg",
     "scope": "global",
-    "command": "await game.brindlewood.advertisement();",
+    "author": null,
+    "command": "await game.brindlewood.advertisementInspiration();",
     "ownership": { "default": 2 },
     "flags": {}
   }

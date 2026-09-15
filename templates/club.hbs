@@ -2,7 +2,7 @@
   <header class="bb-cover bb-cover-compact">
     <img src="systems/brindlewood-bay/assets/cover.png" alt="Tres Expertas del Crimen toman té ante una bahía inquietante">
     <div class="bb-cover-caption">Brindlewood Bay<small>EL CLUB DE LAS EXPERTAS DEL CRIMEN</small></div>
-    <span class="bb-wip">WIP · 0.4.0</span>
+    <span class="bb-wip">WIP · 0.5.0</span>
   </header>
   <div class="bb-club-heading">
     <div><span class="bb-eyebrow">THE CANDLELIGHT · SESIÓN {{club.session}}</span><h1>El tablero del club</h1></div>
@@ -14,9 +14,9 @@
     </div>
   </div>
   <div class="bb-toolbar bb-toolbar-wrap">
-    {{#if canCreate}}<button type="button" class="bb-primary" data-action="create">Crear una Experta</button>{{/if}}
+    {{#if canCreate}}<button type="button" class="bb-primary" data-action="create">Crear una Experta</button><button type="button" data-action="random">Experta al azar</button>{{/if}}
     <button type="button" data-action="rules">Reglas y movimientos</button>
-    {{#if gm}}<button type="button" data-action="import">Abrir un misterio</button><button type="button" data-action="custom">Misterio propio / final</button><button type="button" data-action="advertisement">Generador de anuncios {{#if adUsed}}· utilizado{{/if}}</button>{{/if}}
+    {{#if gm}}<button type="button" data-action="import">Abrir un misterio</button><button type="button" data-action="custom">Misterio propio / final</button><button type="button" data-action="advertisement">Dar paso a anuncios {{#if adUsed}}· utilizado{{/if}}</button>{{/if}}
     <button type="button" data-action="safety">Pausa de la escena</button>
   </div>
   <div class="bb-scroll">

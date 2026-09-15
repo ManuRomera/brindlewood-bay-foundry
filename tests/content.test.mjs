@@ -45,6 +45,7 @@ test("every compendium document and page has stable IDs and no leaked local path
     "expertos",
     "basicos",
     "anuncios",
+    "salon",
   ]) {
     const ds = read(n);
     const ids = new Set();
@@ -53,9 +54,25 @@ test("every compendium document and page has stable IDs and no leaked local path
       assert.ok(!ids.has(d._id));
       ids.add(d._id);
       for (const p of d.pages ?? []) assert.ok(p.text.content.length > 80);
+      for (const tile of d.tiles ?? []) {
+        assert.match(tile._id, /^[A-Za-z0-9]{16}$/);
+        assert.ok(tile.hidden);
+        assert.equal(tile.alpha, 0);
+        assert.ok(fs.existsSync(new URL(`../${tile.texture.src.replace("systems/brindlewood-bay/", "")}`, import.meta.url)));
+      }
     }
     assert.ok(!JSON.stringify(ds).includes("/Users/"));
   }
+});
+test("club salon is a full-screen shared scene without grid, fog or token vision", () => {
+  const scene = read("salon")[0];
+  assert.equal(scene.padding, 0);
+  assert.equal(scene.grid.type, 0);
+  assert.equal(scene.tokenVision, false);
+  assert.equal(scene.fogExploration, false);
+  assert.equal(scene.ownership.default, 2);
+  assert.equal(scene.tiles.length, 6);
+  assert.ok(fs.existsSync(new URL("../assets/salon-club.png", import.meta.url)));
 });
 test("templates parse and render without unknown helpers", () => {
   Handlebars.registerHelper("eq", (a, b) => a === b);
@@ -77,4 +94,15 @@ test("GM content is not a player-observer pack", () => {
     ["aventuras", "sospechosos", "guardiana"].includes(p.name),
   ))
     assert.equal(p.ownership.PLAYER, "NONE");
+});
+test("the advertisement inspiration macro is player-visible and private", () => {
+  const manifest = JSON.parse(
+    fs.readFileSync(new URL("../system.json", import.meta.url)),
+  );
+  const pack = manifest.packs.find((p) => p.name === "anuncios");
+  assert.equal(pack.ownership.PLAYER, "OBSERVER");
+  const [macro] = read("anuncios");
+  assert.equal(macro.author, null);
+  assert.match(macro.command, /advertisementInspiration/);
+  assert.doesNotMatch(macro.command, /advertisement\(\)/);
 });

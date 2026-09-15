@@ -2,7 +2,7 @@
   "id": "brindlewood-bay",
   "title": "Brindlewood Bay · El club de las Expertas",
   "description": "Misterios, té y un oscuro secreto bajo la bahía. Sistema en español · WIP.",
-  "version": "0.4.0-wip.1",
+  "version": "0.5.0-wip.1",
   "compatibility": {
     "minimum": "13.350",
     "verified": "13.350",
@@ -73,13 +73,24 @@
       }
     },
     {
+      "name": "salon",
+      "label": "Escena · The Candlelight",
+      "path": "packs/salon",
+      "type": "Scene",
+      "system": "brindlewood-bay",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
       "name": "anuncios",
-      "label": "Macro · Pausa para los anuncios",
+      "label": "Macro · Inspiración para anuncios",
       "path": "packs/anuncios",
       "type": "Macro",
       "system": "brindlewood-bay",
       "ownership": {
-        "PLAYER": "NONE",
+        "PLAYER": "OBSERVER",
         "ASSISTANT": "OWNER"
       }
     },
@@ -125,6 +136,7 @@
         "reglas",
         "expertos",
         "basicos",
+        "salon",
         "anuncios",
         "aventuras",
         "sospechosos",
@@ -134,7 +146,7 @@
   ],
   "url": "https://github.com/ManuRomera/brindlewood-bay-foundry",
   "manifest": "https://raw.githubusercontent.com/ManuRomera/brindlewood-bay-foundry/main/system.json",
-  "download": "https://github.com/ManuRomera/brindlewood-bay-foundry/releases/download/v0.4.0-wip.1/brindlewood-bay.zip",
+  "download": "https://github.com/ManuRomera/brindlewood-bay-foundry/releases/download/v0.5.0-wip.1/brindlewood-bay.zip",
   "readme": "https://github.com/ManuRomera/brindlewood-bay-foundry#readme",
   "bugs": "https://github.com/ManuRomera/brindlewood-bay-foundry/issues",
   "license": "LICENSE",
