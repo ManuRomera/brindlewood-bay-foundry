@@ -30,6 +30,7 @@ La experiencia alterna investigación, intimidad y horror. Las protagonistas son
 | Avances | Cinco elecciones únicas; coste de 5 PE; habilidades máximo +3 |
 | Misterios activos | Máximo 3; complejidad normal 6–8, sesión única 4–5, final del Vacío 10 |
 | Preparación de misterios | Al menos 20 pistas; hasta 12 sospechosos |
+| Pausa para anuncios | Tras un fallo peligroso o dramático; si la jugadora narra el anuncio, se trata como 10–11; una vez por sesión suele bastar |
 | Conspiración | Capas a 3 / 5 / 10 / 15 pistas del Vacío; Fox Mulder reduce cada umbral en uno |
 | Misterio del Vacío | Complejidad 10; hora, lugar y modo del ritual; sin efecto especial de 12+ |
 

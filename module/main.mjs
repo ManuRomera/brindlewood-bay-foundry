@@ -9,7 +9,9 @@ import {
   dossier,
   useExpert,
   customMystery,
+  resetCampaign,
 } from "./club.mjs";
+import { advertisement } from "./advertisements.mjs";
 import { guard } from "./ui.mjs";
 import { attachInfo } from "./inspector.mjs";
 Hooks.once("init", () => {
@@ -45,7 +47,7 @@ Hooks.once("init", () => {
     scope: "world",
     config: false,
     type: Object,
-    default: { session: 1, goldUsed: false, novels: [] },
+    default: { session: 1, goldUsed: false, adUsed: false, novels: [] },
   });
   game.settings.register(ID, "welcome", {
     scope: "client",
@@ -80,6 +82,8 @@ Hooks.once("init", () => {
     dossier,
     useExpert,
     customMystery,
+    advertisement,
+    resetCampaign,
   };
   Handlebars.registerHelper("eq", (a, b) => a === b);
 });

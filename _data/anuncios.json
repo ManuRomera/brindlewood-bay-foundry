@@ -1,0 +1,12 @@
+[
+  {
+    "_id": "a4d6e92b187f50c3",
+    "name": "Pausa para los anuncios",
+    "type": "script",
+    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "scope": "global",
+    "command": "await game.brindlewood.advertisement();",
+    "ownership": { "default": 2 },
+    "flags": {}
+  }
+]

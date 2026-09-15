@@ -1,3 +1,11 @@
+# 0.4.0-wip.1
+
+- El salón muestra a toda la mesa contadores comunes, pistas desplegables por misterio y el progreso esencial de cada Experta.
+- La ficha de Experta reorganiza recursos, movimientos, Condiciones, Hogar, experiencia e historial para mejorar jerarquía visual y aprovechar el espacio.
+- Las ventanas del sistema recuerdan tamaño y posición por usuario y documento, reajustándose si quedan fuera del área visible.
+- La Guardiana puede reiniciar todos los datos de campaña de Brindlewood Bay sin crear otro mundo y sin afectar contenido ajeno al sistema.
+- Nuevo generador de anuncios con más de un millón de combinaciones, acceso desde el salón y macro incluida en compendio.
+
 # 0.3.0-wip.1
 
 - Los límites del manual aparecen dentro de las fichas y se aplican a Hogar, Condiciones, PE, avances, Coronas, habilidades, movimientos exclusivos, misterios activos, complejidad y sospechosos.

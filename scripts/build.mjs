@@ -10,6 +10,7 @@ const ROOT = {
   Item: "items",
   Actor: "actors",
   RollTable: "tables",
+  Macro: "macros",
 };
 const EMBEDDED = {
   JournalEntry: ["pages"],

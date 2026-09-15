@@ -6,7 +6,7 @@
 
 Sistema nativo en español para Foundry **13.351**. Seis misterios, un club de lectura y un oscuro secreto bajo la bahía. Creado por ManuRomera a partir de la edición española 1.0 de Jason Cordova.
 
-> **WIP · 0.3.0-wip.1.** Versión de trabajo para probar en un mundo nuevo. No se declara compatibilidad con Foundry 14. Consulta [el alcance y la verificación](docs/QA.md).
+> **WIP · 0.4.0-wip.1.** Versión de trabajo para probar en un mundo nuevo. No se declara compatibilidad con Foundry 14. Consulta [el alcance y la verificación](docs/QA.md).
 
 ## Entrar en el club
 
@@ -42,6 +42,10 @@ Seis compendios incluyen reglas, ayudas, 19 movimientos expertos, siete básicos
 ## Una vida plena
 
 Fichas de marfil, verde salvia y rosa antiguo; retratos editables; controles de habilidades protegidos; objetos con historia; Condiciones; objetivos de fin de sesión; Coronas con escenas pendientes y un historial de tiradas recuperable. Las narraciones previas a las tiradas pueden hacerse por voz y los apuntes del chat son opcionales. Los límites del manual se muestran junto a cada recurso y se aplican en la propia ficha: 18 objetos del Hogar, 3 Condiciones, 5 PE, 5 avances y los rangos de complejidad correspondientes.
+
+El salón funciona como tablero común: muestra misterios activos, pistas ordinarias y del Vacío, y el progreso de todas las Expertas. Las pistas descubiertas pueden consultarse allí sin abrir varias ventanas. Las ventanas recuerdan su tamaño y ubicación por usuario. La Guardiana dispone de un reinicio de campaña que conserva los compendios y cualquier contenido ajeno al sistema.
+
+El compendio **Macro · Pausa para los anuncios** contiene una macro lista para arrastrar a la barra rápida. El mismo generador se abre desde el salón y combina producto, formato, protagonista, promesa y giro en más de un millón de anuncios posibles.
 
 Deja el cursor quieto dos segundos sobre movimientos, habilidades, pistas, personajes o controles para consultar su información; se cierra al moverlo. El botón derecho la mantiene abierta y la chincheta la ancla hasta desanclarla o pulsar el aspa. Las fichas de chat muestran el resultado aplicado, los cuatro grados posibles, la habilidad, el modificador, ventaja o desventaja y el objeto utilizado.
 

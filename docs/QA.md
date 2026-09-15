@@ -1,10 +1,10 @@
-# Verificación de la WIP 0.3.0-wip.1
+# Verificación de la WIP 0.4.0-wip.1
 
 Fecha: 15 de septiembre de 2026. Foundry 13.351 real, servidor local con directorio de datos aislado y Chromium de escritorio. Ningún mundo del usuario se usó como prueba. Código dirigido a Foundry 13; no se declara verificada la versión 14.
 
 ## Pruebas automatizadas
 
-27 pruebas de contenido, fórmulas, umbrales de resultados, Coronas, avances, límites de recursos, exclusividades, complejidad de misterios, progresión de la conspiración y conservación de campos de formulario. Validador de manifiesto, versiones, sintaxis y recursos; construcción de seis compendios LevelDB y ZIP.
+29 pruebas de contenido, fórmulas, umbrales de resultados, Coronas, avances, límites de recursos, exclusividades, complejidad de misterios, posiciones de ventanas, variedad de anuncios, progresión de la conspiración y conservación de campos de formulario. Validador de manifiesto, versiones, sintaxis y recursos; construcción de siete compendios LevelDB y ZIP.
 
 ## Pruebas realizadas dentro de Foundry
 
@@ -28,6 +28,10 @@ Fecha: 15 de septiembre de 2026. Foundry 13.351 real, servidor local con directo
 - Migrar el mundo de prueba desde 0.2.0 a 0.3.0 sin errores de esquema y abrir las fichas existentes.
 - Comprobar en el salón el contador de misterios activos y, en la ficha, los límites visibles de 18 objetos, 3 Condiciones, 5 PE, 5 avances, 7 Coronas de la Reina y 5 del Vacío.
 - Comprobar que los controles de avance se desactivan antes de reunir 5 PE y que cada movimiento experto muestra su frecuencia y estado de uso.
+- Comprobar como Guardiana y como jugadora que el salón muestra los mismos contadores comunes, las pistas desplegables de cada caso y el progreso esencial de las Expertas; las acciones de administración solo aparecen para la Guardiana.
+- Abrir la ficha rediseñada y comprobar que habilidades, PE, avances, Condiciones, Hogar y Coronas permanecen visibles mientras se consultan los movimientos. Moverla, cerrarla y abrirla de nuevo confirma que recupera la última posición dentro del área visible.
+- Generar una pausa para anuncios desde el salón, publicar su tarjeta con la regla del resultado 10–11 y comprobar el compendio «Macro · Pausa para los anuncios» dentro de Foundry.
+- Abrir la confirmación de reinicio y comprobar que enumera el alcance y la conservación de los compendios. La selección de documentos y el reajuste de estado se revisaron mediante las pruebas de construcción; no se ejecutó la eliminación final sobre datos del usuario.
 
 ## Errores encontrados y corregidos durante la prueba
 

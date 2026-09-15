@@ -17,6 +17,7 @@ import {
 } from "./rules.mjs";
 import * as op from "./operations.mjs";
 import { attachInfo } from "./inspector.mjs";
+import { rememberWindow } from "./window-state.mjs";
 import {
   esc,
   field,
@@ -42,9 +43,9 @@ async function chooseImage(sheet) {
   });
   await picker.browse();
 }
-export class ExpertSheet extends HandlebarsApplicationMixin(
+export class ExpertSheet extends rememberWindow(HandlebarsApplicationMixin(
   foundry.applications.sheets.ActorSheetV2,
-) {
+)) {
   get title() {
     return `Experta · ${this.actor.name}`;
   }
@@ -317,9 +318,9 @@ export class ExpertSheet extends HandlebarsApplicationMixin(
     return foundry.utils.expandObject(obj);
   }
 }
-export class MysterySheet extends HandlebarsApplicationMixin(
+export class MysterySheet extends rememberWindow(HandlebarsApplicationMixin(
   foundry.applications.sheets.ActorSheetV2,
-) {
+)) {
   get title() {
     return `Misterio · ${this.actor.name}`;
   }
@@ -431,9 +432,9 @@ export class MysterySheet extends HandlebarsApplicationMixin(
     return foundry.utils.expandObject(entries);
   }
 }
-export class NPCSheet extends HandlebarsApplicationMixin(
+export class NPCSheet extends rememberWindow(HandlebarsApplicationMixin(
   foundry.applications.sheets.ActorSheetV2,
-) {
+)) {
   static DEFAULT_OPTIONS = {
     classes: ["bb-app"],
     position: { width: 620, height: 590 },
@@ -458,9 +459,9 @@ export class NPCSheet extends HandlebarsApplicationMixin(
     attachInfo(this.element);
   }
 }
-export class MoveSheet extends HandlebarsApplicationMixin(
+export class MoveSheet extends rememberWindow(HandlebarsApplicationMixin(
   foundry.applications.sheets.ItemSheetV2,
-) {
+)) {
   static DEFAULT_OPTIONS = {
     classes: ["bb-app"],
     position: { width: 630, height: 610 },

@@ -15,6 +15,8 @@ import {
 } from "./ui.mjs";
 import * as op from "./operations.mjs";
 import { attachInfo } from "./inspector.mjs";
+import { rememberWindow, clearRememberedWindows } from "./window-state.mjs";
+import { advertisement } from "./advertisements.mjs";
 const content = async (name) => {
   const response = await fetch(`systems/${ID}/_data/${name}.json`);
   if (!response.ok) throw Error("No se pudo cargar el contenido.");
@@ -362,11 +364,35 @@ export async function newSession() {
         .map((i) => ({ _id: i.id, "system.used": false }));
       if (changes.length) await a.updateEmbeddedDocuments("Item", changes);
     }
-    await op.saveClub({ ...c, session: c.session + 1, goldUsed: false });
+    await op.saveClub({ ...c, session: c.session + 1, goldUsed: false, adUsed: false });
     ui.notifications.info(
       "Nueva sesión: recapitulación, finales abiertos, preguntas y retazos de una vida agradable.",
     );
   });
+}
+export async function resetCampaign() {
+  gm();
+  if (!(await confirm(
+    "Reiniciar Brindlewood Bay",
+    "Se eliminarán todas las Expertas, misterios, personas, movimientos del mundo, expedientes de campaña, mensajes y macros de ficha creados por este sistema. Los compendios y el contenido ajeno al sistema permanecerán. Esta acción no se puede deshacer.",
+  ))) return;
+  for (const app of [...foundry.applications.instances.values()])
+    if (app instanceof ClubApp || app.document?.type && ["experta", "misterio", "pnj", "movimiento"].includes(app.document.type))
+      await app.close();
+  const actorIds = game.actors.filter((actor) => ["experta", "misterio", "pnj"].includes(actor.type)).map((actor) => actor.id);
+  const itemIds = game.items.filter((item) => item.type === "movimiento").map((item) => item.id);
+  const journalIds = game.journal.filter((journal) => journal.getFlag(ID, "caseId")).map((journal) => journal.id);
+  const messageIds = game.messages.filter((message) => message.flags?.[ID] !== undefined).map((message) => message.id);
+  const macroIds = game.macros.filter((macro) => macro.getFlag(ID, "actorUuid")).map((macro) => macro.id);
+  if (messageIds.length) await ChatMessage.deleteDocuments(messageIds);
+  if (journalIds.length) await JournalEntry.deleteDocuments(journalIds);
+  if (macroIds.length) await Macro.deleteDocuments(macroIds);
+  if (itemIds.length) await Item.deleteDocuments(itemIds);
+  if (actorIds.length) await Actor.deleteDocuments(actorIds);
+  await op.saveClub({ session: 1, goldUsed: false, adUsed: false, novels: [] });
+  clearRememberedWindows();
+  ui.notifications.info("Brindlewood Bay vuelve a estar listo para una campaña nueva.");
+  new ClubApp().render(true);
 }
 export async function customMystery() {
   gm();
@@ -424,9 +450,9 @@ export async function customMystery() {
   });
   a.sheet.render(true);
 }
-export class ClubApp extends foundry.applications.api.HandlebarsApplicationMixin(
+export class ClubApp extends rememberWindow(foundry.applications.api.HandlebarsApplicationMixin(
   foundry.applications.api.ApplicationV2,
-) {
+)) {
   static DEFAULT_OPTIONS = {
     id: "bb-club",
     classes: ["bb-app", "bb-club"],
@@ -441,6 +467,8 @@ export class ClubApp extends foundry.applications.api.HandlebarsApplicationMixin
       }),
       session: guard(newSession),
       gold: guard(async () => golden(null)),
+      advertisement: guard(advertisement),
+      reset: guard(resetCampaign),
       rules: guard(async () => game.packs.get(`${ID}.reglas`).render(true)),
       guardiana: guard(async () => {
         gm();
@@ -475,14 +503,29 @@ export class ClubApp extends foundry.applications.api.HandlebarsApplicationMixin
       .flatMap((a) => a.system.clues)
       .filter((c) => c.void).length;
     const mulder = op.experts().some((a) => op.has(a, "Fox Mulder"));
+    const visibleCases = cs.filter((a) => a.testUserPermission(game.user, "OBSERVER"));
+    const visibleExperts = op.experts().filter((a) => a.testUserPermission(game.user, "OBSERVER"));
+    const activeVisible = visibleCases.filter((a) => a.system.status === "active");
     return {
       gm: game.user.isGM,
       canCreate: game.user.can("ACTOR_CREATE"),
       club: op.club(),
-      experts: op
-        .experts()
-        .filter((a) => a.testUserPermission(game.user, "OBSERVER")),
-      cases: cs.filter((a) => a.testUserPermission(game.user, "OBSERVER")),
+      experts: visibleExperts.map((actor) => ({
+        actor,
+        id: actor.id,
+        name: actor.name,
+        img: actor.img,
+        system: actor.system,
+        crownTotal: actor.system.queen.length + actor.system.void,
+      })),
+      cases: visibleCases.map((actor) => ({
+        actor,
+        id: actor.id,
+        name: actor.name,
+        system: actor.system,
+        regular: actor.system.clues.filter((clue) => !clue.void),
+        voidClues: actor.system.clues.filter((clue) => clue.void),
+      })),
       voidCount: count,
       layer: conspiracyLayer(count, mulder),
       thresholds: [3, 5, 10, 15].map((v, i) => ({
@@ -497,6 +540,11 @@ export class ClubApp extends foundry.applications.api.HandlebarsApplicationMixin
       })),
       limits: LIMITS,
       activeCount: cs.filter((a) => a.system.status === "active").length,
+      visibleActiveCount: activeVisible.length,
+      teamClues: activeVisible.flatMap((actor) => actor.system.clues).filter((clue) => !clue.void).length,
+      teamVoidClues: activeVisible.flatMap((actor) => actor.system.clues).filter((clue) => clue.void).length,
+      expertCount: visibleExperts.length,
+      adUsed: op.club().adUsed,
     };
   }
 }

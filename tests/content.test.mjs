@@ -44,6 +44,7 @@ test("every compendium document and page has stable IDs and no leaked local path
     "sospechosos",
     "expertos",
     "basicos",
+    "anuncios",
   ]) {
     const ds = read(n);
     const ids = new Set();
