@@ -10,6 +10,10 @@ import {
   creationIssue,
   conspiracyLayer,
   advancePlan,
+  LIMITS,
+  awardXp,
+  complexityIssue,
+  expertMoveConflict,
 } from "../module/rules.mjs";
 const state = () => ({
   stats: { ...BASE },
@@ -147,4 +151,33 @@ test("a fourth condition from pomegranate requests an extra crown without deleti
   assert.ok(n.pending.some((p) => p.kind === "crown"));
   const resolved = crownPlan(n, "queen", 0);
   assert.ok(!resolved.pending.some((p) => p.kind === "crown"));
+});
+test("manual limits are centralized and XP never exceeds its five boxes", () => {
+  assert.equal(LIMITS.home, 18);
+  assert.equal(LIMITS.conditions, 3);
+  assert.equal(LIMITS.xp, 5);
+  assert.deepEqual(awardXp({ xp: 4, advances: [] }, 3), {
+    xp: 5,
+    awarded: 1,
+    unawarded: 2,
+  });
+  assert.deepEqual(awardXp({ xp: 0, advances: [0, 1, 2, 3, 4] }, 1), {
+    xp: 0,
+    awarded: 0,
+    unawarded: 0,
+  });
+});
+test("mystery complexity follows normal, one-session and Void ranges", () => {
+  assert.equal(complexityIssue(6), null);
+  assert.equal(complexityIssue(8), null);
+  assert.ok(complexityIssue(5));
+  assert.equal(complexityIssue(5, { oneShot: true }), null);
+  assert.equal(complexityIssue(10, { voidMystery: true }), null);
+  assert.ok(complexityIssue(9, { voidMystery: true }));
+});
+test("Dale and Fox are mutually exclusive between different Expertas", () => {
+  const actors = [{ id: "a", system: { retired: false }, items: [{ name: "Dale Cooper" }] }];
+  assert.equal(expertMoveConflict("Fox Mulder", actors, "b"), true);
+  assert.equal(expertMoveConflict("Fox Mulder", actors, "a"), false);
+  assert.equal(expertMoveConflict("Jonathan Hart", actors, "b"), false);
 });

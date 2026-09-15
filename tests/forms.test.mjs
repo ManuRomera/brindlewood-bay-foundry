@@ -54,3 +54,20 @@ test("mystery form does not silently replace revealed clues", () => {
   });
   assert.deepEqual(result, { "system.description": "Public intro" });
 });
+test("mystery form rejects complexity outside the manual range", () => {
+  assert.throws(() =>
+    MysterySheet.prototype._processFormData.call(
+      { actor: { system: { complexity: 6, voidMystery: false } } },
+      null,
+      null,
+      { object: { "system.complexity": 9 } },
+    ),
+  );
+  const result = MysterySheet.prototype._processFormData.call(
+    { actor: { system: { complexity: 6, voidMystery: false } } },
+    null,
+    null,
+    { object: { "system.complexity": 8 } },
+  );
+  assert.deepEqual(result, { "system.complexity": 8 });
+});

@@ -1,10 +1,10 @@
-# Verificación de la WIP 0.2.0-wip.1
+# Verificación de la WIP 0.3.0-wip.1
 
 Fecha: 15 de septiembre de 2026. Foundry 13.351 real, servidor local con directorio de datos aislado y Chromium de escritorio. Ningún mundo del usuario se usó como prueba. Código dirigido a Foundry 13; no se declara verificada la versión 14.
 
 ## Pruebas automatizadas
 
-22 pruebas de contenido, fórmulas, umbrales de resultados, Coronas, avances, exclusividades iniciales, progresión de la conspiración y conservación de campos de formulario. Validador de manifiesto, versiones, sintaxis y recursos; construcción de seis compendios LevelDB y ZIP.
+27 pruebas de contenido, fórmulas, umbrales de resultados, Coronas, avances, límites de recursos, exclusividades, complejidad de misterios, progresión de la conspiración y conservación de campos de formulario. Validador de manifiesto, versiones, sintaxis y recursos; construcción de seis compendios LevelDB y ZIP.
 
 ## Pruebas realizadas dentro de Foundry
 
@@ -25,6 +25,9 @@ Fecha: 15 de septiembre de 2026. Foundry 13.351 real, servidor local con directo
 - Comprobar una tirada nocturna en el chat: resultado activo, cuatro grados completos, habilidad, modificador y dados originales visibles.
 - Abrir información de Diurno con botón derecho, anclarla, abrir otro documento y confirmar que permanece; el aspa, la desactivación de la chincheta y el clic exterior respetan sus estados.
 - Abrir el selector de imagen desde el retrato de una Experta y comprobar la ruta actual y la posibilidad de elegir o subir archivos permitidos.
+- Migrar el mundo de prueba desde 0.2.0 a 0.3.0 sin errores de esquema y abrir las fichas existentes.
+- Comprobar en el salón el contador de misterios activos y, en la ficha, los límites visibles de 18 objetos, 3 Condiciones, 5 PE, 5 avances, 7 Coronas de la Reina y 5 del Vacío.
+- Comprobar que los controles de avance se desactivan antes de reunir 5 PE y que cada movimiento experto muestra su frecuencia y estado de uso.
 
 ## Errores encontrados y corregidos durante la prueba
 

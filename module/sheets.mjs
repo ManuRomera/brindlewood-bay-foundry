@@ -10,6 +10,10 @@ import {
   MOVES,
   TIER_NAMES,
   outcomes,
+  LIMITS,
+  awardXp,
+  expertMoveConflict,
+  complexityIssue,
 } from "./rules.mjs";
 import * as op from "./operations.mjs";
 import { attachInfo } from "./inspector.mjs";
@@ -50,6 +54,9 @@ export class ExpertSheet extends HandlebarsApplicationMixin(
       "[data-action=switchTab],[data-action=editMove]",
     ))
       b.disabled = false;
+    const xpButton = this.element.querySelector("[data-action=xp]");
+    if (xpButton && this.actor.system.advances.length >= LIMITS.advances)
+      xpButton.disabled = true;
     attachInfo(this.element);
   }
   static DEFAULT_OPTIONS = {
@@ -82,6 +89,9 @@ export class ExpertSheet extends HandlebarsApplicationMixin(
       }),
       home: guard(async function () {
         await op.home(this.actor);
+      }),
+      removeHome: guard(async function (_e, b) {
+        await op.removeHome(this.actor, b.dataset.id);
       }),
       advance: guard(async function () {
         await op.advancement(this.actor);
@@ -141,18 +151,22 @@ export class ExpertSheet extends HandlebarsApplicationMixin(
       }),
       xp: guard(async function () {
         owner(this.actor);
-        if (this.actor.system.advances.length >= 5)
+        if (this.actor.system.advances.length >= LIMITS.advances)
           throw Error("Ya has completado todos los avances.");
+        const xp = awardXp(this.actor.system, 1);
+        if (!xp.awarded)
+          throw Error("El contador de PE está lleno. Elige un avance antes de obtener más PE.");
         const d = await prompt(
           "Experiencia por un movimiento",
-          field("reason", "Movimiento o motivo que concede 1 PE"),
+          field("reason", "Movimiento o motivo (opcional; puedes decirlo por voz)"),
         );
-        if (d?.get("reason").trim()) {
-          await this.actor.update({ "system.xp": this.actor.system.xp + 1 });
+        if (d) {
+          const reason = d.get("reason").trim();
+          await this.actor.update({ "system.xp": xp.xp });
           await op.chat(
             this.actor,
             "Experiencia",
-            `<p>+1 PE · ${esc(d.get("reason"))}</p>`,
+            `<p>+1 PE${reason ? ` · ${esc(reason)}` : ""}</p>`,
           );
         }
       }),
@@ -179,6 +193,8 @@ export class ExpertSheet extends HandlebarsApplicationMixin(
     owner(this.actor);
     if (this.actor.items.some((i) => i.name === item.name))
       throw Error("Ya tienes este movimiento.");
+    if (expertMoveConflict(item.name, op.experts(), this.actor.id))
+      throw Error("Ese movimiento es exclusivo o entra en conflicto con Dale Cooper / Fox Mulder.");
     const n = safeSystem(this.actor);
     op.applyExpert(n, item);
     await this.actor.update({
@@ -230,7 +246,21 @@ export class ExpertSheet extends HandlebarsApplicationMixin(
           label,
           info: outcomes(key).map((result) => `${result.label}: ${result.text}`).join(" "),
         })),
-      expertMoves: a.items.contents,
+      limits: LIMITS,
+      homeFull: s.home.length >= LIMITS.home,
+      conditionFull: s.conditions.length >= LIMITS.conditions,
+      xpFull: s.xp >= LIMITS.xp,
+      advancesFull: s.advances.length >= LIMITS.advances,
+      homeSlots: Array.from({ length: LIMITS.home }, (_, index) => ({
+        number: index + 1,
+        filled: index < s.home.length,
+      })),
+      expertMoves: a.items.contents.map((item) => ({
+        id: item.id,
+        name: item.name,
+        system: item.system,
+        useLabel: item.system.frequency === "session" ? "Una vez por sesión" : item.system.frequency === "once" ? "Una sola vez" : item.system.frequency === "mystery" ? "Una vez por misterio" : "Sin límite de usos",
+      })),
       conditions: s.conditions.map((text, index) => ({
         text,
         index,
@@ -276,6 +306,14 @@ export class ExpertSheet extends HandlebarsApplicationMixin(
     if (!this.unlocked)
       for (const k of Object.keys(obj))
         if (k.startsWith("system.stats.")) delete obj[k];
+    if (Object.hasOwn(obj, "system.hobby")) {
+      const hobby = String(obj["system.hobby"])
+        .normalize("NFKC").toLocaleLowerCase("es").trim();
+      if (op.experts().some((actor) =>
+        actor.id !== this.actor.id &&
+        actor.system.hobby.normalize("NFKC").toLocaleLowerCase("es").trim() === hobby
+      )) throw Error("Ya hay una Experta activa con ese quehacer.");
+    }
     return foundry.utils.expandObject(obj);
   }
 }
@@ -326,6 +364,10 @@ export class MysterySheet extends HandlebarsApplicationMixin(
       }),
       status: guard(async function () {
         owner(this.actor);
+        if (
+          this.actor.system.status !== "active" &&
+          op.cases().filter((actor) => actor.system.status === "active").length >= LIMITS.activeMysteries
+        ) throw Error(`Ya hay ${LIMITS.activeMysteries} misterios activos. Resuelve uno antes de reabrir este.`);
         await this.actor.update({
           "system.status":
             this.actor.system.status === "active" ? "resolved" : "active",
@@ -340,6 +382,12 @@ export class MysterySheet extends HandlebarsApplicationMixin(
     },
   };
   async _prepareContext(o) {
+    const s = this.actor.system;
+    const complexityOptions = s.voidMystery
+      ? [LIMITS.voidComplexity]
+      : s.complexity <= 5
+        ? LIMITS.oneShotComplexities
+        : [6, 7, 8];
     return {
       ...(await super._prepareContext(o)),
       actor: this.actor,
@@ -349,11 +397,20 @@ export class MysterySheet extends HandlebarsApplicationMixin(
       gm: game.user.isGM,
       editable: this.actor.isOwner,
       regular: this.actor.system.clues.filter((c) => !c.void).length,
+      limits: LIMITS,
+      complexityOptions: complexityOptions.map((value) => ({
+        value,
+        selected: value === s.complexity,
+      })),
+      complexityRule: s.voidMystery
+        ? "El Misterio del Vacío usa 10."
+        : s.complexity <= 5
+          ? "Una sesión usa 4 o 5."
+          : "Un misterio normal usa de 6 a 8.",
     };
   }
   _processFormData(e, f, d) {
-    return foundry.utils.expandObject(
-      Object.fromEntries(
+    const entries = Object.fromEntries(
         Object.entries(d.object).filter(([k]) =>
           [
             "name",
@@ -361,9 +418,17 @@ export class MysterySheet extends HandlebarsApplicationMixin(
             "system.complexity",
             "system.theory",
           ].includes(k),
-        ),
-      ),
-    );
+        ));
+    if (Object.hasOwn(entries, "system.complexity")) {
+      const n = Number(entries["system.complexity"]);
+      const issue = complexityIssue(n, {
+        oneShot: this.actor.system.complexity <= 5,
+        voidMystery: this.actor.system.voidMystery,
+      });
+      if (issue) throw Error(issue);
+      entries["system.complexity"] = n;
+    }
+    return foundry.utils.expandObject(entries);
   }
 }
 export class NPCSheet extends HandlebarsApplicationMixin(

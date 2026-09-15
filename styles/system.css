@@ -402,6 +402,22 @@
 .bb-home-grid button {
   margin-top: 10px;
 }
+.bb-slot-meter {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 6px;
+  margin: 14px 0;
+}
+.bb-slot-meter span {
+  height: 12px;
+  border: 1px solid #9d927e;
+  border-radius: 8px;
+  background: #fffaf0;
+}
+.bb-slot-meter span.filled {
+  background: var(--bb-green);
+  border-color: var(--bb-green);
+}
 .bb-condition {
   display: flex;
   gap: 10px;

@@ -1,3 +1,9 @@
+# 0.3.0-wip.1
+
+- Los límites del manual aparecen dentro de las fichas y se aplican a Hogar, Condiciones, PE, avances, Coronas, habilidades, movimientos exclusivos, misterios activos, complejidad y sospechosos.
+- Hogar presenta sus 18 espacios, permite retirar objetos y bloquea nuevas altas al llenarse.
+- Los PE que rebasan la quinta casilla durante el cierre quedan pendientes hasta elegir un avance.
+
 # 0.2.0-wip.1
 
 - La narración previa a las tiradas, Teorizar y los movimientos expertos puede hacerse por voz; los campos escritos son apuntes opcionales.

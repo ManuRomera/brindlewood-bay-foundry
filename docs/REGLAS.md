@@ -20,14 +20,16 @@ La experiencia alterna investigación, intimidad y horror. Las protagonistas son
 | --- | --- |
 | Base de habilidades | Vitalidad 0, Compostura +1, Razón +1, Presencia 0, Sensibilidad −1; un +1 inicial |
 | Ventaja / desventaja | 3d6 conservando los dos mayores / menores; ambas se anulan sin contar fuentes |
-| Condiciones | Solo perjudican si son relevantes; la cuarta requiere una Corona |
-| Hogar | Un objeto marcado sigue existiendo; no se recupera al comenzar sesión |
+| Condiciones | Máximo 3; solo perjudican si son relevantes; la cuarta requiere una Corona |
+| Hogar | 18 espacios; un objeto marcado sigue existiendo y no se recupera al comenzar sesión |
 | Corona de la Reina | Siete escenas, libre elección |
 | Corona del Vacío | Cinco pasos ordenados; Carruaje cambia atributos, Granada es permanente, Vacío retira |
 | Corona tras tirada | Sube un nivel, conservando el dado original y la revisión en historial |
 | Teorizar | Solo 2d6 + pistas ordinarias incorporadas − complejidad; consenso obligatorio |
-| PE | Preguntas afirmativas o movimientos; nunca se conceden automáticamente por fallar |
+| PE | Contador de 5; preguntas afirmativas o movimientos; el exceso del mismo cierre queda pendiente hasta elegir avance |
 | Avances | Cinco elecciones únicas; coste de 5 PE; habilidades máximo +3 |
+| Misterios activos | Máximo 3; complejidad normal 6–8, sesión única 4–5, final del Vacío 10 |
+| Preparación de misterios | Al menos 20 pistas; hasta 12 sospechosos |
 | Conspiración | Capas a 3 / 5 / 10 / 15 pistas del Vacío; Fox Mulder reduce cada umbral en uno |
 | Misterio del Vacío | Complejidad 10; hora, lugar y modo del ritual; sin efecto especial de 12+ |
 

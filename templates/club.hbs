@@ -2,7 +2,7 @@
       src="systems/brindlewood-bay/assets/cover.png"
       alt="Tres Expertas del Crimen toman té ante una bahía inquietante"
     /><div class="bb-cover-caption">Brindlewood Bay<small>EL CLUB DE LAS
-        EXPERTAS DEL CRIMEN</small></div><span class="bb-wip">WIP · 0.2.0</span></header><div
+        EXPERTAS DEL CRIMEN</small></div><span class="bb-wip">WIP · 0.3.0</span></header><div
     class="bb-welcome"
   ><div><span class="bb-eyebrow">THE CANDLELIGHT · SÁBADO POR LA TARDE</span><h1
       >Hay té. Hay pastas.<br />Y algo no encaja.</h1></div><p>Bienvenida al
@@ -28,7 +28,7 @@
     >Pausa de la escena</button></div><div class="bb-scroll"><div
       class="bb-two"
     ><main><div class="bb-section-title"><h2>En el centro de la mesa</h2><span
-          >LOS MISTERIOS</span></div>{{#each cases}}<button
+          >{{activeCount}} / {{limits.activeMysteries}} MISTERIOS ACTIVOS</span></div><p class="bb-note">El manual permite un máximo de tres misterios activos. Los misterios normales usan complejidad 6–8; una sesión usa 4 o 5 y el Misterio del Vacío usa 10.</p>{{#each cases}}<button
             type="button"
             class="bb-case"
             data-action="open"

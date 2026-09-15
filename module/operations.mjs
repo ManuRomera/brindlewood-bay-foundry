@@ -14,6 +14,9 @@ import {
   advancePlan,
   ADVANCES,
   QUESTIONS,
+  LIMITS,
+  awardXp,
+  expertMoveConflict,
 } from "./rules.mjs";
 import {
   esc,
@@ -195,14 +198,14 @@ export async function crown(a, recordId = null, forced = null) {
 }
 export async function condition(a) {
   owner(a);
-  if (a.system.conditions.length >= 3) return crown(a);
+  if (a.system.conditions.length >= LIMITS.conditions) return crown(a);
   const d = await prompt(
     "Nueva Condición",
     field("name", "¿Cómo te ha afectado la escena?"),
   );
   if (!d?.get("name").trim()) return;
   return locked(a.uuid, async () => {
-    if (a.system.conditions.length >= 3)
+    if (a.system.conditions.length >= LIMITS.conditions)
       throw Error("Ya tienes tres Condiciones. Ponte una Corona.");
     await a.update({
       "system.conditions": [...a.system.conditions, d.get("name").trim()],
@@ -228,6 +231,8 @@ export async function clearCondition(a, index) {
 }
 export async function home(a) {
   owner(a);
+  if (a.system.home.length >= LIMITS.home)
+    throw Error(`Hogar, dulce hogar tiene ${LIMITS.home} espacios y están todos ocupados.`);
   const d = await prompt(
     "Hogar, dulce hogar",
     field("name", "Un objeto con una historia") +
@@ -235,18 +240,29 @@ export async function home(a) {
       check("reusable", "Un movimiento permite usarlo sin marcarlo"),
   );
   if (!d?.get("name").trim()) return;
-  await a.update({
-    "system.home": [
-      ...a.system.home,
+  return locked(a.uuid, async () => {
+    if (a.system.home.length >= LIMITS.home)
+      throw Error(`Hogar, dulce hogar tiene ${LIMITS.home} espacios y están todos ocupados.`);
+    await a.update({
+      "system.home": [
+        ...a.system.home,
       {
         id: foundry.utils.randomID(),
         name: d.get("name").trim(),
         story: d.get("story"),
         marked: false,
         reusable: d.has("reusable"),
-      },
-    ],
+        },
+      ],
+    });
   });
+}
+export async function removeHome(a, id) {
+  owner(a);
+  const item = a.system.home.find((entry) => entry.id === id);
+  if (!item) return;
+  if (!(await confirm("Retirar un objeto del Hogar", `Quitar «${item.name}» de la ficha y dejar libre su espacio.`))) return;
+  await a.update({ "system.home": a.system.home.filter((entry) => entry.id !== id) });
 }
 export async function advancement(a) {
   owner(a);
@@ -270,16 +286,21 @@ export async function advancement(a) {
   return locked(a.uuid, async () => {
     const idx = Number(d.get("index"));
     const n = advancePlan(safeSystem(a), idx, d.get("stat"));
+    if (n.advances.length >= LIMITS.advances) {
+      n.xp = 0;
+      n.xpPending = 0;
+    } else {
+      const pendingXp = Math.min(n.xpPending ?? 0, LIMITS.xp - n.xp);
+      n.xp += pendingXp;
+      n.xpPending = Math.max(0, (n.xpPending ?? 0) - pendingXp);
+    }
     let item = null;
     if (idx === 2 || idx === 3) {
       item = pack.find((i) => i.id === d.get("move"));
       if (!item || has(a, item.name))
         throw Error("Selecciona un movimiento nuevo.");
-      if (
-        ["Dale Cooper", "Fox Mulder", "Jim Rockford"].includes(item.name) &&
-        experts().some((other) => other.id !== a.id && has(other, item.name))
-      )
-        throw Error("Este movimiento solo puede tenerlo una Experta.");
+      if (expertMoveConflict(item.name, experts(), a.id))
+        throw Error("Ese movimiento es exclusivo o entra en conflicto con Dale Cooper / Fox Mulder.");
       applyExpert(n, item);
     }
     // One actor update includes embedded item creation, so the cost and benefit share the same operation.
@@ -304,6 +325,9 @@ export function applyExpert(n, item) {
     "R. Quincy": "Maletín médico",
     "Gordon Shumway": "Mi amistad felina",
   };
+  if (homes[item.name])
+    if (n.home.length >= LIMITS.home)
+      throw Error(`Este movimiento necesita un espacio libre en Hogar, dulce hogar (${LIMITS.home} máximo).`);
   if (homes[item.name])
     n.home.push({
       id: foundry.utils.randomID(),
@@ -339,15 +363,18 @@ export async function endSession(a) {
     if (a.system.pending.length)
       throw Error("Resuelve primero las escenas de Corona pendientes.");
     const gain = qs.filter(([i]) => d.has(`q${i}`)).length;
+    const xp = awardXp(a.system, gain);
+    const pendingCapacity = LIMITS.sessionQuestions + 1 - (a.system.xpPending ?? 0);
+    const queued = Math.max(0, Math.min(xp.unawarded, pendingCapacity));
     await a.update({
-      "system.xp":
-        a.system.advances.length === 5 ? a.system.xp : a.system.xp + gain,
+      "system.xp": xp.xp,
+      "system.xpPending": (a.system.xpPending ?? 0) + queued,
       "system.endSession": session,
     });
     await chat(
       a,
       "Estrellas y deseos",
-      `<p>${gain} respuestas afirmativas${a.system.advances.length === 5 ? " · Avances completos" : ` · ${gain} PE`}.</p><p><b>Estrellas:</b> ${esc(d.get("stars"))}</p><p><b>Deseos:</b> ${esc(d.get("wishes"))}</p>`,
+      `<p>${gain} respuestas afirmativas${a.system.advances.length >= LIMITS.advances ? " · Los cinco avances ya están completos; la Experta no obtiene más PE" : ` · ${xp.awarded} PE anotados${queued ? ` · ${queued} PE queda pendiente y pasará al contador al elegir un avance` : ""}${xp.unawarded > queued ? " · El contador ya estaba completo: elige un avance antes de obtener más PE" : ""}`}.</p><p><b>Estrellas:</b> ${esc(d.get("stars"))}</p><p><b>Deseos:</b> ${esc(d.get("wishes"))}</p>`,
     );
   });
 }

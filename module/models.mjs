@@ -1,11 +1,12 @@
-import { BASE } from "./rules.mjs";
+import { BASE, LIMITS } from "./rules.mjs";
 const f = foundry.data.fields;
 const str = (initial = "") => new f.StringField({ initial, required: true });
 const num = (initial = 0, min = 0, max = 9999) =>
   new f.NumberField({ initial, integer: true, min, max, required: true });
-const arr = () => new f.ArrayField(new f.ObjectField(), { initial: [] });
-const nums = () =>
-  new f.ArrayField(new f.NumberField({ integer: true }), { initial: [] });
+const arrayOptions = (max) => max === undefined ? { initial: [] } : { initial: [], max };
+const arr = (max) => new f.ArrayField(new f.ObjectField(), arrayOptions(max));
+const nums = (max) =>
+  new f.ArrayField(new f.NumberField({ integer: true }), arrayOptions(max));
 export class ExpertModel extends foundry.abstract.TypeDataModel {
   static defineSchema() {
     return {
@@ -14,16 +15,17 @@ export class ExpertModel extends foundry.abstract.TypeDataModel {
       description: str(),
       stats: new f.SchemaField(
         Object.fromEntries(
-          Object.entries(BASE).map(([k, v]) => [k, num(v, -20, 30)]),
+          Object.entries(BASE).map(([k, v]) => [k, num(v, LIMITS.statMin, LIMITS.statMax)]),
         ),
       ),
-      xp: num(),
-      queen: nums(),
-      void: num(0, 0, 5),
-      conditions: new f.ArrayField(str(), { initial: [] }),
-      home: arr(),
+      xp: num(0, 0, LIMITS.xp),
+      xpPending: num(0, 0, LIMITS.sessionQuestions + 1),
+      queen: nums(LIMITS.queen),
+      void: num(0, 0, LIMITS.void),
+      conditions: new f.ArrayField(str(), { initial: [], max: LIMITS.conditions }),
+      home: arr(LIMITS.home),
       pending: arr(),
-      advances: nums(),
+      advances: nums(LIMITS.advances),
       questions: new f.ArrayField(new f.NumberField({ integer: true }), {
         initial: [0, 1, 2],
       }),
@@ -44,7 +46,7 @@ export class MysteryModel extends foundry.abstract.TypeDataModel {
       status: str("active"),
       voidMystery: new f.BooleanField({ initial: false }),
       clues: arr(),
-      suspects: arr(),
+      suspects: arr(LIMITS.suspectsMax),
       theory: str(),
       history: arr(),
     };

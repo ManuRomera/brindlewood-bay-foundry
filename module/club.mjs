@@ -1,4 +1,4 @@
-import { ID, BASE, STATS, creationIssue, conspiracyLayer } from "./rules.mjs";
+import { ID, BASE, STATS, LIMITS, creationIssue, conspiracyLayer, complexityIssue } from "./rules.mjs";
 import {
   esc,
   field,
@@ -68,9 +68,9 @@ export async function importMystery() {
   gm();
   const list = await content("mysteries");
   const active = op.cases().filter((a) => a.system.status === "active");
-  if (active.length >= 3)
+  if (active.length >= LIMITS.activeMysteries)
     throw Error(
-      "Ya hay tres misterios activos. Resolved uno antes de abrir otro.",
+      "Ya hay tres misterios activos. Resuelve uno antes de abrir otro.",
     );
   const count = op
     .cases()
@@ -82,7 +82,7 @@ export async function importMystery() {
   );
   if (layer === 4)
     throw Error(
-      "El Misterio del Vacío está desbloqueado. Resolved los casos abiertos y preparad el final.",
+      "El Misterio del Vacío está desbloqueado. Resuelve los casos abiertos y preparad el final.",
     );
   const available = list.filter(
     (m) => !op.cases().some((a) => a.system.sourceId === m.id),
@@ -186,6 +186,8 @@ export async function reveal(a) {
         );
       if (n.suspects.some((x) => x.name === npc.name))
         throw Error("Esta persona ya está presentada.");
+      if (n.suspects.length >= LIMITS.suspectsMax)
+        throw Error(`El misterio ya tiene el máximo de ${LIMITS.suspectsMax} sospechosos.`);
       n.suspects.push({ name: npc.name, description: d.get("context") });
       await a.update({ system: n });
       return;
@@ -378,22 +380,27 @@ export async function customMystery() {
       op.experts().some((a) => op.has(a, "Fox Mulder")),
     ) === 4;
   const active = op.cases().filter((a) => a.system.status === "active");
-  if (active.length >= 3 || (final && active.length))
+  if (active.length >= LIMITS.activeMysteries || (final && active.length))
     throw Error("Resuelve los misterios activos antes de continuar.");
   const d = await prompt(
     final ? "El Misterio del Vacío" : "Un misterio propio",
     field("name", "Título") +
       area("intro", "Presentación pública") +
-      field("complexity", "Complejidad", final ? 10 : 6, "number"),
+      (final
+        ? `<p class="bb-note">El Misterio del Vacío siempre tiene complejidad ${LIMITS.voidComplexity}.</p>`
+        : select("complexity", "Complejidad normal", [[6, "6"], [7, "7"], [8, "8"]], 6)),
   );
   if (!d?.get("name").trim()) return;
+  const complexity = final ? LIMITS.voidComplexity : Number(d.get("complexity"));
+  const issue = complexityIssue(complexity, { voidMystery: final });
+  if (issue) throw Error(issue);
   const a = await Actor.create({
     name: d.get("name"),
     type: "misterio",
     ownership: { default: 2 },
     img: `systems/${ID}/assets/teacup.svg`,
     system: {
-      complexity: final ? 10 : Number(d.get("complexity")),
+      complexity,
       voidMystery: final,
       description: d.get("intro"),
     },
@@ -488,6 +495,8 @@ export class ClubApp extends foundry.applications.api.HandlebarsApplicationMixin
         ][i],
         open: count >= v - (mulder ? 1 : 0),
       })),
+      limits: LIMITS,
+      activeCount: cs.filter((a) => a.system.status === "active").length,
     };
   }
 }

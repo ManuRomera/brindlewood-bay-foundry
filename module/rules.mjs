@@ -1,4 +1,22 @@
 export const ID = "brindlewood-bay";
+export const LIMITS = Object.freeze({
+  statMin: -1,
+  statMax: 3,
+  xp: 5,
+  advances: 5,
+  conditions: 3,
+  home: 18,
+  queen: 7,
+  void: 5,
+  sessionQuestions: 3,
+  activeMysteries: 3,
+  standardComplexityMin: 6,
+  standardComplexityMax: 8,
+  oneShotComplexities: Object.freeze([4, 5]),
+  voidComplexity: 10,
+  mysteryCluesMin: 20,
+  suspectsMax: 12,
+});
 export const STATS = {
   vitality: "Vitalidad",
   composure: "Compostura",
@@ -137,7 +155,7 @@ export function outcomes(move, options = {}) {
 export function crownPlan(s, kind, index) {
   const next = structuredClone(s);
   next.pending = next.pending.filter((p) => p.kind !== "crown");
-  index = integer(index, 0, kind === "queen" ? 6 : 4);
+  index = integer(index, 0, kind === "queen" ? LIMITS.queen - 1 : LIMITS.void - 1);
   if (s.retired) throw Error("Esta Experta está retirada.");
   if (kind === "queen") {
     if (next.queen.includes(index)) throw Error("Esa Corona ya está marcada.");
@@ -147,11 +165,11 @@ export function crownPlan(s, kind, index) {
       throw Error("La Corona del Vacío se marca en orden.");
     next.void++;
     if (index === 1) {
-      next.stats.reason--;
-      next.stats.sensitivity++;
+      next.stats.reason = Math.max(LIMITS.statMin, next.stats.reason - 1);
+      next.stats.sensitivity = Math.min(LIMITS.statMax, next.stats.sensitivity + 1);
     }
     if (index === 3 && !next.conditions.includes("Obsesionada con el Vacío")) {
-      if (next.conditions.length >= 3)
+      if (next.conditions.length >= LIMITS.conditions)
         next.pending.push({
           id: "condition-overflow",
           kind: "crown",
@@ -209,17 +227,46 @@ export function conspiracyLayer(count, mulder = false) {
   return thresholds.filter((n) => count >= n).length;
 }
 export function advancePlan(s, index, stat) {
-  index = integer(index, 0, 4);
-  if (s.xp < 5 || s.advances.includes(index))
+  index = integer(index, 0, LIMITS.advances - 1);
+  if (s.xp < LIMITS.xp || s.advances.includes(index))
     throw Error("Necesitas 5 PE y un avance disponible.");
   const n = structuredClone(s);
   if (index < 2) {
-    if (!Object.hasOwn(STATS, stat) || n.stats[stat] >= 3)
+    if (!Object.hasOwn(STATS, stat) || n.stats[stat] >= LIMITS.statMax)
       throw Error("Escoge una habilidad menor que +3.");
     n.stats[stat]++;
   }
   if (index === 4) n.home.forEach((i) => (i.marked = false));
-  n.xp -= 5;
+  n.xp -= LIMITS.xp;
   n.advances.push(index);
   return n;
+}
+export function awardXp(s, amount = 1) {
+  const gain = integer(amount, 0, LIMITS.sessionQuestions + 1);
+  if (s.advances.length >= LIMITS.advances)
+    return { xp: s.xp, awarded: 0, unawarded: 0 };
+  const available = LIMITS.xp - s.xp;
+  const awarded = Math.max(0, Math.min(gain, available));
+  return { xp: s.xp + awarded, awarded, unawarded: gain - awarded };
+}
+export function complexityIssue(value, { oneShot = false, voidMystery = false } = {}) {
+  const n = Number(value);
+  if (voidMystery)
+    return n === LIMITS.voidComplexity ? null : `El Misterio del Vacío tiene complejidad ${LIMITS.voidComplexity}.`;
+  if (oneShot)
+    return LIMITS.oneShotComplexities.includes(n) ? null : "Una partida de una sesión usa complejidad 4 o 5.";
+  return Number.isInteger(n) && n >= LIMITS.standardComplexityMin && n <= LIMITS.standardComplexityMax
+    ? null
+    : `Un misterio normal tiene complejidad ${LIMITS.standardComplexityMin}–${LIMITS.standardComplexityMax}.`;
+}
+export function expertMoveConflict(name, actors, actorId = null) {
+  const unique = ["Dale Cooper", "Fox Mulder", "Jim Rockford"];
+  return actors.some((actor) => {
+    if (actor.id === actorId || actor.system?.retired) return false;
+    const names = actor.items.map((item) => item.name);
+    if (name === "Jim Rockford") return names.includes(name);
+    if (["Dale Cooper", "Fox Mulder"].includes(name))
+      return names.some((other) => ["Dale Cooper", "Fox Mulder"].includes(other));
+    return unique.includes(name) && names.includes(name);
+  });
 }
