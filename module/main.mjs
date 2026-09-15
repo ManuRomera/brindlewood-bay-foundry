@@ -11,6 +11,7 @@ import {
   customMystery,
 } from "./club.mjs";
 import { guard } from "./ui.mjs";
+import { attachInfo } from "./inspector.mjs";
 Hooks.once("init", () => {
   CONFIG.Actor.dataModels = {
     ...CONFIG.Actor.dataModels,
@@ -99,6 +100,9 @@ Hooks.on("renderActorDirectory", (_app, html) => {
   b.innerHTML = '<i class="fas fa-mug-hot"></i> El salón del club';
   b.addEventListener("click", () => game.brindlewood.open());
   root.querySelector(".directory-header")?.append(b);
+});
+Hooks.on("renderChatMessageHTML", (_message, html) => {
+  if (html) attachInfo(html);
 });
 for (const hook of [
   "updateActor",

@@ -29,6 +29,8 @@ export async function confirm(title, content) {
     window: { title },
     classes: ["bb-app"],
     content: `<p>${esc(content)}</p>`,
+    yes: { label: "Continuar" },
+    no: { label: "Volver" },
     rejectClose: false,
   });
 }

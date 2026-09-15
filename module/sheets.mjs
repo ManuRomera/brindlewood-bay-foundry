@@ -1,6 +1,7 @@
 import {
   ID,
   STATS,
+  STATS_INFO,
   QUEEN,
   VOID,
   VOID_TEXT,
@@ -8,8 +9,10 @@ import {
   ADVANCES,
   MOVES,
   TIER_NAMES,
+  outcomes,
 } from "./rules.mjs";
 import * as op from "./operations.mjs";
+import { attachInfo } from "./inspector.mjs";
 import {
   esc,
   field,
@@ -23,6 +26,18 @@ import {
   safeSystem,
 } from "./ui.mjs";
 const { HandlebarsApplicationMixin } = foundry.applications.api;
+async function chooseImage(sheet) {
+  owner(sheet.actor);
+  const picker = new foundry.applications.apps.FilePicker.implementation({
+    type: "image",
+    current: sheet.actor.img,
+    callback: async (path) => {
+      await sheet.actor.update({ img: path, "prototypeToken.texture.src": path });
+    },
+    position: { top: sheet.position.top + 40, left: sheet.position.left + 10 },
+  });
+  await picker.browse();
+}
 export class ExpertSheet extends HandlebarsApplicationMixin(
   foundry.applications.sheets.ActorSheetV2,
 ) {
@@ -35,6 +50,7 @@ export class ExpertSheet extends HandlebarsApplicationMixin(
       "[data-action=switchTab],[data-action=editMove]",
     ))
       b.disabled = false;
+    attachInfo(this.element);
   }
   static DEFAULT_OPTIONS = {
     classes: ["bb-app", "bb-sheet"],
@@ -42,6 +58,9 @@ export class ExpertSheet extends HandlebarsApplicationMixin(
     window: { resizable: true },
     form: { submitOnChange: true },
     actions: {
+      image: guard(async function () {
+        await chooseImage(this);
+      }),
       roll: guard(async function (_e, b) {
         await op.rollMove(this.actor, b.dataset.move, b.dataset.stat);
       }),
@@ -202,10 +221,15 @@ export class ExpertSheet extends HandlebarsApplicationMixin(
         key,
         label,
         value: s.stats[key],
+        info: STATS_INFO[key],
       })),
       moves: Object.entries(MOVES)
         .filter(([k]) => k !== "theorize")
-        .map(([key, label]) => ({ key, label })),
+        .map(([key, label]) => ({
+          key,
+          label,
+          info: outcomes(key).map((result) => `${result.label}: ${result.text}`).join(" "),
+        })),
       expertMoves: a.items.contents,
       conditions: s.conditions.map((text, index) => ({
         text,
@@ -266,6 +290,7 @@ export class MysterySheet extends HandlebarsApplicationMixin(
     const b = this.element.querySelector("[data-action=theorize]");
     if (b && this.actor.testUserPermission(game.user, "OBSERVER"))
       b.disabled = false;
+    attachInfo(this.element);
   }
   static DEFAULT_OPTIONS = {
     classes: ["bb-app"],
@@ -273,6 +298,9 @@ export class MysterySheet extends HandlebarsApplicationMixin(
     window: { resizable: true },
     form: { submitOnChange: true },
     actions: {
+      image: guard(async function () {
+        await chooseImage(this);
+      }),
       theorize: guard(async function () {
         await op.theorize(this.actor);
       }),
@@ -346,6 +374,11 @@ export class NPCSheet extends HandlebarsApplicationMixin(
     position: { width: 620, height: 590 },
     window: { resizable: true },
     form: { submitOnChange: true },
+    actions: {
+      image: guard(async function () {
+        await chooseImage(this);
+      }),
+    },
   };
   static PARTS = { body: { template: `systems/${ID}/templates/pnj.hbs` } };
   async _prepareContext(o) {
@@ -354,6 +387,10 @@ export class NPCSheet extends HandlebarsApplicationMixin(
       actor: this.actor,
       system: this.actor.system,
     };
+  }
+  async _onRender(c, o) {
+    await super._onRender(c, o);
+    attachInfo(this.element);
   }
 }
 export class MoveSheet extends HandlebarsApplicationMixin(
@@ -374,6 +411,10 @@ export class MoveSheet extends HandlebarsApplicationMixin(
       item: this.item,
       system: this.item.system,
     };
+  }
+  async _onRender(c, o) {
+    await super._onRender(c, o);
+    attachInfo(this.element);
   }
   _processFormData(e, f, d) {
     return foundry.utils.expandObject(

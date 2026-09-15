@@ -6,6 +6,7 @@ import {
   formula,
   tier,
   outcome,
+  outcomes,
   crownPlan,
   QUEEN,
   VOID,
@@ -49,10 +50,20 @@ export async function chat(a, title, body, roll = null, flags = {}) {
 }
 export async function publishRoll(a, record) {
   let r = record.roll ? Roll.fromData(record.roll) : null;
+  const resultRows = outcomes(record.move, { voidMystery: record.voidMystery })
+    .map(({ index, label, text }) => `<li class="${index === record.tier ? "active" : ""}"><strong>${esc(label)}</strong><span>${esc(text)}</span></li>`)
+    .join("");
+  const details = [
+    record.stat ? STATS[record.stat] : "",
+    Number.isFinite(record.modifier) ? `Modificador ${record.modifier >= 0 ? "+" : ""}${record.modifier}` : "",
+    record.mode === "advantage" ? "Ventaja" : record.mode === "disadvantage" ? "Desventaja" : record.mode === "cancelled" ? "Ventaja y desventaja se cancelan" : "",
+    record.home ? `Objeto: ${record.home}` : "",
+    record.note || "",
+  ].filter(Boolean).join(" · ");
   return chat(
     a,
     MOVES[record.move] ?? record.move,
-    `<div class="bb-result">${esc(record.crowned ? ["6−", "7–9", "10–11", "12+"][record.tier] : record.total)}</div><p><strong>${TIER_NAMES[record.tier]}</strong></p><p>${esc(outcome(record.move, record.tier, { voidMystery: record.voidMystery }))}</p><p class="bb-source">${esc(record.context || "")} ${record.crowned ? "· Resultado revisado mediante Corona. Dados originales: " + record.total : ""}</p>${r ? '<details class="bb-original-dice"><summary>Ver los dados originales · ' + esc(r.formula) + "</summary>" + (await r.render()) + "</details>" : ""}`,
+    `<div class="bb-result">${esc(record.crowned ? ["6−", "7–9", "10–11", "12+"][record.tier] : record.total)}</div><p><strong>${TIER_NAMES[record.tier]}</strong></p><p class="bb-current-outcome">${esc(outcome(record.move, record.tier, { voidMystery: record.voidMystery }))}</p>${details || record.context ? `<p class="bb-source">${esc(details || record.context)}</p>` : ""}${record.crowned ? `<p class="bb-crowned">♛ Resultado revisado mediante Corona. Total original: ${esc(record.total)}.</p>` : ""}<details class="bb-outcomes" open><summary>Todos los grados de resultado</summary><ol>${resultRows}</ol></details>${r ? '<details class="bb-original-dice"><summary>Ver los dados originales · ' + esc(r.formula) + "</summary>" + (await r.render()) + "</details>" : ""}`,
     r,
     { recordId: record.id, actorId: a.id, move: record.move },
   );
@@ -69,11 +80,7 @@ export async function rollMove(a, move, stat) {
   );
   html += area(
     "context",
-    move === "night"
-      ? "¿Qué temes? ¿Cómo ha empeorado la Guardiana el peligro?"
-      : move === "day"
-        ? "¿Qué haces y qué temes que suceda?"
-        : "¿Qué haces en la ficción?",
+    "Apunte opcional para el chat (puedes explicarlo por voz)",
   );
   html += select("home", "Objeto del hogar", [
     ["", "Sin objeto"],
@@ -83,17 +90,12 @@ export async function rollMove(a, move, stat) {
     check("adv", "Una circunstancia o movimiento concede ventaja") +
     check("dis", "Una Condición o el peligro impone desventaja") +
     `<p class="bb-note">${s.conditions.length ? "Condiciones: " + esc(s.conditions.join(" · ")) + ". Solo dan desventaja si afectan a esta acción." : "Ventaja y desventaja se cancelan; nunca se acumulan."}</p>`;
-  if (move === "night")
-    html += check(
-      "agreed",
-      "La Guardiana ha explicado el peligro y decido seguir adelante",
-    );
-  const data = await prompt(MOVES[move], html, "Lanzar los dados");
+  const data = await prompt(MOVES[move], html, move === "night" ? "Revisar y tirar" : "Lanzar los dados");
   if (!data) return;
-  if (move === "night" && !data.has("agreed"))
-    throw Error("Acordad primero el peligro; aún puedes retirarte.");
-  if (!data.get("context").trim())
-    throw Error("Describe la acción antes de tirar.");
+  if (move === "night" && !(await confirm(
+    "Última advertencia · Movimiento Nocturno",
+    "La Guardiana debe explicar cómo el peligro es peor de lo que parece. Puedes retirarte ahora y buscar otra forma de actuar. Si continúas, los dados se lanzarán inmediatamente.",
+  ))) return;
   return locked(a.uuid, async () => {
     owner(a);
     const n = safeSystem(a);
@@ -110,6 +112,8 @@ export async function rollMove(a, move, stat) {
       advantage: data.has("adv") || !!home,
       disadvantage: data.has("dis"),
     });
+    const advantage = data.has("adv") || !!home;
+    const disadvantage = data.has("dis");
     const roll = await new Roll(f).evaluate();
     const record = {
       id: foundry.utils.randomID(),
@@ -117,7 +121,12 @@ export async function rollMove(a, move, stat) {
       roll: roll.toJSON(),
       total: roll.total,
       tier: tier(roll.total),
-      context: `${STATS[key]} · ${data.get("context")}`,
+      stat: key,
+      modifier: n.stats[key] + n.bonus,
+      mode: advantage && disadvantage ? "cancelled" : advantage ? "advantage" : disadvantage ? "disadvantage" : "normal",
+      home: home?.name || "",
+      note: data.get("context").trim(),
+      context: `${STATS[key]}${data.get("context").trim() ? ` · ${data.get("context").trim()}` : ""}`,
       crowned: false,
     };
     if (home && !home.reusable) home.marked = true;
@@ -348,7 +357,7 @@ export async function theorize(a) {
   const cs = a.system.clues.filter((c) => !c.void);
   const d = await prompt(
     "Teorizar · " + a.name,
-    area("theory", "La teoría consensuada", a.system.theory) +
+    area("theory", "Apunte opcional de la teoría (podéis explicarla por voz)", a.system.theory) +
       cs.map((c) => check(c.id, c.text)).join("") +
       check(
         "consensus",
@@ -358,8 +367,7 @@ export async function theorize(a) {
     "Comprobar la teoría",
   );
   if (!d) return;
-  if (!d.has("consensus") || !d.get("theory").trim())
-    throw Error("Hace falta una teoría consensuada.");
+  if (!d.has("consensus")) throw Error("Hace falta una teoría consensuada.");
   const chosen = cs.filter((c) => d.has(c.id));
   const roll = await new Roll(
     formula({
@@ -375,9 +383,10 @@ export async function theorize(a) {
     total: roll.total,
     tier: tier(roll.total),
     voidMystery: a.system.voidMystery,
-    context: `${d.get("theory")} · ${chosen.length} pistas: ${chosen.map((c) => c.text).join("; ")}`,
+    note: d.get("theory").trim(),
+    context: `${d.get("theory").trim() ? `${d.get("theory").trim()} · ` : ""}${chosen.length} pistas: ${chosen.map((c) => c.text).join("; ")}`,
   });
-  if (a.isOwner) await a.update({ "system.theory": d.get("theory") });
+  if (a.isOwner && d.get("theory").trim()) await a.update({ "system.theory": d.get("theory").trim() });
 }
 
 export async function resolveOccult(a, id) {

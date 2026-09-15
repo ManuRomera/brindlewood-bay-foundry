@@ -5,6 +5,7 @@ import {
   formula,
   tier,
   outcome,
+  outcomes,
   crownPlan,
   creationIssue,
   conspiracyLayer,
@@ -45,6 +46,14 @@ test("outcome boundaries", () =>
   assert.deepEqual([6, 7, 9, 10, 11, 12, 19].map(tier), [0, 1, 1, 2, 2, 3, 3]));
 test("void finale never reveals a conspirator at 12", () =>
   assert.match(outcome("theorize", 3, { voidMystery: true }), /ritual/));
+test("every move exposes all four result degrees in order", () => {
+  for (const move of ["day", "night", "meddle", "occult", "theorize"]) {
+    const rows = outcomes(move, { voidMystery: move === "theorize" });
+    assert.equal(rows.length, 4);
+    assert.deepEqual(rows.map((row) => row.index), [0, 1, 2, 3]);
+    assert.ok(rows.every((row) => row.label && row.text));
+  }
+});
 test("queen selection does not mutate input, rejects duplicates", () => {
   const s = state();
   const n = crownPlan(s, "queen", 4);

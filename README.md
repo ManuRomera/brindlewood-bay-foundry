@@ -6,7 +6,7 @@
 
 Sistema nativo en español para Foundry **13.351**. Seis misterios, un club de lectura y un oscuro secreto bajo la bahía. Creado por ManuRomera a partir de la edición española 1.0 de Jason Cordova.
 
-> **WIP · 0.1.0-wip.1.** Versión de trabajo para probar en un mundo nuevo. No se declara compatibilidad con Foundry 14. Consulta [el alcance y la verificación](docs/QA.md).
+> **WIP · 0.2.0-wip.1.** Versión de trabajo para probar en un mundo nuevo. No se declara compatibilidad con Foundry 14. Consulta [el alcance y la verificación](docs/QA.md).
 
 ## Entrar en el club
 
@@ -41,7 +41,9 @@ Seis compendios incluyen reglas, ayudas, 19 movimientos expertos, siete básicos
 
 ## Una vida plena
 
-Fichas de marfil, verde salvia y rosa antiguo; controles de habilidades protegidos; objetos con historia; Condiciones; objetivos de fin de sesión; Coronas con escenas pendientes y un historial de tiradas recuperable. Controles accesibles con teclado y opción de lectura cómoda.
+Fichas de marfil, verde salvia y rosa antiguo; retratos editables; controles de habilidades protegidos; objetos con historia; Condiciones; objetivos de fin de sesión; Coronas con escenas pendientes y un historial de tiradas recuperable. Las narraciones previas a las tiradas pueden hacerse por voz y los apuntes del chat son opcionales.
+
+Deja el cursor quieto dos segundos sobre movimientos, habilidades, pistas, personajes o controles para consultar su información; se cierra al moverlo. El botón derecho la mantiene abierta y la chincheta la ancla hasta desanclarla o pulsar el aspa. Las fichas de chat muestran el resultado aplicado, los cuatro grados posibles, la habilidad, el modificador, ventaja o desventaja y el objeto utilizado.
 
 Ventaja y desventaja no se acumulan. Las Coronas cambian el nivel del resultado conservando los dados originales. Teorizar utiliza exclusivamente 2d6 + pistas incorporadas − complejidad, nunca ventajas, habilidades, Coronas o éxitos automáticos. Las pistas del Vacío no suman. El final de campaña usa complejidad 10 y no tiene efecto adicional de 12+.
 

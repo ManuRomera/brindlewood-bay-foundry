@@ -1,6 +1,6 @@
-# Verificación de la WIP 0.1.0-wip.1
+# Verificación de la WIP 0.2.0-wip.1
 
-Fecha: 14 de septiembre de 2026. Foundry 13.351 real, servidor local con directorio de datos aislado, Chromium de escritorio a 1440 × 1100. Ningún mundo del usuario se usó como prueba. Código dirigido a Foundry 13; no se declara verificada la versión 14.
+Fecha: 15 de septiembre de 2026. Foundry 13.351 real, servidor local con directorio de datos aislado y Chromium de escritorio. Ningún mundo del usuario se usó como prueba. Código dirigido a Foundry 13; no se declara verificada la versión 14.
 
 ## Pruebas automatizadas
 
@@ -21,6 +21,10 @@ Fecha: 14 de septiembre de 2026. Foundry 13.351 real, servidor local con directo
 - Entrar desde una segunda sesión como jugadora propietaria de la Experta. El salón no muestra los controles de Guardiana ni las capas secretas; el tablero público permite Teorizar aunque sea de solo lectura.
 - Resolver una escena de Corona y cerrar la sesión con una respuesta afirmativa: +1 PE. El segundo cierre se rechaza y no vuelve a conceder experiencia.
 - Crear un diario privado de trabajo al abrir el expediente. El original de compendio permanece separado de las notas de campaña.
+- Abrir Nocturno sin escribir ningún texto: el primer diálogo permite preparar la mecánica y una segunda advertencia ofrece «Continuar» o «Volver» antes de lanzar.
+- Comprobar una tirada nocturna en el chat: resultado activo, cuatro grados completos, habilidad, modificador y dados originales visibles.
+- Abrir información de Diurno con botón derecho, anclarla, abrir otro documento y confirmar que permanece; el aspa, la desactivación de la chincheta y el clic exterior respetan sus estados.
+- Abrir el selector de imagen desde el retrato de una Experta y comprobar la ruta actual y la posibilidad de elegir o subir archivos permitidos.
 
 ## Errores encontrados y corregidos durante la prueba
 
@@ -28,6 +32,8 @@ Fecha: 14 de septiembre de 2026. Foundry 13.351 real, servidor local con directo
 2. Foundry desactiva botones en documentos de solo lectura. Se habilita exclusivamente Teorizar para observadoras del misterio; no los controles de edición o revelación.
 3. Los estilos generales de botones alteraban los iconos nativos y el tamaño del título de ventana. Se separaron sus reglas visuales.
 4. El valor original de los dados podía confundirse con el nivel revisado de Corona. La tarjeta muestra el nivel efectivo y conserva los dados en un desplegable identificado.
+5. El selector de imagen y el evento de renderizado de chat tenían alias heredados. Se sustituyeron por las API con espacio de nombres de Foundry 13.
+6. El primer archivo de dependencias contenía enlaces a otro proyecto local. La verificación pública instala las tres versiones fijadas desde el registro y deja de depender de rutas del equipo de desarrollo.
 
 ## Alcance de los permisos
 

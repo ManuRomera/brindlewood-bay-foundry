@@ -14,6 +14,7 @@ import {
   safeSystem,
 } from "./ui.mjs";
 import * as op from "./operations.mjs";
+import { attachInfo } from "./inspector.mjs";
 const content = async (name) => {
   const response = await fetch(`systems/${ID}/_data/${name}.json`);
   if (!response.ok) throw Error("No se pudo cargar el contenido.");
@@ -256,9 +257,9 @@ export async function useExpert(a, item) {
         "case",
         "Misterio",
         active.map((c) => [c.id, c.name]),
-      ) + area("scene", "Describe el encuentro con tu informante"),
+      ) + area("scene", "Apunte opcional (puedes narrarlo por voz)"),
     );
-    if (!d?.get("scene").trim()) return;
+    if (!d) return;
     return locked(a.uuid, async () => {
       const c = active.find((c) => c.id === d.get("case"));
       if (!c) throw Error("Misterio inválido.");
@@ -276,16 +277,16 @@ export async function useExpert(a, item) {
       await op.chat(
         a,
         name,
-        `<p>${esc(d.get("scene"))}</p><p>+${bonus} en tu próxima tirada. No se aplica a Teorizar.</p>`,
+        `${d.get("scene").trim() ? `<p>${esc(d.get("scene"))}</p>` : ""}<p>+${bonus} en tu próxima tirada. No se aplica a Teorizar.</p>`,
       );
     });
   }
   const d = await prompt(
     name,
-    `<p>${esc(item.system.description)}</p>${area("scene", "Cuenta cómo sucede")}`,
+    `<p>${esc(item.system.description)}</p>${area("scene", "Apunte opcional (puedes narrarlo por voz)")}`,
     "Aplicar el movimiento",
   );
-  if (!d?.get("scene").trim()) return;
+  if (!d) return;
   return locked(a.uuid, async () => {
     if (item.system.used && item.system.frequency !== "unlimited")
       throw Error("El movimiento ya está usado.");
@@ -294,7 +295,7 @@ export async function useExpert(a, item) {
     await op.chat(
       a,
       name,
-      `<p>${esc(d.get("scene"))}</p><p>${esc(item.system.description)}</p>${name === "Colt Seavers" ? '<div class="bb-result">12+</div><p>Acción física peligrosa u osada. No se aplica a Teorizar.</p>' : ""}`,
+      `${d.get("scene").trim() ? `<p>${esc(d.get("scene"))}</p>` : ""}<p>${esc(item.system.description)}</p>${name === "Colt Seavers" ? '<div class="bb-result">12+</div><p>Acción física peligrosa u osada. No se aplica a Teorizar.</p>' : ""}`,
     );
   });
 }
@@ -457,6 +458,10 @@ export class ClubApp extends foundry.applications.api.HandlebarsApplicationMixin
       scrollable: [".bb-scroll"],
     },
   };
+  async _onRender(context, options) {
+    await super._onRender(context, options);
+    attachInfo(this.element);
+  }
   async _prepareContext() {
     const cs = op.cases();
     const count = cs

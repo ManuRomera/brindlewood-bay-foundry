@@ -6,6 +6,13 @@ export const STATS = {
   presence: "Presencia",
   sensitivity: "Sensibilidad",
 };
+export const STATS_INFO = {
+  vitality: "Fuerza, resistencia y capacidad física.",
+  composure: "Serenidad, autocontrol y aplomo bajo presión.",
+  reason: "Lógica, conocimientos y capacidad para relacionar indicios.",
+  presence: "Encanto, autoridad y habilidad para tratar con otras personas.",
+  sensitivity: "Intuición y apertura a aquello que se oculta tras el mundo cotidiano.",
+};
 export const BASE = {
   vitality: 0,
   composure: 1,
@@ -119,6 +126,13 @@ export function outcome(move, t, { voidMystery = false } = {}) {
     "Lo consigues o mantienes la calma. Describe cómo.",
     "Lo consigues y la Guardiana concede un beneficio o ventaja adicional. Describe cómo.",
   ][t];
+}
+export function outcomes(move, options = {}) {
+  return TIER_NAMES.map((label, index) => ({
+    index,
+    label,
+    text: outcome(move, index, options),
+  }));
 }
 export function crownPlan(s, kind, index) {
   const next = structuredClone(s);
