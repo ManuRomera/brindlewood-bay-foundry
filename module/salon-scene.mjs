@@ -1,4 +1,5 @@
 import { ID } from "./rules.mjs";
+import { caseBookPlacement } from "./case-book-layout.mjs";
 
 export async function ensureSalonScene() {
   if (!game.user.isGM) return game.scenes.find((scene) => scene.getFlag(ID, "salon"));
@@ -19,16 +20,13 @@ export async function ensureSalonScene() {
 export async function syncCaseBooks(scene = game.scenes.find((entry) => entry.getFlag(ID, "salon"))) {
   if (!game.user.isGM || !scene) return;
   const resolved = new Set(game.actors.filter((actor) => actor.type === "misterio" && actor.system.status === "resolved").map((actor) => actor.system.sourceId));
-  const visible = scene.tiles.filter((tile) => resolved.has(tile.getFlag(ID, "caseId")));
-  const updates = scene.tiles.map((tile) => {
+  const books = scene.tiles.filter((tile) => tile.getFlag(ID, "caseId"));
+  const visible = books.filter((tile) => resolved.has(tile.getFlag(ID, "caseId")));
+  const updates = books.map((tile) => {
     const index = visible.findIndex((entry) => entry.id === tile.id);
     return {
       _id: tile.id,
-      hidden: index < 0,
-      alpha: index < 0 ? 0 : 1,
-      x: 596 + Math.max(index, 0) * 4,
-      y: 522 - Math.max(index, 0) * 16,
-      sort: Math.max(index, 0) + 1,
+      ...caseBookPlacement(index, scene.width, scene.height),
     };
   });
   if (updates.length) await scene.updateEmbeddedDocuments("Tile", updates);

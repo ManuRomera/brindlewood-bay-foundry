@@ -2,26 +2,170 @@
   {
     "_id": "bba10c0b5ce0e001",
     "name": "The Candlelight · Salón del club",
-    "background": { "src": "systems/brindlewood-bay/assets/salon-club.png" },
+    "background": {
+      "src": "systems/brindlewood-bay/assets/salon-club.png"
+    },
     "width": 1672,
     "height": 941,
     "padding": 0,
     "backgroundColor": "#151e1c",
-    "grid": { "type": 0, "size": 100, "alpha": 0, "distance": 1, "units": "escena" },
+    "grid": {
+      "type": 0,
+      "size": 100,
+      "alpha": 0,
+      "distance": 1,
+      "units": "escena"
+    },
     "tokenVision": false,
     "fogExploration": false,
     "globalLight": true,
     "navigation": true,
-    "ownership": { "default": 2 },
-    "initial": { "x": 836, "y": 470, "scale": null },
-    "flags": { "brindlewood-bay": { "salon": true } },
+    "ownership": {
+      "default": 2
+    },
+    "initial": {
+      "x": 836,
+      "y": 470,
+      "scale": null
+    },
+    "flags": {
+      "brindlewood-bay": {
+        "salon": true
+      }
+    },
     "tiles": [
-      { "_id": "bookPapaBorda001", "name": "Caso resuelto · Papá por la borda", "texture": { "src": "systems/brindlewood-bay/assets/case-papa.svg" }, "x": 596, "y": 522, "width": 500, "height": 153, "rotation": 0, "alpha": 0, "hidden": true, "locked": true, "elevation": 0, "sort": 1, "flags": { "brindlewood-bay": { "caseId": "55408aa4784156aa" } } },
-      { "_id": "bookHalloween002", "name": "Caso resuelto · Un grito en Halloween", "texture": { "src": "systems/brindlewood-bay/assets/case-halloween.svg" }, "x": 600, "y": 506, "width": 500, "height": 153, "rotation": 0, "alpha": 0, "hidden": true, "locked": true, "elevation": 0, "sort": 2, "flags": { "brindlewood-bay": { "caseId": "33a7e96743783228" } } },
-      { "_id": "bookPrecocina003", "name": "Caso resuelto · Brindlewood Bay precocinado", "texture": { "src": "systems/brindlewood-bay/assets/case-precocinado.svg" }, "x": 604, "y": 490, "width": 500, "height": 153, "rotation": 0, "alpha": 0, "hidden": true, "locked": true, "elevation": 0, "sort": 3, "flags": { "brindlewood-bay": { "caseId": "8539d9b49ae89d25" } } },
-      { "_id": "bookComoMueren04", "name": "Caso resuelto · Pero mira cómo mueren", "texture": { "src": "systems/brindlewood-bay/assets/case-mueren.svg" }, "x": 608, "y": 474, "width": 500, "height": 153, "rotation": 0, "alpha": 0, "hidden": true, "locked": true, "elevation": 0, "sort": 4, "flags": { "brindlewood-bay": { "caseId": "845440b286144776" } } },
-      { "_id": "bookMuerteEsc005", "name": "Caso resuelto · La muerte a escena", "texture": { "src": "systems/brindlewood-bay/assets/case-escena.svg" }, "x": 612, "y": 458, "width": 500, "height": 153, "rotation": 0, "alpha": 0, "hidden": true, "locked": true, "elevation": 0, "sort": 5, "flags": { "brindlewood-bay": { "caseId": "96b0437ca3e045e3" } } },
-      { "_id": "bookAguasOsc0060", "name": "Caso resuelto · Un asesinato en aguas oscuras", "texture": { "src": "systems/brindlewood-bay/assets/case-aguas.svg" }, "x": 616, "y": 442, "width": 500, "height": 153, "rotation": 0, "alpha": 0, "hidden": true, "locked": true, "elevation": 0, "sort": 6, "flags": { "brindlewood-bay": { "caseId": "c2961265b427e2ae" } } }
+      {
+        "_id": "bookPapaBorda001",
+        "name": "Caso resuelto · Papá por la borda",
+        "texture": {
+          "src": "systems/brindlewood-bay/assets/case-papa.svg"
+        },
+        "x": 110,
+        "y": 760,
+        "width": 440,
+        "height": 170,
+        "rotation": 0,
+        "alpha": 0,
+        "hidden": true,
+        "locked": true,
+        "elevation": 0,
+        "sort": 1,
+        "flags": {
+          "brindlewood-bay": {
+            "caseId": "55408aa4784156aa"
+          }
+        }
+      },
+      {
+        "_id": "bookHalloween002",
+        "name": "Caso resuelto · Un grito en Halloween",
+        "texture": {
+          "src": "systems/brindlewood-bay/assets/case-halloween.svg"
+        },
+        "x": 110,
+        "y": 760,
+        "width": 440,
+        "height": 170,
+        "rotation": 0,
+        "alpha": 0,
+        "hidden": true,
+        "locked": true,
+        "elevation": 0,
+        "sort": 1,
+        "flags": {
+          "brindlewood-bay": {
+            "caseId": "33a7e96743783228"
+          }
+        }
+      },
+      {
+        "_id": "bookPrecocina003",
+        "name": "Caso resuelto · Brindlewood Bay precocinado",
+        "texture": {
+          "src": "systems/brindlewood-bay/assets/case-precocinado.svg"
+        },
+        "x": 110,
+        "y": 760,
+        "width": 440,
+        "height": 170,
+        "rotation": 0,
+        "alpha": 0,
+        "hidden": true,
+        "locked": true,
+        "elevation": 0,
+        "sort": 1,
+        "flags": {
+          "brindlewood-bay": {
+            "caseId": "8539d9b49ae89d25"
+          }
+        }
+      },
+      {
+        "_id": "bookComoMueren04",
+        "name": "Caso resuelto · Pero mira cómo mueren",
+        "texture": {
+          "src": "systems/brindlewood-bay/assets/case-mueren.svg"
+        },
+        "x": 110,
+        "y": 760,
+        "width": 440,
+        "height": 170,
+        "rotation": 0,
+        "alpha": 0,
+        "hidden": true,
+        "locked": true,
+        "elevation": 0,
+        "sort": 1,
+        "flags": {
+          "brindlewood-bay": {
+            "caseId": "845440b286144776"
+          }
+        }
+      },
+      {
+        "_id": "bookMuerteEsc005",
+        "name": "Caso resuelto · La muerte a escena",
+        "texture": {
+          "src": "systems/brindlewood-bay/assets/case-escena.svg"
+        },
+        "x": 110,
+        "y": 760,
+        "width": 440,
+        "height": 170,
+        "rotation": 0,
+        "alpha": 0,
+        "hidden": true,
+        "locked": true,
+        "elevation": 0,
+        "sort": 1,
+        "flags": {
+          "brindlewood-bay": {
+            "caseId": "96b0437ca3e045e3"
+          }
+        }
+      },
+      {
+        "_id": "bookAguasOsc0060",
+        "name": "Caso resuelto · Un asesinato en aguas oscuras",
+        "texture": {
+          "src": "systems/brindlewood-bay/assets/case-aguas.svg"
+        },
+        "x": 110,
+        "y": 760,
+        "width": 440,
+        "height": 170,
+        "rotation": 0,
+        "alpha": 0,
+        "hidden": true,
+        "locked": true,
+        "elevation": 0,
+        "sort": 1,
+        "flags": {
+          "brindlewood-bay": {
+            "caseId": "c2961265b427e2ae"
+          }
+        }
+      }
     ]
   }
 ]

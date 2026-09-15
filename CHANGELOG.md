@@ -1,3 +1,9 @@
+# 0.5.1-wip.1
+
+- Libros de casos rediseñados con lomos legibles, cantos de páginas, tapas y perspectiva común.
+- Pila en el primer plano izquierdo: los seis títulos permanecen visibles y el libro principal queda libre.
+- Los mundos existentes reciben las nuevas dimensiones y posiciones al entrar; las baldosas personales se conservan.
+
 # 0.5.0-wip.1
 
 - El creador de Expertas recorre identidad, distribución fija de habilidades, movimiento experto con descripción completa, vida anterior, Hogar y preguntas de primera sesión.

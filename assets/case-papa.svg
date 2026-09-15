@@ -1,1 +1,35 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="620" height="190" viewBox="0 0 620 190"><defs><filter id="s"><feDropShadow dx="8" dy="10" stdDeviation="7" flood-opacity=".45"/></filter><linearGradient id="c"><stop stop-color="#234d55"/><stop offset="1" stop-color="#102a31"/></linearGradient></defs><g filter="url(#s)"><path fill="#d8c9a7" d="M42 47 571 26l23 105L67 166z"/><path fill="#8f7a54" d="m67 166 527-35-20 20-515 27z"/><path fill="url(#c)" stroke="#c4a866" stroke-width="5" d="M31 28 564 8l22 111L56 151z"/><path fill="none" stroke="#d4bb73" stroke-width="2" d="M48 42 548 24l16 79L64 134z"/><text x="302" y="69" text-anchor="middle" fill="#f1d58b" font-family="Georgia,serif" font-size="28" font-weight="bold" transform="rotate(-2 302 69)">PAPÁ POR LA BORDA</text><text x="304" y="103" text-anchor="middle" fill="#d8bd76" font-family="Georgia,serif" font-size="15">UN CASO DE LAS EXPERTAS DEL CRIMEN</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="440" height="170" viewBox="0 0 440 170">
+<defs>
+ <linearGradient id="cover" x2="0.3" y2="1"><stop stop-color="#233e3d"/><stop offset="1" stop-color="#142423"/></linearGradient>
+ <linearGradient id="spine" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#142423"/><stop offset=".22" stop-color="#233e3d"/><stop offset=".55" stop-color="#233e3d"/><stop offset="1" stop-color="#142423"/></linearGradient>
+ <linearGradient id="paper"><stop stop-color="#9a876b"/><stop offset=".45" stop-color="#d6c5a3"/><stop offset="1" stop-color="#9c896b"/></linearGradient>
+ <filter id="shadow" x="-10%" y="-50%" width="125%" height="220%"><feGaussianBlur stdDeviation="3"/></filter>
+ <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".72" numOctaves="3" seed="7" result="noise"/><feComposite in="noise" in2="SourceGraphic" operator="in"/><feBlend in="SourceGraphic" mode="soft-light"/></filter>
+</defs>
+<path d="M18 140 390 157 424 83 415 79 381 144 20 131Z" fill="#100b07" opacity=".65" filter="url(#shadow)"/>
+<!-- Cloth boards, receding page edges and a rounded horizontal spine. -->
+<path d="M16 135 388 152 420 79 85 57Z" fill="#142423" stroke="#171710" stroke-width="2"/>
+<path d="M388 116 417 47 417 76 388 145Z" fill="url(#paper)"/>
+<path d="M390 119 416 51" stroke="#70624f" opacity=".5" stroke-width=".6"/>
+<path d="M390 121.4 416 53.4" stroke="#e1cfaa" opacity=".5" stroke-width=".6"/>
+<path d="M390 123.8 416 55.8" stroke="#70624f" opacity=".5" stroke-width=".6"/>
+<path d="M390 126.2 416 58.2" stroke="#e1cfaa" opacity=".5" stroke-width=".6"/>
+<path d="M390 128.6 416 60.6" stroke="#70624f" opacity=".5" stroke-width=".6"/>
+<path d="M390 131 416 63" stroke="#e1cfaa" opacity=".5" stroke-width=".6"/>
+<path d="M390 133.4 416 65.4" stroke="#70624f" opacity=".5" stroke-width=".6"/>
+<path d="M390 135.8 416 67.8" stroke="#e1cfaa" opacity=".5" stroke-width=".6"/>
+<path d="M390 138.2 416 70.2" stroke="#70624f" opacity=".5" stroke-width=".6"/>
+<path d="M390 140.6 416 72.6" stroke="#e1cfaa" opacity=".5" stroke-width=".6"/>
+<path d="M16 100 87 22 419 44 388 117Z" fill="url(#cover)" stroke="#142423" stroke-width="3"/>
+<path d="M31 97 92 30 405 50 379 110Z" fill="none" stroke="#b39965" stroke-opacity=".34" stroke-width="1"/>
+<path d="M39 94 95 35 399 54 375 106Z" fill="none" stroke="#b39965" stroke-opacity=".18"/>
+<path d="M16 100 Q9 116 16 135 L388 152 Q394 134 388 117Z" fill="url(#spine)"/>
+<path d="M16 103 388 120 M16 132 388 149" stroke="#bb9b62" opacity=".42" stroke-width=".8"/>
+<g opacity=".14" filter="url(#grain)"><path d="M16 100 87 22 419 44 388 117 388 152 16 135Z" fill="#233e3d"/></g>
+<!-- Raised binding bands and foil lettering follow the same spine plane. -->
+<g transform="matrix(1 .0457 0 1 16 100)">
+<path d="M17 3V31 M23 3V31 M343 3V31 M349 3V31" stroke="#b49b6b" opacity=".6" stroke-width="1.4"/>
+<path d="M19 3V31 M345 3V31" stroke="#0b1010" opacity=".6" stroke-width="2"/>
+<text x="183" y="23" text-anchor="middle" fill="#ddc48a" font-family="Georgia,serif" font-size="14" letter-spacing=".25">PAPÁ POR LA BORDA</text>
+<path d="m33 17 3-4 3 4-3 4z M326 17l3-4 3 4-3 4z" fill="#bca26b"/>
+</g></svg>

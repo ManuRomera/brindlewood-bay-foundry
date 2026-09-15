@@ -1,10 +1,10 @@
-# Verificación de la WIP 0.5.0-wip.1
+# Verificación de la WIP 0.5.1-wip.1
 
 Fecha: 15 de septiembre de 2026. Foundry 13.351 real, servidor local con directorio de datos aislado y Chromium de escritorio. Ningún mundo del usuario se usó como prueba. Código dirigido a Foundry 13; no se declara verificada la versión 14.
 
 ## Pruebas automatizadas
 
-33 pruebas de contenido, fórmulas, umbrales de resultados, Coronas, avances, límites de recursos, exclusividades, creación aleatoria, escena y libros de casos, posiciones de ventanas, variedad de anuncios, progresión de la conspiración y conservación de campos de formulario. Validador de manifiesto, versiones, sintaxis y recursos; construcción de ocho compendios LevelDB y ZIP.
+35 pruebas de contenido, fórmulas, umbrales de resultados, Coronas, avances, límites de recursos, exclusividades, creación aleatoria, escena y libros de casos, posiciones de ventanas, variedad de anuncios, progresión de la conspiración y conservación de campos de formulario. Validador de manifiesto, versiones, sintaxis y recursos; construcción de ocho compendios LevelDB y ZIP.
 
 ## Pruebas realizadas dentro de Foundry
 
@@ -67,3 +67,7 @@ Las capturas siguientes pertenecen al mundo de prueba real:
 ![Ficha de Experta](experta-foundry.png)
 
 ![Tablero del misterio](misterio-foundry.png)
+
+## Corrección visual de libros 0.5.1
+
+Previsualización en navegador con los seis libros simultáneos y las dimensiones exactas de la escena. Todos los lomos conservan su título visible; el libro central queda libre. Dos pruebas adicionales verifican el espacio reservado, proporciones, escala, migración de baldosas existentes, recuentos de 0, 1, 2 y 6 casos y conservación de decoraciones ajenas. Esta corrección se ha comprobado en composición de navegador y pruebas del sincronizador; no se ha repetido una sesión completa en Foundry.

@@ -6,7 +6,7 @@
 
 Sistema nativo en español para Foundry **13.351**. Seis misterios, un club de lectura y un oscuro secreto bajo la bahía. Creado por ManuRomera a partir de la edición española 1.0 de Jason Cordova.
 
-> **WIP · 0.5.0-wip.1.** Versión de trabajo para probar en un mundo nuevo. No se declara compatibilidad con Foundry 14. Consulta [el alcance y la verificación](docs/QA.md).
+> **WIP · 0.5.1-wip.1.** Versión de trabajo para probar en un mundo nuevo. No se declara compatibilidad con Foundry 14. Consulta [el alcance y la verificación](docs/QA.md).
 
 ## Entrar en el club
 
@@ -47,7 +47,7 @@ El salón funciona como tablero común: muestra misterios activos, pistas ordina
 
 El compendio **Macro · Inspiración para anuncios** contiene una ayuda opcional para las jugadoras, lista para arrastrar a la barra rápida. Combina producto, formato, protagonista, promesa y giro en más de un millón de ideas y no publica el resultado. La Guardiana solo da paso al anuncio desde el salón con el indicio sencillo que establece el manual.
 
-La escena **The Candlelight · Salón del club** usa una ilustración original de máximo detalle. El libro central lleva el título del sistema. Los seis libros de caso están incluidos como baldosas ocultas y el sistema los revela y apila sobre la mesa a medida que los misterios pasan a «Resuelto».
+La escena **The Candlelight · Salón del club** usa una ilustración original de máximo detalle. El libro central lleva el título del sistema. Los seis libros de caso están incluidos como baldosas ocultas y el sistema los revela y apila en el primer plano izquierdo, con los seis lomos visibles y el libro principal libre a medida que los misterios pasan a «Resuelto».
 
 Deja el cursor quieto dos segundos sobre movimientos, habilidades, pistas, personajes o controles para consultar su información; se cierra al moverlo. El botón derecho la mantiene abierta y la chincheta la ancla hasta desanclarla o pulsar el aspa. Las fichas de chat muestran el resultado aplicado, los cuatro grados posibles, la habilidad, el modificador, ventaja o desventaja y el objeto utilizado.
 
@@ -70,3 +70,5 @@ El salón lleva la cuenta de sesiones y la progresión de la conspiración (3 / 
 `npm ci`, `npm test`, `npm run check`, `npm run build`. El ZIP de distribución se construye con una lista explícita de archivos y compendios LevelDB. [Criterios aprendidos de anteriores sistemas](docs/REGLAS.md) · [QA](docs/QA.md).
 
 Sistema de ManuRomera. Juego escrito y diseñado por **Jason Cordova**; traducción de **Chus Abascal**. Créditos completos y separación entre licencia del código y contenido en [LICENSE](LICENSE). El titular del proyecto declara permiso expreso para incluir las aventuras y contenido necesario. No se distribuye el PDF ni su arte original. La portada es una ilustración original generada con IA para esta adaptación, sin carácter oficial; [dirección artística y prompt](docs/ARTE.md).
+
+La actualización 0.5.1 recoloca y redimensiona automáticamente los libros de casos de los mundos existentes al entrar como Guardiana.
