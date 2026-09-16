@@ -204,24 +204,23 @@
   line-height: 1.55;
 }
 .bb-app.bb-ad-dialog .window-content {
+  position: relative;
   overflow: hidden;
 }
 .bb-ad-window {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
   min-height: 0;
 }
 .bb-ad-window > .bb-dialog {
-  flex: 1 1 auto;
   min-height: 0;
   overflow: auto;
 }
 .bb-ad-window > .form-footer {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  flex: 0 0 auto;
 }
 .bb-app .form-footer {
   padding: 10px 24px 20px;

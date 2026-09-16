@@ -1,3 +1,8 @@
+# 0.6.6-wip.1
+
+- La propuesta deja de depender de las alturas heredadas por los envoltorios internos de HandlebarsApplicationMixin. Su contenido queda anclado al área útil de la ventana mediante una cuadrícula absoluta.
+- El renderizado aplica la geometría crítica también en línea, evitando diferencias entre hojas de estilo almacenadas en caché o envoltorios distintos entre compilaciones de Foundry 13.
+
 # 0.6.5-wip.1
 
 - El generador deja de usar `DialogV2.prompt`: una aplicación propia renderiza la propuesta desde una plantilla estable para evitar que ciertas compilaciones de Foundry descarten el cuerpo del diálogo.

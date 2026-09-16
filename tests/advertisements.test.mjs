@@ -22,6 +22,7 @@ test("the macro generates first and opens a window that already contains the pro
     constructor() {}
     render(options) { rendered = { app: this, options }; return this; }
     close() {}
+    async _onRender() {}
   }
   try {
     globalThis.foundry = { applications: { api: {
@@ -36,6 +37,14 @@ test("the macro generates first and opens a window that already contains the pro
     assert.equal(app.constructor.DEFAULT_OPTIONS.position.height, 430);
     assert.ok(app.constructor.DEFAULT_OPTIONS.classes.includes("bb-ad-dialog"));
     assert.match(app.constructor.PARTS.body.template, /advertisement-inspiration\.hbs$/);
+    const content = { style: {} };
+    const body = { style: {} };
+    app.element = { querySelector: (selector) => selector === ".window-content" ? content : body };
+    await app._onRender({}, {});
+    assert.equal(content.style.position, "relative");
+    assert.equal(body.style.position, "absolute");
+    assert.equal(body.style.inset, "0");
+    assert.equal(body.style.gridTemplateRows, "minmax(0, 1fr) auto");
   } finally {
     globalThis.foundry = previousFoundry;
   }

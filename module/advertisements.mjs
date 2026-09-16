@@ -110,6 +110,20 @@ function getAdvertisementInspirationApp() {
     async _prepareContext() {
       return this.result;
     }
+    async _onRender(context, options) {
+      await super._onRender(context, options);
+      const content = this.element.querySelector(".window-content");
+      const body = this.element.querySelector(".bb-ad-window");
+      if (!content || !body) throw Error("No se pudo montar la propuesta de anuncio.");
+      Object.assign(content.style, { position: "relative", overflow: "hidden" });
+      Object.assign(body.style, {
+        position: "absolute",
+        inset: "0",
+        display: "grid",
+        gridTemplateRows: "minmax(0, 1fr) auto",
+        minHeight: "0",
+      });
+    }
   };
   return AdvertisementInspirationApp;
 }
