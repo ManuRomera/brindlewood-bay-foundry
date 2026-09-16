@@ -21,7 +21,7 @@ test('all six case spines remain visible and clear of the central book', () => {
   assert.equal(scaled.y,books[5].y*2);
 });
 
-test('existing worlds migrate dimensions and positions without touching decorative tiles', async () => {
+test('active and resolved cases appear together without touching decorative tiles', async () => {
   const previousGame = globalThis.game;
   try {
     const tiles = Array.from({length:6},(_,i)=>({id:`tile${i}`,getFlag:()=>`case${i}`}));
@@ -29,13 +29,22 @@ test('existing worlds migrate dimensions and positions without touching decorati
     let updates;
     const scene={width:1672,height:941,tiles,updateEmbeddedDocuments:async(type,data)=>{assert.equal(type,'Tile');updates=data;}};
     for(const count of [0,1,2,6,0]){
-      globalThis.game={user:{isGM:true},actors:Array.from({length:count},(_,i)=>({type:'misterio',system:{status:'resolved',sourceId:`case${i}`}}))};
+      globalThis.game={user:{isGM:true},actors:Array.from({length:count},(_,i)=>({type:'misterio',system:{status:i===count-1?'active':'resolved',sourceId:`case${i}`}}))};
       await syncCaseBooks(scene);
       assert.equal(updates.length,6);
       assert.equal(updates.filter(u=>!u.hidden && u.alpha===1).length,count);
       for(const update of updates){assert.equal(update.width,440);assert.equal(update.height,170);assert.equal(update.rotation,0);}
       assert.ok(!updates.some(u=>u._id==='personal-decoration'));
     }
+    globalThis.game={user:{isGM:true},actors:[
+      {type:'misterio',system:{status:'inactive',sourceId:'case0'}},
+      {type:'misterio',system:{status:'active',sourceId:'case1'}},
+      {type:'misterio',system:{status:'resolved',sourceId:'case2'}},
+    ]};
+    await syncCaseBooks(scene);
+    assert.equal(updates.find((u)=>u._id==='tile0').hidden,true);
+    assert.equal(updates.find((u)=>u._id==='tile2').sort,1);
+    assert.equal(updates.find((u)=>u._id==='tile1').sort,2,'the active case is the top book');
     globalThis.game.user.isGM=false;
     updates=undefined;
     await syncCaseBooks(scene);

@@ -6,7 +6,7 @@
 
 Sistema nativo en español para Foundry **13.351**. Seis misterios, un club de lectura y un oscuro secreto bajo la bahía. Creado por ManuRomera a partir de la edición española 1.0 de Jason Cordova.
 
-> **WIP · 0.6.0-wip.1.** Versión de trabajo para probar en un mundo nuevo. No se declara compatibilidad con Foundry 14. Consulta [el alcance y la verificación](docs/QA.md).
+> **WIP · 0.6.1-wip.1.** Versión de trabajo para probar en un mundo nuevo. No se declara compatibilidad con Foundry 14. Consulta [el alcance y la verificación](docs/QA.md).
 
 ## Entrar en el club
 
@@ -18,7 +18,7 @@ https://raw.githubusercontent.com/ManuRomera/brindlewood-bay-foundry/main/system
 
 Crea un mundo con **Brindlewood Bay · El club de las Expertas**. Al entrar aparece el tablero de The Candlelight y se crea su escena de salón de té a pantalla completa, sin cuadrícula, visión de token ni niebla. También puedes abrir el tablero desde el directorio de Actores o los ajustes del sistema.
 
-1. **Crear una Experta:** cada jugadora tiene «Crear mi Experta» bajo el botón del salón, aunque su rol no tenga permiso general para crear Actores. Allí elige el asistente paso a paso o la creación aleatoria. La Guardiana conectada valida la ficha y el sistema entrega su propiedad a la jugadora.
+1. **Crear una Experta:** cada jugadora tiene «Crear mi Experta» bajo el botón del salón, aunque su rol no tenga permiso general para crear Actores. Allí elige el asistente paso a paso o la creación aleatoria. Cada pantalla indica lo que falta y bloquea el avance hasta cumplir sus requisitos; siempre ofrece «Cancelar». La Guardiana conectada valida la ficha y el sistema entrega su propiedad a la jugadora.
 2. **Habilidades:** no se eligen ni se tiran libremente. El manual fija Vitalidad 0, Compostura +1, Razón +1, Presencia 0 y Sensibilidad −1; después se suma +1 a una de ellas.
 3. **Creación aleatoria:** «Experta al azar» produce una ficha completa que puede revisarse antes de guardarla. «Castellanizar» utiliza nombres, aficiones, estilos, familias, carreras y objetos reconociblemente españoles.
 4. **Abrir un misterio:** la Guardiana consulta el expediente y presenta el caso. Se recomienda *Papá por la borda*.
@@ -45,9 +45,9 @@ Fichas de marfil, verde salvia y rosa antiguo; retratos editables; controles de 
 
 El salón funciona como tablero común: muestra misterios activos, pistas ordinarias y del Vacío, y el progreso de todas las Expertas. Las pistas descubiertas pueden consultarse allí sin abrir varias ventanas. Las ventanas recuerdan su tamaño y ubicación por usuario. La Guardiana dispone de un reinicio de campaña que conserva los compendios y cualquier contenido ajeno al sistema.
 
-El **Generador de anuncios** aparece en el directorio de Macros y el sistema lo coloca en la casilla 1 de la barra de cada jugadora, con su propio icono de televisor. Combina producto, formato, protagonista, promesa y giro en más de un millón de ideas y no publica el resultado. La Guardiana solo da paso al anuncio desde el salón con el indicio sencillo que establece el manual.
+El **Generador de anuncios** aparece en el directorio de Macros y el sistema lo coloca en la casilla 1 de la barra de cada jugadora, con su propio icono de televisor. Al pulsarlo presenta directamente una propuesta completa y permite generar otra; combina producto, formato, protagonista, promesa y giro en más de un millón de ideas y no publica el resultado. La Guardiana solo da paso al anuncio desde el salón con el indicio sencillo que establece el manual.
 
-La escena **The Candlelight · Salón del club** usa una ilustración original de máximo detalle. El libro central lleva el título del sistema. Los seis libros de caso están incluidos como baldosas ocultas y el sistema los revela y apila en el primer plano izquierdo, con los seis lomos visibles y el libro principal libre a medida que los misterios pasan a «Resuelto».
+La escena **The Candlelight · Salón del club** usa una ilustración original de máximo detalle. El libro central lleva el título del sistema. Los seis libros de caso están incluidos como baldosas ocultas y el sistema revela el caso en curso y los ya resueltos en el primer plano izquierdo, con los lomos visibles y el libro principal libre.
 
 Deja el cursor quieto dos segundos sobre movimientos, habilidades, pistas, personajes o controles para consultar su información; se cierra al moverlo. El botón derecho la mantiene abierta y la chincheta la ancla hasta desanclarla o pulsar el aspa. Las fichas de chat muestran el resultado aplicado, los cuatro grados posibles, la habilidad, el modificador, ventaja o desventaja y el objeto utilizado.
 

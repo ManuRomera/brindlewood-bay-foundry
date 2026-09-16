@@ -19,11 +19,15 @@ export async function ensureSalonScene() {
 
 export async function syncCaseBooks(scene = game.scenes.find((entry) => entry.getFlag(ID, "salon"))) {
   if (!game.user.isGM || !scene) return;
-  const resolved = new Set(game.actors.filter((actor) => actor.type === "misterio" && actor.system.status === "resolved").map((actor) => actor.system.sourceId));
+  const cases = game.actors.filter((actor) => actor.type === "misterio" && ["active", "resolved"].includes(actor.system.status));
+  const displayOrder = [
+    ...cases.filter((actor) => actor.system.status === "resolved"),
+    ...cases.filter((actor) => actor.system.status === "active"),
+  ].map((actor) => actor.system.sourceId).filter(Boolean);
   const books = scene.tiles.filter((tile) => tile.getFlag(ID, "caseId"));
-  const visible = books.filter((tile) => resolved.has(tile.getFlag(ID, "caseId")));
+  const positions = new Map(displayOrder.map((id, index) => [id, index]));
   const updates = books.map((tile) => {
-    const index = visible.findIndex((entry) => entry.id === tile.id);
+    const index = positions.get(tile.getFlag(ID, "caseId")) ?? -1;
     return {
       _id: tile.id,
       ...caseBookPlacement(index, scene.width, scene.height),

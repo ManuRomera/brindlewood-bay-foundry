@@ -1,3 +1,10 @@
+# 0.6.1-wip.1
+
+- El Generador de anuncios entrega una propuesta aleatoria completa nada más pulsarlo y permite generar otra sin pasar por selectores.
+- La escena del salón muestra los libros de los casos activos junto con los resueltos; el caso en curso queda arriba de la pila.
+- El creador valida cada pantalla antes de avanzar, explica el requisito pendiente y ofrece «Cancelar» durante todo el proceso.
+- Nombre, estilo y quehacer usan desplegables completos que siguen mostrando todas las sugerencias, además de admitir texto propio.
+
 # 0.6.0-wip.1
 
 - Botón «Crear mi Experta» visible para todas las jugadoras bajo el acceso al salón, con elección entre creación guiada y aleatoria.

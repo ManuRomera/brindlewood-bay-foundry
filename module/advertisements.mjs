@@ -42,14 +42,18 @@ const OPTIONS = {
   ],
 };
 
-const labels = {
-  product: "Producto o servicio",
-  format: "Formato televisivo",
-  star: "Protagonista",
-  promise: "Gran promesa",
-  twist: "Giro del anuncio",
-};
 const choice = (list) => list[Math.floor(Math.random() * list.length)];
+
+export function advertisementSeed(random = Math.random) {
+  const result = Object.fromEntries(Object.entries(OPTIONS).map(([key, values]) => [
+    key,
+    values[Math.floor(random() * values.length)],
+  ]));
+  return {
+    ...result,
+    text: `Una propuesta en formato de ${result.format} anuncia ${result.product}. La protagoniza ${result.star} y promete ${result.promise}, pero ${result.twist}.`,
+  };
+}
 
 export async function advertisement() {
   gm();
@@ -70,24 +74,23 @@ export async function advertisement() {
 }
 
 export async function advertisementInspiration() {
-  const fields = Object.entries(OPTIONS).map(([key, values]) =>
-    select(key, labels[key], [["", "Sorpréndeme"], ...values.map((value) => [value, value])]),
-  ).join("");
-  const data = await prompt(
-    "Necesito una idea para el anuncio",
-    `<p>Esta ayuda es opcional y no lanza dados ni cambia la ficha. Deja todo en «Sorpréndeme» o fija solo aquello que ya tengas claro.</p>${fields}`,
-    "Inspirarme",
-  );
-  if (!data) return;
-  const result = Object.fromEntries(Object.entries(OPTIONS).map(([key, values]) => [key, data.get(key) || choice(values)]));
-  return foundry.applications.api.DialogV2.prompt({
-    window: { title: "Tu anuncio improvisado" },
-    position: { width: 560 },
-    classes: ["bb-app"],
-    content: `<div class="bb-dialog bb-ad"><h3>${esc(result.product)}</h3><p><b>Formato:</b> ${esc(result.format)}.</p><p><b>Protagoniza:</b> ${esc(result.star)}.</p><p><b>Promete:</b> ${esc(result.promise)}.</p><p><b>Pero:</b> ${esc(result.twist)}.</p><p class="bb-note">Úsalo, cámbialo o ignóralo. La idea no se publica en el chat.</p></div>`,
-    ok: { label: "Ya tengo una idea" },
-    rejectClose: false,
-  });
+  let result;
+  let action = "again";
+  while (action === "again") {
+    result = advertisementSeed();
+    action = await foundry.applications.api.DialogV2.wait({
+      window: { title: "Tu propuesta de anuncio" },
+      position: { width: 580 },
+      classes: ["bb-app"],
+      content: `<div class="bb-dialog bb-ad bb-ad-seed"><p class="bb-eyebrow">SEMILLA PARA IMPROVISAR</p><h3>${esc(result.product)}</h3><p class="bb-ad-copy">${esc(result.text)}</p><p class="bb-note">Léela como punto de partida: puedes cambiar cualquier detalle. Solo tú ves esta propuesta.</p></div>`,
+      buttons: [
+        { action: "again", label: "Generar otra propuesta", icon: "fa-solid fa-wand-magic-sparkles" },
+        { action: "close", label: "Cerrar", icon: "fa-solid fa-check", default: true },
+      ],
+      rejectClose: false,
+    });
+  }
+  return result;
 }
 
 export const advertisementOptionCount = () =>

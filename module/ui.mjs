@@ -14,13 +14,44 @@ export const select = (key, label, options, value) =>
   `<label>${esc(label)}<select name="${esc(key)}">${options.map(([k, v]) => `<option value="${esc(k)}" ${String(k) === String(value) ? "selected" : ""}>${esc(v)}</option>`).join("")}</select></label>`;
 export const check = (key, label, on = false) =>
   `<label class="bb-check"><input name="${esc(key)}" type="checkbox" ${on ? "checked" : ""}> ${esc(label)}</label>`;
-export async function prompt(title, content, label = "Continuar") {
+export async function prompt(title, content, label = "Continuar", { cancel = false, validate = null } = {}) {
+  const validation = validate
+    ? '<p class="bb-form-status" data-bb-form-status aria-live="polite"></p>'
+    : "";
   return foundry.applications.api.DialogV2.prompt({
     window: { title },
     position: { width: 550 },
     classes: ["bb-app"],
-    content: `<div class="bb-dialog">${content}</div>`,
-    ok: { label, callback: (_e, b) => new FormData(b.form) },
+    content: `<div class="bb-dialog">${content}${validation}</div>`,
+    ok: {
+      label,
+      callback: (_e, button) => {
+        const data = new FormData(button.form);
+        const issue = validate?.(data);
+        if (issue) throw Error(issue);
+        return data;
+      },
+    },
+    buttons: cancel ? [{
+      action: "cancel",
+      label: "Cancelar",
+      icon: "fa-solid fa-xmark",
+      callback: () => false,
+    }] : [],
+    render: validate ? (_event, dialog) => {
+      const form = dialog.element.querySelector("form");
+      const button = dialog.element.querySelector('[data-action="ok"]');
+      const status = dialog.element.querySelector("[data-bb-form-status]");
+      const refresh = () => {
+        const issue = validate(new FormData(form));
+        button.disabled = Boolean(issue);
+        status.textContent = issue ? `Falta completar: ${issue}` : "Todo listo para continuar.";
+        status.classList.toggle("ready", !issue);
+      };
+      form.addEventListener("input", refresh);
+      form.addEventListener("change", refresh);
+      refresh();
+    } : undefined,
     rejectClose: false,
   });
 }

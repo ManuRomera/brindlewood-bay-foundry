@@ -20,6 +20,7 @@ import { advertisement } from "./advertisements.mjs";
 import { creationPool, randomExpert, lifeText, creationQuestionOptions } from "./expert-generator.mjs";
 import { syncCaseBooks } from "./salon-scene.mjs";
 import { catalogName } from "./catalog.mjs";
+import { identityFrom, identityIssue, lifeFrom, lifeIssue } from "./creation-form.mjs";
 const CREATION_SOCKET = `system.${ID}`;
 const pendingCreations = new Map();
 const content = async (name) => {
@@ -28,7 +29,7 @@ const content = async (name) => {
   return response.json();
 };
 const suggestionField = (key, label, values, value = "") =>
-  `<label>${esc(label)}<input name="${esc(key)}" value="${esc(value)}" list="bb-${esc(key)}"></label><datalist id="bb-${esc(key)}">${values.map((entry) => `<option value="${esc(entry)}"></option>`).join("")}</datalist>`;
+  `<fieldset class="bb-suggestion"><legend>${esc(label)}</legend><label>Sugerencias<select name="${esc(key)}Preset"><option value="">Elige una opción…</option>${values.map((entry) => `<option value="${esc(entry)}" ${entry === value ? "selected" : ""}>${esc(entry)}</option>`).join("")}</select></label><label>O escribe tu propia opción<input name="${esc(key)}Custom" value=""></label></fieldset>`;
 const frequencyLabel = (frequency) => frequency === "session" ? "Una vez por sesión" : frequency === "once" ? "Una sola vez" : frequency === "mystery" ? "Una vez por misterio" : "Sin límite de usos";
 const moveChoices = (items, selected = "") => `<div class="bb-creation-choices">${items.map((item) => `<label class="bb-creation-choice"><input type="radio" name="expert" value="${item._id}" ${item._id === selected ? "checked" : ""}><span><b>${esc(item.name)}</b><small>${frequencyLabel(item.system.frequency)}</small><p>${esc(item.system.description)}</p></span></label>`).join("")}</div>`;
 const homeFields = (values = []) => Array.from({ length: 5 }, (_, index) => field(`home${index + 1}`, `${index < 3 ? "Objeto obligatorio" : "Objeto opcional"} ${index + 1}`, values[index] ?? "")).join("");
@@ -117,6 +118,7 @@ export async function openExpertCreator() {
     "Crear mi Experta del Crimen",
     `<p>Elige cómo quieres crear tu personaje. En ambos casos revisarás la ficha antes de guardarla.</p><div class="bb-creation-choices"><label class="bb-creation-choice"><input type="radio" name="mode" value="guided" checked><span><b>Paso a paso</b><small>Cinco etapas guiadas</small><p>Elige identidad, habilidad, movimiento experto, vida anterior, Hogar y objetivos.</p></span></label><label class="bb-creation-choice"><input type="radio" name="mode" value="random"><span><b>Creación aleatoria</b><small>Completa y revisable</small><p>Genera una Experta con gran variedad y opción de castellanizarla.</p></span></label></div>`,
     "Empezar",
+    { cancel: true },
   );
   if (!choice) return;
   return choice.get("mode") === "random" ? createRandomExpert() : createExpert();
@@ -124,36 +126,39 @@ export async function openExpertCreator() {
 
 export async function createExpert() {
   const items = await content("expertos"), actors = op.experts();
-  const locale = await prompt("Crear una Experta · 1 de 5", `<p>El manual propone nombres y arquetipos de las series anglosajonas que inspiran el juego. Puedes trasladarlos por completo a España.</p>${check("castilian", "Castellanizar nombres, estilos, quehaceres y recuerdos")}`, "Elegir identidad");
+  const locale = await prompt("Crear una Experta · 1 de 5", `<p>El manual propone nombres y arquetipos de las series anglosajonas que inspiran el juego. Puedes trasladarlos por completo a España.</p>${check("castilian", "Castellanizar nombres, estilos, quehaceres y recuerdos")}`, "Elegir identidad", { cancel: true });
   if (!locale) return;
   const pool = creationPool(locale.has("castilian"));
-  const identity = await prompt("Crear una Experta · 2 de 5", `<p>Escoge una sugerencia o escribe la tuya. El quehacer debe ser único en el club.</p>${suggestionField("name", "Nombre y apellido", pool.names.flatMap((name) => pool.surnames.slice(0, 4).map((surname) => `${name} ${surname}`)))}${suggestionField("style", "Estilo", pool.styles, pool.styles[0])}${suggestionField("hobby", "Quehacer favorito", pool.hobbies)}`, "Asignar habilidades");
-  if (!identity) return;
-  if (!["name", "style", "hobby"].every((key) => identity.get(key)?.trim())) throw Error("Completa nombre, estilo y quehacer antes de continuar.");
-  const normalizedHobby = identity.get("hobby").normalize("NFKC").toLocaleLowerCase("es").trim();
-  if (actors.some((actor) => !actor.system.retired && actor.system.hobby.normalize("NFKC").toLocaleLowerCase("es").trim() === normalizedHobby)) throw Error("Ya hay una Experta activa con ese quehacer.");
-  const stats = await prompt("Crear una Experta · 3 de 5", `<p><b>Las puntuaciones no se tiran.</b> El manual fija Vitalidad 0, Compostura +1, Razón +1, Presencia 0 y Sensibilidad −1. Añade +1 a una de ellas.</p><div class="bb-stat-preview">${Object.entries(STATS).map(([key, label]) => `<div><b>${esc(label)} ${BASE[key] >= 0 ? "+" : ""}${BASE[key]}</b><small>${esc(STATS_INFO[key])}</small></div>`).join("")}</div>${select("boost", "¿Dónde añades el punto?", Object.entries(STATS).map(([key, label]) => [key, `${label}: ${BASE[key] >= 0 ? "+" : ""}${BASE[key]} → ${BASE[key] + 1 >= 0 ? "+" : ""}${BASE[key] + 1}`]))}`, "Escoger movimiento experto");
+  const identityForm = await prompt("Crear una Experta · 2 de 5", `<p>Escoge una sugerencia en un desplegable o escribe una opción propia. El texto escrito tiene prioridad. El quehacer debe ser único en el club.</p>${suggestionField("name", "Nombre y apellido", pool.names.flatMap((name) => pool.surnames.slice(0, 4).map((surname) => `${name} ${surname}`)))}${suggestionField("style", "Estilo", pool.styles, pool.styles[0])}${suggestionField("hobby", "Quehacer favorito", pool.hobbies)}`, "Asignar habilidades", { cancel: true, validate: (data) => identityIssue(data, actors) });
+  if (!identityForm) return;
+  const identity = identityFrom(identityForm);
+  const stats = await prompt("Crear una Experta · 3 de 5", `<p><b>Las puntuaciones no se tiran.</b> El manual fija Vitalidad 0, Compostura +1, Razón +1, Presencia 0 y Sensibilidad −1. Añade +1 a una de ellas.</p><div class="bb-stat-preview">${Object.entries(STATS).map(([key, label]) => `<div><b>${esc(label)} ${BASE[key] >= 0 ? "+" : ""}${BASE[key]}</b><small>${esc(STATS_INFO[key])}</small></div>`).join("")}</div>${select("boost", "¿Dónde añades el punto?", Object.entries(STATS).map(([key, label]) => [key, `${label}: ${BASE[key] >= 0 ? "+" : ""}${BASE[key]} → ${BASE[key] + 1 >= 0 ? "+" : ""}${BASE[key] + 1}`]))}`, "Escoger movimiento experto", { cancel: true });
   if (!stats) return;
-  const available = items.filter((item) => !creationIssue({ name: identity.get("name"), style: identity.get("style"), hobby: identity.get("hobby"), boost: stats.get("boost"), expert: item._id }, actors, items));
-  const movement = await prompt("Crear una Experta · 4 de 5", `<p>Lee el efecto completo antes de elegir. Al comienzo no puede repetirse y Dale Cooper entra en conflicto con Fox Mulder.</p>${moveChoices(available)}`, "Completar su vida");
+  const available = items.filter((item) => !creationIssue({ ...identity, boost: stats.get("boost"), expert: item._id }, actors, items));
+  const movement = await prompt("Crear una Experta · 4 de 5", `<p>Lee el efecto completo antes de elegir. Al comienzo no puede repetirse y Dale Cooper entra en conflicto con Fox Mulder.</p>${moveChoices(available)}`, "Completar su vida", { cancel: true, validate: (data) => data.get("expert") ? "" : "elige un movimiento experto." });
   if (!movement?.get("expert")) return;
-  const life = await prompt("Crear una Experta · 5 de 5", `<p>Presenta estos tres aspectos y anota entre tres y cinco objetos que la mesa encontraría en su casa.</p>${field("partner", "Su pareja fallecida")}${field("family", "Hijos, familia o mascotas")}${field("career", "Carrera antes de retirarse")}${homeFields()}<h3>Objetivos de la primera sesión</h3><p>Escoge exactamente dos además de la primera, que siempre cuenta.</p>${questionFields()}`, "Crear la Experta completa");
-  if (!life) return;
+  const lifeForm = await prompt("Crear una Experta · 5 de 5", `<p>Presenta estos tres aspectos y anota entre tres y cinco objetos que la mesa encontraría en su casa.</p>${field("partner", "Su pareja fallecida")}${field("family", "Hijos, familia o mascotas")}${field("career", "Carrera antes de retirarse")}${homeFields()}<h3>Objetivos de la primera sesión</h3><p>Escoge exactamente dos además de la primera, que siempre cuenta.</p>${questionFields()}`, "Crear la Experta completa", { cancel: true, validate: lifeIssue });
+  if (!lifeForm) return;
   return locked("create-expert", async () => {
-    const data = { ...Object.fromEntries(identity), boost: stats.get("boost"), expert: movement.get("expert"), ...Object.fromEntries(life) };
-    data.home = [1, 2, 3, 4, 5].map((index) => data[`home${index}`]);
-    data.questions = [0, ...[1, 2, 3, 4, 5, 6].filter((index) => life.has(`q${index}`))];
+    const data = { ...identity, boost: stats.get("boost"), expert: movement.get("expert"), ...lifeFrom(lifeForm) };
     return submitExpert(data, items);
   });
 }
 
 export async function createRandomExpert() {
-  const locale = await prompt("Experta al azar", `<p>Generaremos nombre, estilo, quehacer, habilidad, movimiento, vida anterior, objetivos y objetos del hogar. Podrás revisarlo todo antes de crearla.</p>${check("castilian", "Castellanizar por completo a la Experta")}`, "Sorprenderme");
+  const locale = await prompt("Experta al azar", `<p>Generaremos nombre, estilo, quehacer, habilidad, movimiento, vida anterior, objetivos y objetos del hogar. Podrás revisarlo todo antes de crearla.</p>${check("castilian", "Castellanizar por completo a la Experta")}`, "Sorprenderme", { cancel: true });
   if (!locale) return;
   const items = await content("expertos");
   const draft = randomExpert({ castilian: locale.has("castilian"), moves: items, experts: op.experts() });
   const move = items.find((item) => item._id === draft.expert);
-  const review = await prompt("Revisar la Experta inesperada", `${field("name", "Nombre y apellido", draft.name)}${field("style", "Estilo", draft.style)}${field("hobby", "Quehacer", draft.hobby)}<div class="bb-note"><b>${esc(STATS[draft.boost])} recibe +1.</b> Las demás puntuaciones siguen la distribución fija del manual.</div><div class="bb-creation-choice selected"><span><b>${esc(move.name)}</b><small>${frequencyLabel(move.system.frequency)}</small><p>${esc(move.system.description)}</p></span></div>${field("partner", "Su pareja fallecida", draft.partner)}${field("family", "Hijos, familia o mascotas", draft.family)}${field("career", "Carrera antes de retirarse", draft.career)}${homeFields(draft.home)}<h3>Objetivos de la primera sesión</h3>${questionFields(draft.questions)}`, "Crear esta Experta");
+  const reviewIssue = (data) => {
+    for (const key of ["name", "style", "hobby"])
+      if (!String(data.get(key) ?? "").trim()) return `completa ${key === "name" ? "el nombre y apellido" : key === "style" ? "el estilo" : "el quehacer"}.`;
+    const hobby = String(data.get("hobby")).normalize("NFKC").toLocaleLowerCase("es").trim();
+    if (op.experts().some((actor) => !actor.system.retired && actor.system.hobby.normalize("NFKC").toLocaleLowerCase("es").trim() === hobby)) return "ese quehacer ya pertenece a otra Experta activa.";
+    return lifeIssue(data);
+  };
+  const review = await prompt("Revisar la Experta inesperada", `${field("name", "Nombre y apellido", draft.name)}${field("style", "Estilo", draft.style)}${field("hobby", "Quehacer", draft.hobby)}<div class="bb-note"><b>${esc(STATS[draft.boost])} recibe +1.</b> Las demás puntuaciones siguen la distribución fija del manual.</div><div class="bb-creation-choice selected"><span><b>${esc(move.name)}</b><small>${frequencyLabel(move.system.frequency)}</small><p>${esc(move.system.description)}</p></span></div>${field("partner", "Su pareja fallecida", draft.partner)}${field("family", "Hijos, familia o mascotas", draft.family)}${field("career", "Carrera antes de retirarse", draft.career)}${homeFields(draft.home)}<h3>Objetivos de la primera sesión</h3>${questionFields(draft.questions)}`, "Crear esta Experta", { cancel: true, validate: reviewIssue });
   if (!review) return;
   const data = { ...draft, ...Object.fromEntries(review) };
   data.home = [1, 2, 3, 4, 5].map((index) => data[`home${index}`]);
