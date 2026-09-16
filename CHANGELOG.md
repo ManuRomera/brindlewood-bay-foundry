@@ -1,3 +1,8 @@
+# 0.6.8-wip.1
+
+- Las cinco tablas del generador quedan declaradas y verificadas individualmente: 32 productos, 16 formatos, 12 protagonistas, 12 promesas y 16 giros.
+- La tarjeta de chat muestra cada elección en una línea y la propuesta completa usando únicamente HTML básico, sin los contenedores ni clases que podían ocultar el cuerpo en algunas instalaciones.
+
 # 0.6.7-wip.1
 
 - Se elimina por completo la ventana del generador. Cada ejecución de la macro crea una combinación aleatoria y la publica en el chat como «Propuesta de Guión de Anuncio».

@@ -1,7 +1,7 @@
 import { esc, select, prompt, gm } from "./ui.mjs";
 import * as op from "./operations.mjs";
 
-const OPTIONS = {
+export const ADVERTISEMENT_TABLES = Object.freeze({
   product: [
     "tienda de muebles", "alarma de emergencia", "sorteo por correo", "abogada de lesiones",
     "residencia frente al mar", "audífonos discretos", "seguro de decesos", "crucero con baile",
@@ -39,12 +39,12 @@ const OPTIONS = {
     "el número gratuito contiene demasiados sietes", "todo sucede en una cocina idéntica a la de alguien del club",
     "el eslogan resulta ser una advertencia",
   ],
-};
+});
 
 const choice = (list) => list[Math.floor(Math.random() * list.length)];
 
 export function advertisementSeed(random = Math.random) {
-  const result = Object.fromEntries(Object.entries(OPTIONS).map(([key, values]) => [
+  const result = Object.fromEntries(Object.entries(ADVERTISEMENT_TABLES).map(([key, values]) => [
     key,
     values[Math.floor(random() * values.length)],
   ]));
@@ -55,18 +55,24 @@ export function advertisementSeed(random = Math.random) {
 }
 
 export const advertisementSeedMarkup = (result) =>
-  `<div class="bb-ad-result"><p class="bb-eyebrow">COMBINACIÓN ALEATORIA</p><h3>${esc(result.product)}</h3><p class="bb-ad-copy">${esc(result.text)}</p><p class="bb-note">Usadla como punto de partida: podéis cambiar cualquier detalle.</p></div>`;
+  `<p><strong>Producto:</strong> ${esc(result.product)}</p>` +
+  `<p><strong>Formato:</strong> ${esc(result.format)}</p>` +
+  `<p><strong>Protagonista:</strong> ${esc(result.star)}</p>` +
+  `<p><strong>Promesa:</strong> ${esc(result.promise)}</p>` +
+  `<p><strong>Giro:</strong> ${esc(result.twist)}</p>` +
+  `<hr><p><strong>Propuesta completa:</strong> ${esc(result.text)}</p>` +
+  `<p>Usadla como punto de partida: podéis cambiar cualquier detalle.</p>`;
 
 export async function advertisement() {
   gm();
   const club = op.club();
   const data = await prompt(
     "¡Volvemos en 20 segundos!",
-    `<p>Tras un fallo peligroso o dramático, da a la jugadora un indicio sencillo. Ella puede improvisar el anuncio o recurrir a la macro de inspiración.</p>${club.adUsed ? '<p class="bb-note"><b>Ya hubo una pausa para anuncios esta sesión.</b> El manual recomienda una por sesión.</p>' : ""}${select("product", "Indicio", [["", "Sorpréndeme"], ...OPTIONS.product.map((value) => [value, value])])}`,
+    `<p>Tras un fallo peligroso o dramático, da a la jugadora un indicio sencillo. Ella puede improvisar el anuncio o recurrir a la macro de inspiración.</p>${club.adUsed ? '<p class="bb-note"><b>Ya hubo una pausa para anuncios esta sesión.</b> El manual recomienda una por sesión.</p>' : ""}${select("product", "Indicio", [["", "Sorpréndeme"], ...ADVERTISEMENT_TABLES.product.map((value) => [value, value])])}`,
     "Dar paso al anuncio",
   );
   if (!data) return;
-  const product = data.get("product") || choice(OPTIONS.product);
+  const product = data.get("product") || choice(ADVERTISEMENT_TABLES.product);
   await op.saveClub({ ...club, adUsed: true });
   return op.chat(
     null,
@@ -80,9 +86,9 @@ export function advertisementInspiration() {
   return op.chat(
     null,
     "Propuesta de Guión de Anuncio",
-    `<div class="bb-ad bb-ad-seed">${advertisementSeedMarkup(result)}</div>`,
+    advertisementSeedMarkup(result),
   );
 }
 
 export const advertisementOptionCount = () =>
-  Object.values(OPTIONS).reduce((total, values) => total * values.length, 1);
+  Object.values(ADVERTISEMENT_TABLES).reduce((total, values) => total * values.length, 1);
