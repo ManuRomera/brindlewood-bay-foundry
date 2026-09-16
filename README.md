@@ -6,7 +6,7 @@
 
 Sistema nativo en español para Foundry **13.351**. Seis misterios, un club de lectura y un oscuro secreto bajo la bahía. Creado por ManuRomera a partir de la edición española 1.0 de Jason Cordova.
 
-> **WIP · 0.6.4-wip.1.** Versión de trabajo para probar en un mundo nuevo. No se declara compatibilidad con Foundry 14. Consulta [el alcance y la verificación](docs/QA.md).
+> **WIP · 0.6.5-wip.1.** Compatible con toda la rama estable de Foundry 13. No se declara compatibilidad con Foundry 14. Consulta [el alcance y la verificación](docs/QA.md).
 
 ## Entrar en el club
 

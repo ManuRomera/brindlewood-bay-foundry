@@ -76,16 +76,47 @@ export async function advertisement() {
   );
 }
 
+let AdvertisementInspirationApp;
+
+function getAdvertisementInspirationApp() {
+  if (AdvertisementInspirationApp) return AdvertisementInspirationApp;
+  const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
+  AdvertisementInspirationApp = class extends HandlebarsApplicationMixin(ApplicationV2) {
+    static DEFAULT_OPTIONS = {
+      id: "bb-advertisement-inspiration",
+      classes: ["bb-app", "bb-ad-dialog"],
+      window: { title: "Tu propuesta de anuncio", resizable: true },
+      position: { width: 580, height: 430 },
+      actions: {
+        reroll() {
+          this.result = advertisementSeed();
+          this.render({ force: true });
+        },
+        close() {
+          this.close();
+        },
+      },
+    };
+    static PARTS = {
+      body: {
+        template: `systems/${ID}/templates/advertisement-inspiration.hbs`,
+        scrollable: [".bb-dialog"],
+      },
+    };
+    constructor(options = {}) {
+      super(options);
+      this.result = advertisementSeed();
+    }
+    async _prepareContext() {
+      return this.result;
+    }
+  };
+  return AdvertisementInspirationApp;
+}
+
 export function advertisementInspiration() {
-  const result = advertisementSeed();
-  return foundry.applications.api.DialogV2.prompt({
-    window: { title: "Tu propuesta de anuncio" },
-    position: { width: 580, height: 430 },
-    classes: ["bb-app", "bb-ad-dialog"],
-    content: `<div class="bb-dialog bb-ad bb-ad-seed">${advertisementSeedMarkup(result)}<p class="bb-note"><i class="fa-solid fa-rotate"></i> Ejecuta de nuevo la macro para obtener otra propuesta.</p></div>`,
-    ok: { label: "Cerrar", icon: "fa-solid fa-check" },
-    rejectClose: false,
-  });
+  const App = getAdvertisementInspirationApp();
+  return new App().render({ force: true });
 }
 
 export const advertisementOptionCount = () =>

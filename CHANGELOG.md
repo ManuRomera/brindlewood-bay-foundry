@@ -1,3 +1,8 @@
+# 0.6.5-wip.1
+
+- El generador deja de usar `DialogV2.prompt`: una aplicación propia renderiza la propuesta desde una plantilla estable para evitar que ciertas compilaciones de Foundry descarten el cuerpo del diálogo.
+- El manifiesto admite toda la rama principal de Foundry 13 (`minimum: 13`, `maximum: 13`) y declara 13.351 como versión verificada.
+
 # 0.6.4-wip.1
 
 - La ventana de propuesta tiene una altura real definida y un área de contenido desplazable, evitando que Foundry la reduzca hasta mostrar únicamente el botón «Cerrar».

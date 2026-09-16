@@ -17,16 +17,25 @@ test("one click produces a complete readable advertisement seed", () => {
 
 test("the macro generates first and opens a window that already contains the proposal", async () => {
   const previousFoundry = globalThis.foundry;
-  let config;
+  let rendered;
+  class ApplicationV2 {
+    constructor() {}
+    render(options) { rendered = { app: this, options }; return this; }
+    close() {}
+  }
   try {
-    globalThis.foundry = { applications: { api: { DialogV2: { prompt: async (options) => { config = options; return "ok"; } } } } };
-    assert.equal(await advertisementInspiration(), "ok");
-    assert.equal(config.window.title, "Tu propuesta de anuncio");
-    assert.equal(config.position.height, 430);
-    assert.ok(config.classes.includes("bb-ad-dialog"));
-    assert.match(config.content, /SEMILLA PARA IMPROVISAR/);
-    assert.match(config.content, /bb-ad-copy/);
-    assert.match(config.content, /Ejecuta de nuevo la macro/);
+    globalThis.foundry = { applications: { api: {
+      ApplicationV2,
+      HandlebarsApplicationMixin: (Base) => class extends Base {},
+    } } };
+    const app = advertisementInspiration();
+    assert.equal(app, rendered.app);
+    assert.deepEqual(rendered.options, { force: true });
+    assert.ok(app.result.text);
+    assert.equal(app.constructor.DEFAULT_OPTIONS.window.title, "Tu propuesta de anuncio");
+    assert.equal(app.constructor.DEFAULT_OPTIONS.position.height, 430);
+    assert.ok(app.constructor.DEFAULT_OPTIONS.classes.includes("bb-ad-dialog"));
+    assert.match(app.constructor.PARTS.body.template, /advertisement-inspiration\.hbs$/);
   } finally {
     globalThis.foundry = previousFoundry;
   }
