@@ -1,3 +1,8 @@
+# 0.6.3-wip.1
+
+- La macro genera la propuesta antes de abrir la interfaz y muestra una ventana que ya contiene el anuncio; se elimina el botón interno que podía no responder.
+- Volver a ejecutar la macro genera una propuesta distinta.
+
 # 0.6.2-wip.1
 
 - El Generador de anuncios usa una única ventana estable: «Generar propuesta» escribe el resultado dentro de ella y puede repetirse sin cerrar ni encadenar diálogos.

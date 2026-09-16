@@ -77,34 +77,15 @@ export async function advertisement() {
 }
 
 export function advertisementInspiration() {
-  const dialog = new foundry.applications.api.DialogV2({
-    window: { title: "Generador de anuncios" },
+  const result = advertisementSeed();
+  return foundry.applications.api.DialogV2.prompt({
+    window: { title: "Tu propuesta de anuncio" },
     position: { width: 580 },
     classes: ["bb-app"],
-    form: { closeOnSubmit: false },
-    content: `<div class="bb-dialog bb-ad bb-ad-seed"><p>Si necesitas una idea, pulsa el botón. El resultado es privado y no modifica la ficha ni el chat.</p><div class="bb-ad-result" data-bb-ad-result><p class="bb-ad-empty"><i class="fa-solid fa-tv"></i><b>Tu propuesta aparecerá aquí.</b></p></div></div>`,
-    buttons: [
-      {
-        action: "generate",
-        label: "Generar propuesta",
-        icon: "fa-solid fa-wand-magic-sparkles",
-        default: true,
-        callback: (_event, _button, app) => {
-          const result = advertisementSeed();
-          app.element.querySelector("[data-bb-ad-result]").innerHTML = advertisementSeedMarkup(result);
-          return result;
-        },
-      },
-      {
-        action: "close",
-        label: "Cerrar",
-        icon: "fa-solid fa-xmark",
-        callback: (_event, _button, app) => app.close(),
-      },
-    ],
+    content: `<div class="bb-dialog bb-ad bb-ad-seed">${advertisementSeedMarkup(result)}<p class="bb-note"><i class="fa-solid fa-rotate"></i> Ejecuta de nuevo la macro para obtener otra propuesta.</p></div>`,
+    ok: { label: "Cerrar", icon: "fa-solid fa-check" },
+    rejectClose: false,
   });
-  dialog.render({ force: true });
-  return dialog;
 }
 
 export const advertisementOptionCount = () =>

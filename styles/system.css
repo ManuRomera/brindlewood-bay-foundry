@@ -203,24 +203,6 @@
   font-size: 18px;
   line-height: 1.55;
 }
-.bb-ad-result {
-  min-height: 170px;
-}
-.bb-ad-empty {
-  min-height: 150px;
-  display: grid;
-  place-content: center;
-  gap: 10px;
-  margin: 12px 0 0;
-  border: 1px dashed var(--bb-line);
-  border-radius: 7px;
-  color: #776d5e;
-  text-align: center;
-}
-.bb-ad-empty i {
-  color: var(--bb-rose);
-  font-size: 34px;
-}
 .bb-app .form-footer {
   padding: 10px 24px 20px;
 }

@@ -15,26 +15,16 @@ test("one click produces a complete readable advertisement seed", () => {
   assert.match(seed.text, /pero la letra pequeña ocupa toda la pantalla\.$/);
 });
 
-test("the macro opens one stable dialog and its button renders the proposal", () => {
+test("the macro generates first and opens a window that already contains the proposal", async () => {
   const previousFoundry = globalThis.foundry;
   let config;
-  let rendered = false;
-  class DialogV2 {
-    constructor(options) { config = options; }
-    render() { rendered = true; return this; }
-  }
   try {
-    globalThis.foundry = { applications: { api: { DialogV2 } } };
-    const dialog = advertisementInspiration();
-    assert.ok(dialog instanceof DialogV2);
-    assert.equal(rendered, true);
-    assert.equal(config.form.closeOnSubmit, false);
-    assert.equal(config.buttons[0].action, "generate");
-    const target = { innerHTML: "" };
-    const result = config.buttons[0].callback(null, null, { element: { querySelector: () => target } });
-    assert.ok(result.text);
-    assert.match(target.innerHTML, /SEMILLA PARA IMPROVISAR/);
-    assert.match(target.innerHTML, /bb-ad-copy/);
+    globalThis.foundry = { applications: { api: { DialogV2: { prompt: async (options) => { config = options; return "ok"; } } } } };
+    assert.equal(await advertisementInspiration(), "ok");
+    assert.equal(config.window.title, "Tu propuesta de anuncio");
+    assert.match(config.content, /SEMILLA PARA IMPROVISAR/);
+    assert.match(config.content, /bb-ad-copy/);
+    assert.match(config.content, /Ejecuta de nuevo la macro/);
   } finally {
     globalThis.foundry = previousFoundry;
   }
