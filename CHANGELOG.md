@@ -1,3 +1,7 @@
+# 0.6.4-wip.1
+
+- La ventana de propuesta tiene una altura real definida y un área de contenido desplazable, evitando que Foundry la reduzca hasta mostrar únicamente el botón «Cerrar».
+
 # 0.6.3-wip.1
 
 - La macro genera la propuesta antes de abrir la interfaz y muestra una ventana que ya contiene el anuncio; se elimina el botón interno que podía no responder.

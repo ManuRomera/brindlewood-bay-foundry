@@ -80,8 +80,8 @@ export function advertisementInspiration() {
   const result = advertisementSeed();
   return foundry.applications.api.DialogV2.prompt({
     window: { title: "Tu propuesta de anuncio" },
-    position: { width: 580 },
-    classes: ["bb-app"],
+    position: { width: 580, height: 430 },
+    classes: ["bb-app", "bb-ad-dialog"],
     content: `<div class="bb-dialog bb-ad bb-ad-seed">${advertisementSeedMarkup(result)}<p class="bb-note"><i class="fa-solid fa-rotate"></i> Ejecuta de nuevo la macro para obtener otra propuesta.</p></div>`,
     ok: { label: "Cerrar", icon: "fa-solid fa-check" },
     rejectClose: false,

@@ -1,4 +1,4 @@
-# Verificación de la WIP 0.6.3-wip.1
+# Verificación de la WIP 0.6.4-wip.1
 
 Fecha: 16 de septiembre de 2026. Foundry 13.351 real, servidor local con directorio de datos aislado y Chromium de escritorio. Ningún mundo del usuario se usó como prueba. Código dirigido a Foundry 13; no se declara verificada la versión 14.
 
@@ -33,7 +33,7 @@ Fecha: 16 de septiembre de 2026. Foundry 13.351 real, servidor local con directo
 - Comprobar como Guardiana y como jugadora que el salón muestra los mismos contadores comunes, las pistas desplegables de cada caso y el progreso esencial de las Expertas; las acciones de administración solo aparecen para la Guardiana.
 - Abrir la ficha rediseñada y comprobar que habilidades, PE, avances, Condiciones, Hogar y Coronas permanecen visibles mientras se consultan los movimientos. Los contadores compactos dejan más espacio útil. Moverla, cerrarla y abrirla de nuevo confirma que recupera la última posición dentro del área visible.
 - Crear automáticamente la escena «The Candlelight · Salón del club», comprobar el encuadre completo, la ausencia de cuadrícula, visión y niebla, el salón sin personajes y el título legible sobre el libro central. Tras resolver «Papá por la borda» y abrir «Un grito en Halloween», la pila muestra el caso resuelto y el caso activo sin tapar el libro central.
-- Dar paso a anuncios desde el salón como Guardiana y publicar únicamente el indicio y la regla del resultado 10–11. Ejecutar la macro «Generador de anuncios» desde el directorio como Guardiana y desde la barra rápida como jugadora: en ambos casos se abre una ventana privada con una idea completa ya escrita y no se publica nada en el chat.
+- Dar paso a anuncios desde el salón como Guardiana y publicar únicamente el indicio y la regla del resultado 10–11. Ejecutar la macro «Generador de anuncios» desde el directorio como Guardiana y desde la barra rápida como jugadora: se abre una ventana privada con una idea completa ya escrita y no se publica nada en el chat. Se comprobó visualmente a 1280 × 720 que el cuerpo conserva altura y desplazamiento y que el texto no desaparece.
 - Entrar como jugadora sin el permiso general «Crear Actores» y comprobar que el directorio muestra «Crear mi Experta» bajo «El salón del club». Abrirlo y verificar que ofrece creación guiada y aleatoria.
 - Mantener conectadas a la Guardiana y a la jugadora en dos sesiones. Crear al azar y castellanizar a Rosario Gallardo desde la sesión jugadora; la Guardiana valida la petición, se crea «PJ: Rosario Gallardo» con propiedad exclusiva de esa jugadora, aparece en el salón y la ficha editable se abre en su sesión.
 - Comprobar que los Actores existentes y nuevos aparecen catalogados como «PJ: …» y «Caso: …», sin repetir el prefijo al recargar el mundo.

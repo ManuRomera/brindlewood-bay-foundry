@@ -22,6 +22,8 @@ test("the macro generates first and opens a window that already contains the pro
     globalThis.foundry = { applications: { api: { DialogV2: { prompt: async (options) => { config = options; return "ok"; } } } } };
     assert.equal(await advertisementInspiration(), "ok");
     assert.equal(config.window.title, "Tu propuesta de anuncio");
+    assert.equal(config.position.height, 430);
+    assert.ok(config.classes.includes("bb-ad-dialog"));
     assert.match(config.content, /SEMILLA PARA IMPROVISAR/);
     assert.match(config.content, /bb-ad-copy/);
     assert.match(config.content, /Ejecuta de nuevo la macro/);

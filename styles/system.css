@@ -203,6 +203,20 @@
   font-size: 18px;
   line-height: 1.55;
 }
+.bb-app.bb-ad-dialog .window-content {
+  overflow: auto;
+}
+.bb-app.bb-ad-dialog .dialog-form {
+  min-height: 0;
+}
+.bb-app.bb-ad-dialog .dialog-content {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+}
+.bb-app.bb-ad-dialog .bb-dialog {
+  min-height: 250px;
+}
 .bb-app .form-footer {
   padding: 10px 24px 20px;
 }
