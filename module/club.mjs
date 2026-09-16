@@ -19,6 +19,9 @@ import { rememberWindow, clearRememberedWindows } from "./window-state.mjs";
 import { advertisement } from "./advertisements.mjs";
 import { creationPool, randomExpert, lifeText, creationQuestionOptions } from "./expert-generator.mjs";
 import { syncCaseBooks } from "./salon-scene.mjs";
+import { catalogName } from "./catalog.mjs";
+const CREATION_SOCKET = `system.${ID}`;
+const pendingCreations = new Map();
 const content = async (name) => {
   const response = await fetch(`systems/${ID}/_data/${name}.json`);
   if (!response.ok) throw Error("No se pudo cargar el contenido.");
@@ -31,7 +34,7 @@ const moveChoices = (items, selected = "") => `<div class="bb-creation-choices">
 const homeFields = (values = []) => Array.from({ length: 5 }, (_, index) => field(`home${index + 1}`, `${index < 3 ? "Objeto obligatorio" : "Objeto opcional"} ${index + 1}`, values[index] ?? "")).join("");
 const questionFields = (selected = [0, 1, 2]) => `<p class="bb-note"><b>Siempre marcada:</b> ${esc(QUESTIONS[0])}</p>${creationQuestionOptions().map(({ index, text }) => check(`q${index}`, text, selected.includes(index))).join("")}`;
 
-async function finishExpert(data, items) {
+async function finishExpert(data, items, { creatorId = game.user.id, render = true } = {}) {
   const issue = creationIssue(data, op.experts(), items);
   if (issue) throw Error(issue);
   const homes = data.home.map((entry) => entry.trim()).filter(Boolean);
@@ -51,23 +54,75 @@ async function finishExpert(data, items) {
   system.stats[data.boost]++;
   op.applyExpert(system, item);
   const actor = await Actor.create({
-    name: data.name.trim(),
+    name: catalogName("player", data.name),
     type: "experta",
     img: `systems/${ID}/assets/teacup.svg`,
     system,
     items: [{ ...item, _id: foundry.utils.randomID() }],
-    ownership: { default: 0, [game.user.id]: 3 },
+    ownership: { default: 0, [creatorId]: 3 },
     prototypeToken: { actorLink: true },
   });
-  actor.sheet.render(true);
+  if (render) actor.sheet.render(true);
   return actor;
 }
 
+async function requestExpertCreation(data) {
+  if (!game.users.activeGM) throw Error("La Guardiana debe estar conectada para validar y crear tu Experta.");
+  const requestId = foundry.utils.randomID();
+  const result = new Promise((resolve, reject) => {
+    const timer = setTimeout(() => {
+      pendingCreations.delete(requestId);
+      reject(Error("La Guardiana no respondió a la solicitud de creación."));
+    }, 15000);
+    pendingCreations.set(requestId, { resolve, reject, timer });
+  });
+  game.socket.emit(CREATION_SOCKET, { action: "createExpert", requestId, data });
+  const actorId = await result;
+  const actor = game.actors.get(actorId);
+  actor?.sheet.render(true);
+  return actor;
+}
+
+async function submitExpert(data, items) {
+  if (game.user.isGM) return finishExpert(data, items);
+  return requestExpertCreation(data);
+}
+
+export function registerExpertCreationSocket() {
+  game.socket.on(CREATION_SOCKET, async (message, senderId) => {
+    if (message?.action === "expertCreated" && message.userId === game.user.id && game.users.get(senderId)?.isGM) {
+      const pending = pendingCreations.get(message.requestId);
+      if (!pending) return;
+      clearTimeout(pending.timer);
+      pendingCreations.delete(message.requestId);
+      if (message.error) pending.reject(Error(message.error));
+      else pending.resolve(message.actorId);
+      return;
+    }
+    if (message?.action !== "createExpert" || game.users.activeGM?.id !== game.user.id) return;
+    const user = game.users.get(senderId);
+    if (!user || user.isGM) return;
+    try {
+      const items = await content("expertos");
+      const actor = await locked("create-expert", () => finishExpert(message.data, items, { creatorId: user.id, render: false }));
+      game.socket.emit(CREATION_SOCKET, { action: "expertCreated", requestId: message.requestId, userId: user.id, actorId: actor.id });
+    } catch (error) {
+      game.socket.emit(CREATION_SOCKET, { action: "expertCreated", requestId: message.requestId, userId: user.id, error: error.message });
+    }
+  });
+}
+
+export async function openExpertCreator() {
+  const choice = await prompt(
+    "Crear mi Experta del Crimen",
+    `<p>Elige cómo quieres crear tu personaje. En ambos casos revisarás la ficha antes de guardarla.</p><div class="bb-creation-choices"><label class="bb-creation-choice"><input type="radio" name="mode" value="guided" checked><span><b>Paso a paso</b><small>Cinco etapas guiadas</small><p>Elige identidad, habilidad, movimiento experto, vida anterior, Hogar y objetivos.</p></span></label><label class="bb-creation-choice"><input type="radio" name="mode" value="random"><span><b>Creación aleatoria</b><small>Completa y revisable</small><p>Genera una Experta con gran variedad y opción de castellanizarla.</p></span></label></div>`,
+    "Empezar",
+  );
+  if (!choice) return;
+  return choice.get("mode") === "random" ? createRandomExpert() : createExpert();
+}
+
 export async function createExpert() {
-  if (!game.user.can("ACTOR_CREATE"))
-    throw Error(
-      "La Guardiana puede crear tu Experta o habilitar Crear Actores en los permisos del mundo.",
-    );
   const items = await content("expertos"), actors = op.experts();
   const locale = await prompt("Crear una Experta · 1 de 5", `<p>El manual propone nombres y arquetipos de las series anglosajonas que inspiran el juego. Puedes trasladarlos por completo a España.</p>${check("castilian", "Castellanizar nombres, estilos, quehaceres y recuerdos")}`, "Elegir identidad");
   if (!locale) return;
@@ -88,12 +143,11 @@ export async function createExpert() {
     const data = { ...Object.fromEntries(identity), boost: stats.get("boost"), expert: movement.get("expert"), ...Object.fromEntries(life) };
     data.home = [1, 2, 3, 4, 5].map((index) => data[`home${index}`]);
     data.questions = [0, ...[1, 2, 3, 4, 5, 6].filter((index) => life.has(`q${index}`))];
-    return finishExpert(data, items);
+    return submitExpert(data, items);
   });
 }
 
 export async function createRandomExpert() {
-  if (!game.user.can("ACTOR_CREATE")) throw Error("La Guardiana puede crear tu Experta o habilitar Crear Actores en los permisos del mundo.");
   const locale = await prompt("Experta al azar", `<p>Generaremos nombre, estilo, quehacer, habilidad, movimiento, vida anterior, objetivos y objetos del hogar. Podrás revisarlo todo antes de crearla.</p>${check("castilian", "Castellanizar por completo a la Experta")}`, "Sorprenderme");
   if (!locale) return;
   const items = await content("expertos");
@@ -104,7 +158,7 @@ export async function createRandomExpert() {
   const data = { ...draft, ...Object.fromEntries(review) };
   data.home = [1, 2, 3, 4, 5].map((index) => data[`home${index}`]);
   data.questions = [0, ...[1, 2, 3, 4, 5, 6].filter((index) => review.has(`q${index}`))];
-  return locked("create-expert", () => finishExpert(data, items));
+  return locked("create-expert", () => submitExpert(data, items));
 }
 export async function importMystery() {
   gm();
@@ -156,7 +210,7 @@ export async function importMystery() {
   if (layer < m.minLayer)
     throw Error("Este caso requiere la tercera capa de la conspiración.");
   const a = await Actor.create({
-    name: m.name,
+    name: catalogName("case", m.name),
     type: "misterio",
     img: `systems/${ID}/assets/teacup.svg`,
     ownership: { default: 2 },
@@ -462,7 +516,7 @@ export async function customMystery() {
   const issue = complexityIssue(complexity, { voidMystery: final });
   if (issue) throw Error(issue);
   const a = await Actor.create({
-    name: d.get("name"),
+    name: catalogName("case", d.get("name")),
     type: "misterio",
     ownership: { default: 2 },
     img: `systems/${ID}/assets/teacup.svg`,
@@ -550,7 +604,7 @@ export class ClubApp extends rememberWindow(foundry.applications.api.HandlebarsA
     const activeVisible = visibleCases.filter((a) => a.system.status === "active");
     return {
       gm: game.user.isGM,
-      canCreate: game.user.can("ACTOR_CREATE"),
+      canCreate: true,
       club: op.club(),
       experts: visibleExperts.map((actor) => ({
         actor,

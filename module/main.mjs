@@ -5,6 +5,8 @@ import {
   ClubApp,
   createExpert,
   createRandomExpert,
+  openExpertCreator,
+  registerExpertCreationSocket,
   importMystery,
   reveal,
   dossier,
@@ -16,6 +18,8 @@ import { advertisement, advertisementInspiration } from "./advertisements.mjs";
 import { guard } from "./ui.mjs";
 import { attachInfo } from "./inspector.mjs";
 import { ensureSalonScene, syncCaseBooks } from "./salon-scene.mjs";
+import { ensureAdvertisementMacro } from "./world-setup.mjs";
+import { catalogName } from "./catalog.mjs";
 Hooks.once("init", () => {
   CONFIG.Actor.dataModels = {
     ...CONFIG.Actor.dataModels,
@@ -80,6 +84,7 @@ Hooks.once("init", () => {
     open: () => new ClubApp().render(true),
     createExpert,
     createRandomExpert,
+    openExpertCreator,
     importMystery,
     reveal,
     dossier,
@@ -92,10 +97,20 @@ Hooks.once("init", () => {
   Handlebars.registerHelper("eq", (a, b) => a === b);
 });
 Hooks.once("ready", async () => {
-  if (game.user.isGM) await guard(ensureSalonScene)();
+  registerExpertCreationSocket();
+  if (game.user.isGM) {
+    await guard(ensureSalonScene)();
+    await guard(ensureAdvertisementMacro)();
+  }
   if (game.user.isGM) {
     for (const actor of game.actors) {
       const source = actor._source.system;
+      const catalogued = actor.type === "experta"
+        ? catalogName("player", actor.name)
+        : actor.type === "misterio"
+          ? catalogName("case", actor.name)
+          : actor.name;
+      if (catalogued !== actor.name) await actor.update({ name: catalogued });
       if (actor.type === "experta") {
         const overflow = Math.max(0, Number(source.xp ?? 0) - LIMITS.xp);
         const stats = Object.fromEntries(Object.entries(source.stats ?? {}).map(([key, value]) => [
@@ -135,14 +150,29 @@ Hooks.once("ready", async () => {
 });
 Hooks.on("renderActorDirectory", (_app, html) => {
   const root = html instanceof HTMLElement ? html : html?.[0];
-  if (!root || root.querySelector("[data-bb-club]")) return;
-  const b = document.createElement("button");
-  b.dataset.bbClub = "true";
-  b.type = "button";
-  b.className = "bb-sidebar-button";
-  b.innerHTML = '<i class="fas fa-mug-hot"></i> El salón del club';
-  b.addEventListener("click", () => game.brindlewood.open());
-  root.querySelector(".directory-header")?.append(b);
+  if (!root) return;
+  const header = root.querySelector(".directory-header");
+  if (!root.querySelector("[data-bb-club]")) {
+    const club = document.createElement("button");
+    club.dataset.bbClub = "true";
+    club.type = "button";
+    club.className = "bb-sidebar-button";
+    club.innerHTML = '<i class="fas fa-mug-hot"></i> El salón del club';
+    club.addEventListener("click", () => game.brindlewood.open());
+    header?.append(club);
+  }
+  if (!root.querySelector("[data-bb-create-expert]")) {
+    const create = document.createElement("button");
+    create.dataset.bbCreateExpert = "true";
+    create.type = "button";
+    create.className = "bb-sidebar-button bb-sidebar-create";
+    create.innerHTML = '<i class="fas fa-user-plus"></i> Crear mi Experta';
+    create.addEventListener("click", guard(openExpertCreator));
+    header?.append(create);
+  }
+});
+Hooks.on("createUser", () => {
+  if (game.user.isGM) guard(ensureAdvertisementMacro)();
 });
 Hooks.on("renderChatMessageHTML", (_message, html) => {
   if (html) attachInfo(html);

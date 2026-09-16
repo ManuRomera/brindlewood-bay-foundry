@@ -956,6 +956,11 @@
   color: #274f43 !important;
   margin-top: 8px;
 }
+.bb-sidebar-create {
+  background: #f2dfc5 !important;
+  color: #704636 !important;
+  margin-top: 4px;
+}
 @media (max-width: 800px) {
   .bb-two,
   .bb-dashboard {

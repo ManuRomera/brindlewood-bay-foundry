@@ -90,6 +90,7 @@ test("GM content is not a player-observer pack", () => {
   const m = JSON.parse(
     fs.readFileSync(new URL("../system.json", import.meta.url)),
   );
+  assert.equal(m.socket, true);
   for (const p of m.packs.filter((p) =>
     ["aventuras", "sospechosos", "guardiana"].includes(p.name),
   ))
@@ -103,6 +104,20 @@ test("the advertisement inspiration macro is player-visible and private", () => 
   assert.equal(pack.ownership.PLAYER, "OBSERVER");
   const [macro] = read("anuncios");
   assert.equal(macro.author, null);
+  assert.equal(macro.name, "Generador de anuncios");
+  assert.match(macro.img, /ad-generator\.svg$/);
+  assert.equal(macro.flags["brindlewood-bay"].advertisementInspiration, true);
   assert.match(macro.command, /advertisementInspiration/);
   assert.doesNotMatch(macro.command, /advertisement\(\)/);
+});
+test("player creation is exposed without the global Actor creation permission", () => {
+  const club = fs.readFileSync(new URL("../module/club.mjs", import.meta.url), "utf8");
+  const main = fs.readFileSync(new URL("../module/main.mjs", import.meta.url), "utf8");
+  assert.doesNotMatch(club, /ACTOR_CREATE/);
+  assert.match(club, /registerExpertCreationSocket/);
+  assert.match(club, /async \(message, senderId\)/);
+  assert.match(club, /game\.users\.get\(senderId\)/);
+  assert.match(club, /ownership: \{ default: 0, \[creatorId\]: 3 \}/);
+  assert.match(main, /data-bb-create-expert/);
+  assert.match(main, /ensureAdvertisementMacro/);
 });

@@ -1,13 +1,13 @@
 [
   {
     "_id": "a4d6e92b187f50c3",
-    "name": "Inspiración para mi anuncio",
+    "name": "Generador de anuncios",
     "type": "script",
-    "img": "systems/brindlewood-bay/assets/teacup.svg",
+    "img": "systems/brindlewood-bay/assets/ad-generator.svg",
     "scope": "global",
     "author": null,
     "command": "await game.brindlewood.advertisementInspiration();",
     "ownership": { "default": 2 },
-    "flags": {}
+    "flags": { "brindlewood-bay": { "advertisementInspiration": true } }
   }
 ]

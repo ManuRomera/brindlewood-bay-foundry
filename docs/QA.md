@@ -1,10 +1,10 @@
-# Verificación de la WIP 0.5.1-wip.1
+# Verificación de la WIP 0.6.0-wip.1
 
-Fecha: 15 de septiembre de 2026. Foundry 13.351 real, servidor local con directorio de datos aislado y Chromium de escritorio. Ningún mundo del usuario se usó como prueba. Código dirigido a Foundry 13; no se declara verificada la versión 14.
+Fecha: 16 de septiembre de 2026. Foundry 13.351 real, servidor local con directorio de datos aislado y Chromium de escritorio. Ningún mundo del usuario se usó como prueba. Código dirigido a Foundry 13; no se declara verificada la versión 14.
 
 ## Pruebas automatizadas
 
-35 pruebas de contenido, fórmulas, umbrales de resultados, Coronas, avances, límites de recursos, exclusividades, creación aleatoria, escena y libros de casos, posiciones de ventanas, variedad de anuncios, progresión de la conspiración y conservación de campos de formulario. Validador de manifiesto, versiones, sintaxis y recursos; construcción de ocho compendios LevelDB y ZIP.
+39 pruebas de contenido, fórmulas, umbrales de resultados, Coronas, avances, límites de recursos, exclusividades, creación de jugadoras, escena y libros de casos, instalación de macros, catalogación, posiciones de ventanas, variedad de anuncios, progresión de la conspiración y conservación de campos de formulario. Validador de manifiesto, versiones, sintaxis y recursos; construcción de ocho compendios LevelDB y ZIP.
 
 ## Pruebas realizadas dentro de Foundry
 
@@ -33,7 +33,11 @@ Fecha: 15 de septiembre de 2026. Foundry 13.351 real, servidor local con directo
 - Comprobar como Guardiana y como jugadora que el salón muestra los mismos contadores comunes, las pistas desplegables de cada caso y el progreso esencial de las Expertas; las acciones de administración solo aparecen para la Guardiana.
 - Abrir la ficha rediseñada y comprobar que habilidades, PE, avances, Condiciones, Hogar y Coronas permanecen visibles mientras se consultan los movimientos. Los contadores compactos dejan más espacio útil. Moverla, cerrarla y abrirla de nuevo confirma que recupera la última posición dentro del área visible.
 - Crear automáticamente la escena «The Candlelight · Salón del club», comprobar el encuadre completo, la ausencia de cuadrícula, visión y niebla, el salón sin personajes y el título legible sobre el libro central. Al resolver «Papá por la borda», solo su libro aparece apilado sobre la mesa.
-- Dar paso a anuncios desde el salón como Guardiana y publicar únicamente el indicio y la regla del resultado 10–11. Entrar como jugadora, abrir «Macro · Inspiración para anuncios», combinar sus cinco categorías y comprobar que la idea aparece en una ventana privada sin publicarse en el chat.
+- Dar paso a anuncios desde el salón como Guardiana y publicar únicamente el indicio y la regla del resultado 10–11. Entrar como jugadora, abrir «Generador de anuncios», combinar sus cinco categorías y comprobar que la idea aparece en una ventana privada sin publicarse en el chat.
+- Entrar como jugadora sin el permiso general «Crear Actores» y comprobar que el directorio muestra «Crear mi Experta» bajo «El salón del club». Abrirlo y verificar que ofrece creación guiada y aleatoria.
+- Mantener conectadas a la Guardiana y a la jugadora en dos sesiones. Crear al azar y castellanizar a Rosario Gallardo desde la sesión jugadora; la Guardiana valida la petición, se crea «PJ: Rosario Gallardo» con propiedad exclusiva de esa jugadora, aparece en el salón y la ficha editable se abre en su sesión.
+- Comprobar que los Actores existentes y nuevos aparecen catalogados como «PJ: …» y «Caso: …», sin repetir el prefijo al recargar el mundo.
+- Comprobar desde la sesión jugadora que «Generador de anuncios» aparece en el directorio de macros y en la posición 1 de la barra, con su icono propio, y que abre el generador privado completo.
 - Abrir la confirmación de reinicio y comprobar que enumera el alcance y la conservación de los compendios. La selección de documentos y el reajuste de estado se revisaron mediante las pruebas de construcción; no se ejecutó la eliminación final sobre datos del usuario.
 
 ## Errores encontrados y corregidos durante la prueba
@@ -45,6 +49,7 @@ Fecha: 15 de septiembre de 2026. Foundry 13.351 real, servidor local con directo
 5. El selector de imagen y el evento de renderizado de chat tenían alias heredados. Se sustituyeron por las API con espacio de nombres de Foundry 13.
 6. El primer archivo de dependencias contenía enlaces a otro proyecto local. La verificación pública instala las tres versiones fijadas desde el registro y deja de depender de rutas del equipo de desarrollo.
 7. La macro de compendio no declaraba autor. Foundry permitía abrirla y ejecutarla, pero emitía una advertencia de validación; ahora declara explícitamente autor nulo.
+8. El intercambio de creación entre jugadora y Guardiana requería declarar el canal de socket en el manifiesto. La primera prueba real agotó el tiempo de espera; se añadió `socket: true`, se reinició el mundo y la prueba completa terminó con la ficha creada y abierta para su propietaria.
 
 ## Alcance de los permisos
 

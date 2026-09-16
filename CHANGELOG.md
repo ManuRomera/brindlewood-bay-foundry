@@ -1,3 +1,10 @@
+# 0.6.0-wip.1
+
+- Botón «Crear mi Experta» visible para todas las jugadoras bajo el acceso al salón, con elección entre creación guiada y aleatoria.
+- La Guardiana conectada valida la solicitud y crea la ficha con propiedad total para la jugadora, sin conceder permiso general para crear Actores.
+- Expertas y misterios se catalogan como «PJ: nombre» y «Caso: título»; los documentos existentes se actualizan al entrar.
+- El Generador de anuncios se instala en el directorio de Macros y en la casilla 1 de la barra de cada jugadora, con un icono propio.
+
 # 0.5.1-wip.1
 
 - Libros de casos rediseñados con lomos legibles, cantos de páginas, tapas y perspectiva común.
