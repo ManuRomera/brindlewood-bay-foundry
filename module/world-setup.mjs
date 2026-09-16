@@ -10,7 +10,7 @@ export async function ensureAdvertisementMacro() {
     type: "script",
     img: `systems/${ID}/assets/ad-generator.svg`,
     scope: "global",
-    command: "await game.brindlewood.advertisementInspiration();",
+    command: "await import('/systems/brindlewood-bay/module/advertisements.mjs').then(({ advertisementInspiration }) => advertisementInspiration());",
     ownership: { default: 2 },
     flags: { [ID]: { [AD_MACRO_FLAG]: true } },
   };

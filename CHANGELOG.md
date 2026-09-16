@@ -1,3 +1,8 @@
+# 0.6.2-wip.1
+
+- El Generador de anuncios usa una única ventana estable: «Generar propuesta» escribe el resultado dentro de ella y puede repetirse sin cerrar ni encadenar diálogos.
+- La macro carga el generador directamente desde el sistema, incluso si el espacio global de la partida todavía no está disponible.
+
 # 0.6.1-wip.1
 
 - El Generador de anuncios entrega una propuesta aleatoria completa nada más pulsarlo y permite generar otra sin pasar por selectores.

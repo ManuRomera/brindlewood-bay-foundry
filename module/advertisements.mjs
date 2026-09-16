@@ -55,6 +55,9 @@ export function advertisementSeed(random = Math.random) {
   };
 }
 
+export const advertisementSeedMarkup = (result) =>
+  `<div class="bb-ad-result"><p class="bb-eyebrow">SEMILLA PARA IMPROVISAR</p><h3>${esc(result.product)}</h3><p class="bb-ad-copy">${esc(result.text)}</p><p class="bb-note">Léela como punto de partida: puedes cambiar cualquier detalle. Solo tú ves esta propuesta.</p></div>`;
+
 export async function advertisement() {
   gm();
   const club = op.club();
@@ -73,24 +76,35 @@ export async function advertisement() {
   );
 }
 
-export async function advertisementInspiration() {
-  let result;
-  let action = "again";
-  while (action === "again") {
-    result = advertisementSeed();
-    action = await foundry.applications.api.DialogV2.wait({
-      window: { title: "Tu propuesta de anuncio" },
-      position: { width: 580 },
-      classes: ["bb-app"],
-      content: `<div class="bb-dialog bb-ad bb-ad-seed"><p class="bb-eyebrow">SEMILLA PARA IMPROVISAR</p><h3>${esc(result.product)}</h3><p class="bb-ad-copy">${esc(result.text)}</p><p class="bb-note">Léela como punto de partida: puedes cambiar cualquier detalle. Solo tú ves esta propuesta.</p></div>`,
-      buttons: [
-        { action: "again", label: "Generar otra propuesta", icon: "fa-solid fa-wand-magic-sparkles" },
-        { action: "close", label: "Cerrar", icon: "fa-solid fa-check", default: true },
-      ],
-      rejectClose: false,
-    });
-  }
-  return result;
+export function advertisementInspiration() {
+  const dialog = new foundry.applications.api.DialogV2({
+    window: { title: "Generador de anuncios" },
+    position: { width: 580 },
+    classes: ["bb-app"],
+    form: { closeOnSubmit: false },
+    content: `<div class="bb-dialog bb-ad bb-ad-seed"><p>Si necesitas una idea, pulsa el botón. El resultado es privado y no modifica la ficha ni el chat.</p><div class="bb-ad-result" data-bb-ad-result><p class="bb-ad-empty"><i class="fa-solid fa-tv"></i><b>Tu propuesta aparecerá aquí.</b></p></div></div>`,
+    buttons: [
+      {
+        action: "generate",
+        label: "Generar propuesta",
+        icon: "fa-solid fa-wand-magic-sparkles",
+        default: true,
+        callback: (_event, _button, app) => {
+          const result = advertisementSeed();
+          app.element.querySelector("[data-bb-ad-result]").innerHTML = advertisementSeedMarkup(result);
+          return result;
+        },
+      },
+      {
+        action: "close",
+        label: "Cerrar",
+        icon: "fa-solid fa-xmark",
+        callback: (_event, _button, app) => app.close(),
+      },
+    ],
+  });
+  dialog.render({ force: true });
+  return dialog;
 }
 
 export const advertisementOptionCount = () =>

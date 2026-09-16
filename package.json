@@ -1,6 +1,6 @@
 {
   "name": "brindlewood-bay-foundry",
-  "version": "0.6.1-wip.1",
+  "version": "0.6.2-wip.1",
   "private": true,
   "type": "module",
   "scripts": {
