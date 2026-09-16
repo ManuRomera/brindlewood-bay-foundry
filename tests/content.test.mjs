@@ -96,7 +96,7 @@ test("GM content is not a player-observer pack", () => {
   ))
     assert.equal(p.ownership.PLAYER, "NONE");
 });
-test("the advertisement inspiration macro is player-visible and private", () => {
+test("the advertisement inspiration macro is available to players", () => {
   const manifest = JSON.parse(
     fs.readFileSync(new URL("../system.json", import.meta.url)),
   );

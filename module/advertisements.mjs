@@ -1,4 +1,3 @@
-import { ID } from "./rules.mjs";
 import { esc, select, prompt, gm } from "./ui.mjs";
 import * as op from "./operations.mjs";
 
@@ -51,12 +50,12 @@ export function advertisementSeed(random = Math.random) {
   ]));
   return {
     ...result,
-    text: `Una propuesta en formato de ${result.format} anuncia ${result.product}. La protagoniza ${result.star} y promete ${result.promise}, pero ${result.twist}.`,
+    text: `Una propuesta en formato de ${result.format} anuncia ${result.product}. Está protagonizada por ${result.star} y promete ${result.promise}, pero ${result.twist}.`,
   };
 }
 
 export const advertisementSeedMarkup = (result) =>
-  `<div class="bb-ad-result"><p class="bb-eyebrow">SEMILLA PARA IMPROVISAR</p><h3>${esc(result.product)}</h3><p class="bb-ad-copy">${esc(result.text)}</p><p class="bb-note">Léela como punto de partida: puedes cambiar cualquier detalle. Solo tú ves esta propuesta.</p></div>`;
+  `<div class="bb-ad-result"><p class="bb-eyebrow">COMBINACIÓN ALEATORIA</p><h3>${esc(result.product)}</h3><p class="bb-ad-copy">${esc(result.text)}</p><p class="bb-note">Usadla como punto de partida: podéis cambiar cualquier detalle.</p></div>`;
 
 export async function advertisement() {
   gm();
@@ -76,61 +75,13 @@ export async function advertisement() {
   );
 }
 
-let AdvertisementInspirationApp;
-
-function getAdvertisementInspirationApp() {
-  if (AdvertisementInspirationApp) return AdvertisementInspirationApp;
-  const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
-  AdvertisementInspirationApp = class extends HandlebarsApplicationMixin(ApplicationV2) {
-    static DEFAULT_OPTIONS = {
-      id: "bb-advertisement-inspiration",
-      classes: ["bb-app", "bb-ad-dialog"],
-      window: { title: "Tu propuesta de anuncio", resizable: true },
-      position: { width: 580, height: 430 },
-      actions: {
-        reroll() {
-          this.result = advertisementSeed();
-          this.render({ force: true });
-        },
-        close() {
-          this.close();
-        },
-      },
-    };
-    static PARTS = {
-      body: {
-        template: `systems/${ID}/templates/advertisement-inspiration.hbs`,
-        scrollable: [".bb-dialog"],
-      },
-    };
-    constructor(options = {}) {
-      super(options);
-      this.result = advertisementSeed();
-    }
-    async _prepareContext() {
-      return this.result;
-    }
-    async _onRender(context, options) {
-      await super._onRender(context, options);
-      const content = this.element.querySelector(".window-content");
-      const body = this.element.querySelector(".bb-ad-window");
-      if (!content || !body) throw Error("No se pudo montar la propuesta de anuncio.");
-      Object.assign(content.style, { position: "relative", overflow: "hidden" });
-      Object.assign(body.style, {
-        position: "absolute",
-        inset: "0",
-        display: "grid",
-        gridTemplateRows: "minmax(0, 1fr) auto",
-        minHeight: "0",
-      });
-    }
-  };
-  return AdvertisementInspirationApp;
-}
-
 export function advertisementInspiration() {
-  const App = getAdvertisementInspirationApp();
-  return new App().render({ force: true });
+  const result = advertisementSeed();
+  return op.chat(
+    null,
+    "Propuesta de Guión de Anuncio",
+    `<div class="bb-ad bb-ad-seed">${advertisementSeedMarkup(result)}</div>`,
+  );
 }
 
 export const advertisementOptionCount = () =>

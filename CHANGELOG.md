@@ -1,3 +1,7 @@
+# 0.6.7-wip.1
+
+- Se elimina por completo la ventana del generador. Cada ejecución de la macro crea una combinación aleatoria y la publica en el chat como «Propuesta de Guión de Anuncio».
+
 # 0.6.6-wip.1
 
 - La propuesta deja de depender de las alturas heredadas por los envoltorios internos de HandlebarsApplicationMixin. Su contenido queda anclado al área útil de la ventana mediante una cuadrícula absoluta.

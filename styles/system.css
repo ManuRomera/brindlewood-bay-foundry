@@ -203,25 +203,6 @@
   font-size: 18px;
   line-height: 1.55;
 }
-.bb-app.bb-ad-dialog .window-content {
-  position: relative;
-  overflow: hidden;
-}
-.bb-ad-window {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  grid-template-rows: minmax(0, 1fr) auto;
-  min-height: 0;
-}
-.bb-ad-window > .bb-dialog {
-  min-height: 0;
-  overflow: auto;
-}
-.bb-ad-window > .form-footer {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
 .bb-app .form-footer {
   padding: 10px 24px 20px;
 }

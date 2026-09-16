@@ -6,7 +6,7 @@
 
 Sistema nativo en español para Foundry **13.351**. Seis misterios, un club de lectura y un oscuro secreto bajo la bahía. Creado por ManuRomera a partir de la edición española 1.0 de Jason Cordova.
 
-> **WIP · 0.6.6-wip.1.** Compatible con toda la rama estable de Foundry 13. No se declara compatibilidad con Foundry 14. Consulta [el alcance y la verificación](docs/QA.md).
+> **WIP · 0.6.7-wip.1.** Compatible con toda la rama estable de Foundry 13. No se declara compatibilidad con Foundry 14. Consulta [el alcance y la verificación](docs/QA.md).
 
 ## Entrar en el club
 
@@ -45,7 +45,7 @@ Fichas de marfil, verde salvia y rosa antiguo; retratos editables; controles de 
 
 El salón funciona como tablero común: muestra misterios activos, pistas ordinarias y del Vacío, y el progreso de todas las Expertas. Las pistas descubiertas pueden consultarse allí sin abrir varias ventanas. Las ventanas recuerdan su tamaño y ubicación por usuario. La Guardiana dispone de un reinicio de campaña que conserva los compendios y cualquier contenido ajeno al sistema.
 
-El **Generador de anuncios** aparece en el directorio de Macros y el sistema lo coloca en la casilla 1 de la barra de cada jugadora, con su propio icono de televisor. Al ejecutar la macro se abre inmediatamente una ventana privada que ya contiene una propuesta completa; vuelve a ejecutarla para obtener otra. Combina producto, formato, protagonista, promesa y giro en más de un millón de ideas y no publica el resultado. La Guardiana solo da paso al anuncio desde el salón con el indicio sencillo que establece el manual.
+El **Generador de anuncios** aparece en el directorio de Macros y el sistema lo coloca en la casilla 1 de la barra de cada jugadora, con su propio icono de televisor. Cada ejecución combina producto, formato, protagonista, promesa y giro entre más de un millón de posibilidades y publica en el chat una tarjeta titulada «Propuesta de Guión de Anuncio». La Guardiana solo da paso al anuncio desde el salón con el indicio sencillo que establece el manual.
 
 La escena **The Candlelight · Salón del club** usa una ilustración original de máximo detalle. El libro central lleva el título del sistema. Los seis libros de caso están incluidos como baldosas ocultas y el sistema revela el caso en curso y los ya resueltos en el primer plano izquierdo, con los lomos visibles y el libro principal libre.
 
