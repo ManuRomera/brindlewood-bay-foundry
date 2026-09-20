@@ -69,7 +69,7 @@ El salón lleva la cuenta de sesiones y la progresión de la conspiración (3 / 
 
 `npm ci`, `npm test`, `npm run check`, `npm run build`. El ZIP de distribución se construye con una lista explícita de archivos y compendios LevelDB. [Criterios aprendidos de anteriores sistemas](docs/REGLAS.md) · [QA](docs/QA.md).
 
-Sistema de ManuRomera. Juego escrito y diseñado por **Jason Cordova**; traducción de **Chus Abascal**. Créditos completos y separación entre licencia del código y contenido en [LICENSE](LICENSE). El titular del proyecto declara permiso expreso para incluir las aventuras y contenido necesario. No se distribuye el PDF ni su arte original. La portada es una ilustración original generada con IA para esta adaptación, sin carácter oficial; [dirección artística y prompt](docs/ARTE.md).
+Sistema de ManuRomera. Juego escrito y diseñado por **Jason Cordova**; traducción de **Chus Abascal**. Créditos completos y separación entre licencia del código y contenido en [LICENSE](LICENSE). No se distribuye el PDF ni su arte original. La portada es una ilustración original generada con IA para esta adaptación, sin carácter oficial; [dirección artística y prompt](docs/ARTE.md).
 
 La actualización 0.5.1 recoloca y redimensiona automáticamente los libros de casos de los mundos existentes al entrar como Guardiana.
 
