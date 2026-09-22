@@ -1,3 +1,7 @@
+# 0.7.0-wip.1
+
+- Incluye los cambios de 0.6.10-wip.1 con un número de versión que Foundry reconoce como actualización desde 0.6.9-wip.1 (Foundry compara «10-wip» y «9-wip» como texto).
+
 # 0.6.10-wip.1
 
 - Ajustado el encuadre de la portada en la cabecera de The Candlelight para mantener visibles las caras de las protagonistas.
