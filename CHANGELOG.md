@@ -1,3 +1,9 @@
+# 0.6.9-wip.1
+
+- Nueva portada de Brindlewood Bay aplicada al repositorio y al paquete instalable de Foundry VTT.
+- El paquete de distribución se vuelve a generar para que las instalaciones existentes reciban la nueva imagen al actualizar.
+- Se automatiza la publicación de nuevas releases cuando cambia la versión del manifiesto.
+
 # 0.6.8-wip.1
 
 - Las cinco tablas del generador quedan declaradas y verificadas individualmente: 32 productos, 16 formatos, 12 protagonistas, 12 promesas y 16 giros.
