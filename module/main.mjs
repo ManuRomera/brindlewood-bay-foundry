@@ -20,6 +20,9 @@ import { attachInfo } from "./inspector.mjs";
 import { ensureSalonScene, syncCaseBooks } from "./salon-scene.mjs";
 import { ensureAdvertisementMacro } from "./world-setup.mjs";
 import { catalogName } from "./catalog.mjs";
+import { initJoinScreenBackground } from "./join-screen.mjs";
+initJoinScreenBackground();
+
 Hooks.once("init", () => {
   CONFIG.Actor.dataModels = {
     ...CONFIG.Actor.dataModels,

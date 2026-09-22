@@ -1,3 +1,9 @@
+# 0.6.10-wip.1
+
+- Ajustado el encuadre de la portada en la cabecera de The Candlelight para mantener visibles las caras de las protagonistas.
+- Ajustado el fondo de la pantalla de acceso al mundo para mostrar completo el título de Brindlewood Bay.
+- Eliminadas reglas duplicadas de posicionamiento de la imagen de portada.
+
 # 0.6.9-wip.1
 
 - Nueva portada de Brindlewood Bay aplicada al repositorio y al paquete instalable de Foundry VTT.

@@ -695,6 +695,9 @@
   bottom: 13px;
   font-size: 30px;
 }
+.bb-cover-compact img {
+  object-position: 50% 24%;
+}
 .bb-club-heading {
   display: flex;
   align-items: center;
@@ -830,7 +833,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 35%;
+  object-position: 50% 22%;
   border: 0;
   display: block;
 }
@@ -1105,9 +1108,6 @@
   justify-content: center;
   gap: 0;
 }
-.bb-cover img {
-  object-position: 50% 12%;
-}
 .bb-app .window-header button.icon {
   font-family: var(--fa-style-family, "Font Awesome 6 Pro");
   font-weight: 900;
@@ -1125,9 +1125,6 @@
 .bb-app input[type="checkbox"]::before,
 .bb-app input[type="checkbox"]::after {
   content: none !important;
-}
-.bb-cover img {
-  object-position: 50% 45%;
 }
 .bb-cover::after {
   content: "";
