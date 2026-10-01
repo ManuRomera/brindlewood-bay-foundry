@@ -19,6 +19,7 @@ export function accessibilityState() {
     largeText: Boolean(setting("largeText", false)),
     reduceMotion: Boolean(setting("reduceMotion", false)),
     strongFocus: Boolean(setting("strongFocus", false)),
+    readableFont: Boolean(setting("readableFont", false)),
     autoCenterWindows: Boolean(setting("autoCenterWindows", false)),
     brightness: Number(setting("canvasBrightness", 1)),
     contrast: Number(setting("canvasContrast", 1)),
@@ -35,6 +36,7 @@ export function applyAccessibility() {
   body.classList.toggle("bb-large", state.largeText);
   body.classList.toggle("bb-reduce-motion", state.reduceMotion);
   body.classList.toggle("bb-strong-focus", state.strongFocus);
+  body.classList.toggle("bb-readable-font", state.readableFont);
 
   const root = document.documentElement;
   root.style.setProperty("--bb-canvas-brightness", String(state.brightness));
@@ -102,6 +104,15 @@ export function registerAccessibility() {
     hint: "Hace mucho más visible qué control tiene el foco al navegar con teclado.",
     onChange: refresh,
   });
+  game.settings.register(ID, "readableFont", {
+    scope: "client",
+    config: true,
+    type: Boolean,
+    default: false,
+    name: "Accesibilidad · Tipografía de alta legibilidad",
+    hint: "Sustituye la tipografía ornamental por una sans serif clara en fichas y chat.",
+    onChange: refresh,
+  });
   game.settings.register(ID, "autoCenterWindows", {
     scope: "client",
     config: true,
@@ -160,6 +171,13 @@ export function registerAccessibility() {
     hint: "Activa o desactiva la reducción de animaciones.",
     editable: [],
     onDown: () => toggleBoolean("reduceMotion"),
+    restricted: false,
+  });
+  game.keybindings.register(ID, "toggleReadableFont", {
+    name: "Brindlewood Bay · Alternar tipografía de alta legibilidad",
+    hint: "Alterna entre la tipografía original y una sans serif clara.",
+    editable: [],
+    onDown: () => toggleBoolean("readableFont"),
     restricted: false,
   });
 }
