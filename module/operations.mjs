@@ -384,7 +384,7 @@ export async function theorize(a) {
   const cs = a.system.clues.filter((c) => !c.void);
   const d = await prompt(
     "Teorizar · " + a.name,
-    area("theory", "Apunte opcional de la teoría (podéis explicarla por voz)", a.system.theory) +
+    area("theory", "Apunte opcional de la teoría (podéis explicarla por voz)", a.system.theory || a.system.notes) +
       cs.map((c) => check(c.id, c.text)).join("") +
       check(
         "consensus",
