@@ -20,6 +20,7 @@ import { attachInfo } from "./inspector.mjs";
 import { ensureSalonScene, syncCaseBooks } from "./salon-scene.mjs";
 import { ensureAdvertisementMacro } from "./world-setup.mjs";
 import { catalogName } from "./catalog.mjs";
+import { registerCaseCollaborationSocket } from "./case-collaboration.mjs";
 import { initJoinScreenBackground } from "./join-screen.mjs";
 initJoinScreenBackground();
 
@@ -101,6 +102,7 @@ Hooks.once("init", () => {
 });
 Hooks.once("ready", async () => {
   registerExpertCreationSocket();
+  registerCaseCollaborationSocket();
   if (game.user.isGM) {
     await guard(ensureSalonScene)();
     await guard(ensureAdvertisementMacro)();
