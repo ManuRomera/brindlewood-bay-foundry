@@ -7,6 +7,8 @@ import {
   outcome,
   outcomes,
   crownPlan,
+  canCrownRecord,
+  canOfferChatCrown,
   creationIssue,
   conspiracyLayer,
   advancePlan,
@@ -180,4 +182,14 @@ test("Dale and Fox are mutually exclusive between different Expertas", () => {
   assert.equal(expertMoveConflict("Fox Mulder", actors, "b"), true);
   assert.equal(expertMoveConflict("Fox Mulder", actors, "a"), false);
   assert.equal(expertMoveConflict("Jonathan Hart", actors, "b"), false);
+});
+
+test("failed ordinary rolls expose the chat Crown action only once", () => {
+  const failed = { move: "day", tier: 0, crowned: false };
+  assert.equal(canCrownRecord(failed), true);
+  assert.equal(canOfferChatCrown(failed), true);
+  assert.equal(canOfferChatCrown({ ...failed, tier: 1 }), false);
+  assert.equal(canOfferChatCrown({ ...failed, crowned: true }), false);
+  assert.equal(canOfferChatCrown({ ...failed, move: "theorize" }), false);
+  assert.equal(canOfferChatCrown({ ...failed, resolved: true }), false);
 });

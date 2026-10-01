@@ -8,6 +8,7 @@ import {
   outcome,
   outcomes,
   crownPlan,
+  canCrownRecord,
   QUEEN,
   VOID,
   VOID_TEXT,
@@ -42,17 +43,20 @@ export async function saveClub(c) {
   gm();
   return game.settings.set(ID, "club", c);
 }
+function chatContent(title, body) {
+  return `<article class="bb-chat"><div class="bb-eyebrow">EL CLUB DE LAS EXPERTAS</div><h3>${esc(title)}</h3>${body}</article>`;
+}
 export async function chat(a, title, body, roll = null, flags = {}) {
   const data = {
     speaker: ChatMessage.getSpeaker({ actor: a }),
-    content: `<article class="bb-chat"><div class="bb-eyebrow">EL CLUB DE LAS EXPERTAS</div><h3>${esc(title)}</h3>${body}</article>`,
+    content: chatContent(title, body),
     flags: { [ID]: flags },
   };
   if (roll) data.rolls = [roll];
   return ChatMessage.create(data);
 }
-export async function publishRoll(a, record) {
-  let r = record.roll ? Roll.fromData(record.roll) : null;
+async function rollBody(record) {
+  const r = record.roll ? Roll.fromData(record.roll) : null;
   const resultRows = outcomes(record.move, { voidMystery: record.voidMystery })
     .map(({ index, label, text }) => `<li class="${index === record.tier ? "active" : ""}"><strong>${esc(label)}</strong><span>${esc(text)}</span></li>`)
     .join("");
@@ -63,13 +67,31 @@ export async function publishRoll(a, record) {
     record.home ? `Objeto: ${record.home}` : "",
     record.note || "",
   ].filter(Boolean).join(" · ");
+  const body = `<div class="bb-result">${esc(record.crowned ? ["6−", "7–9", "10–11", "12+"][record.tier] : record.total)}</div><p><strong>${TIER_NAMES[record.tier]}</strong></p><p class="bb-current-outcome">${esc(outcome(record.move, record.tier, { voidMystery: record.voidMystery }))}</p>${details || record.context ? `<p class="bb-source">${esc(details || record.context)}</p>` : ""}${record.crowned ? `<p class="bb-crowned"><i class="fas fa-crown" aria-hidden="true"></i> Resultado revisado mediante Corona. Total original: ${esc(record.total)}.</p>` : ""}<details class="bb-outcomes" open><summary>Todos los grados de resultado</summary><ol>${resultRows}</ol></details>${r ? '<details class="bb-original-dice"><summary>Ver los dados originales · ' + esc(r.formula) + "</summary>" + (await r.render()) + "</details>" : ""}`;
+  return { body, roll: r };
+}
+export async function publishRoll(a, record) {
+  const rendered = await rollBody(record);
   return chat(
     a,
     MOVES[record.move] ?? record.move,
-    `<div class="bb-result">${esc(record.crowned ? ["6−", "7–9", "10–11", "12+"][record.tier] : record.total)}</div><p><strong>${TIER_NAMES[record.tier]}</strong></p><p class="bb-current-outcome">${esc(outcome(record.move, record.tier, { voidMystery: record.voidMystery }))}</p>${details || record.context ? `<p class="bb-source">${esc(details || record.context)}</p>` : ""}${record.crowned ? `<p class="bb-crowned">♛ Resultado revisado mediante Corona. Total original: ${esc(record.total)}.</p>` : ""}<details class="bb-outcomes" open><summary>Todos los grados de resultado</summary><ol>${resultRows}</ol></details>${r ? '<details class="bb-original-dice"><summary>Ver los dados originales · ' + esc(r.formula) + "</summary>" + (await r.render()) + "</details>" : ""}`,
-    r,
+    rendered.body,
+    rendered.roll,
     { recordId: record.id, actorId: a.id, move: record.move },
   );
+}
+async function reviseRollMessage(messageId, a, record) {
+  const message = game.messages.get(messageId);
+  if (!message || (!message.isAuthor && !game.user.isGM))
+    throw Error("No puedes modificar esta tarjeta de chat.");
+  if (
+    message.getFlag(ID, "recordId") !== record.id ||
+    message.getFlag(ID, "actorId") !== a.id
+  ) throw Error("La tarjeta no corresponde a esta tirada.");
+  const rendered = await rollBody(record);
+  await message.update({
+    content: chatContent(MOVES[record.move] ?? record.move, rendered.body),
+  });
 }
 export async function rollMove(a, move, stat) {
   owner(a);
@@ -146,54 +168,66 @@ export async function rollMove(a, move, stat) {
     }
   });
 }
-export async function crown(a, recordId = null, forced = null) {
+export async function crown(
+  a,
+  recordId = null,
+  forced = null,
+  messageId = null,
+  failureOnly = false,
+) {
   owner(a);
   const s = a.system;
   const record = recordId ? s.history.find((x) => x.id === recordId) : null;
-  if (
-    recordId &&
-    (!record ||
-      record.move === "theorize" ||
-      record.tier >= 3 ||
-      record.resolved)
-  )
+  if (recordId && !canCrownRecord(record))
     throw Error("Esta tirada no admite Corona.");
+  if (failureOnly && record?.tier !== 0)
+    throw Error("Este resultado ya no es un fallo que pueda corregirse desde esta tarjeta.");
   const opts = [];
   if (forced !== "void")
     QUEEN.forEach((t, i) => {
-      if (!s.queen.includes(i)) opts.push([`queen:${i}`, t]);
+      if (!s.queen.includes(i))
+        opts.push([`queen:${i}`, `Corona de la Reina · ${t}`]);
     });
   if (s.void < 5)
-    opts.push([`void:${s.void}`, `${VOID[s.void]} · ${VOID_TEXT[s.void]}`]);
+    opts.push([
+      `void:${s.void}`,
+      `Corona del Vacío · ${VOID[s.void]} · ${VOID_TEXT[s.void]}`,
+    ]);
   if (!opts.length) throw Error("No quedan Coronas disponibles.");
   const d = await prompt(
     "Ponerse una Corona",
-    `<p>Después de narrar el resultado, podéis explorar otra línea temporal. La escena de Corona debe resolverse antes del fin de sesión.</p>${select("choice", "Escena", opts)}`,
-    "Marcar Corona",
+    `<p>Elige la Corona que aceptas. La tirada subirá un grado y la Corona quedará marcada en tu ficha. La escena asociada deberá resolverse antes del fin de sesión.</p>${select("choice", "Corona", opts)}`,
+    recordId ? "Aceptar Corona y mejorar resultado" : "Marcar Corona",
   );
   if (!d) return;
   return locked(a.uuid, async () => {
+    const current = recordId
+      ? safeSystem(a).history.find((x) => x.id === recordId)
+      : null;
+    if (recordId && !canCrownRecord(current))
+      throw Error("Esta tirada ya no admite Corona.");
+    if (failureOnly && current?.tier !== 0)
+      throw Error("Este fallo ya ha sido revisado.");
+
     const [kind, i] = d.get("choice").split(":");
     const n = crownPlan(safeSystem(a), kind, Number(i));
     if (recordId) {
       const r = n.history.find((x) => x.id === recordId);
-      if (r.tier >= 3 || r.move === "theorize" || r.resolved)
-        throw Error("La tirada ya no admite Corona.");
       r.tier++;
       r.crowned = true;
     }
     await a.update({ system: n });
-    if (recordId)
-      await publishRoll(
-        a,
-        n.history.find((x) => x.id === recordId),
-      );
-    else
+    if (recordId) {
+      const revised = n.history.find((x) => x.id === recordId);
+      if (messageId) await reviseRollMessage(messageId, a, revised);
+      else await publishRoll(a, revised);
+    } else {
       await chat(
         a,
         "Ponerse una Corona",
         `<p>${esc(kind === "queen" ? QUEEN[Number(i)] : VOID_TEXT[Number(i)])}</p>`,
       );
+    }
   });
 }
 export async function condition(a) {

@@ -1345,3 +1345,285 @@
   grid-column: 1 / -1;
   margin: 0;
 }
+
+
+/* Chat actions */
+.bb-chat-actions {
+  display: flex;
+  margin-top: 14px;
+}
+.bb-chat-actions button {
+  width: 100%;
+  min-height: 40px;
+  border: 2px solid #274f43;
+  border-radius: 6px;
+  background: #fffaf0;
+  color: #274f43;
+  font: 700 13px/1.35 system-ui, sans-serif;
+  cursor: pointer;
+}
+.bb-chat-actions button:hover {
+  background: #dbe3d6;
+}
+.bb-chat-actions button:disabled {
+  opacity: .6;
+  cursor: default;
+}
+
+/* Accessibility */
+.bb-large .bb-chat {
+  font-size: 18px;
+  line-height: 1.65;
+}
+.bb-large .bb-chat h3 {
+  font-size: 23px;
+}
+.bb-large .bb-chat button,
+.bb-large .bb-chat summary {
+  font-size: 16px;
+}
+.bb-large .bb-current-outcome,
+.bb-large .bb-outcomes li span {
+  font-size: 18px;
+}
+
+body.bb-strong-focus :focus-visible {
+  outline: 4px solid #ffbf47 !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 0 2px #111 !important;
+}
+
+body.bb-reduce-motion .bb-app *,
+body.bb-reduce-motion .bb-chat *,
+body.bb-reduce-motion .bb-sidebar-button {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
+
+body.bb-canvas-filter #board {
+  filter:
+    brightness(var(--bb-canvas-brightness, 1))
+    contrast(var(--bb-canvas-contrast, 1))
+    saturate(var(--bb-canvas-saturation, 1));
+}
+
+/* Dark matte profile */
+body.bb-theme-dark .bb-app {
+  --bb-ink: #f3efe2;
+  --bb-paper: #171a18;
+  --bb-sage: #28322d;
+  --bb-rose: #392a29;
+  --bb-line: #8f978f;
+  --bb-muted: #d1cbbd;
+  --bb-green: #d9e7d8;
+  color-scheme: dark;
+}
+body.bb-theme-dark .bb-app,
+body.bb-theme-dark .bb-app .window-content,
+body.bb-theme-dark .bb-scroll,
+body.bb-theme-dark .bb-dialog,
+body.bb-theme-dark .bb-card,
+body.bb-theme-dark .bb-clue,
+body.bb-theme-dark .bb-note,
+body.bb-theme-dark .bb-status,
+body.bb-theme-dark .bb-stats,
+body.bb-theme-dark .bb-resource-strip,
+body.bb-theme-dark .bb-resource-strip > div,
+body.bb-theme-dark .bb-move,
+body.bb-theme-dark .bb-advance,
+body.bb-theme-dark .bb-rules-fold,
+body.bb-theme-dark .bb-known-clues,
+body.bb-theme-dark .bb-suggestion,
+body.bb-theme-dark .bb-creation-choice,
+body.bb-theme-dark .bb-case-note-input {
+  background: #1b1f1c;
+  color: #f3efe2;
+  border-color: #727c74;
+}
+body.bb-theme-dark .bb-masthead {
+  background: #222824;
+}
+body.bb-theme-dark .bb-app input,
+body.bb-theme-dark .bb-app textarea,
+body.bb-theme-dark .bb-app select,
+body.bb-theme-dark .bb-app button {
+  background: #202622;
+  color: #f7f1df;
+  border-color: #8b958d;
+}
+body.bb-theme-dark .bb-chat {
+  background: #1b1f1c;
+  color: #f3efe2;
+  border-color: #8b958d;
+  border-top-color: #d9e7d8;
+}
+body.bb-theme-dark .bb-chat h3,
+body.bb-theme-dark .bb-chat h4,
+body.bb-theme-dark .bb-result,
+body.bb-theme-dark .bb-outcomes summary {
+  color: #f3efe2;
+}
+body.bb-theme-dark .bb-current-outcome,
+body.bb-theme-dark .bb-outcomes li.active {
+  background: #28322d;
+  border-color: #aeb9af;
+}
+body.bb-theme-dark .bb-outcomes li {
+  border-color: #687169;
+}
+body.bb-theme-dark .bb-crowned {
+  color: #f2c989;
+}
+
+/* AAA high-contrast profile */
+body.bb-theme-contrast .bb-app {
+  --bb-ink: #000;
+  --bb-paper: #fff;
+  --bb-sage: #fff;
+  --bb-rose: #fff;
+  --bb-line: #000;
+  --bb-muted: #111;
+  --bb-green: #000;
+}
+body.bb-theme-contrast .bb-app,
+body.bb-theme-contrast .bb-app .window-content,
+body.bb-theme-contrast .bb-card,
+body.bb-theme-contrast .bb-clue,
+body.bb-theme-contrast .bb-note,
+body.bb-theme-contrast .bb-status,
+body.bb-theme-contrast .bb-stats,
+body.bb-theme-contrast .bb-resource-strip,
+body.bb-theme-contrast .bb-resource-strip > div,
+body.bb-theme-contrast .bb-move,
+body.bb-theme-contrast .bb-case-note-input,
+body.bb-theme-contrast .bb-app input,
+body.bb-theme-contrast .bb-app textarea,
+body.bb-theme-contrast .bb-app select,
+body.bb-theme-contrast .bb-app button {
+  background: #fff;
+  color: #000;
+  border-color: #000;
+}
+body.bb-theme-contrast .bb-masthead,
+body.bb-theme-contrast .bb-app .window-header {
+  background: #000;
+  color: #fff;
+}
+body.bb-theme-contrast .bb-masthead h1,
+body.bb-theme-contrast .bb-app .window-header .window-title,
+body.bb-theme-contrast .bb-app .window-header button {
+  color: #fff;
+}
+body.bb-theme-contrast .bb-chat {
+  background: #fff;
+  color: #000;
+  border: 2px solid #000;
+  border-top-width: 6px;
+}
+body.bb-theme-contrast .bb-chat h3,
+body.bb-theme-contrast .bb-chat h4,
+body.bb-theme-contrast .bb-result,
+body.bb-theme-contrast .bb-outcomes summary,
+body.bb-theme-contrast .bb-crowned {
+  color: #000;
+}
+body.bb-theme-contrast .bb-current-outcome,
+body.bb-theme-contrast .bb-outcomes li.active {
+  background: #fff;
+  color: #000;
+  border: 3px solid #000;
+  box-shadow: inset 7px 0 #000;
+}
+body.bb-theme-contrast .bb-outcomes li {
+  opacity: 1;
+  border-color: #000;
+}
+body.bb-theme-contrast .bb-chat-actions button {
+  background: #000;
+  color: #fff;
+  border: 3px solid #000;
+  font-weight: 800;
+}
+
+/* Amber anti-glare profile */
+body.bb-theme-amber .bb-app {
+  --bb-ink: #ffd89a;
+  --bb-paper: #181109;
+  --bb-sage: #2a1e10;
+  --bb-rose: #342013;
+  --bb-line: #9d6d32;
+  --bb-muted: #e3b974;
+  --bb-green: #ffcf83;
+  color-scheme: dark;
+}
+body.bb-theme-amber .bb-app,
+body.bb-theme-amber .bb-app .window-content,
+body.bb-theme-amber .bb-card,
+body.bb-theme-amber .bb-clue,
+body.bb-theme-amber .bb-note,
+body.bb-theme-amber .bb-status,
+body.bb-theme-amber .bb-stats,
+body.bb-theme-amber .bb-resource-strip,
+body.bb-theme-amber .bb-resource-strip > div,
+body.bb-theme-amber .bb-move,
+body.bb-theme-amber .bb-case-note-input {
+  background: #181109;
+  color: #ffd89a;
+  border-color: #9d6d32;
+}
+body.bb-theme-amber .bb-masthead,
+body.bb-theme-amber .bb-app .window-header {
+  background: #21160b;
+  color: #ffe0a8;
+}
+body.bb-theme-amber .bb-app input,
+body.bb-theme-amber .bb-app textarea,
+body.bb-theme-amber .bb-app select,
+body.bb-theme-amber .bb-app button {
+  background: #20160c;
+  color: #ffe0a8;
+  border-color: #ad7838;
+}
+body.bb-theme-amber .bb-chat {
+  background: #181109;
+  color: #ffd89a;
+  border-color: #9d6d32;
+  border-top-color: #ffcf83;
+}
+body.bb-theme-amber .bb-chat h3,
+body.bb-theme-amber .bb-chat h4,
+body.bb-theme-amber .bb-result,
+body.bb-theme-amber .bb-outcomes summary {
+  color: #ffe0a8;
+}
+body.bb-theme-amber .bb-current-outcome,
+body.bb-theme-amber .bb-outcomes li.active {
+  background: #2a1e10;
+  border-color: #c38a42;
+}
+body.bb-theme-amber .bb-outcomes li {
+  border-color: #795426;
+}
+body.bb-theme-amber .bb-crowned {
+  color: #fff0bd;
+}
+
+
+body.bb-readable-font .bb-app,
+body.bb-readable-font .bb-app h1,
+body.bb-readable-font .bb-app h2,
+body.bb-readable-font .bb-app h3,
+body.bb-readable-font .bb-app h4,
+body.bb-readable-font .bb-app input,
+body.bb-readable-font .bb-app textarea,
+body.bb-readable-font .bb-app select,
+body.bb-readable-font .bb-app button,
+body.bb-readable-font .bb-chat,
+body.bb-readable-font .bb-chat h3,
+body.bb-readable-font .bb-chat h4,
+body.bb-readable-font .bb-result,
+body.bb-readable-font .bb-reading {
+  font-family: Arial, Helvetica, system-ui, sans-serif !important;
+  letter-spacing: .01em;
+}
