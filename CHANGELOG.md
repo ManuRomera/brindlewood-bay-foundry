@@ -5,7 +5,7 @@
 - La tarjeta original de chat se actualiza con el nuevo resultado y conserva el total y los dados originales.
 - Las tarjetas antiguas no pueden gastar una segunda Corona como consecuencia de un botón desactualizado.
 - Nuevos perfiles visuales por cliente: Estándar, Oscuro mate, Alto contraste AAA y Ámbar.
-- Nuevos controles de accesibilidad: texto ampliado, movimiento reducido, foco de teclado reforzado, centrado opcional de ventanas y ajuste de brillo, contraste y saturación del lienzo.
+- Nuevos controles de accesibilidad: texto ampliado, tipografía de alta legibilidad, movimiento reducido, foco de teclado reforzado, centrado opcional de ventanas y ajuste de brillo, contraste y saturación del lienzo.
 - Las acciones principales de accesibilidad quedan disponibles en Configurar controles para asignar atajos personalizados.
 
 # 0.8.0-wip.1
