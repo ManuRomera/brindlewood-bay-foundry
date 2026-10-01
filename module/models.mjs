@@ -47,6 +47,7 @@ export class MysteryModel extends foundry.abstract.TypeDataModel {
       voidMystery: new f.BooleanField({ initial: false }),
       clues: arr(),
       suspects: arr(LIMITS.suspectsMax),
+      notes: str(),
       theory: str(),
       history: arr(),
     };
