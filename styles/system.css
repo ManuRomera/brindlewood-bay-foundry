@@ -1608,3 +1608,22 @@ body.bb-theme-amber .bb-outcomes li {
 body.bb-theme-amber .bb-crowned {
   color: #fff0bd;
 }
+
+
+body.bb-readable-font .bb-app,
+body.bb-readable-font .bb-app h1,
+body.bb-readable-font .bb-app h2,
+body.bb-readable-font .bb-app h3,
+body.bb-readable-font .bb-app h4,
+body.bb-readable-font .bb-app input,
+body.bb-readable-font .bb-app textarea,
+body.bb-readable-font .bb-app select,
+body.bb-readable-font .bb-app button,
+body.bb-readable-font .bb-chat,
+body.bb-readable-font .bb-chat h3,
+body.bb-readable-font .bb-chat h4,
+body.bb-readable-font .bb-result,
+body.bb-readable-font .bb-reading {
+  font-family: Arial, Helvetica, system-ui, sans-serif !important;
+  letter-spacing: .01em;
+}
