@@ -1,3 +1,11 @@
+# 0.8.0-wip.1
+
+- El tablero del misterio se convierte en un cuaderno de investigación colaborativo.
+- La Guardiana puede arrastrar fichas de Persona de interés al caso, mostrar su imagen, editar la presentación pública, abrir la ficha original y retirarla del tablero sin borrar el Actor.
+- Las jugadoras con acceso de Observador pueden escribir notas compartidas en cada persona, en cada pista y en un cuaderno libre del caso; el guardado se valida a través de la Guardiana conectada sin conceder propiedad total del misterio.
+- Las pistas predefinidas conservan inmutable su texto original. El contexto de la Guardiana y las notas de investigación quedan almacenados por separado.
+- Al Teorizar, el cuaderno de investigación sirve como punto de partida cuando todavía no existe una teoría guardada.
+
 # 0.7.0-wip.1
 
 - Ajustado el encuadre de la portada en la cabecera de The Candlelight para mantener visibles las caras de las protagonistas.
