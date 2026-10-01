@@ -39,6 +39,8 @@ No requiere otros módulos. Descarga alternativa: [versiones WIP](https://github
 
 Ocho compendios incluyen reglas, ayudas, 19 movimientos expertos, siete básicos, los seis expedientes, 49 personas de interés, la escena del salón, la macro de anuncios y las herramientas de la Guardiana. Cada entrada identifica su fuente. Los compendios de expedientes y sospechosos se ocultan del directorio de las jugadoras; las copias de trabajo se abren como diarios privados. Las personas pueden aparecer en varios misterios: no hay un culpable establecido de antemano.
 
+El tablero de cada misterio funciona como cuaderno de investigación compartido. La Guardiana puede arrastrar fichas de Persona de interés al caso, ver sus retratos, editar su presentación pública y retirarlas sin borrar la ficha original. Las jugadoras pueden escribir notas directamente en cada persona, ampliar cada pista con sus propios apuntes y mantener un cuaderno libre para ir construyendo la teoría. El texto original de las pistas queda siempre separado y protegido.
+
 ## Una vida plena
 
 Fichas de marfil, verde salvia y rosa antiguo; retratos editables; controles de habilidades protegidos; objetos con historia; Condiciones; objetivos de fin de sesión; Coronas con escenas pendientes y un historial de tiradas recuperable. Las narraciones previas a las tiradas pueden hacerse por voz y los apuntes del chat son opcionales. Los límites del manual se muestran junto a cada recurso y se aplican en la propia ficha: 18 objetos del Hogar, 3 Condiciones, 5 PE, 5 avances y los rangos de complejidad correspondientes.
