@@ -10,9 +10,38 @@
   <div class="bb-toolbar"><button type="button" data-action="theorize">Reunirnos para Teorizar</button>{{#if gm}}<button type="button" data-action="reveal">Revelar al grupo</button><button type="button" data-action="dossier">Expediente de la Guardiana</button><button type="button" data-action="status">Cambiar activo / resuelto</button>{{/if}}</div>
   <div class="bb-scroll"><div class="bb-two"><main>
     <h2>Lo que sabemos</h2><p>{{system.description}}</p>
-    <div class="bb-clue-grid">{{#each system.clues}}<article class="bb-clue {{#if void}}bb-void-clue{{/if}}" data-bb-info-title="{{#if void}}Pista del Vacío{{else}}Pista descubierta{{/if}}" data-bb-info="{{text}}"><span class="bb-eyebrow">{{#if void}}PISTA DEL VACÍO{{else}}PISTA DESCUBIERTA{{/if}}</span><p>{{text}}</p>{{#if ../gm}}<button type="button" data-action="editClue" data-id="{{id}}">Añadir contexto</button>{{/if}}</article>{{else}}<p class="bb-empty">Una taza de té. Un detalle fuera de lugar.<br>La primera pista está por descubrir.</p>{{/each}}</div>
+    <div class="bb-clue-grid">{{#each system.clues}}<article class="bb-clue {{#if void}}bb-void-clue{{/if}}" data-bb-info-title="{{#if void}}Pista del Vacío{{else}}Pista descubierta{{/if}}" data-bb-info="{{text}}">
+      <span class="bb-eyebrow">{{#if void}}PISTA DEL VACÍO{{else}}PISTA DESCUBIERTA{{/if}}</span>
+      <p class="bb-clue-source">{{text}}</p>
+      {{#if context}}<p class="bb-clue-context"><b>Contexto de la Guardiana:</b> {{context}}</p>{{/if}}
+      <label class="bb-case-note-label">Notas de investigación
+        <textarea class="bb-case-note-input" data-case-note="clue" data-id="{{id}}" rows="4" placeholder="Hipótesis, relaciones, preguntas, detalles que queréis recordar…" {{#unless ../canAnnotate}}readonly{{/unless}}>{{notes}}</textarea>
+      </label>
+      {{#if ../gm}}<button type="button" data-action="editClueContext" data-id="{{id}}">Editar contexto de la Guardiana</button>{{/if}}
+    </article>{{else}}<p class="bb-empty">Una taza de té. Un detalle fuera de lugar.<br>La primera pista está por descubrir.</p>{{/each}}</div>
+
+    <section class="bb-investigation-notebook">
+      <h2>Cuaderno de investigación</h2>
+      <p class="bb-note">Espacio compartido para conexiones, preguntas e ideas provisionales. No altera las pistas ni fija una solución.</p>
+      <textarea class="bb-case-note-input bb-case-free-notes" data-case-note="case" rows="9" placeholder="Id tejiendo aquí vuestra teoría, relaciones entre pistas, cronología, dudas…" {{#unless canAnnotate}}readonly{{/unless}}>{{system.notes}}</textarea>
+    </section>
   </main><aside>
-    <h2>Personas de interés · {{system.suspects.length}} / {{limits.suspectsMax}}</h2>{{#each system.suspects}}<article class="bb-card" data-bb-info-title="{{name}}" data-bb-info="{{description}}"><h3>{{name}}</h3><p>{{description}}</p></article>{{else}}<p>Aquí aparecerán las personas que la Guardiana presente al grupo.</p>{{/each}}
-    <h2>Nuestra teoría</h2><p>{{system.theory}}</p>{{#if gm}}<label>Complejidad<select name="system.complexity">{{#each complexityOptions}}<option value="{{value}}" {{#if selected}}selected{{/if}}>{{value}}</option>{{/each}}</select></label><p class="bb-note">{{complexityRule}} El manual pide al menos 20 pistas preparadas y no más de 12 sospechosos.</p><label>Presentación pública<textarea name="system.description" rows="4">{{system.description}}</textarea></label>{{/if}}<p class="bb-note">No hay una solución predeterminada. Las pistas del Vacío hablan de la conspiración y no suman al Teorizar.</p>
+    <h2>Personas de interés · {{system.suspects.length}} / {{limits.suspectsMax}}</h2>
+    {{#if gm}}<p class="bb-drop-hint"><i class="fas fa-hand-pointer"></i> Arrastra una ficha de Persona de interés sobre este caso para añadirla al tablero.</p>{{/if}}
+    <div class="bb-suspect-list">{{#each suspects}}<article class="bb-card bb-suspect-card" data-bb-info-title="{{name}}" data-bb-info="{{description}}">
+      <img class="bb-suspect-image" src="{{img}}" alt="Retrato de {{name}}">
+      <div class="bb-suspect-main">
+        <div class="bb-suspect-title"><h3>{{name}}</h3>{{#if ../gm}}<button type="button" class="bb-icon-button" data-action="removeSuspect" data-index="{{index}}" title="Retirar del caso"><i class="fas fa-trash"></i></button>{{/if}}</div>
+        {{#if description}}<p>{{description}}</p>{{else}}<p class="bb-muted">Todavía no hay una presentación pública anotada.</p>{{/if}}
+        {{#if ../gm}}<div class="bb-suspect-actions"><button type="button" data-action="editSuspect" data-index="{{index}}">Editar presentación</button>{{#if actorUuid}}<button type="button" data-action="openSuspect" data-uuid="{{actorUuid}}">Abrir ficha</button>{{/if}}</div>{{/if}}
+      </div>
+      <label class="bb-case-note-label bb-suspect-notes">Notas del grupo
+        <textarea class="bb-case-note-input" data-case-note="suspect" data-index="{{index}}" rows="4" placeholder="Coartada, relaciones, contradicciones, impresiones…" {{#unless ../canAnnotate}}readonly{{/unless}}>{{notes}}</textarea>
+      </label>
+    </article>{{else}}<p>Aquí aparecerán las personas que la Guardiana presente o arrastre al caso.</p>{{/each}}</div>
+
+    <h2>Nuestra teoría</h2><p>{{system.theory}}</p>
+    {{#if gm}}<label>Complejidad<select name="system.complexity">{{#each complexityOptions}}<option value="{{value}}" {{#if selected}}selected{{/if}}>{{value}}</option>{{/each}}</select></label><p class="bb-note">{{complexityRule}} El manual pide al menos 20 pistas preparadas y no más de 12 sospechosos.</p><label>Presentación pública<textarea name="system.description" rows="4">{{system.description}}</textarea></label>{{/if}}
+    <p class="bb-note">No hay una solución predeterminada. Las pistas del Vacío hablan de la conspiración y no suman al Teorizar.</p>
   </aside></div></div>
 </section>
