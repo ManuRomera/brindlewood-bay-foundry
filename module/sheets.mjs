@@ -426,7 +426,7 @@ export class MysterySheet extends rememberWindow(HandlebarsApplicationMixin(
   async _prepareContext(o) {
     const s = this.actor.system;
     const pack = game.packs.get(`${ID}.sospechosos`);
-    const suspectIndex = pack ? await pack.getIndex({ fields: ["img"] }) : [];
+    const suspectIndex = game.user.isGM && pack ? await pack.getIndex({ fields: ["img"] }) : [];
     const suspects = s.suspects.map((person, index) => {
       const match = suspectIndex.find((entry) => entry.name === person.name);
       return {
