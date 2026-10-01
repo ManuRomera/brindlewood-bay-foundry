@@ -21,6 +21,8 @@ import { ensureSalonScene, syncCaseBooks } from "./salon-scene.mjs";
 import { ensureAdvertisementMacro } from "./world-setup.mjs";
 import { catalogName } from "./catalog.mjs";
 import { registerCaseCollaborationSocket } from "./case-collaboration.mjs";
+import { registerAccessibility, applyAccessibility } from "./accessibility.mjs";
+import { attachRollActions } from "./chat-actions.mjs";
 import { initJoinScreenBackground } from "./join-screen.mjs";
 initJoinScreenBackground();
 
@@ -67,15 +69,7 @@ Hooks.once("init", () => {
     name: "Abrir el salón al entrar",
     hint: "El club, las fichas y los misterios al alcance de la mano.",
   });
-  game.settings.register(ID, "largeText", {
-    scope: "client",
-    config: true,
-    type: Boolean,
-    default: false,
-    name: "Lectura cómoda",
-    hint: "Aumenta el tamaño de texto en las fichas y el salón.",
-    onChange: (v) => document.body.classList.toggle("bb-large", v),
-  });
+  registerAccessibility();
   game.settings.registerMenu(ID, "salon", {
     name: "The Candlelight",
     label: "Abrir el salón del club",
@@ -147,10 +141,7 @@ Hooks.once("ready", async () => {
         await actor.update({ "system.suspects": source.suspects.slice(0, LIMITS.suspectsMax) });
     }
   }
-  document.body.classList.toggle(
-    "bb-large",
-    game.settings.get(ID, "largeText"),
-  );
+  applyAccessibility();
   if (game.settings.get(ID, "welcome")) game.brindlewood.open();
 });
 Hooks.on("renderActorDirectory", (_app, html) => {
@@ -179,8 +170,10 @@ Hooks.on("renderActorDirectory", (_app, html) => {
 Hooks.on("createUser", () => {
   if (game.user.isGM) guard(ensureAdvertisementMacro)();
 });
-Hooks.on("renderChatMessageHTML", (_message, html) => {
-  if (html) attachInfo(html);
+Hooks.on("renderChatMessageHTML", (message, html) => {
+  if (!html) return;
+  attachInfo(html);
+  attachRollActions(message, html);
 });
 for (const hook of [
   "updateActor",
