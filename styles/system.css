@@ -1253,3 +1253,95 @@
   color: #655e50;
   font: 11px/1.4 system-ui, sans-serif;
 }
+
+
+/* Mystery investigation board */
+.bb-case-note-label {
+  margin-top: 14px;
+  color: var(--bb-green);
+  font-weight: 700;
+}
+.bb-case-note-input {
+  margin-top: 4px;
+  font-weight: 400;
+  background: #fffdf7;
+}
+.bb-case-note-input[readonly] {
+  background: #f1eee5;
+  color: var(--bb-muted);
+}
+.bb-clue-source {
+  font-size: 17px;
+}
+.bb-clue-context {
+  padding: 9px 10px;
+  border-left: 3px solid #9d927e;
+  background: #fff7df;
+  font-size: 14px !important;
+}
+.bb-investigation-notebook {
+  margin-top: 26px;
+  padding: 4px 0 8px;
+  border-top: 1px solid var(--bb-line);
+}
+.bb-case-free-notes {
+  min-height: 190px;
+}
+.bb-drop-hint {
+  padding: 10px 12px;
+  border: 1px dashed #899684;
+  border-radius: 6px;
+  background: #eef2e8;
+  color: var(--bb-green);
+  font: 12px/1.45 system-ui, sans-serif;
+}
+.bb-suspect-list {
+  display: grid;
+  gap: 12px;
+}
+.bb-suspect-card {
+  display: grid;
+  grid-template-columns: 78px minmax(0, 1fr);
+  gap: 12px;
+  margin: 0;
+}
+.bb-suspect-image {
+  width: 78px;
+  height: 92px;
+  object-fit: cover;
+  border: 1px solid var(--bb-line);
+  border-radius: 5px;
+  background: var(--bb-sage);
+}
+.bb-suspect-main {
+  min-width: 0;
+}
+.bb-suspect-title {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 8px;
+}
+.bb-suspect-title h3 {
+  margin-bottom: 4px;
+}
+.bb-app .bb-icon-button {
+  flex: 0 0 auto;
+  width: 32px;
+  min-height: 30px;
+  padding: 4px;
+}
+.bb-suspect-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.bb-suspect-actions button {
+  min-height: 30px;
+  padding: 5px 8px;
+  font-size: 10px;
+}
+.bb-suspect-notes {
+  grid-column: 1 / -1;
+  margin: 0;
+}

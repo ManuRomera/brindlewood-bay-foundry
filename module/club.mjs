@@ -271,7 +271,7 @@ export async function reveal(a) {
     select("id", "Elemento", opts) +
       area(
         "context",
-        "Texto público / contexto (obligatorio para personas y pistas propias)",
+        "Texto público / contexto (obligatorio solo para pistas propias)",
       ) +
       check("void", "La pista propia pertenece al Vacío"),
   );
@@ -281,15 +281,22 @@ export async function reveal(a) {
       n = safeSystem(a);
     if (id.startsWith("npc-")) {
       const npc = m?.suspects[Number(id.slice(4))];
-      if (!npc || !d.get("context").trim())
-        throw Error(
-          "Escribe una presentación pública. Los secretos del expediente no se copian.",
-        );
+      if (!npc) throw Error("Persona desconocida.");
       if (n.suspects.some((x) => x.name === npc.name))
         throw Error("Esta persona ya está presentada.");
       if (n.suspects.length >= LIMITS.suspectsMax)
         throw Error(`El misterio ya tiene el máximo de ${LIMITS.suspectsMax} sospechosos.`);
-      n.suspects.push({ name: npc.name, description: d.get("context") });
+      const pack = game.packs.get(`${ID}.sospechosos`);
+      const index = pack ? await pack.getIndex({ fields: ["img"] }) : [];
+      const person = index.find((entry) => entry.name === npc.name);
+      n.suspects.push({
+        id: foundry.utils.randomID(),
+        actorUuid: person ? `Compendium.${ID}.sospechosos.Actor.${person._id}` : "",
+        name: npc.name,
+        img: person?.img ?? `systems/${ID}/assets/teacup.svg`,
+        description: d.get("context").trim(),
+        notes: "",
+      });
       await a.update({ system: n });
       return;
     }
@@ -299,11 +306,14 @@ export async function reveal(a) {
     if (!source && id !== "custom") throw Error("Pista desconocida.");
     if (n.clues.some((c) => c.id === id))
       throw Error("La pista ya está revelada.");
-    const text = d.get("context").trim() || source?.text;
+    const context = d.get("context").trim();
+    const text = source?.text ?? context;
     if (!text) throw Error("Escribe la pista.");
     const clue = {
       id: source?.id ?? foundry.utils.randomID(),
       text,
+      context: source ? context : "",
+      notes: "",
       void: source ? m.voidClues.some((c) => c.id === id) : d.has("void"),
     };
     n.clues.push(clue);
@@ -311,7 +321,7 @@ export async function reveal(a) {
     await op.chat(
       a,
       clue.void ? "Una Pista del Vacío" : "Una nueva pista",
-      `<p>${esc(text)}</p>`,
+      `<p>${esc(text)}</p>${clue.context ? `<p><b>Contexto:</b> ${esc(clue.context)}</p>` : ""}`,
     );
   });
 }
