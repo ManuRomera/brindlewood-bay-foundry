@@ -152,6 +152,18 @@ export function outcomes(move, options = {}) {
     text: outcome(move, index, options),
   }));
 }
+export function canCrownRecord(record) {
+  return Boolean(
+    record &&
+      record.move !== "theorize" &&
+      Number.isInteger(record.tier) &&
+      record.tier < 3 &&
+      !record.resolved,
+  );
+}
+export function canOfferChatCrown(record) {
+  return canCrownRecord(record) && record.tier === 0 && !record.crowned;
+}
 export function crownPlan(s, kind, index) {
   const next = structuredClone(s);
   next.pending = next.pending.filter((p) => p.kind !== "crown");
