@@ -21,6 +21,17 @@ export function fitWindow(position, viewport = {}) {
   };
 }
 
+export function centerWindow(position, viewport = {}) {
+  const viewportWidth = Math.max(640, viewport.width ?? window.innerWidth);
+  const viewportHeight = Math.max(480, viewport.height ?? window.innerHeight);
+  const fitted = fitWindow(position, { width: viewportWidth, height: viewportHeight });
+  return {
+    ...fitted,
+    left: Math.max(margin, Math.round((viewportWidth - fitted.width) / 2)),
+    top: Math.max(margin, Math.round((viewportHeight - fitted.height) / 2)),
+  };
+}
+
 export function rememberWindow(Base) {
   return class RememberedWindow extends Base {
     _bbRestored = false;
@@ -30,6 +41,10 @@ export function rememberWindow(Base) {
       if (this._bbRestored) return;
       this._bbRestored = true;
       try {
+        if (game.settings.get(ID, "autoCenterWindows")) {
+          this.setPosition(centerWindow(this.position));
+          return;
+        }
         const saved = JSON.parse(localStorage.getItem(key(this)) || "null");
         if (saved) this.setPosition(fitWindow(saved));
       } catch (_) {}
