@@ -31,7 +31,7 @@ export function caseNotePatch(system, edit) {
 }
 
 async function applyCaseNote(actor, edit) {
-  await actor.update(caseNotePatch(actor.system, edit));
+  await actor.update(caseNotePatch(actor.toObject().system, edit));
 }
 
 async function requestCaseNote(actor, edit) {
