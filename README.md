@@ -57,7 +57,7 @@ Ventaja y desventaja no se acumulan. Las Coronas cambian el nivel del resultado 
 
 Cuando una tirada ordinaria falla, su propia tarjeta de chat ofrece **Ponerse una Corona** a la jugadora que hizo la tirada. Puede elegir una Corona de la Reina disponible o la siguiente Corona del Vacío; al aceptarla se marca en la ficha, se aplican sus efectos, el resultado sube un grado y la misma tarjeta de chat se reescribe mostrando el resultado vigente. Teorizar sigue sin admitir Coronas.
 
-La interfaz incluye opciones de accesibilidad por cliente: perfiles Estándar, Oscuro mate, Alto contraste AAA y Ámbar; texto ampliado; reducción de movimiento; foco de teclado reforzado; centrado automático opcional de ventanas; y controles de brillo, contraste y saturación del lienzo. Las acciones de accesibilidad principales también se registran en **Configurar controles** para que cada persona pueda asignar sus propios atajos de teclado.
+La interfaz incluye opciones de accesibilidad por cliente: perfiles Estándar, Oscuro mate, Alto contraste AAA y Ámbar; texto ampliado; tipografía de alta legibilidad; reducción de movimiento; foco de teclado reforzado; centrado automático opcional de ventanas; y controles de brillo, contraste y saturación del lienzo. Las acciones de accesibilidad principales también se registran en **Configurar controles** para que cada persona pueda asignar sus propios atajos de teclado.
 
 La Guardiana conserva las decisiones narrativas: relevancia de Condiciones, adjudicación de pistas, consecuencias, movimientos ocultistas nuevos, contactos y ventajas situacionales. El sistema ofrece el texto y los registros necesarios; consulta la [matriz de automatizaciones](docs/REGLAS.md).
 
