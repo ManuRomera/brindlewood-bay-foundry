@@ -18,6 +18,7 @@ import {
 import * as op from "./operations.mjs";
 import { attachInfo } from "./inspector.mjs";
 import { rememberWindow } from "./window-state.mjs";
+import { saveCaseNote } from "./case-collaboration.mjs";
 import {
   esc,
   field,
@@ -329,6 +330,16 @@ export class MysterySheet extends rememberWindow(HandlebarsApplicationMixin(
     const b = this.element.querySelector("[data-action=theorize]");
     if (b && this.actor.testUserPermission(game.user, "OBSERVER"))
       b.disabled = false;
+    for (const input of this.element.querySelectorAll("[data-case-note]")) {
+      input.addEventListener("change", guard(async () => {
+        await saveCaseNote(this.actor, {
+          kind: input.dataset.caseNote,
+          id: input.dataset.id,
+          index: input.dataset.index === undefined ? undefined : Number(input.dataset.index),
+          text: input.value,
+        });
+      }));
+    }
     attachInfo(this.element);
   }
   static DEFAULT_OPTIONS = {
@@ -349,19 +360,49 @@ export class MysterySheet extends rememberWindow(HandlebarsApplicationMixin(
       dossier: guard(async function () {
         await game.brindlewood.dossier(this.actor.system.sourceId);
       }),
-      editClue: guard(async function (_e, b) {
+      editClueContext: guard(async function (_e, b) {
         owner(this.actor);
         const n = safeSystem(this.actor),
           c = n.clues.find((c) => c.id === b.dataset.id);
         if (!c) return;
         const d = await prompt(
-          "Contextualizar la pista",
-          area("text", "La misma pista, con nuevos detalles", c.text),
+          "Contexto público de la pista",
+          area("text", "Añade un matiz sin modificar el texto original", c.context ?? ""),
         );
-        if (d?.get("text").trim()) {
-          c.text = d.get("text").trim();
-          await this.actor.update({ system: n });
-        }
+        if (!d) return;
+        c.context = d.get("text").trim();
+        await this.actor.update({ system: n });
+      }),
+      editSuspect: guard(async function (_e, b) {
+        if (!game.user.isGM) throw Error("Solo la Guardiana puede cambiar la presentación pública.");
+        const n = safeSystem(this.actor),
+          index = Number(b.dataset.index),
+          person = n.suspects[index];
+        if (!person) return;
+        const d = await prompt(
+          "Presentación pública",
+          area("text", "Lo que el grupo conoce de esta persona", person.description ?? ""),
+        );
+        if (!d) return;
+        person.description = d.get("text").trim();
+        await this.actor.update({ system: n });
+      }),
+      removeSuspect: guard(async function (_e, b) {
+        if (!game.user.isGM) throw Error("Solo la Guardiana puede retirar personas del caso.");
+        const n = safeSystem(this.actor), index = Number(b.dataset.index);
+        const person = n.suspects[index];
+        if (!person) return;
+        if (!(await confirm(
+          "Retirar persona de interés",
+          `¿Quitar a ${person.name} de este tablero? La ficha original del personaje no se borrará.`,
+        ))) return;
+        n.suspects.splice(index, 1);
+        await this.actor.update({ system: n });
+      }),
+      openSuspect: guard(async function (_e, b) {
+        const actor = b.dataset.uuid ? await fromUuid(b.dataset.uuid) : null;
+        if (!actor) throw Error("No se pudo abrir la ficha original de esta persona.");
+        await actor.sheet.render(true);
       }),
       status: guard(async function () {
         owner(this.actor);
@@ -384,6 +425,17 @@ export class MysterySheet extends rememberWindow(HandlebarsApplicationMixin(
   };
   async _prepareContext(o) {
     const s = this.actor.system;
+    const pack = game.packs.get(`${ID}.sospechosos`);
+    const suspectIndex = pack ? await pack.getIndex({ fields: ["img"] }) : [];
+    const suspects = s.suspects.map((person, index) => {
+      const match = suspectIndex.find((entry) => entry.name === person.name);
+      return {
+        ...person,
+        index,
+        img: person.img || match?.img || `systems/${ID}/assets/teacup.svg`,
+        actorUuid: person.actorUuid || (match ? `Compendium.${ID}.sospechosos.Actor.${match._id}` : ""),
+      };
+    });
     const complexityOptions = s.voidMystery
       ? [LIMITS.voidComplexity]
       : s.complexity <= 5
@@ -393,6 +445,8 @@ export class MysterySheet extends rememberWindow(HandlebarsApplicationMixin(
       ...(await super._prepareContext(o)),
       actor: this.actor,
       system: this.actor.system,
+      suspects,
+      canAnnotate: this.actor.testUserPermission(game.user, "OBSERVER"),
       statusLabel:
         this.actor.system.status === "active" ? "En investigación" : "Resuelto",
       gm: game.user.isGM,
@@ -409,6 +463,26 @@ export class MysterySheet extends rememberWindow(HandlebarsApplicationMixin(
           ? "Una sesión usa 4 o 5."
           : "Un misterio normal usa de 6 a 8.",
     };
+  }
+  async _onDropActor(_event, actor) {
+    if (!game.user.isGM) throw Error("Solo la Guardiana puede añadir personas al caso.");
+    if (actor?.type !== "pnj") throw Error("Arrastra una ficha de Persona de interés.");
+    owner(this.actor);
+    const n = safeSystem(this.actor);
+    if (n.suspects.length >= LIMITS.suspectsMax)
+      throw Error(`El misterio ya tiene el máximo de ${LIMITS.suspectsMax} personas de interés.`);
+    if (n.suspects.some((person) => person.actorUuid === actor.uuid || person.name === actor.name))
+      throw Error("Esta persona ya está en el tablero del caso.");
+    n.suspects.push({
+      id: foundry.utils.randomID(),
+      actorUuid: actor.uuid ?? "",
+      name: actor.name,
+      img: actor.img ?? `systems/${ID}/assets/teacup.svg`,
+      description: "",
+      notes: "",
+    });
+    await this.actor.update({ system: n });
+    return actor;
   }
   _processFormData(e, f, d) {
     const entries = Object.fromEntries(
