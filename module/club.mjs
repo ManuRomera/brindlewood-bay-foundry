@@ -271,7 +271,7 @@ export async function reveal(a) {
     select("id", "Elemento", opts) +
       area(
         "context",
-        "Texto público / contexto (obligatorio para personas y pistas propias)",
+        "Texto público / contexto (obligatorio solo para pistas propias)",
       ) +
       check("void", "La pista propia pertenece al Vacío"),
   );
@@ -281,10 +281,7 @@ export async function reveal(a) {
       n = safeSystem(a);
     if (id.startsWith("npc-")) {
       const npc = m?.suspects[Number(id.slice(4))];
-      if (!npc || !d.get("context").trim())
-        throw Error(
-          "Escribe una presentación pública. Los secretos del expediente no se copian.",
-        );
+      if (!npc) throw Error("Persona desconocida.");
       if (n.suspects.some((x) => x.name === npc.name))
         throw Error("Esta persona ya está presentada.");
       if (n.suspects.length >= LIMITS.suspectsMax)
