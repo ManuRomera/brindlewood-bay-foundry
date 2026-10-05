@@ -88,3 +88,15 @@ Sistema de ManuRomera. Juego escrito y diseñado por **Jason Cordova**; traducci
 La actualización 0.5.1 recoloca y redimensiona automáticamente los libros de casos de los mundos existentes al entrar como Guardiana.
 
 La actualización 0.6.0 cataloga automáticamente las fichas como «PJ: nombre» y «Caso: título», incluidos los personajes y casos ya presentes en el mundo.
+
+---
+
+<p align="center">
+  <a href="https://github.com/ManuRomera">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/ManuRomera/ManuRomera/main/brand/MR_09_Monograma_Marfil_Transparente.png">
+      <img src="https://raw.githubusercontent.com/ManuRomera/ManuRomera/main/brand/MR_10_Monograma_Negro_Transparente.png" alt="MR · Manu Romera" height="56">
+    </picture>
+  </a><br>
+  <sub>Hecho por <a href="https://github.com/ManuRomera"><b>Manu Romera</b></a> · Digital RPG Design</sub>
+</p>
