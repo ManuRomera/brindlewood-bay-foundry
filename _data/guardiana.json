@@ -8,7 +8,7 @@
     "pages": [
       {
         "_id": "dbaf43a9fa21f58f",
-        "name": "16 · Esta sección está dirigida a quien tome el papel de Guardiana para vuestra parti",
+        "name": "16 · Tu papel y anatomía de un misterio",
         "type": "text",
         "sort": 1600000,
         "text": {
@@ -18,7 +18,7 @@
       },
       {
         "_id": "ebb9e75410e67bbf",
-        "name": "17 · Presentar el misterio",
+        "name": "17 · Presentar el misterio, sospechosos y pistas",
         "type": "text",
         "sort": 1700000,
         "text": {
@@ -38,7 +38,7 @@
       },
       {
         "_id": "1e2be579b17769be",
-        "name": "19 · Principios de la Guardiana",
+        "name": "19 · Principios de la Guardiana (1)",
         "type": "text",
         "sort": 1900000,
         "text": {
@@ -48,7 +48,7 @@
       },
       {
         "_id": "0ae2801ab92941c0",
-        "name": "20 · Haz que la historia resulte agradable",
+        "name": "20 · Principios de la Guardiana (2)",
         "type": "text",
         "sort": 2000000,
         "text": {
@@ -58,7 +58,7 @@
       },
       {
         "_id": "77f03ce43a8adf78",
-        "name": "21 · Reacciones de la Guardiana",
+        "name": "21 · Reacciones de la Guardiana (1)",
         "type": "text",
         "sort": 2100000,
         "text": {
@@ -68,7 +68,7 @@
       },
       {
         "_id": "5a4f312f341abefc",
-        "name": "22 · Poner a una Experta en peligro",
+        "name": "22 · Reacciones de la Guardiana (2) y pausa para anuncios",
         "type": "text",
         "sort": 2200000,
         "text": {
@@ -78,7 +78,7 @@
       },
       {
         "_id": "fc1e5b131d3423ea",
-        "name": "23 · Consejos detallados para la Guardiana",
+        "name": "23 · Consejos: Diurno y Nocturno",
         "type": "text",
         "sort": 2300000,
         "text": {
@@ -88,7 +88,7 @@
       },
       {
         "_id": "a1a8fe93ae37a672",
-        "name": "24 · El movimiento Metomentodo",
+        "name": "24 · Consejos: Metomentodo y Ocultista",
         "type": "text",
         "sort": 2400000,
         "text": {
@@ -98,7 +98,7 @@
       },
       {
         "_id": "28eb16e915be0247",
-        "name": "25 · Este es un ejemplo de funcionamiento del esquema:",
+        "name": "25 · Consejos: Pistas y Pistas del Vacío",
         "type": "text",
         "sort": 2500000,
         "text": {
@@ -108,7 +108,7 @@
       },
       {
         "_id": "bd1a9b12e2bf95b0",
-        "name": "26 · Teorizar",
+        "name": "26 · Consejos: Teorizar y Hogar, dulce hogar",
         "type": "text",
         "sort": 2600000,
         "text": {
@@ -118,7 +118,7 @@
       },
       {
         "_id": "c682a1ec0e598c1a",
-        "name": "27 · Dirigir Brindlewood Bay en una sola sesión",
+        "name": "27 · Dirigir en una sola sesión",
         "type": "text",
         "sort": 2700000,
         "text": {
@@ -128,7 +128,7 @@
       },
       {
         "_id": "c201f8194a721c8f",
-        "name": "28 · Movimientos expertos",
+        "name": "28 · Consejos: movimientos expertos (1)",
         "type": "text",
         "sort": 2800000,
         "text": {
@@ -138,7 +138,7 @@
       },
       {
         "_id": "6a9b0837e599d275",
-        "name": "29 · Rick & A. J.",
+        "name": "29 · Consejos: movimientos expertos (2)",
         "type": "text",
         "sort": 2900000,
         "text": {
@@ -148,7 +148,7 @@
       },
       {
         "_id": "e237111e88ef3264",
-        "name": "30 · Para llevar un registro de las Pistas del Vacío que han reunido las Expertas y d",
+        "name": "30 · La conspiración siniestra",
         "type": "text",
         "sort": 3000000,
         "text": {
@@ -158,7 +158,7 @@
       },
       {
         "_id": "eb0203e845c9f91d",
-        "name": "31 · Pasos preliminares",
+        "name": "31 · El Misterio del Vacío",
         "type": "text",
         "sort": 3100000,
         "text": {
@@ -177,7 +177,7 @@
     "pages": [
       {
         "_id": "3a3e8a96c0e71729",
-        "name": "04 · Resumen y puesta en escena",
+        "name": "04 · Las Matronas del Vacío Fragante",
         "type": "text",
         "sort": 400000,
         "text": {
@@ -187,7 +187,7 @@
       },
       {
         "_id": "c628366eda2f359e",
-        "name": "30 · Para llevar un registro de las Pistas del Vacío que han reunido las Expertas y d",
+        "name": "30 · La conspiración siniestra",
         "type": "text",
         "sort": 3000000,
         "text": {
@@ -197,7 +197,7 @@
       },
       {
         "_id": "18eb2058e8da51dc",
-        "name": "31 · Pasos preliminares",
+        "name": "31 · El Misterio del Vacío",
         "type": "text",
         "sort": 3100000,
         "text": {
@@ -207,7 +207,7 @@
       },
       {
         "_id": "2de66cf7d4150606",
-        "name": "72 · LA CONSPIRACIÓN SINIESTRA",
+        "name": "72 · Hoja de conspiración siniestra: capa 1",
         "type": "text",
         "sort": 7200000,
         "text": {
@@ -217,7 +217,7 @@
       },
       {
         "_id": "9b8d4b99a3ebaca8",
-        "name": "73 · F Las Expertas oyen hablar de las Matronas del Vacío Fragante por primera vez en",
+        "name": "73 · Hoja de conspiración siniestra: capas 2 a 4",
         "type": "text",
         "sort": 7300000,
         "text": {

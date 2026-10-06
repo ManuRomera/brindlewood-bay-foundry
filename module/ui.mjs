@@ -1,3 +1,4 @@
+import { DialogV2 } from "./compat.mjs";
 export const esc = (s) =>
   String(s ?? "").replace(
     /[&<>"']/g,
@@ -14,14 +15,14 @@ export const select = (key, label, options, value) =>
   `<label>${esc(label)}<select name="${esc(key)}">${options.map(([k, v]) => `<option value="${esc(k)}" ${String(k) === String(value) ? "selected" : ""}>${esc(v)}</option>`).join("")}</select></label>`;
 export const check = (key, label, on = false) =>
   `<label class="bb-check"><input name="${esc(key)}" type="checkbox" ${on ? "checked" : ""}> ${esc(label)}</label>`;
-export async function prompt(title, content, label = "Continuar", { cancel = false, validate = null } = {}) {
+export async function prompt(title, content, label = "Continuar", { cancel = false, validate = null, onRender = null, width = 550 } = {}) {
   const validation = validate
     ? '<p class="bb-form-status" data-bb-form-status aria-live="polite"></p>'
     : "";
-  return foundry.applications.api.DialogV2.prompt({
+  return DialogV2.prompt({
     window: { title },
-    position: { width: 550 },
-    classes: ["bb-app"],
+    position: { width },
+    classes: ["bb-app", "bb-dialogo"],
     content: `<div class="bb-dialog">${content}${validation}</div>`,
     ok: {
       label,
@@ -38,8 +39,10 @@ export async function prompt(title, content, label = "Continuar", { cancel = fal
       icon: "fa-solid fa-xmark",
       callback: () => false,
     }] : [],
-    render: validate ? (_event, dialog) => {
+    render: validate || onRender ? (_event, dialog) => {
       const form = dialog.element.querySelector("form");
+      if (onRender) onRender(form, dialog);
+      if (!validate) return;
       const button = dialog.element.querySelector('[data-action="ok"]');
       const status = dialog.element.querySelector("[data-bb-form-status]");
       const refresh = () => {
@@ -56,9 +59,9 @@ export async function prompt(title, content, label = "Continuar", { cancel = fal
   });
 }
 export async function confirm(title, content) {
-  return foundry.applications.api.DialogV2.confirm({
+  return DialogV2.confirm({
     window: { title },
-    classes: ["bb-app"],
+    classes: ["bb-app", "bb-dialogo"],
     content: `<p>${esc(content)}</p>`,
     yes: { label: "Continuar" },
     no: { label: "Volver" },

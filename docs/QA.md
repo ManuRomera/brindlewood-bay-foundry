@@ -1,3 +1,13 @@
+# Verificación de la versión 1.0.0
+
+Fecha: 7 de octubre de 2026. Foundry 13.351 real, datos aislados, navegador de escritorio 1280×860. 55 pruebas automáticas y validador de manifiesto, versiones y recursos.
+
+Comprobado dentro de Foundry: salón, ficha en sus cinco pestañas, tablero del misterio, diálogo y tarjeta de tirada con visibilidad de chat, Afable, inicio de sesión, nuevo movimiento ocultista (entrega a todas), aviso privado de capa, encuadre de retrato, panel de accesibilidad en la cabecera, perfil oscuro con texto al 125 %, y memoria de pestaña y posición tras recargar. Las capturas de `docs/` son de esa sesión.
+
+No comprobado: Foundry 14, sesiones con varias jugadoras a la vez en esta versión, módulos de terceros y lectores de pantalla.
+
+---
+
 # Verificación de la WIP 0.6.8-wip.1
 
 Fecha: 17 de septiembre de 2026. Foundry 13.351 real, servidor local con directorio de datos aislado y Chromium de escritorio. Ningún mundo del usuario se usó como prueba. El manifiesto admite toda la rama 13 y la verificación real se realizó con su última compilación, 13.351; no se declara compatibilidad con la versión 14.

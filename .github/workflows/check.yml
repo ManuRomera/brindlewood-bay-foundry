@@ -1,21 +1,19 @@
-name: Verificar WIP
+name: Comprobar
 on: [push, pull_request]
 permissions:
   contents: read
 jobs:
-  validate:
+  comprobar:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
-          node-version: '22'
+          node-version: "22"
           cache: npm
       - run: npm ci --no-audit --no-fund
       - run: npm test
       - run: npm run check
       - run: npm run build
-      - uses: actions/upload-artifact@v4
-        with:
-          name: brindlewood-bay-wip
-          path: dist/*
+      - name: Comprobar que el zip lleva system.json en la raíz
+        run: unzip -l dist/brindlewood-bay.zip | awk '$4=="system.json"{found=1} END{exit !found}'

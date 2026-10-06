@@ -1,5 +1,64 @@
 [
   {
+    "_id": "a1ffe3d68f043de6",
+    "name": "00 · Guía rápida de este sistema",
+    "ownership": {
+      "default": 0
+    },
+    "pages": [
+      {
+        "_id": "45dea292869b8d59",
+        "name": "1 · Empezar en cinco minutos",
+        "type": "text",
+        "text": {
+          "format": 1,
+          "content": "<div class=\"bb-reading\"><h2>Empezar en cinco minutos</h2>\n<ol>\n<li><b>Cada jugadora</b> pulsa <i>Crear mi Experta</i> (en el salón o bajo el botón del directorio de Actores). El asistente guía la identidad, el +1 inicial, el movimiento experto, la vida anterior y el Hogar; la Experta al azar lo genera todo y lo deja revisar.</li>\n<li><b>La Guardiana</b> abre un misterio desde el salón. Se crea el tablero del caso y su expediente privado.</li>\n<li><b>Durante la partida</b> la Guardiana usa <i>Revelar al grupo</i> para entregar pistas y personas; las jugadoras hacen movimientos desde su ficha.</li>\n<li><b>Para Teorizar</b>, cualquiera abre el tablero del caso, marca las pistas que explica la teoría y confirma el consenso.</li>\n<li><b>Al terminar</b>, cada jugadora pulsa <i>Estrellas, deseos y PE</i> en la pestaña Avance. La Guardiana abre la siguiente sesión desde el salón.</li>\n</ol>\n<p>Lo que el manual deja a criterio de la mesa (qué Condición afecta, qué pista se concreta, qué consecuencia narrar) sigue siendo decisión vuestra: el sistema ofrece los textos y lleva las cuentas.</p></div>"
+        },
+        "sort": 100000
+      },
+      {
+        "_id": "28813c0aa0386eea",
+        "name": "2 · La ficha de Experta",
+        "type": "text",
+        "text": {
+          "format": 1,
+          "content": "<div class=\"bb-reading\"><h2>La ficha de Experta</h2>\n<p>La cabecera siempre está a la vista: retrato, nombre, las cinco habilidades y, debajo, los recursos con su límite (PE, avances, Condiciones, Hogar, Corona de la Reina y del Vacío). Pulsar un recurso salta a la pestaña donde se gestiona.</p>\n<ul>\n<li><b>En la mesa:</b> los cinco movimientos (Diurno, Nocturno, Metomentodo, Ocultista y Afable), los movimientos expertos con su botón <i>Usar</i>, las Condiciones y las escenas de Corona pendientes.</li>\n<li><b>Hogar y vida:</b> los objetos de Hogar, dulce hogar con su estado, y la historia de la Experta.</li>\n<li><b>Avance:</b> el contador de PE, los cinco avances y las preguntas de fin de sesión.</li>\n<li><b>Coronas:</b> las siete escenas de la Reina y los cinco pasos del Vacío, con el siguiente resaltado.</li>\n<li><b>Historial:</b> cada tirada con su nivel; permite repetirla en el chat o usar una Corona sobre ella.</li>\n</ul>\n<p>El botón <i>Encuadrar</i> del retrato abre un editor de zona y zoom: el recorte se ve igual en la ficha, el salón, el chat y el directorio. Las habilidades se bloquean para evitar cambios por error; <i>Editar habilidades</i> las desbloquea.</p></div>"
+        },
+        "sort": 200000
+      },
+      {
+        "_id": "393ab31a784df5b7",
+        "name": "3 · Tiradas, Coronas y Teorizar",
+        "type": "text",
+        "text": {
+          "format": 1,
+          "content": "<div class=\"bb-reading\"><h2>Tiradas, Coronas y Teorizar</h2>\n<p><b>Hacer un movimiento.</b> Al pulsar un movimiento se abre el diálogo de la tirada: eliges la habilidad (cada una muestra su modificador), un objeto sin marcar de tu Hogar si lo evocas (ventaja) y si algo impone desventaja. Una vista previa muestra la fórmula exacta: ventaja y desventaja se cancelan y nunca se acumulan. El apunte para el chat es opcional.</p>\n<p><b>El resultado.</b> La tarjeta del chat muestra el nivel obtenido, el texto de ese nivel y los otros tres plegados, con los dados originales a mano. Respeta la visibilidad del chat (pública, solo Guardiana, ciega…).</p>\n<p><b>Ponerse una Corona.</b> Tras un fallo, la propia tarjeta ofrece el botón <i>Ponerse una Corona</i>. Elige una Corona de la Reina o el siguiente paso del Vacío; el resultado sube un nivel, la tarjeta se reescribe con el nuevo resultado y la escena queda pendiente hasta el fin de sesión. También puede hacerse desde el Historial. Teorizar nunca admite Coronas.</p>\n<p><b>Teorizar.</b> Desde el tablero del caso: se marcan las pistas ordinarias que explica la teoría, se confirma el consenso y se tira 2d6 + pistas − complejidad. Sin habilidades, ventajas ni Coronas. Las pistas del Vacío no suman. En el Misterio del Vacío no existe el 12+.</p>\n<p><b>Ocultista.</b> Siempre con Sensibilidad. Con un resultado de 9 o menos se marca el siguiente paso de la Corona del Vacío. Cuando funciona, la Guardiana define el movimiento nuevo y lo entrega a todas desde el salón con <i>Nuevo movimiento ocultista</i>.</p></div>"
+        },
+        "sort": 300000
+      },
+      {
+        "_id": "29c9abca3f208332",
+        "name": "4 · Para la Guardiana",
+        "type": "text",
+        "text": {
+          "format": 1,
+          "content": "<div class=\"bb-reading\"><h2>Para la Guardiana</h2>\n<ul>\n<li><b>Abrir un misterio</b> respeta el máximo de tres activos y que <i>Un asesinato en aguas oscuras</i> requiere la tercera capa. <i>Misterio propio / final</i> crea uno nuevo o el Misterio del Vacío (complejidad 10).</li>\n<li><b>Revelar al grupo</b> publica una pista, una pista del Vacío o una persona. Al cruzar un umbral de la conspiración (3, 5, 10 y 15 pistas del Vacío, uno menos con Fox Mulder) recibes un aviso privado con lo que se desbloquea.</li>\n<li><b>Expediente</b> abre tu copia privada del caso. Las notas de campaña nunca tocan el original del compendio.</li>\n<li><b>Pausa para anuncios</b> te da el indicio y recuerda la regla del 10–11; el generador de anuncios publica una propuesta en el chat.</li>\n<li><b>Recordar a Amanda</b> gestiona el movimiento del club, una vez por sesión, sin repetir novelas.</li>\n<li><b>Comenzar la siguiente sesión</b> recupera los usos por sesión y publica una tarjeta con los movimientos que se resuelven al empezar (Dale Cooper, Jim Rockford, Espantapájaros).</li>\n</ul></div>"
+        },
+        "sort": 400000
+      },
+      {
+        "_id": "a2a8cd32003c0889",
+        "name": "5 · Accesibilidad y ajustes",
+        "type": "text",
+        "text": {
+          "format": 1,
+          "content": "<div class=\"bb-reading\"><h2>Accesibilidad y ajustes</h2>\n<p>Toda ventana del sistema lleva en la cabecera un icono de accesibilidad, justo antes de cerrar. Ahí puedes cambiar sin salir de la partida: el perfil visual (Estándar, Oscuro mate, Alto contraste AAA y Ámbar), el tamaño del texto del 85 % al 160 %, la tipografía de alta legibilidad, la reducción de movimiento, el foco de teclado reforzado y la ayuda inmediata. Son ajustes de tu navegador: no afectan a nadie más.</p>\n<p>Las ventanas recuerdan su posición, tamaño, pestaña, secciones plegadas y desplazamiento, y conservan lo que estés escribiendo si otra persona provoca un repintado. <i>Centrar ventanas</i> ignora la posición recordada. El brillo, contraste y saturación del lienzo, y los atajos de teclado, están en la configuración de Foundry.</p></div>"
+        },
+        "sort": 500000
+      }
+    ]
+  },
+  {
     "_id": "6d937ba849184ac6",
     "name": "01 · Bienvenidas a Brindlewood Bay",
     "ownership": {
@@ -18,7 +77,7 @@
       },
       {
         "_id": "57f90b0c52f729be",
-        "name": "04 · Resumen y puesta en escena",
+        "name": "04 · Las Matronas del Vacío Fragante",
         "type": "text",
         "sort": 400000,
         "text": {
@@ -28,7 +87,7 @@
       },
       {
         "_id": "40ba0b9919031240",
-        "name": "05 · Estructura de juego",
+        "name": "05 · Estructura de juego (1): recapitulación y comienzo",
         "type": "text",
         "sort": 500000,
         "text": {
@@ -38,7 +97,7 @@
       },
       {
         "_id": "fcde501079d24863",
-        "name": "06 · Estructura de juego",
+        "name": "06 · Estructura de juego (2): investigación y fin de sesión",
         "type": "text",
         "sort": 600000,
         "text": {
@@ -48,7 +107,7 @@
       },
       {
         "_id": "9a20816b39060a93",
-        "name": "07 · Anatomía de una hoja de personaje",
+        "name": "07 · La hoja de personaje (1): nombre, estilo, PE y avances",
         "type": "text",
         "sort": 700000,
         "text": {
@@ -58,7 +117,7 @@
       },
       {
         "_id": "e09eff08e225b3bc",
-        "name": "08 · Anatomía de una hoja de personaje",
+        "name": "08 · La hoja de personaje (2): habilidades y Condiciones",
         "type": "text",
         "sort": 800000,
         "text": {
@@ -68,7 +127,7 @@
       },
       {
         "_id": "eab64c7d76c00b6c",
-        "name": "09 · Anatomía de una hoja de personaje",
+        "name": "09 · La hoja de personaje (3): Coronas y Hogar",
         "type": "text",
         "sort": 900000,
         "text": {
@@ -88,7 +147,7 @@
       },
       {
         "_id": "28155e3e53f15f00",
-        "name": "11 · Lanzar los dados",
+        "name": "11 · La Corona y las tiradas",
         "type": "text",
         "sort": 1100000,
         "text": {
@@ -107,7 +166,7 @@
     "pages": [
       {
         "_id": "f04af7d221c18495",
-        "name": "12 · Hay dos tipos de movimientos: básicos y expertos. Las Expertas tienen acceso",
+        "name": "12 · Movimientos básicos: Diurno y Nocturno",
         "type": "text",
         "sort": 1200000,
         "text": {
@@ -117,7 +176,7 @@
       },
       {
         "_id": "192b2aff4a87d895",
-        "name": "13 · Movimiento Metomentodo",
+        "name": "13 · Movimientos básicos: Metomentodo y Afable",
         "type": "text",
         "sort": 1300000,
         "text": {
@@ -127,7 +186,7 @@
       },
       {
         "_id": "2b5d4d7ef7519552",
-        "name": "14 · Movimiento Misterios de la corona de oro",
+        "name": "14 · Movimientos básicos: Misterios de la corona de oro y Ocultista",
         "type": "text",
         "sort": 1400000,
         "text": {
@@ -137,7 +196,7 @@
       },
       {
         "_id": "71621d9d4854b3cf",
-        "name": "15 · Movimiento Teorizar",
+        "name": "15 · Movimientos básicos: Teorizar",
         "type": "text",
         "sort": 1500000,
         "text": {
@@ -156,7 +215,7 @@
     "pages": [
       {
         "_id": "5d7a7d8bc933b14a",
-        "name": "33 · 1. Lee el juego y reúne los materiales para la partida",
+        "name": "33 · Primera sesión (1): preparación y CATS",
         "type": "text",
         "sort": 3300000,
         "text": {
@@ -166,7 +225,7 @@
       },
       {
         "_id": "3bb5d9c8a5002700",
-        "name": "34 · «Agenda: Hoy vamos a empezar creando los personajes. Después, los",
+        "name": "34 · Primera sesión (2): CATS y creación de personajes",
         "type": "text",
         "sort": 3400000,
         "text": {
@@ -176,7 +235,7 @@
       },
       {
         "_id": "e13221fe022bf409",
-        "name": "35 · 5. Presentación de los personajes y de su Hogar, dulce hogar .",
+        "name": "35 · Primera sesión (3): presentaciones, Hogar y arranque",
         "type": "text",
         "sort": 3500000,
         "text": {
@@ -186,7 +245,7 @@
       },
       {
         "_id": "5301c4028455e765",
-        "name": "36 · 10. Investigación",
+        "name": "36 · Primera sesión (4): investigación y cierre",
         "type": "text",
         "sort": 3600000,
         "text": {
@@ -205,17 +264,17 @@
     "pages": [
       {
         "_id": "be990127b955aa38",
-        "name": "74 · MOVIMIENTOS EXPERTOS",
+        "name": "74 · Movimientos expertos (1)",
         "type": "text",
         "sort": 7400000,
         "text": {
           "format": 1,
-          "content": "<div class=\"bb-reading\"><p>MOVIMIENTOS EXPERTOS Escoge uno al comienzo del juego. No puede haber dos Expertas con el mismo movimiento Experto al principio. Tampoco puede haber una Experta con Dale Cooper si otra tiene Fox Mulder o viceversa, aunque una sola Experta puede adquirir ambas durante el transcurso de la partida.</p><p>M. A. Baracus Una vez por sesión, si tú o alguna de tus compañeras Expertas sufr ís daño físico, puedes describir cómo evitáis ese daño por los pelos.</p><p>Frank Colombo</p><p>Hay algo en ti que hace que las élites de la sociedad no te tomen muy en serio. ¿Qué es? Una vez por sesión, cuando hagas el movimiento Metomentodo en un lugar ocupado por ricos y famosos, encontrarás una Pista adicional incluso con un fallo y una Pista del</p><p>Vacío adicional con un 12+.</p><p>Dale Cooper Añade 1 a tu Sensibilidad (máx. +3). Al principio de cada sesión, la Guardiana te dará una</p><p>Pista del Vacío en forma de un sueño extraño y perturbador. Este movimiento no lo pueden tener dos Expertas a la vez.</p><p>Sonny Crockett</p><p>Tienes un estilo de vestir particular, algo que provoca que la gente diga «¡Guau!» al verte. Describe lo que llevas puesto y añádelo a tu Hogar, dulce hogar. Cuando uses el atuendo para obtener ventaja en una tirada, no lo marques.</p><p>Frank Dowling Tienes un poderoso trasfondo religioso. Descríbelo. Cuando uses este movimiento, describe cómo tu fe te ayuda a resistir el Vacío.</p><p>Luego, desmarca un número de cuadros de la</p><p>Corona del Vacío igual a tu Sensibilidad más 1. El número mínimo de cuadros que puedes desmarcar es 1. Si desmarcas la Pepita de granada, sigues teniendo la Condición «Obsesionada con el Vacío». Solo puedes usar este movimiento una vez.</p><p>Tom Hanson Puedes pasar perfectamente por alguien mucho más joven. Si estás en una situación o un lugar donde ser más joven te beneficia, lanzas los dados con ventaja.</p><p>Milton Hardcastle Tienes una pregunta de Fin de sesión adicional que siempre se considera marcada: «¿Te has tomado la justicia por tu mano con algún malhechor?»</p><p>Jonathan Hart</p><p>Solías llevar una vida lujosa alrededor del mundo y aún posees un toque de glamur que nunca se desvanece. Añade 1 a tu Presencia (máx. +3).</p><p>Angus MacGyver Cuando improvisas en una situación utilizando lo que tengas a mano, pídeles a las demás jugadoras y a la Guardiana que nombren tres objetos que haya alrededor. Mientras puedas dar una explicación plausible de cómo te ayudan estos objetos en una acción, dispones de ventaja en una sola tirada relacionada con esa acción.</p><p>Thomas Magnum</p><p>Aunque lo llevas en secreto, eres amiga íntima de Robin Masterson, la misteriosa autora de las novelas de Los misterios de la corona de oro. Tienes acceso a los recursos de Robin siempre que estés fuera de Brindlewood Bay (a su casa, su vehículo e incluso su cuenta bancaria) y, una vez por sesión, tienes un uso adicional del movimiento Misterios de la corona de oro.</p></div><p class=\"bb-source\">Brindlewood Bay, edición española 1.0, p. 74.</p>"
+          "content": "<div class=\"bb-reading\"><p>MOVIMIENTOS EXPERTOS Escoge uno al comienzo del juego. No puede haber dos Expertas con el mismo movimiento Experto al principio. Tampoco puede haber una Experta con Dale Cooper si otra tiene Fox Mulder o viceversa, aunque una sola Experta puede adquirir ambas durante el transcurso de la partida.</p><p>M. A. Baracus Una vez por sesión, si tú o alguna de tus compañeras Expertas sufrís daño físico, puedes describir cómo evitáis ese daño por los pelos.</p><p>Frank Colombo</p><p>Hay algo en ti que hace que las élites de la sociedad no te tomen muy en serio. ¿Qué es? Una vez por sesión, cuando hagas el movimiento Metomentodo en un lugar ocupado por ricos y famosos, encontrarás una Pista adicional incluso con un fallo y una Pista del</p><p>Vacío adicional con un 12+.</p><p>Dale Cooper Añade 1 a tu Sensibilidad (máx. +3). Al principio de cada sesión, la Guardiana te dará una</p><p>Pista del Vacío en forma de un sueño extraño y perturbador. Este movimiento no lo pueden tener dos Expertas a la vez.</p><p>Sonny Crockett</p><p>Tienes un estilo de vestir particular, algo que provoca que la gente diga «¡Guau!» al verte. Describe lo que llevas puesto y añádelo a tu Hogar, dulce hogar. Cuando uses el atuendo para obtener ventaja en una tirada, no lo marques.</p><p>Frank Dowling Tienes un poderoso trasfondo religioso. Descríbelo. Cuando uses este movimiento, describe cómo tu fe te ayuda a resistir el Vacío.</p><p>Luego, desmarca un número de cuadros de la</p><p>Corona del Vacío igual a tu Sensibilidad más 1. El número mínimo de cuadros que puedes desmarcar es 1. Si desmarcas la Pepita de granada, sigues teniendo la Condición «Obsesionada con el Vacío». Solo puedes usar este movimiento una vez.</p><p>Tom Hanson Puedes pasar perfectamente por alguien mucho más joven. Si estás en una situación o un lugar donde ser más joven te beneficia, lanzas los dados con ventaja.</p><p>Milton Hardcastle Tienes una pregunta de Fin de sesión adicional que siempre se considera marcada: «¿Te has tomado la justicia por tu mano con algún malhechor?»</p><p>Jonathan Hart</p><p>Solías llevar una vida lujosa alrededor del mundo y aún posees un toque de glamur que nunca se desvanece. Añade 1 a tu Presencia (máx. +3).</p><p>Angus MacGyver Cuando improvisas en una situación utilizando lo que tengas a mano, pídeles a las demás jugadoras y a la Guardiana que nombren tres objetos que haya alrededor. Mientras puedas dar una explicación plausible de cómo te ayudan estos objetos en una acción, dispones de ventaja en una sola tirada relacionada con esa acción.</p><p>Thomas Magnum</p><p>Aunque lo llevas en secreto, eres amiga íntima de Robin Masterson, la misteriosa autora de las novelas de Los misterios de la corona de oro. Tienes acceso a los recursos de Robin siempre que estés fuera de Brindlewood Bay (a su casa, su vehículo e incluso su cuenta bancaria) y, una vez por sesión, tienes un uso adicional del movimiento Misterios de la corona de oro.</p></div><p class=\"bb-source\">Brindlewood Bay, edición española 1.0, p. 74.</p>"
         }
       },
       {
         "_id": "df855c2d4eca644f",
-        "name": "75 · Fox Mulder",
+        "name": "75 · Movimientos expertos (2)",
         "type": "text",
         "sort": 7500000,
         "text": {
@@ -234,7 +293,7 @@
     "pages": [
       {
         "_id": "f15acddcf4333dc9",
-        "name": "76 · HOJA DE REFERENCIA",
+        "name": "76 · Hoja de referencia (1): Diurno, Nocturno, Metomentodo y Afable",
         "type": "text",
         "sort": 7600000,
         "text": {
@@ -244,7 +303,7 @@
       },
       {
         "_id": "436ea4489b7d0510",
-        "name": "77 · Movimiento Misterios de la corona de oro",
+        "name": "77 · Hoja de referencia (2): Amanda, Ocultista y Teorizar",
         "type": "text",
         "sort": 7700000,
         "text": {
@@ -263,7 +322,7 @@
     "pages": [
       {
         "_id": "76ecec1a95cc10d6",
-        "name": "80 · Barbara",
+        "name": "80 · Hoja de personaje: nombres, estilos y quehaceres",
         "type": "text",
         "sort": 8000000,
         "text": {

@@ -82,3 +82,7 @@ Referencia local revisada: auditoría de Eterno Azul 0.8.0 y fuentes 0.8.1.
 ## Contratos técnicos
 
 Implementación sobre TypeDataModel, ActorSheetV2, ItemSheetV2 y HandlebarsApplicationMixin de Foundry 13.351. Referencias oficiales: [TypeDataModel](https://foundryvtt.com/api/v13/classes/foundry.abstract.TypeDataModel.html), [DocumentSheetV2](https://foundryvtt.com/api/v13/classes/foundry.applications.api.DocumentSheetV2.html). Los contratos se contrastaron también con la instalación local.
+
+## Novedades de la 1.0.0
+
+Afable es un botón de la ficha. Al abrir una sesión nueva se publica una tarjeta con los movimientos de comienzo de sesión. Cada capa de la conspiración avisa en privado a la Guardiana al desbloquearse. Los movimientos ocultistas nuevos se entregan a todas las Expertas activas. En el Misterio del Vacío un 12+ al Teorizar se trata como 10–11. Frank Colombo se gasta desde la tirada de Metomentodo y Remington Steele añade su objeto al Hogar.

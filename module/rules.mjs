@@ -119,7 +119,7 @@ export function outcome(move, t, { voidMystery = false } = {}) {
       "La teoría es correcta, pero hay una complicación molesta o una oportunidad peligrosa.",
       "La teoría es correcta. La Guardiana ofrece una oportunidad de atrapar al responsable o arreglar la situación.",
       voidMystery
-        ? "La teoría es correcta. Averiguáis cuándo, dónde y cómo se celebrará el ritual."
+        ? "La teoría es correcta: averiguáis cuándo, dónde y cómo se celebrará el ritual. En el Misterio del Vacío no hay efecto extra de 12+; se resuelve como un 10–11."
         : "La teoría es correcta. Además, se da a conocer una persona de la conspiración.",
     ][t];
   if (move === "meddle")
@@ -148,7 +148,7 @@ export function outcome(move, t, { voidMystery = false } = {}) {
 export function outcomes(move, options = {}) {
   return TIER_NAMES.map((label, index) => ({
     index,
-    label,
+    label: move === "theorize" && options.voidMystery && index === 3 ? "12+ · Como 10–11 (sin efecto extra)" : label,
     text: outcome(move, index, options),
   }));
 }
@@ -281,4 +281,42 @@ export function expertMoveConflict(name, actors, actorId = null) {
       return names.some((other) => ["Dale Cooper", "Fox Mulder"].includes(other));
     return unique.includes(name) && names.includes(name);
   });
+}
+export const PERMANENT = "Obsesionada con el Vacío";
+/** Capas de la conspiración (hoja de conspiración siniestra, pp. 30 y 72-73). */
+export const LAYERS = [
+  { value: 3, label: "La historia de la bahía", text: "Pueden empezar a revelarse el pasado ballenero de Brindlewood Bay y la muerte del vástago de Perséfone." },
+  { value: 5, label: "Las Matronas", text: "Se oye hablar de las Matronas del Vacío Fragante, de quien las lidera y de pruebas físicas de su culto. Se revelan en orden con un 12+ en Metomentodo." },
+  { value: 10, label: "Acción directa", text: "Servidores, maldiciones e invocaciones: las Matronas actúan contra las Expertas y la Guardiana puede usarlas en sus reacciones." },
+  { value: 15, label: "El Misterio del Vacío", text: "Se prepara el Misterio del Vacío (complejidad 10). Resueltos los casos abiertos, se presenta el final de la campaña." },
+];
+/** Movimientos expertos que actúan al empezar la sesión: la Guardiana los recuerda al abrirla. */
+export const SESSION_START = {
+  "Dale Cooper": "Narra la pesadilla que ha tenido la Experta y entrega una Pista del Vacío en forma de sueño.",
+  "Jim Rockford": "Narra el mensaje del contestador automático: una tarea anónima para la Experta (+1 PE cuando la complete).",
+  "«Espantapájaros»": "Un desconocido deja algo en manos de la Experta: funciona como una Pista que puede asignarse a un misterio activo.",
+};
+/** Movimientos expertos que pueden dar ventaja; la mesa decide si procede en cada tirada. */
+export const ADVANTAGE_MOVES = {
+  "Tom Hanson": "ventaja si parecer más joven te beneficia",
+  "Angus MacGyver": "ventaja en una tirada si nombráis tres objetos a mano",
+  "Rick & A. J.": "ventaja si actúas junto a tu hermano o hermana (siempre con un coste)",
+};
+export function layerChange(before, after) {
+  return after > before ? LAYERS.slice(before, after) : [];
+}
+/** Movimiento Afable (p. 13): quitarse una Condición y, si es tu quehacer, dar con una Pista. */
+export function afablePlan(system, { index = null, ownHobby = false } = {}) {
+  const next = structuredClone(system);
+  let removed = null;
+  if (index !== null && index !== "") {
+    const i = integer(index, 0, LIMITS.conditions - 1);
+    removed = next.conditions[i];
+    if (!removed) throw Error("Esa Condición no existe.");
+    if (removed === PERMANENT) throw Error("«Obsesionada con el Vacío» es permanente.");
+    next.conditions.splice(i, 1);
+  }
+  if (!removed && !ownHobby)
+    throw Error("Elige una Condición que quitar o indica que el momento gira en torno a tu quehacer.");
+  return { next, removed, clue: ownHobby };
 }

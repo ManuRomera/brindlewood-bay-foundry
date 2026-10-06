@@ -3,8 +3,9 @@ import assert from "node:assert/strict";
 class Base {}
 globalThis.foundry = {
   applications: {
-    api: { HandlebarsApplicationMixin: (C) => C },
+    api: { HandlebarsApplicationMixin: (C) => C, ApplicationV2: Base, DialogV2: Base },
     sheets: { ActorSheetV2: Base, ItemSheetV2: Base },
+    apps: { DocumentSheetConfig: Base },
   },
   utils: { expandObject: (o) => o },
 };
@@ -33,7 +34,7 @@ test("locked sheet does not send absent resources or hidden stats", () => {
       },
     },
   );
-  assert.deepEqual(result, { name: "Violet" });
+  assert.deepEqual(result, { name: "PJ: Violet" });
 });
 test("explicit unlocked stat edit does not rewrite arrays", () => {
   const result = ExpertSheet.prototype._processFormData.call(

@@ -1,59 +1,64 @@
-<section>
-  <header class="bb-cover bb-cover-compact">
+<section class="bb-salon">
+  <header class="bb-portada">
     <img src="systems/brindlewood-bay/assets/cover.png" alt="Tres Expertas del Crimen toman té ante una bahía inquietante">
-    <div class="bb-cover-caption">Brindlewood Bay<small>EL CLUB DE LAS EXPERTAS DEL CRIMEN</small></div>
-    <span class="bb-wip">WIP · 0.6.8</span>
+    <div class="bb-portada-titulo">Brindlewood Bay<small>El club de las Expertas del Crimen</small></div>
+    <span class="bb-version" data-bb-info="Versión instalada del sistema.">v{{version}}</span>
   </header>
-  <div class="bb-club-heading">
-    <div><span class="bb-eyebrow">THE CANDLELIGHT · SESIÓN {{club.session}}</span><h1>El tablero del club</h1></div>
-    <div class="bb-team-counters" aria-label="Contadores comunes del grupo">
-      <div><b>{{visibleActiveCount}}</b><span>de {{limits.activeMysteries}} misterios</span></div>
+  <div class="bb-salon-cab">
+    <div><span class="bb-eyebrow">The Candlelight · Sesión {{club.session}}</span><h1>El tablero del club</h1></div>
+    <div class="bb-contadores" role="group" aria-label="Contadores comunes del grupo">
+      <div><b>{{visibleActiveCount}}<small>/{{limits.activeMysteries}}</small></b><span>misterios</span></div>
       <div><b>{{teamClues}}</b><span>pistas para Teorizar</span></div>
-      <div><b>{{teamVoidClues}}</b><span>pistas del Vacío</span></div>
-      <div><b>{{expertCount}}</b><span>Expertas activas</span></div>
+      <div><b>{{teamVoidClues}}</b><span>del Vacío</span></div>
+      <div><b>{{expertCount}}</b><span>Expertas</span></div>
     </div>
   </div>
-  <div class="bb-toolbar bb-toolbar-wrap">
-    {{#if canCreate}}<button type="button" class="bb-primary" data-action="create">Crear una Experta</button><button type="button" data-action="random">Experta al azar</button>{{/if}}
-    <button type="button" data-action="rules">Reglas y movimientos</button>
-    {{#if gm}}<button type="button" data-action="import">Abrir un misterio</button><button type="button" data-action="custom">Misterio propio / final</button><button type="button" data-action="advertisement">Dar paso a anuncios {{#if adUsed}}· utilizado{{/if}}</button>{{/if}}
-    <button type="button" data-action="safety">Pausa de la escena</button>
+  <div class="bb-barra">
+    {{#if canCreate}}<button type="button" class="bb-primary" data-action="create"><i class="fa-solid fa-user-plus" aria-hidden="true"></i> Crear una Experta</button><button type="button" data-action="random"><i class="fa-solid fa-dice" aria-hidden="true"></i> Experta al azar</button>{{/if}}
+    <button type="button" data-action="rules"><i class="fa-solid fa-book-open" aria-hidden="true"></i> Reglas y movimientos</button>
+    {{#if gm}}<span class="bb-separador" aria-hidden="true"></span><button type="button" data-action="import"><i class="fa-solid fa-folder-open" aria-hidden="true"></i> Abrir un misterio</button><button type="button" data-action="custom"><i class="fa-solid fa-feather" aria-hidden="true"></i> Misterio propio / final</button><button type="button" data-action="advertisement"><i class="fa-solid fa-tv" aria-hidden="true"></i> Pausa para anuncios{{#if adUsed}} · usada{{/if}}</button>{{/if}}
+    <button type="button" class="bb-aparte" data-action="safety"><i class="fa-solid fa-hand" aria-hidden="true"></i> Pausa de la escena</button>
   </div>
   <div class="bb-scroll">
-    <div class="bb-dashboard">
+    <div class="bb-columnas bb-panel">
       <main>
-        <div class="bb-section-title"><h2>Misterios y pistas</h2><span>{{visibleActiveCount}} / {{limits.activeMysteries}} ACTIVOS</span></div>
-        <p class="bb-muted">Abre un caso para ver el tablero completo o despliega aquí las pistas que ya conoce todo el grupo.</p>
+        <div class="bb-titulo"><h2>Misterios y pistas</h2><span>{{visibleActiveCount}} / {{limits.activeMysteries}} activos</span></div>
         {{#each cases}}
-          <article class="bb-case-panel {{#unless (eq system.status "active")}}spent{{/unless}}">
-            <div class="bb-case-main">
-              <span class="bb-case-number">{{system.complexity}}</span>
+          <article class="bb-caso-tarjeta{{#unless (eq system.status "active")}} resuelto{{/unless}}">
+            <div class="bb-caso-fila">
+              <span class="bb-complejidad" data-bb-info-title="Complejidad" data-bb-info="Se resta al Teorizar: 2d6 + pistas − complejidad.">{{system.complexity}}</span>
               <div><h3>{{name}}</h3><p>{{regular.length}} pistas utilizables · {{voidClues.length}} del Vacío · {{#if (eq system.status "active")}}En investigación{{else}}Resuelto{{/if}}</p></div>
-              <button type="button" data-action="open" data-id="{{id}}">Abrir tablero</button>
+              <button type="button" class="bb-primary" data-action="open" data-id="{{id}}">Abrir tablero</button>
             </div>
-            <details class="bb-known-clues"><summary>Ver las {{system.clues.length}} pistas descubiertas</summary><ol>{{#each system.clues}}<li class="{{#if void}}bb-void-text{{/if}}">{{text}}{{#if void}} <small>· VACÍO</small>{{/if}}</li>{{else}}<li>Aún no hay pistas compartidas.</li>{{/each}}</ol></details>
+            <details data-memoria="pistas-{{id}}"><summary>Ver las {{system.clues.length}} pistas descubiertas</summary><ol>{{#each system.clues}}<li class="{{#if void}}vacio{{/if}}">{{text}}{{#if void}} <small>· Vacío</small>{{/if}}</li>{{else}}<li>Aún no hay pistas compartidas.</li>{{/each}}</ol></details>
           </article>
-        {{else}}<div class="bb-empty">El periódico aún está doblado.<br>La Guardiana puede abrir vuestro primer caso.</div>{{/each}}
-        <div class="bb-section-title"><h2>Las señoras del club</h2><span>PROGRESO PERSONAL</span></div>
-        <div class="bb-expert-dashboard">
+        {{else}}<div class="bb-vacio">El periódico aún está doblado.<br>La Guardiana puede abrir vuestro primer caso.</div>{{/each}}
+
+        <div class="bb-titulo"><h2>Las señoras del club</h2><span>{{#if sessionClosedCount}}{{sessionClosedCount}} de {{expertCount}} han cerrado la sesión{{else}}Progreso personal{{/if}}</span></div>
+        <div class="bb-expertas">
           {{#each experts}}
-            <article class="bb-expert-summary">
-              <button type="button" class="bb-expert-open" data-action="open" data-id="{{id}}"><img class="bb-card-portrait" src="{{img}}" alt=""><span><h3>{{name}}</h3><small>{{system.hobby}}</small></span></button>
-              <div class="bb-mini-counters"><span><b>{{system.xp}}</b>/5 PE</span><span><b>{{system.advances.length}}</b>/5 avances</span><span><b>{{system.conditions.length}}</b>/3 condiciones</span><span><b>{{system.home.length}}</b>/18 hogar</span><span><b>{{crownTotal}}</b>/12 coronas</span></div>
+            <article class="bb-experta-tarjeta{{#if closed}} cerrada{{/if}}">
+              <button type="button" class="bb-experta-abrir" data-action="open" data-id="{{id}}"><img class="bb-mini-retrato" data-retrato="{{id}}" src="{{img}}" alt=""><span><b>{{name}}</b><small>{{system.hobby}}</small></span></button>
+              <div class="bb-fichas"><span><b>{{system.xp}}</b>/5 PE</span><span><b>{{system.advances.length}}</b>/5 avances</span><span class="{{#if (eq system.conditions.length 3)}}alerta{{/if}}"><b>{{system.conditions.length}}</b>/3 cond.</span><span><b>{{system.home.length}}</b>/18 hogar</span><span><b>{{crownTotal}}</b>/12 coronas</span></div>
+              {{#if closed}}<em class="bb-marca">Sesión cerrada ✓</em>{{else if pending}}<em class="bb-marca aviso">{{pending}} escena{{#if (eq pending 1)}}{{else}}s{{/if}} de Corona pendiente{{#if (eq pending 1)}}{{else}}s{{/if}}</em>{{/if}}
             </article>
-          {{else}}<p>Una buena historia empieza con una buena compañía.</p>{{/each}}
+          {{else}}<p class="bb-vacio">Una buena historia empieza con una buena compañía.</p>{{/each}}
         </div>
       </main>
       <aside>
-        <span class="bb-eyebrow">EL RITUAL DE LOS SÁBADOS</span><h2>La sesión, de un vistazo</h2>
+        <span class="bb-eyebrow">El ritual de los sábados</span>
+        <h2>La sesión, de un vistazo</h2>
         <ol class="bb-agenda"><li>Recapitulación y finales abiertos</li><li>Preguntas y movimientos de inicio</li><li>Retazos de una vida agradable</li><li>Presentación e investigación</li><li>Escenas de Corona pendientes</li><li>Fin de sesión, estrellas y deseos</li></ol>
         {{#if gm}}
-          <button type="button" data-action="session">Comenzar la siguiente sesión</button><button type="button" data-action="gold">Recordar a Amanda {{#if club.goldUsed}}· utilizada{{/if}}</button>
-          <div class="bb-void"><h2>Debajo de la superficie</h2><p>{{voidCount}} pistas del Vacío · Capa {{layer}}</p>{{#each thresholds}}<p>{{#if open}}●{{else}}○{{/if}} {{value}} · {{label}}</p>{{/each}}<button type="button" data-action="conspiracy">Cuaderno de la conspiración</button><button type="button" data-action="guardiana">Consejos para la Guardiana</button></div>
-          <div class="bb-danger-zone"><h3>Reiniciar campaña</h3><p>Vacía únicamente los datos creados por Brindlewood Bay en este mundo.</p><button type="button" data-action="reset">Empezar de cero</button></div>
+          <div class="bb-acciones apilado"><button type="button" class="bb-primary" data-action="session"><i class="fa-solid fa-forward" aria-hidden="true"></i> Comenzar la siguiente sesión</button><button type="button" data-action="gold"><i class="fa-solid fa-book" aria-hidden="true"></i> Recordar a Amanda{{#if club.goldUsed}} · utilizada{{/if}}</button></div>
+          <section class="bb-conspiracion"><h2>Debajo de la superficie</h2><p class="bb-tenue">{{voidCount}} pistas del Vacío · capa {{layer}} de 4{{#if mulder}} · Fox Mulder reduce cada umbral{{/if}}</p>
+            <ol class="bb-capas">{{#each thresholds}}<li class="{{#if open}}abierta{{/if}}"><b>{{value}}</b><span>{{label}}</span></li>{{/each}}</ol>
+            <div class="bb-acciones apilado"><button type="button" data-action="conspiracy">Cuaderno de la conspiración</button><button type="button" data-action="guardiana">Consejos para la Guardiana</button><button type="button" data-action="occult"><i class="fa-solid fa-eye" aria-hidden="true"></i> Nuevo movimiento ocultista</button></div>
+          </section>
+          <details class="bb-peligro" data-memoria="reinicio"><summary>Zona delicada</summary><p>Reiniciar campaña vacía únicamente los datos creados por Brindlewood Bay en este mundo.</p><button type="button" data-action="reset">Empezar de cero</button></details>
         {{/if}}
       </aside>
     </div>
   </div>
-  <footer class="bb-footer">Una adaptación para Foundry VTT · ManuRomera · Brindlewood Bay, Jason Cordova</footer>
+  <footer class="bb-pie">Una adaptación para Foundry VTT · Manu Romera · Brindlewood Bay, de Jason Cordova</footer>
 </section>

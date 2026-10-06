@@ -1,102 +1,82 @@
-![Brindlewood Bay · El club de las Expertas del Crimen](assets/cover.png)
-
-# Brindlewood Bay para Foundry VTT
-
 <p align="center">
-  <a href="https://github.com/ManuRomera/brindlewood-bay-foundry/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/ManuRomera/brindlewood-bay-foundry?include_prereleases&style=for-the-badge&color=2f7f86&label=release"></a>
-  <a href="https://foundryvtt.com"><img alt="Foundry VTT V13" src="https://img.shields.io/badge/Foundry%20VTT-V13-57d8c8?style=for-the-badge"></a>
-  <a href="https://github.com/ManuRomera/brindlewood-bay-foundry/releases"><img alt="Downloads" src="https://img.shields.io/github/downloads/ManuRomera/brindlewood-bay-foundry/total?style=for-the-badge&color=ff7a1f"></a>
-  <img alt="Game system" src="https://img.shields.io/badge/type-game%20system-2b3245?style=for-the-badge">
-  <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-2b3245?style=for-the-badge"></a>
+  <img src="assets/cover.png" alt="Brindlewood Bay · El club de las Expertas del Crimen" width="100%">
 </p>
 
-**Hay té. Hay pastas. Y algo no encaja.**
+<h1 align="center">Brindlewood Bay para Foundry VTT</h1>
+<p align="center"><b>Hay té. Hay pastas. Y algo no encaja.</b><br>
+El juego de misterios cozy-cósmicos de Jason Cordova, en español y con todas las reglas automatizadas.</p>
 
-Sistema nativo en español para Foundry **13.351**. Seis misterios, un club de lectura y un oscuro secreto bajo la bahía. Creado por ManuRomera a partir de la edición española 1.0 de Jason Cordova.
+<p align="center">
+  <a href="https://github.com/ManuRomera/brindlewood-bay-foundry/releases/latest"><img alt="Última versión" src="https://img.shields.io/github/v/release/ManuRomera/brindlewood-bay-foundry?style=for-the-badge&color=2a5446&label=versión"></a>
+  <a href="https://foundryvtt.com"><img alt="Foundry VTT 13" src="https://img.shields.io/badge/Foundry%20VTT-13%20%C2%B7%20preparado%20para%2014-8a6a2f?style=for-the-badge"></a>
+  <a href="https://github.com/ManuRomera/brindlewood-bay-foundry/releases"><img alt="Descargas" src="https://img.shields.io/github/downloads/ManuRomera/brindlewood-bay-foundry/total?style=for-the-badge&color=4d4766"></a>
+  <a href="LICENSE"><img alt="Licencia MIT" src="https://img.shields.io/badge/licencia-MIT-55615a?style=for-the-badge"></a>
+</p>
 
-> **WIP · 0.7.0-wip.1.** Compatible con toda la rama estable de Foundry 13. No se declara compatibilidad con Foundry 14. Consulta [el alcance y la verificación](docs/QA.md).
-
-## Entrar en el club
-
-En Foundry → Game Systems → Install System, pega este manifiesto:
-
-```text
-https://raw.githubusercontent.com/ManuRomera/brindlewood-bay-foundry/main/system.json
-```
-
-Crea un mundo con **Brindlewood Bay · El club de las Expertas**. Al entrar aparece el tablero de The Candlelight y se crea su escena de salón de té a pantalla completa, sin cuadrícula, visión de token ni niebla. También puedes abrir el tablero desde el directorio de Actores o los ajustes del sistema.
-
-1. **Crear una Experta:** cada jugadora tiene «Crear mi Experta» bajo el botón del salón, aunque su rol no tenga permiso general para crear Actores. Allí elige el asistente paso a paso o la creación aleatoria. Cada pantalla indica lo que falta y bloquea el avance hasta cumplir sus requisitos; siempre ofrece «Cancelar». La Guardiana conectada valida la ficha y el sistema entrega su propiedad a la jugadora.
-2. **Habilidades:** no se eligen ni se tiran libremente. El manual fija Vitalidad 0, Compostura +1, Razón +1, Presencia 0 y Sensibilidad −1; después se suma +1 a una de ellas.
-3. **Creación aleatoria:** «Experta al azar» produce una ficha completa que puede revisarse antes de guardarla. «Castellanizar» utiliza nombres, aficiones, estilos, familias, carreras y objetos reconociblemente españoles.
-4. **Abrir un misterio:** la Guardiana consulta el expediente y presenta el caso. Se recomienda *Papá por la borda*.
-5. **Revelar y Teorizar:** publica pistas y presentaciones; después seleccionad las pistas que explica la teoría. La fórmula y sus restricciones se aplican automáticamente.
-
-No requiere otros módulos. Descarga alternativa: [versiones WIP](https://github.com/ManuRomera/brindlewood-bay-foundry/releases).
-
-## En el centro de la mesa
-
-| Misterio | Complejidad | Pistas + Vacío |
-| --- | ---: | ---: |
-| Papá por la borda | 6 | 20 + 6 |
-| Un grito en Halloween | 6 | 20 + 6 |
-| Brindlewood Bay precocinado | 7 | 20 + 6 |
-| Pero mira cómo mueren | 7 | 20 + 6 |
-| La muerte a escena | 8 | 20 + 6 |
-| Un asesinato en aguas oscuras | 8 | 20 + 6 |
-
-Ocho compendios incluyen reglas, ayudas, 19 movimientos expertos, siete básicos, los seis expedientes, 49 personas de interés, la escena del salón, la macro de anuncios y las herramientas de la Guardiana. Cada entrada identifica su fuente. Los compendios de expedientes y sospechosos se ocultan del directorio de las jugadoras; las copias de trabajo se abren como diarios privados. Las personas pueden aparecer en varios misterios: no hay un culpable establecido de antemano.
-
-El tablero de cada misterio funciona como cuaderno de investigación compartido. La Guardiana puede arrastrar fichas de Persona de interés al caso, ver sus retratos, editar su presentación pública y retirarlas sin borrar la ficha original. Las jugadoras pueden escribir notas directamente en cada persona, ampliar cada pista con sus propios apuntes y mantener un cuaderno libre para ir construyendo la teoría. El texto original de las pistas queda siempre separado y protegido.
-
-## Una vida plena
-
-Fichas de marfil, verde salvia y rosa antiguo; retratos editables; controles de habilidades protegidos; objetos con historia; Condiciones; objetivos de fin de sesión; Coronas con escenas pendientes y un historial de tiradas recuperable. Las narraciones previas a las tiradas pueden hacerse por voz y los apuntes del chat son opcionales. Los límites del manual se muestran junto a cada recurso y se aplican en la propia ficha: 18 objetos del Hogar, 3 Condiciones, 5 PE, 5 avances y los rangos de complejidad correspondientes.
-
-El salón funciona como tablero común: muestra misterios activos, pistas ordinarias y del Vacío, y el progreso de todas las Expertas. Las pistas descubiertas pueden consultarse allí sin abrir varias ventanas. Las ventanas recuerdan su tamaño y ubicación por usuario. La Guardiana dispone de un reinicio de campaña que conserva los compendios y cualquier contenido ajeno al sistema.
-
-El **Generador de anuncios** aparece en el directorio de Macros y el sistema lo coloca en la casilla 1 de la barra de cada jugadora, con su propio icono de televisor. Sus cinco tablas contienen 32 productos, 16 formatos, 12 protagonistas, 12 promesas y 16 giros: más de un millón de combinaciones. Cada ejecución publica en el chat una tarjeta titulada «Propuesta de Guión de Anuncio» que muestra las cinco elecciones y el texto combinado. La Guardiana solo da paso al anuncio desde el salón con el indicio sencillo que establece el manual.
-
-La escena **The Candlelight · Salón del club** usa una ilustración original de máximo detalle. El libro central lleva el título del sistema. Los seis libros de caso están incluidos como baldosas ocultas y el sistema revela el caso en curso y los ya resueltos en el primer plano izquierdo, con los lomos visibles y el libro principal libre.
-
-Deja el cursor quieto dos segundos sobre movimientos, habilidades, pistas, personajes o controles para consultar su información; se cierra al moverlo. El botón derecho la mantiene abierta y la chincheta la ancla hasta desanclarla o pulsar el aspa. Las fichas de chat muestran el resultado aplicado, los cuatro grados posibles, la habilidad, el modificador, ventaja o desventaja y el objeto utilizado.
-
-Ventaja y desventaja no se acumulan. Las Coronas cambian el nivel del resultado conservando los dados originales. Teorizar utiliza exclusivamente 2d6 + pistas incorporadas − complejidad, nunca ventajas, habilidades, Coronas o éxitos automáticos. Las pistas del Vacío no suman. El final de campaña usa complejidad 10 y no tiene efecto adicional de 12+.
-
-Cuando una tirada ordinaria falla, su propia tarjeta de chat ofrece **Ponerse una Corona** a la jugadora que hizo la tirada. Puede elegir una Corona de la Reina disponible o la siguiente Corona del Vacío; al aceptarla se marca en la ficha, se aplican sus efectos, el resultado sube un grado y la misma tarjeta de chat se reescribe mostrando el resultado vigente. Teorizar sigue sin admitir Coronas.
-
-La interfaz incluye opciones de accesibilidad por cliente: perfiles Estándar, Oscuro mate, Alto contraste AAA y Ámbar; texto ampliado; tipografía de alta legibilidad; reducción de movimiento; foco de teclado reforzado; centrado automático opcional de ventanas; y controles de brillo, contraste y saturación del lienzo. Las acciones de accesibilidad principales también se registran en **Configurar controles** para que cada persona pueda asignar sus propios atajos de teclado.
-
-La Guardiana conserva las decisiones narrativas: relevancia de Condiciones, adjudicación de pistas, consecuencias, movimientos ocultistas nuevos, contactos y ventajas situacionales. El sistema ofrece el texto y los registros necesarios; consulta la [matriz de automatizaciones](docs/REGLAS.md).
-
-## Capturas de Foundry
-
-![El salón del club](docs/salon-foundry.png)
-
-![La ficha de Experta](docs/experta-foundry.png)
-
-## Bajo la superficie
-
-El salón lleva la cuenta de sesiones y la progresión de la conspiración (3 / 5 / 10 / 15 pistas del Vacío, con el ajuste de Fox Mulder). Hay un máximo de tres investigaciones activas. *Un asesinato en aguas oscuras* requiere la tercera capa. Tras desbloquear la cuarta, se prepara el Misterio del Vacío en lugar de nuevos asesinatos.
-
-## Desarrollo y créditos
-
-`npm ci`, `npm test`, `npm run check`, `npm run build`. El ZIP de distribución se construye con una lista explícita de archivos y compendios LevelDB. [Criterios aprendidos de anteriores sistemas](docs/REGLAS.md) · [QA](docs/QA.md).
-
-Sistema de ManuRomera. Juego escrito y diseñado por **Jason Cordova**; traducción de **Chus Abascal**. Créditos completos y separación entre licencia del código y contenido en [LICENSE](LICENSE). No se distribuye el PDF ni su arte original. La portada es una ilustración original generada con IA para esta adaptación, sin carácter oficial; [dirección artística y prompt](docs/ARTE.md).
-
-La actualización 0.5.1 recoloca y redimensiona automáticamente los libros de casos de los mundos existentes al entrar como Guardiana.
-
-La actualización 0.6.0 cataloga automáticamente las fichas como «PJ: nombre» y «Caso: título», incluidos los personajes y casos ya presentes en el mundo.
+<p align="center"><a href="https://manuromera.github.io/brindlewood-bay-foundry/"><b>Ver la página del proyecto</b></a> · <a href="CHANGELOG.md">Novedades</a> · <a href="docs/AUDITORIA.md">Auditoría contra el manual</a> · <a href="https://github.com/ManuRomera/brindlewood-bay-foundry/issues">Avisar de un fallo</a></p>
 
 ---
 
-<p align="center">
-  <a href="https://github.com/ManuRomera">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/ManuRomera/ManuRomera/main/brand/MR_09_Monograma_Marfil_Transparente.png">
-      <img src="https://raw.githubusercontent.com/ManuRomera/ManuRomera/main/brand/MR_10_Monograma_Negro_Transparente.png" alt="MR · Manu Romera" height="56">
-    </picture>
-  </a><br>
-  <sub>Hecho por <a href="https://github.com/ManuRomera"><b>Manu Romera</b></a> · Digital RPG Design</sub>
-</p>
+## Instalar en un minuto
+
+En Foundry: **Game Systems → Install System** y pega este manifiesto:
+
+```text
+https://github.com/ManuRomera/brindlewood-bay-foundry/releases/latest/download/system.json
+```
+
+Crea un mundo con **Brindlewood Bay · El club de las Expertas**. Al entrar se abre el salón de **The Candlelight** y se crea su escena a pantalla completa. No necesita ningún módulo. Si ya lo tenías instalado, Foundry te ofrecerá la actualización en *Game Systems*.
+
+## Qué te encuentras al abrirlo
+
+<p align="center"><img src="docs/salon-foundry.png" alt="El salón del club" width="100%"></p>
+
+**El salón del club** reúne en una ventana lo que el grupo necesita en la mesa: misterios activos con sus pistas, el progreso de cada Experta (PE, avances, Condiciones, Hogar y Coronas), la capa de la conspiración y el ritual de la sesión.
+
+<table>
+<tr>
+<td width="50%"><img src="docs/experta-foundry.png" alt="Ficha de Experta"><br><b>Una ficha que cabe en media pantalla.</b> Cabecera fija con habilidades y límites; cinco pestañas: <i>En la mesa</i>, <i>Hogar y vida</i>, <i>Avance</i>, <i>Coronas</i> e <i>Historial</i>.</td>
+<td width="50%"><img src="docs/misterio-foundry.png" alt="Tablero del misterio"><br><b>Un cuaderno de investigación compartido.</b> Pistas, personas de interés con retrato y notas del grupo; la Guardiana revela y las jugadoras anotan.</td>
+</tr>
+<tr>
+<td width="50%"><img src="docs/tirada-foundry.png" alt="Diálogo de tirada"><br><b>Tiradas sin sorpresas.</b> Eliges habilidad, objeto del Hogar y desventajas, y ves la fórmula exacta antes de lanzar.</td>
+<td width="50%"><img src="docs/oscuro-foundry.png" alt="Perfil oscuro mate"><br><b>Cuatro perfiles visuales</b> y texto del 85 % al 160 %, a un clic desde la cabecera de cada ventana.</td>
+</tr>
+</table>
+
+## Todo el manual, funcionando
+
+| Regla del manual | Qué hace el sistema |
+| --- | --- |
+| 2d6 + habilidad, ventaja y desventaja | Fórmula automática; ventaja y desventaja se cancelan, nunca se acumulan |
+| Los cuatro niveles de cada movimiento | La tarjeta del chat destaca el obtenido y pliega los otros tres |
+| **Ponerse una Corona** | Botón en la propia tarjeta de un fallo: sube el nivel, marca la Corona, reescribe la tarjeta y deja la escena pendiente |
+| Corona del Vacío | Se marca en orden; aplica Carruaje, Pepitas de granada y la retirada |
+| Teorizar | 2d6 + pistas − complejidad, solo pistas ordinarias, con consenso; sin 12+ en el Misterio del Vacío |
+| **Afable** | Quita la Condición y avisa de la Pista si es tu quehacer |
+| Hogar, dulce hogar | 18 espacios, objetos que dan ventaja y se marcan, y los reutilizables de los movimientos expertos |
+| PE y avances | Contador de 5, exceso pendiente, cinco avances únicos con tope +3 |
+| 19 movimientos expertos | Usos por sesión, por misterio o únicos controlados; efectos automáticos de Dale Cooper, Fox Mulder, Frank Dowling, Frank Colombo, Colt Seavers, Thomas Magnum y más |
+| Conspiración siniestra | Capas a 3 / 5 / 10 / 15 pistas (una menos con Fox Mulder) con **aviso privado** a la Guardiana al cruzar cada una |
+| Inicio de sesión | Tarjeta con los movimientos que se resuelven al empezar (Dale Cooper, Jim Rockford, Espantapájaros) |
+| Movimientos ocultistas | La Guardiana los define una vez y se entregan a todas las Expertas |
+| Pausa para anuncios | Indicio, regla del 10–11 y generador de guiones con más de un millón de combinaciones |
+
+Seis misterios completos con sus expedientes privados, 49 personas de interés, los 19 movimientos expertos, los siete básicos y una guía rápida del sistema en el compendio de Reglas. Lo que el manual deja a criterio de la mesa (qué Condición afecta, qué consecuencia narrar) sigue en vuestras manos. Consulta la [matriz de automatizaciones](docs/REGLAS.md) y la [auditoría](docs/AUDITORIA.md).
+
+## Pensado para jugar de verdad
+
+- **Cada ventana recuerda** su posición, tamaño, pestaña, secciones plegadas y desplazamiento, y no pierde lo que estás escribiendo si otra persona provoca un repintado.
+- **Retratos encuadrables** con zona y zoom, iguales en la ficha, el salón, el chat y el directorio.
+- **Accesibilidad por ventana:** el icono de la cabecera abre perfiles Estándar, Oscuro mate, Alto contraste AAA y Ámbar; tamaño de texto, tipografía de alta legibilidad, movimiento reducido, foco de teclado reforzado y ayuda inmediata.
+- **Las jugadoras se crean su Experta** sin permisos de Actor: la Guardiana conectada valida y entrega la propiedad. Asistente paso a paso o Experta al azar, con opción de castellanizar nombres y objetos.
+- **Visibilidad del chat respetada** (pública, solo Guardiana, ciega).
+- Compatible con Foundry **13** (verificado en 13.351) y con la capa de compatibilidad para **14**.
+
+## Para quien quiera mirar dentro
+
+DataModels, ApplicationV2 y compendios generados desde JSON legible (`_data/`) con `npm run build`. `npm test` ejecuta 55 pruebas de reglas, contenido y formularios; `npm run check` valida manifiesto, versiones y recursos. Cada versión se publica al subir una etiqueta `vX.Y.Z`.
+
+## Créditos y aviso
+
+*Brindlewood Bay* es obra de **Jason Cordova** (The Gauntlet); la edición española es de **Chus Abascal** y compañía, con arte de Cecilia Ferri y Daniel Jimbert. Este es un proyecto de aficionado, sin afiliación con los autores ni los editores. Adaptación a Foundry VTT: **[Manu Romera](https://github.com/ManuRomera) · Digital RPG Design**. Código bajo licencia MIT; los textos del juego pertenecen a sus autores.

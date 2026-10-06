@@ -1,15 +1,13 @@
-<section class="bb-scroll"><header class="bb-masthead"><span
-      class="bb-eyebrow"
-    >UN TALENTO DE TODA UNA VIDA</span></header><label>Nombre<input
-      name="name"
-      value="{{item.name}}"
-    /></label><label>Movimiento<textarea
-      name="system.description"
-      rows="14"
-    >{{system.description}}</textarea></label><label>Fuente<input
-      name="system.source"
-      value="{{system.source}}"
-    /></label><p class="bb-note">Frecuencia:
-    {{system.frequency}}
-    ·
-    {{#if system.used}}Uso gastado{{else}}Disponible{{/if}}</p></section>
+<section class="bb-scroll bb-mov-ficha">
+  <header class="bb-cabecera bb-cabecera-caso">
+    <div class="bb-identidad">
+      <span class="bb-eyebrow">Un talento de toda una vida</span>
+      <input class="bb-nombre" name="name" aria-label="Nombre del movimiento" value="{{item.name}}">
+      <p class="bb-datos"><span>{{useLabel}}</span>{{#if system.used}}<span class="bb-estado resuelto">Uso gastado</span>{{else}}<span class="bb-estado">Disponible</span>{{/if}}</p>
+    </div>
+  </header>
+  <div class="bb-cuerpo">
+    <label>Movimiento<textarea name="system.description" rows="12">{{system.description}}</textarea></label>
+    <label>Fuente<input name="system.source" value="{{system.source}}"></label>
+  </div>
+</section>

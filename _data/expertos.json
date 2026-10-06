@@ -5,7 +5,7 @@
     "type": "movimiento",
     "img": "systems/brindlewood-bay/assets/teacup.svg",
     "system": {
-      "description": "Una vez por sesión, si tú o alguna de tus compañeras Expertas sufr ís daño físico, puedes describir cómo evitáis ese daño por los pelos.",
+      "description": "Una vez por sesión, si tú o alguna de tus compañeras Expertas sufrís daño físico, puedes describir cómo evitáis ese daño por los pelos.",
       "source": "Brindlewood Bay 1.0, p. 74",
       "key": "0",
       "frequency": "session",

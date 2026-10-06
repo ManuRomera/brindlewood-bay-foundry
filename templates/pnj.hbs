@@ -1,9 +1,13 @@
-<section class="bb-scroll">
-  <header class="bb-masthead">
-    <button type="button" class="bb-portrait-button" data-action="image" data-bb-info-title="Retrato de {{actor.name}}" data-bb-info="Pulsa para elegir o subir una imagen para este personaje."><img class="bb-portrait" src="{{actor.img}}" alt="Retrato de {{actor.name}}"><span><i class="fas fa-camera"></i> Cambiar retrato</span></button>
-    <span class="bb-eyebrow">UN ROSTRO EN BRINDLEWOOD BAY</span>
+<section class="bb-scroll bb-pnj">
+  <header class="bb-cabecera bb-cabecera-caso">
+    <button type="button" class="bb-retrato-boton" data-action="image" data-bb-info-title="Retrato" data-bb-info="Cambia la imagen y encuadra la zona que se ve de este personaje."><img class="bb-retrato" data-retrato="{{actor.id}}" src="{{actor.img}}" alt="Retrato de {{actor.name}}"><span><i class="fa-solid fa-crop-simple" aria-hidden="true"></i> Encuadrar</span></button>
+    <div class="bb-identidad">
+      <span class="bb-eyebrow">Un rostro en Brindlewood Bay</span>
+      <input class="bb-nombre" name="name" aria-label="Nombre" value="{{actor.name}}">
+      {{#if system.source}}<p class="bb-fuente">{{system.source}}</p>{{/if}}
+    </div>
   </header>
-  <label>Nombre<input name="name" value="{{actor.name}}"></label>
-  <label>Descripción, interpretación y cita<textarea name="system.description" rows="17">{{system.description}}</textarea></label>
-  <p class="bb-source">{{system.source}}</p>
+  <div class="bb-cuerpo">
+    <label>Descripción, interpretación y cita<textarea name="system.description" rows="16">{{system.description}}</textarea></label>
+  </div>
 </section>

@@ -1,4 +1,4 @@
-import { ID, BASE, STATS, STATS_INFO, QUESTIONS, LIMITS, creationIssue, conspiracyLayer, complexityIssue } from "./rules.mjs";
+import { ID, BASE, STATS, STATS_INFO, QUESTIONS, LIMITS, LAYERS, SESSION_START, layerChange, creationIssue, conspiracyLayer, complexityIssue } from "./rules.mjs";
 import {
   esc,
   field,
@@ -19,7 +19,8 @@ import { rememberWindow, clearRememberedWindows } from "./window-state.mjs";
 import { advertisement } from "./advertisements.mjs";
 import { creationPool, randomExpert, lifeText, creationQuestionOptions } from "./expert-generator.mjs";
 import { syncCaseBooks } from "./salon-scene.mjs";
-import { catalogName } from "./catalog.mjs";
+import { catalogName, displayName } from "./catalog.mjs";
+import { pintarRetratos } from "./retrato.mjs";
 import { identityFrom, identityIssue, lifeFrom, lifeIssue } from "./creation-form.mjs";
 const CREATION_SOCKET = `system.${ID}`;
 const pendingCreations = new Map();
@@ -316,6 +317,8 @@ export async function reveal(a) {
       notes: "",
       void: source ? m.voidClues.some((c) => c.id === id) : d.has("void"),
     };
+    const mulder = op.experts().some((expert) => op.has(expert, "Fox Mulder"));
+    const before = op.cases().flatMap((entry) => entry.system.clues).filter((entry) => entry.void).length;
     n.clues.push(clue);
     await a.update({ system: n });
     await op.chat(
@@ -323,6 +326,17 @@ export async function reveal(a) {
       clue.void ? "Una Pista del Vacío" : "Una nueva pista",
       `<p>${esc(text)}</p>${clue.context ? `<p><b>Contexto:</b> ${esc(clue.context)}</p>` : ""}`,
     );
+    if (clue.void) {
+      const unlocked = layerChange(conspiracyLayer(before, mulder), conspiracyLayer(before + 1, mulder));
+      for (const layer of unlocked) {
+        await op.whisperGM(
+          `Se desbloquea una capa de la conspiración (${before + 1} Pistas del Vacío)`,
+          `<h4>${esc(layer.label)}</h4><p>${esc(layer.text)}</p>`,
+        );
+        if (layer === LAYERS[3])
+          await op.chat(null, "El Misterio del Vacío", "<p>La conspiración llega a su punto de no retorno. Cuando se resuelvan los casos abiertos, la Guardiana presentará el Misterio del Vacío.</p>");
+      }
+    }
   });
 }
 export async function useExpert(a, item) {
@@ -474,9 +488,18 @@ export async function newSession() {
       if (changes.length) await a.updateEmbeddedDocuments("Item", changes);
     }
     await op.saveClub({ ...c, session: c.session + 1, goldUsed: false, adUsed: false });
-    ui.notifications.info(
-      "Nueva sesión: recapitulación, finales abiertos, preguntas y retazos de una vida agradable.",
+    const starters = op.experts().flatMap((actor) =>
+      actor.items
+        .filter((item) => SESSION_START[item.name])
+        .map((item) => `<li><b>${esc(displayName(actor.name))}</b> · ${esc(item.name.replace(/[«»]/g, ""))}: ${esc(SESSION_START[item.name])}</li>`),
     );
+    const active = op.cases().filter((entry) => entry.system.status === "active");
+    await op.chat(
+      null,
+      `Comienza la sesión ${c.session + 1}`,
+      `<ol><li>Recapitulación de los misterios activos (${active.length ? active.map((entry) => esc(displayName(entry.name))).join(", ") : "ninguno"}) y finales abiertos.</li><li>Cada jugadora puede cambiar sus dos preguntas de fin de sesión.</li><li>Movimientos de comienzo de sesión${starters.length ? `:<ul>${starters.join("")}</ul>` : ": ninguno."}</li><li>Retazos de una vida agradable.</li><li>La Guardiana presenta un misterio nuevo si hay menos de ${LIMITS.activeMysteries} activos.</li></ol>`,
+    );
+    ui.notifications.info(`Sesión ${c.session + 1}: los movimientos de uso por sesión se han recuperado.`);
   });
 }
 export async function resetCampaign() {
@@ -580,15 +603,21 @@ export class ClubApp extends rememberWindow(foundry.applications.api.HandlebarsA
       gold: guard(async () => golden(null)),
       advertisement: guard(advertisement),
       reset: guard(resetCampaign),
-      rules: guard(async () => game.packs.get(`${ID}.reglas`).render(true)),
+      rules: guard(async () => {
+        const pack = game.packs.get(`${ID}.reglas`);
+        const guide = await pack.getDocument("a1ffe3d68f043de6");
+        if (guide) await guide.sheet.render(true);
+        else await pack.render(true);
+      }),
       guardiana: guard(async () => {
         gm();
-        game.packs.get(`${ID}.guardiana`).render(true);
+        await (await game.packs.get(`${ID}.guardiana`).getDocument("1eaf381c667084df"))?.sheet.render(true);
       }),
       conspiracy: guard(async () => {
         gm();
-        game.packs.get(`${ID}.guardiana`).render(true);
+        await (await game.packs.get(`${ID}.guardiana`).getDocument("09755384ce5cc0aa"))?.sheet.render(true);
       }),
+      occult: guard(op.createOccultMove),
       safety: guard(async () =>
         op.chat(
           null,
@@ -607,6 +636,7 @@ export class ClubApp extends rememberWindow(foundry.applications.api.HandlebarsA
   async _onRender(context, options) {
     await super._onRender(context, options);
     attachInfo(this.element);
+    pintarRetratos(this.element);
   }
   async _prepareContext() {
     const cs = op.cases();
@@ -624,31 +654,32 @@ export class ClubApp extends rememberWindow(foundry.applications.api.HandlebarsA
       experts: visibleExperts.map((actor) => ({
         actor,
         id: actor.id,
-        name: actor.name,
+        name: displayName(actor.name),
         img: actor.img,
         system: actor.system,
         crownTotal: actor.system.queen.length + actor.system.void,
+        closed: actor.system.endSession >= op.club().session,
+        pending: actor.system.pending.length,
+        retired: actor.system.retired,
       })),
       cases: visibleCases.map((actor) => ({
         actor,
         id: actor.id,
-        name: actor.name,
+        name: displayName(actor.name),
         system: actor.system,
         regular: actor.system.clues.filter((clue) => !clue.void),
         voidClues: actor.system.clues.filter((clue) => clue.void),
       })),
       voidCount: count,
       layer: conspiracyLayer(count, mulder),
-      thresholds: [3, 5, 10, 15].map((v, i) => ({
-        value: v - (mulder ? 1 : 0),
-        label: [
-          "La historia de la bahía",
-          "Las Matronas",
-          "Acción directa",
-          "El Misterio del Vacío",
-        ][i],
-        open: count >= v - (mulder ? 1 : 0),
+      thresholds: LAYERS.map((layer) => ({
+        value: layer.value - (mulder ? 1 : 0),
+        label: layer.label,
+        open: count >= layer.value - (mulder ? 1 : 0),
       })),
+      version: game.system.version,
+      mulder,
+      sessionClosedCount: visibleExperts.filter((actor) => actor.system.endSession >= op.club().session).length,
       limits: LIMITS,
       activeCount: cs.filter((a) => a.system.status === "active").length,
       visibleActiveCount: activeVisible.length,

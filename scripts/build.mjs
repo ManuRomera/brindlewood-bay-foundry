@@ -68,15 +68,14 @@ for (const path of [
   "lang",
   "packs",
   "assets",
-  "docs",
   "_data",
   "LICENSE",
   "README.md",
   "CHANGELOG.md",
 ]) {
   const stat = await fs.stat(path);
-  if (stat.isDirectory()) zip.directory(path, `brindlewood-bay/${path}`);
-  else zip.file(path, { name: `brindlewood-bay/${path}` });
+  if (stat.isDirectory()) zip.directory(path, path);
+  else zip.file(path, { name: path });
 }
 await zip.finalize();
 await done;

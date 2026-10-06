@@ -1,3 +1,20 @@
+# 1.0.0
+
+Primera versión estable. A partir de ahora se actualiza desde Foundry con el manifiesto `releases/latest/download/system.json`.
+
+- Ficha de Experta rehecha: cabecera compacta con habilidades y límites siempre visibles y cinco pestañas (En la mesa, Hogar y vida, Avance, Coronas, Historial). Los recursos saltan a su pestaña.
+- Tablero del misterio y salón del club más compactos: notas plegables, pistas en cuadrícula, personas con retrato y avisos de sesión cerrada o escenas de Corona pendientes.
+- Nuevo sistema de diseño: todo el color sale de variables y todos los tamaños son relativos (nada por debajo de 12 px); los perfiles Oscuro mate, Alto contraste AAA y Ámbar solo redefinen variables.
+- Icono de accesibilidad en la cabecera de cada ventana con panel propio; nuevo tamaño de texto del 85 % al 160 % (sustituye al texto ampliado) y ajuste de ayuda inmediata.
+- Retratos encuadrables (zona y zoom) válidos en ficha, salón, chat y directorio.
+- Las ventanas recuerdan pestaña, secciones plegadas y desplazamiento además de posición y tamaño, y conservan el texto sin guardar.
+- Capa de compatibilidad Foundry 13 ↔ 14 (`compat.mjs`); las tiradas respetan la visibilidad del chat.
+- Diálogo de tirada con selector de habilidad, vista previa de la fórmula y botón Cancelar; Diurno y Nocturno proponen Compostura.
+- Automatizaciones nuevas: movimiento **Afable**; tarjeta de **inicio de sesión** con los movimientos que se resuelven al empezar; **aviso privado** al desbloquear cada capa de la conspiración; **Nuevo movimiento ocultista** que se entrega a todas; Frank Colombo en la tirada de Metomentodo; Remington Steele añade su objeto al Hogar; el bono de Fox Mulder se ve en la ficha; marcar o desmarcar objetos del Hogar a mano.
+- Corregido: en el Misterio del Vacío un 12+ al Teorizar se trata como 10–11 (no hay resultado extraordinario); la ayuda emergente dejaba de describir los controles tras el primer repintado; el salón mostraba una versión fija «WIP · 0.6.8»; los nombres «PJ:»/«Caso:» ya no se ven en las fichas; erratas heredadas del PDF.
+- Compendios: nueva *Guía rápida de este sistema* y títulos de página legibles en Reglas, Guardiana y Aventuras.
+- Publicación por etiqueta `vX.Y.Z`; el zip lleva `system.json` en la raíz.
+
 # 0.9.0-wip.1
 
 - Las tiradas fallidas muestran en su propia tarjeta de chat la acción «Ponerse una Corona» para la autora de la tirada y la Guardiana.

@@ -8,7 +8,7 @@
     "pages": [
       {
         "_id": "d02f19060751a37e",
-        "name": "38 · Complejidad: 6",
+        "name": "38 · Presentación y primeros sospechosos",
         "type": "text",
         "sort": 3800000,
         "text": {
@@ -18,7 +18,7 @@
       },
       {
         "_id": "19aee1eac4a8176e",
-        "name": "39 · Alison Krause, la esposa",
+        "name": "39 · Sospechosos (continuación)",
         "type": "text",
         "sort": 3900000,
         "text": {
@@ -28,7 +28,7 @@
       },
       {
         "_id": "9ff226d0538fe031",
-        "name": "40 · Trazar la escena",
+        "name": "40 · Trazar la escena y pistas",
         "type": "text",
         "sort": 4000000,
         "text": {
@@ -57,7 +57,7 @@
     "pages": [
       {
         "_id": "35e2f6a6e39aaea6",
-        "name": "42 · Un grito en Halloween",
+        "name": "42 · Presentación y primeros sospechosos",
         "type": "text",
         "sort": 4200000,
         "text": {
@@ -67,7 +67,7 @@
       },
       {
         "_id": "4eef7aadc39320b9",
-        "name": "43 · Gordon Thune, banquero",
+        "name": "43 · Sospechosos (continuación)",
         "type": "text",
         "sort": 4300000,
         "text": {
@@ -77,7 +77,7 @@
       },
       {
         "_id": "b2cd9d00fcd3e929",
-        "name": "44 · Trazar la Escena",
+        "name": "44 · Trazar la escena y pistas",
         "type": "text",
         "sort": 4400000,
         "text": {
@@ -106,7 +106,7 @@
     "pages": [
       {
         "_id": "72866eb6bdde9028",
-        "name": "46 · Complejidad: 7",
+        "name": "46 · Presentación del misterio",
         "type": "text",
         "sort": 4600000,
         "text": {
@@ -126,7 +126,7 @@
       },
       {
         "_id": "5e1c4b8385facd4a",
-        "name": "48 · Heath Hendricks, productor",
+        "name": "48 · Sospechosos (continuación)",
         "type": "text",
         "sort": 4800000,
         "text": {
@@ -136,7 +136,7 @@
       },
       {
         "_id": "9f92645280d1a61a",
-        "name": "49 · Pistas",
+        "name": "49 · Pistas y Pistas del Vacío",
         "type": "text",
         "sort": 4900000,
         "text": {
@@ -155,7 +155,7 @@
     "pages": [
       {
         "_id": "98a5e05041fa30a5",
-        "name": "51 · Complejidad: 7",
+        "name": "51 · Presentación del misterio",
         "type": "text",
         "sort": 5100000,
         "text": {
@@ -175,7 +175,7 @@
       },
       {
         "_id": "63fae2744a9721ea",
-        "name": "53 · Everett Hawthorne, sobrino nieto",
+        "name": "53 · Sospechosos (continuación)",
         "type": "text",
         "sort": 5300000,
         "text": {
@@ -185,7 +185,7 @@
       },
       {
         "_id": "9ac8f077cb8eec07",
-        "name": "54 · Trazar la Escena",
+        "name": "54 · Trazar la escena",
         "type": "text",
         "sort": 5400000,
         "text": {
@@ -195,7 +195,7 @@
       },
       {
         "_id": "ef080be8f87d9b95",
-        "name": "55 · F Gotas de sangre seca en algún lugar extraño.",
+        "name": "55 · Pistas y Pistas del Vacío",
         "type": "text",
         "sort": 5500000,
         "text": {
@@ -214,7 +214,7 @@
     "pages": [
       {
         "_id": "049456fb92ccd702",
-        "name": "56 · Complejidad: 8",
+        "name": "56 · Presentación y actos",
         "type": "text",
         "sort": 5600000,
         "text": {
@@ -224,12 +224,12 @@
       },
       {
         "_id": "063ee05481ed2365",
-        "name": "57 · La obra concluye con la aparición del Rey Ocluido, una figura exageradamente",
+        "name": "57 · El desenlace de la obra",
         "type": "text",
         "sort": 5700000,
         "text": {
           "format": 1,
-          "content": "<div class=\"bb-reading\"><p>La obra concluye con la aparición del Rey Ocluido, una figura exageradamente alta ataviada con ropajes oscuros, una máscara blanca fantasmal y un yelmo rojo como la sangre. Si alguna de las Expertas tiene marcada La pálida máscara, permite que hagan el movimiento Profecía del rey descrito a continuación:</p><p>Profecía del rey Si tienes marcada La p álida máscara cuando el Rey Ocluido aparece sobre el escenario, este te llama «Mi amada» y profetiza una muerte entre susurros (eres la única que puede oírla). Esta profecía predice cuándo morirá una de las otras Expertas. En una escena futura, cuando otra Experta vaya a realizar una acción que requiera una tirada de dado, di: «¡Eso es! ¡Esto es lo que me susurró el Rey Ocluido! ¡Así es como vas a morir!». Si de todos modos se sigue adelante con la acción, ambas os marcáis 1 PE. En la tirada, el resultado de 6 o menos se reemplaza por «Mueres; la</p><p>Guardiana describe cómo». Los miembros del coro cantan una endecha disonante, chillona, mientras los cortesanos llevan a La Viajera ante el rey. Las luces se apagan y, cuando vuelven a encenderse, el telón ya ha caído. Nadie saluda al público ni hay ovaciones; muy poca gente aplaude siquiera. Los acomodadores empiezan a ayudar a la gente a abandonar el teatro. A la mañana siguiente, cuando las Expertas se están preparando para regresar a Brindlewood Bay, el sobrino pasa por la habitación del hotel y explica muy nervioso que Natassia Gray, la joven actriz que interpretaba a La Viajera, fue encontrada muerta la noche anterior con una daga ritual clavada en el corazón, al final del último pase, cuando se apagaron las luces. La policía de Boston está investigando, pero él espera que las Expertas puedan prestar su ayuda. Les explica que las únicas personas que estaban cerca de Natassia cuando todo sucedió eran los actores, los miembros del coro y el director (si quieres, puedes identificar a cada sospechoso por su nombre en este momento). El sobrino también podría ser sospechoso, dependiendo de cómo se haya contestado la pregunta inicial, y por tanto ser otra razón para que las Expertas intervengan y limpien su nombre. Si las Expertas aceptan el caso, el sobrino explicará que el reparto de El rey en sombras se reúne por el día en un club de copas, el Estigia. También les dirá que esa noche el grupo cenará en el apartamento de Ambrose y Veruca Sinclair.</p></div><p class=\"bb-source\">Brindlewood Bay, edición española 1.0, p. 57.</p>"
+          "content": "<div class=\"bb-reading\"><p>La obra concluye con la aparición del Rey Ocluido, una figura exageradamente alta ataviada con ropajes oscuros, una máscara blanca fantasmal y un yelmo rojo como la sangre. Si alguna de las Expertas tiene marcada La pálida máscara, permite que hagan el movimiento Profecía del rey descrito a continuación:</p><p>Profecía del rey Si tienes marcada La pálida máscara cuando el Rey Ocluido aparece sobre el escenario, este te llama «Mi amada» y profetiza una muerte entre susurros (eres la única que puede oírla). Esta profecía predice cuándo morirá una de las otras Expertas. En una escena futura, cuando otra Experta vaya a realizar una acción que requiera una tirada de dado, di: «¡Eso es! ¡Esto es lo que me susurró el Rey Ocluido! ¡Así es como vas a morir!». Si de todos modos se sigue adelante con la acción, ambas os marcáis 1 PE. En la tirada, el resultado de 6 o menos se reemplaza por «Mueres; la</p><p>Guardiana describe cómo». Los miembros del coro cantan una endecha disonante, chillona, mientras los cortesanos llevan a La Viajera ante el rey. Las luces se apagan y, cuando vuelven a encenderse, el telón ya ha caído. Nadie saluda al público ni hay ovaciones; muy poca gente aplaude siquiera. Los acomodadores empiezan a ayudar a la gente a abandonar el teatro. A la mañana siguiente, cuando las Expertas se están preparando para regresar a Brindlewood Bay, el sobrino pasa por la habitación del hotel y explica muy nervioso que Natassia Gray, la joven actriz que interpretaba a La Viajera, fue encontrada muerta la noche anterior con una daga ritual clavada en el corazón, al final del último pase, cuando se apagaron las luces. La policía de Boston está investigando, pero él espera que las Expertas puedan prestar su ayuda. Les explica que las únicas personas que estaban cerca de Natassia cuando todo sucedió eran los actores, los miembros del coro y el director (si quieres, puedes identificar a cada sospechoso por su nombre en este momento). El sobrino también podría ser sospechoso, dependiendo de cómo se haya contestado la pregunta inicial, y por tanto ser otra razón para que las Expertas intervengan y limpien su nombre. Si las Expertas aceptan el caso, el sobrino explicará que el reparto de El rey en sombras se reúne por el día en un club de copas, el Estigia. También les dirá que esa noche el grupo cenará en el apartamento de Ambrose y Veruca Sinclair.</p></div><p class=\"bb-source\">Brindlewood Bay, edición española 1.0, p. 57.</p>"
         }
       },
       {
@@ -244,7 +244,7 @@
       },
       {
         "_id": "46df08eba343587a",
-        "name": "59 · Antony Veit, el Barquero",
+        "name": "59 · Sospechosos (continuación)",
         "type": "text",
         "sort": 5900000,
         "text": {
@@ -254,7 +254,7 @@
       },
       {
         "_id": "c92b7f1c8b17e512",
-        "name": "60 · Otho Fane, el Bellaco",
+        "name": "60 · Sospechosos (final)",
         "type": "text",
         "sort": 6000000,
         "text": {
@@ -284,7 +284,7 @@
       },
       {
         "_id": "4cb99a8cbbfeb24d",
-        "name": "63 · Pistas del vacío",
+        "name": "63 · Pistas del Vacío",
         "type": "text",
         "sort": 6300000,
         "text": {
@@ -303,7 +303,7 @@
     "pages": [
       {
         "_id": "e9d98983b79e16d9",
-        "name": "64 · Un asesinato",
+        "name": "64 · Presentación del misterio",
         "type": "text",
         "sort": 6400000,
         "text": {
@@ -313,7 +313,7 @@
       },
       {
         "_id": "5fa17bdae9dc104c",
-        "name": "65 · Mientras las Expertas llegan a Mucky Point, dales unas pinceladas rápidas de",
+        "name": "65 · Llegada a Mucky Point",
         "type": "text",
         "sort": 6500000,
         "text": {
@@ -323,7 +323,7 @@
       },
       {
         "_id": "8702adbc5e20ea66",
-        "name": "66 · Eleanor Ripley, historiadora",
+        "name": "66 · Sospechosos",
         "type": "text",
         "sort": 6600000,
         "text": {
@@ -333,12 +333,12 @@
       },
       {
         "_id": "629fc158638cfbfa",
-        "name": "67 · Cita: «He visto cosas terribles, muy tétricas, en Mucky Point. Cosas que l as",
+        "name": "67 · Sospechosos (continuación)",
         "type": "text",
         "sort": 6700000,
         "text": {
           "format": 1,
-          "content": "<div class=\"bb-reading\"><p>Cita: «He visto cosas terribles, muy tétricas, en Mucky Point. Cosas que l as dejarían a ustedes pálidas como una sábana. Por supuesto, nadie me escucha...</p><p>Nadie escucha nunca a un borracho».</p><p>Thurgood Bryant, pescador Ojos negros como la pez. Dientes extremadamente pequeños. El rasgo físico de la pregunta inicial destaca muchísimo en él. Thurgood es casi tan hostil con los forasteros como George, su amigo íntimo. A veces se lo puede encontrar sentado en su barcaza, mirando al mar, susurrando fervientemente palabras extrañas e ininteligibles. Cita: «Con frecuencia veo la mar en mis sueños. Me llama. Nos llama a todos. Quiere que volvamos a ella, al vientre helado del que todos salimos reptando. Supongo que por eso me dedico a lo que me dedico. Así estoy cerca de ella».</p><p>Genevieve Deschain, alcaldesa Pelaje brillante. Buena dentadura. Medalla con la inscripción «Alcaldesa» en el cuello. Genevieve es una golden retriever que pertenece a los hermanos Deschain. El pueblo la eligió alcaldesa hace unos años para ganar algo de notoriedad. La mayoría de los días se la puede encontrar al final del muelle, mirando al mar, ladrándoles de vez en cuando a fantasmas que solo ella ve.</p><p>Trazar la Escena</p><p>El faro Cuando entráis en el faro, ¿qué veis que pruebe que todos los fareros han albergado a lo largo de los años... extrañas creencias?</p><p>La cabaña del farero En 1882, uno de los fareros asesinó salvajemente al otro. ¿Qué puede verse, aún hoy en día, que recuerde a esta truculenta historia?</p><p>El restaurante Golden Bull El Golden Bull fue en su origen, en los años 20 del siglo pasado, la sede de un grupo de espiritualistas. ¿Qué dejaron atrás?</p><p>La estación de servicio Deschain’ s Gas &amp; Sundries Los Deschain son la familia más antigua de Mucky Point. ¿Qué hay aquí que lo recuerde?</p><p>El Museo del Faro de Mucky Point ¿Cómo se sabe que el museo es el edificio más moderno de Mucky Point?</p><p>Codswallop’ s Bait &amp; Tackle, artículos de pesca Para las Expertas que hayan marcado La pálida máscara en La Corona del Vacío: Sois capaces de ver aquí algo procedente de «El Otro Lado». ¿Qué es? Para el resto: ¿Por qué este lugar os pone la piel de gallina?</p></div><p class=\"bb-source\">Brindlewood Bay, edición española 1.0, p. 67.</p>"
+          "content": "<div class=\"bb-reading\"><p>Cita: «He visto cosas terribles, muy tétricas, en Mucky Point. Cosas que las dejarían a ustedes pálidas como una sábana. Por supuesto, nadie me escucha...</p><p>Nadie escucha nunca a un borracho».</p><p>Thurgood Bryant, pescador Ojos negros como la pez. Dientes extremadamente pequeños. El rasgo físico de la pregunta inicial destaca muchísimo en él. Thurgood es casi tan hostil con los forasteros como George, su amigo íntimo. A veces se lo puede encontrar sentado en su barcaza, mirando al mar, susurrando fervientemente palabras extrañas e ininteligibles. Cita: «Con frecuencia veo la mar en mis sueños. Me llama. Nos llama a todos. Quiere que volvamos a ella, al vientre helado del que todos salimos reptando. Supongo que por eso me dedico a lo que me dedico. Así estoy cerca de ella».</p><p>Genevieve Deschain, alcaldesa Pelaje brillante. Buena dentadura. Medalla con la inscripción «Alcaldesa» en el cuello. Genevieve es una golden retriever que pertenece a los hermanos Deschain. El pueblo la eligió alcaldesa hace unos años para ganar algo de notoriedad. La mayoría de los días se la puede encontrar al final del muelle, mirando al mar, ladrándoles de vez en cuando a fantasmas que solo ella ve.</p><p>Trazar la Escena</p><p>El faro Cuando entráis en el faro, ¿qué veis que pruebe que todos los fareros han albergado a lo largo de los años... extrañas creencias?</p><p>La cabaña del farero En 1882, uno de los fareros asesinó salvajemente al otro. ¿Qué puede verse, aún hoy en día, que recuerde a esta truculenta historia?</p><p>El restaurante Golden Bull El Golden Bull fue en su origen, en los años 20 del siglo pasado, la sede de un grupo de espiritualistas. ¿Qué dejaron atrás?</p><p>La estación de servicio Deschain’ s Gas &amp; Sundries Los Deschain son la familia más antigua de Mucky Point. ¿Qué hay aquí que lo recuerde?</p><p>El Museo del Faro de Mucky Point ¿Cómo se sabe que el museo es el edificio más moderno de Mucky Point?</p><p>Codswallop’ s Bait &amp; Tackle, artículos de pesca Para las Expertas que hayan marcado La pálida máscara en La Corona del Vacío: Sois capaces de ver aquí algo procedente de «El Otro Lado». ¿Qué es? Para el resto: ¿Por qué este lugar os pone la piel de gallina?</p></div><p class=\"bb-source\">Brindlewood Bay, edición española 1.0, p. 67.</p>"
         }
       },
       {

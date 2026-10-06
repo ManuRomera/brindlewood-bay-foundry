@@ -18,7 +18,11 @@ import {
   LIMITS,
   awardXp,
   expertMoveConflict,
+  PERMANENT,
+  ADVANTAGE_MOVES,
+  afablePlan,
 } from "./rules.mjs";
+import { aplicarModo } from "./compat.mjs";
 import {
   esc,
   field,
@@ -36,6 +40,7 @@ export const experts = () =>
   game.actors.filter((a) => a.type === "experta" && !a.system.retired);
 export const cases = () => game.actors.filter((a) => a.type === "misterio");
 export const has = (a, name) => a.items.some((i) => i.name === name);
+export const signed = (n) => (n >= 0 ? `+${n}` : `−${Math.abs(n)}`);
 export function club() {
   return game.settings.get(ID, "club");
 }
@@ -52,12 +57,27 @@ export async function chat(a, title, body, roll = null, flags = {}) {
     content: chatContent(title, body),
     flags: { [ID]: flags },
   };
-  if (roll) data.rolls = [roll];
+  if (roll) {
+    data.rolls = [roll];
+    // Las tiradas respetan la visibilidad elegida en el chat (pública, solo Guardiana, ciega, privada).
+    aplicarModo(data);
+  }
   return ChatMessage.create(data);
+}
+/** Mensaje solo para la Guardiana (avisos de reglas que no deben leer las jugadoras). */
+export async function whisperGM(title, body) {
+  const whisper = game.users.filter((user) => user.isGM && user.active).map((user) => user.id);
+  return ChatMessage.create({
+    speaker: ChatMessage.getSpeaker({ alias: "Brindlewood Bay" }),
+    content: chatContent(title, body),
+    whisper: whisper.length ? whisper : [game.user.id],
+    flags: { [ID]: { whisper: true } },
+  });
 }
 async function rollBody(record) {
   const r = record.roll ? Roll.fromData(record.roll) : null;
-  const resultRows = outcomes(record.move, { voidMystery: record.voidMystery })
+  const grades = outcomes(record.move, { voidMystery: record.voidMystery });
+  const resultRows = grades
     .map(({ index, label, text }) => `<li class="${index === record.tier ? "active" : ""}"><strong>${esc(label)}</strong><span>${esc(text)}</span></li>`)
     .join("");
   const details = [
@@ -65,9 +85,10 @@ async function rollBody(record) {
     Number.isFinite(record.modifier) ? `Modificador ${record.modifier >= 0 ? "+" : ""}${record.modifier}` : "",
     record.mode === "advantage" ? "Ventaja" : record.mode === "disadvantage" ? "Desventaja" : record.mode === "cancelled" ? "Ventaja y desventaja se cancelan" : "",
     record.home ? `Objeto: ${record.home}` : "",
+    record.colombo ? "Frank Colombo: Pista extra aunque falle; Pista del Vacío extra con 12+" : "",
     record.note || "",
   ].filter(Boolean).join(" · ");
-  const body = `<div class="bb-result">${esc(record.crowned ? ["6−", "7–9", "10–11", "12+"][record.tier] : record.total)}</div><p><strong>${TIER_NAMES[record.tier]}</strong></p><p class="bb-current-outcome">${esc(outcome(record.move, record.tier, { voidMystery: record.voidMystery }))}</p>${details || record.context ? `<p class="bb-source">${esc(details || record.context)}</p>` : ""}${record.crowned ? `<p class="bb-crowned"><i class="fas fa-crown" aria-hidden="true"></i> Resultado revisado mediante Corona. Total original: ${esc(record.total)}.</p>` : ""}<details class="bb-outcomes" open><summary>Todos los grados de resultado</summary><ol>${resultRows}</ol></details>${r ? '<details class="bb-original-dice"><summary>Ver los dados originales · ' + esc(r.formula) + "</summary>" + (await r.render()) + "</details>" : ""}`;
+  const body = `<div class="bb-result">${esc(record.crowned ? ["6−", "7–9", "10–11", "12+"][record.tier] : record.total)}</div><p><strong>${esc(grades[record.tier].label)}</strong></p><p class="bb-current-outcome">${esc(outcome(record.move, record.tier, { voidMystery: record.voidMystery }))}</p>${details || record.context ? `<p class="bb-source">${esc(details || record.context)}</p>` : ""}${record.crowned ? `<p class="bb-crowned"><i class="fas fa-crown" aria-hidden="true"></i> Resultado revisado mediante Corona. Total original: ${esc(record.total)}.</p>` : ""}<details class="bb-outcomes" open><summary>Todos los grados de resultado</summary><ol>${resultRows}</ol></details>${r ? '<details class="bb-original-dice"><summary>Ver los dados originales · ' + esc(r.formula) + "</summary>" + (await r.render()) + "</details>" : ""}`;
   return { body, roll: r };
 }
 export async function publishRoll(a, record) {
@@ -97,25 +118,47 @@ export async function rollMove(a, move, stat) {
   owner(a);
   if (a.system.retired) throw Error("Esta Experta está retirada.");
   const s = a.system;
-  let html = select(
-    "stat",
-    "Habilidad",
-    Object.entries(STATS),
-    move === "occult" ? "sensitivity" : (stat ?? "reason"),
-  );
-  html += area(
-    "context",
-    "Apunte opcional para el chat (puedes explicarlo por voz)",
-  );
-  html += select("home", "Objeto del hogar", [
-    ["", "Sin objeto"],
-    ...s.home.filter((i) => !i.marked || i.reusable).map((i) => [i.id, i.name]),
-  ]);
-  html +=
-    check("adv", "Una circunstancia o movimiento concede ventaja") +
+  const chosen = move === "occult" ? "sensitivity" : (stat ?? (move === "day" || move === "night" ? "composure" : "reason"));
+  const chips = Object.entries(STATS)
+    .map(([key, label]) => `<label class="bb-chip-radio"><input type="radio" name="stat" value="${key}" ${key === chosen ? "checked" : ""} ${move === "occult" && key !== "sensitivity" ? "disabled" : ""}><span>${esc(label)}<b>${signed(s.stats[key])}</b></span></label>`)
+    .join("");
+  const colombo = move === "meddle" ? a.items.find((item) => item.name === "Frank Colombo" && !item.system.used) : null;
+  const hints = a.items.filter((item) => ADVANTAGE_MOVES[item.name]).map((item) => `${esc(item.name)}: ${esc(ADVANTAGE_MOVES[item.name])}`);
+  const html =
+    `<div class="bb-roll"><fieldset class="bb-stat-pick"><legend>${move === "occult" ? "Habilidad (siempre Sensibilidad)" : "Habilidad"}</legend><div class="bb-chip-group">${chips}</div></fieldset>` +
+    select("home", "Objeto del Hogar (concede ventaja)", [
+      ["", "Sin objeto"],
+      ...s.home.filter((i) => !i.marked || i.reusable).map((i) => [i.id, i.name]),
+    ]) +
+    check("adv", "Una circunstancia o un movimiento concede ventaja") +
     check("dis", "Una Condición o el peligro impone desventaja") +
-    `<p class="bb-note">${s.conditions.length ? "Condiciones: " + esc(s.conditions.join(" · ")) + ". Solo dan desventaja si afectan a esta acción." : "Ventaja y desventaja se cancelan; nunca se acumulan."}</p>`;
-  const data = await prompt(MOVES[move], html, move === "night" ? "Revisar y tirar" : "Lanzar los dados");
+    (colombo ? check("colombo", "Frank Colombo: es un lugar de ricos y famosos (gasta su uso de la sesión)") : "") +
+    `<p class="bb-roll-preview" data-roll-preview aria-live="polite"></p>` +
+    (s.bonus ? `<p class="bb-nota bb-bonus"><b>Fox Mulder:</b> +${s.bonus} en esta tirada, por las Pistas del Vacío del caso.</p>` : "") +
+    (s.conditions.length ? `<p class="bb-nota"><b>Condiciones:</b> ${esc(s.conditions.join(" · "))}. Solo dan desventaja si afectan a esta acción.</p>` : "") +
+    (hints.length ? `<p class="bb-nota"><b>Tus movimientos:</b> ${hints.join(" · ")}.</p>` : "") +
+    area("context", "Apunte opcional para el chat (puedes explicarlo por voz)") +
+    "</div>";
+  const preview = (form) => {
+    const out = form.querySelector("[data-roll-preview]");
+    const refresh = () => {
+      const d = new FormData(form);
+      const key = move === "occult" ? "sensitivity" : d.get("stat");
+      const adv = d.has("adv") || Boolean(d.get("home"));
+      const dis = d.has("dis");
+      const text = formula({ move, modifier: s.stats[key] + s.bonus, advantage: adv, disadvantage: dis });
+      const how = adv && dis
+        ? "Ventaja y desventaja se cancelan: tirada normal."
+        : adv ? "Ventaja: tres dados, cuentan los dos mayores."
+        : dis ? "Desventaja: tres dados, cuentan los dos menores."
+        : "Tirada normal.";
+      out.innerHTML = `<b>${esc(text.replace(/\+ -(\d+)/, "− $1"))}</b><span>${how}</span>`;
+    };
+    form.addEventListener("input", refresh);
+    form.addEventListener("change", refresh);
+    refresh();
+  };
+  const data = await prompt(MOVES[move], html, move === "night" ? "Revisar y tirar" : "Lanzar los dados", { onRender: preview, width: 520, cancel: true });
   if (!data) return;
   if (move === "night" && !(await confirm(
     "Última advertencia · Movimiento Nocturno",
@@ -150,6 +193,7 @@ export async function rollMove(a, move, stat) {
       modifier: n.stats[key] + n.bonus,
       mode: advantage && disadvantage ? "cancelled" : advantage ? "advantage" : disadvantage ? "disadvantage" : "normal",
       home: home?.name || "",
+      colombo: Boolean(colombo) && data.has("colombo"),
       note: data.get("context").trim(),
       context: `${STATS[key]}${data.get("context").trim() ? ` · ${data.get("context").trim()}` : ""}`,
       crowned: false,
@@ -157,6 +201,7 @@ export async function rollMove(a, move, stat) {
     if (home && !home.reusable) home.marked = true;
     n.bonus = 0;
     n.history.push(record);
+    if (record.colombo) await colombo.update({ "system.used": true });
     await a.update({ system: n });
     try {
       await publishRoll(a, record);
@@ -249,7 +294,7 @@ export async function condition(a) {
 export async function clearCondition(a, index) {
   owner(a);
   const text = a.system.conditions[index];
-  if (text === "Obsesionada con el Vacío")
+  if (text === PERMANENT)
     throw Error("Esta Condición es permanente.");
   if (!text) return;
   if (
@@ -353,23 +398,25 @@ export function applyExpert(n, item) {
     n.stats.sensitivity = Math.min(3, n.stats.sensitivity + 1);
   if (item.name === "Jonathan Hart")
     n.stats.presence = Math.min(3, n.stats.presence + 1);
+  // [nombre del objeto, ¿se puede evocar sin marcarlo?]
   const homes = {
-    "Sonny Crockett": "Mi atuendo inconfundible",
-    "Michael Knight": "Mi transporte de confianza",
-    "R. Quincy": "Maletín médico",
-    "Gordon Shumway": "Mi amistad felina",
+    "Sonny Crockett": ["Mi atuendo inconfundible", true],
+    "Michael Knight": ["Mi transporte de confianza", true],
+    "R. Quincy": ["Maletín médico", true],
+    "Gordon Shumway": ["Mi amistad felina", true],
+    "Remington Steele": ["Mi disfraz o identificación", false],
   };
-  if (homes[item.name])
-    if (n.home.length >= LIMITS.home)
-      throw Error(`Este movimiento necesita un espacio libre en Hogar, dulce hogar (${LIMITS.home} máximo).`);
-  if (homes[item.name])
-    n.home.push({
-      id: foundry.utils.randomID(),
-      name: homes[item.name],
-      story: "Ponle nombre y cuenta su historia.",
-      reusable: true,
-      marked: false,
-    });
+  const home = homes[item.name];
+  if (!home) return;
+  if (n.home.length >= LIMITS.home)
+    throw Error(`Este movimiento necesita un espacio libre en Hogar, dulce hogar (${LIMITS.home} máximo).`);
+  n.home.push({
+    id: foundry.utils.randomID(),
+    name: home[0],
+    story: "Ponle nombre y cuenta su historia.",
+    reusable: home[1],
+    marked: false,
+  });
 }
 export async function endSession(a) {
   owner(a);
@@ -474,6 +521,61 @@ export async function resolveOccult(a, id) {
   await chat(
     a,
     "Resultado Ocultista definitivo",
-    `<p>${esc(outcome("occult", r.tier))}</p><p>${r.tier === 0 ? "Anotad que esta actividad está prohibida para las Expertas." : "La Guardiana puede crear un Movimiento en el directorio de Objetos y compartirlo con todas."}</p>`,
+    `<p>${esc(outcome("occult", r.tier))}</p><p>${r.tier === 0 ? "Anotad que esta actividad está prohibida para las Expertas." : "La Guardiana lo registra desde el salón con «Nuevo movimiento ocultista»: se entrega a todas las Expertas."}</p>`,
   );
+}
+/** Movimiento Afable (p. 13): quita una Condición y, si gira en torno al quehacer, da con una Pista. */
+export async function afable(a) {
+  owner(a);
+  if (a.system.retired) throw Error("Esta Experta está retirada.");
+  const options = [["", "No quito ninguna Condición"]];
+  a.system.conditions.forEach((text, index) => {
+    if (text !== PERMANENT) options.push([index, text]);
+  });
+  const d = await prompt(
+    "Movimiento Afable",
+    `<p>Compartís un momento de intimidad mientras una de las dos está afanada en su quehacer.</p>` +
+      select("condition", "Condición que desaparece", options, options.length > 1 ? options[1][0] : "") +
+      check("hobby", `El momento gira en torno a mi quehacer (${a.system.hobby || "sin definir"})`) +
+      area("scene", "Apunte opcional de la escena (también puedes narrarlo por voz)") +
+      `<p class="bb-nota">Si es tu quehacer, también das con una Pista relevante para el misterio activo: díselo a la Guardiana. La Pista no puede resolver el misterio por sí misma.</p>`,
+    "Compartir el momento",
+    { cancel: true },
+  );
+  if (!d) return;
+  return locked(a.uuid, async () => {
+    const plan = afablePlan(safeSystem(a), { index: d.get("condition"), ownHobby: d.has("hobby") });
+    if (plan.removed) await a.update({ "system.conditions": plan.next.conditions });
+    const scene = d.get("scene").trim();
+    await chat(
+      a,
+      "Afable",
+      `${scene ? `<p>${esc(scene)}</p>` : ""}${plan.removed ? `<p>Desaparece la Condición «${esc(plan.removed)}».</p>` : ""}${plan.clue ? `<p><b>Pista relevante:</b> la Guardiana describe una Pista del misterio activo. No puede resolverlo por sí sola.</p>` : ""}`,
+    );
+  });
+}
+/** La Guardiana registra un movimiento ocultista (p. 14): queda disponible para todas las Expertas activas. */
+export async function createOccultMove() {
+  gm();
+  const d = await prompt(
+    "Nuevo movimiento ocultista",
+    `<p>Definid el movimiento con la mesa. Recomendación del manual: una versión muy concreta del Nocturno, con un fallo detallado y severo.</p>` +
+      field("name", "Nombre del movimiento") +
+      area("text", "Cuando [lo que lo activa], tira con Sensibilidad…") +
+      check("everyone", "Entregarlo ahora a todas las Expertas activas", true),
+    "Crear el movimiento",
+    { cancel: true, validate: (data) => (data.get("name").trim() && data.get("text").trim() ? "" : "escribe el nombre y el texto del movimiento.") },
+  );
+  if (!d) return;
+  const data = {
+    name: d.get("name").trim(),
+    type: "movimiento",
+    img: `systems/${ID}/assets/teacup.svg`,
+    system: { description: d.get("text").trim(), source: `Movimiento ocultista · sesión ${club().session}`, frequency: "unlimited" },
+    flags: { [ID]: { occult: true } },
+  };
+  const receivers = d.has("everyone") ? experts().filter((actor) => !has(actor, data.name)) : [];
+  await Item.create(data);
+  for (const actor of receivers) await actor.createEmbeddedDocuments("Item", [data]);
+  await chat(null, "Un nuevo movimiento ocultista", `<h4>${esc(data.name)}</h4><p>${esc(data.system.description)}</p><p>${receivers.length ? `Disponible desde ahora para ${receivers.length} Experta${receivers.length === 1 ? "" : "s"}.` : "Guardado en el directorio de Objetos."}</p>`);
 }

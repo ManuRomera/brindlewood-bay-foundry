@@ -1,77 +1,102 @@
 <section class="bb-experta">
-  <header class="bb-masthead bb-expert-head">
-    <button type="button" class="bb-portrait-button" data-action="image" data-bb-info-title="Retrato de {{actor.name}}" data-bb-info="Pulsa para elegir o subir una imagen. También se utilizará en su token enlazado."><img class="bb-portrait" src="{{actor.img}}" alt="Retrato de {{actor.name}}"><span><i class="fas fa-camera"></i> Cambiar</span></button>
-    <div><span class="bb-eyebrow">EXPERTA DEL CRIMEN</span><input class="bb-name" name="name" aria-label="Nombre de la Experta" value="{{actor.name}}"><p>{{system.style}} · {{system.hobby}}</p></div>
-    {{#if system.retired}}<div class="bb-retired">EXPERTA RETIRADA</div>{{/if}}
+  <header class="bb-cabecera">
+    <button type="button" class="bb-retrato-boton" data-action="image" data-bb-info-title="Retrato de {{cleanName}}" data-bb-info="Cambia la imagen y encuadra la zona que se ve en la ficha, el salón, el chat y el directorio. También se usa en su token enlazado."><img class="bb-retrato" data-retrato="{{actor.id}}" src="{{actor.img}}" alt="Retrato de {{cleanName}}"><span><i class="fa-solid fa-crop-simple" aria-hidden="true"></i> Encuadrar</span></button>
+    <div class="bb-identidad">
+      <span class="bb-eyebrow">Experta del Crimen{{#if system.retired}} · retirada{{/if}}</span>
+      <input class="bb-nombre" name="name" aria-label="Nombre de la Experta" value="{{cleanName}}">
+      <p>{{system.style}}{{#if system.hobby}} · {{system.hobby}}{{/if}}</p>
+    </div>
+    <div class="bb-habilidades" role="group" aria-label="Habilidades">
+      {{#each stats}}<div class="bb-hab" data-bb-info-title="{{label}}" data-bb-info="{{info}} Máximo permitido: +3."><span>{{label}}</span>{{#if ../unlocked}}<input type="number" min="-1" max="3" name="system.stats.{{key}}" value="{{value}}" aria-label="{{label}}">{{else}}<b>{{signed value}}</b>{{/if}}</div>{{/each}}
+    </div>
   </header>
 
-  <div class="bb-stats">
-    {{#each stats}}<div data-bb-info-title="{{label}}" data-bb-info="{{info}} Máximo permitido: +3."><label>{{label}}</label>{{#if ../unlocked}}<input type="number" min="-1" max="3" name="system.stats.{{key}}" value="{{value}}" aria-label="{{label}}">{{else}}<button type="button" data-action="roll" data-move="meddle" data-stat="{{key}}" aria-label="Investigar con {{label}}">{{value}}</button>{{/if}}</div>{{/each}}
+  <div class="bb-recursos" role="group" aria-label="Recursos de la Experta">
+    {{#each resources}}<button type="button" class="bb-recurso{{#if alert}} alerta{{/if}}{{#if dark}} vacio{{/if}}" data-action="switchTab" data-tab="{{tab}}" data-bb-info-title="{{label}}" data-bb-info="{{info}}"><b>{{value}}</b><span>/{{max}} {{label}}</span>{{#if extra}}<em>{{extra}}</em>{{/if}}</button>{{/each}}
+    {{#if editable}}<button type="button" class="bb-fantasma" data-action="lock" data-bb-info="Las habilidades solo se cambian a mano por decisión de la Guardiana o por un avance."><i class="fa-solid {{#if unlocked}}fa-lock{{else}}fa-pen{{/if}}" aria-hidden="true"></i> {{#if unlocked}}Guardar habilidades{{else}}Editar habilidades{{/if}}</button>{{/if}}
   </div>
 
-  <div class="bb-resource-strip" aria-label="Recursos importantes de la Experta">
-    <div class="bb-resource-main"><b>{{system.xp}}</b><span>de {{limits.xp}} PE</span>{{#if system.xpPending}}<small>+{{system.xpPending}} pendiente</small>{{/if}}</div>
-    <div><b>{{system.advances.length}}</b><span>de {{limits.advances}} avances</span></div>
-    <div class="{{#if conditionFull}}alert{{/if}}"><b>{{system.conditions.length}}</b><span>de {{limits.conditions}} condiciones</span></div>
-    <div><b>{{system.home.length}}</b><span>de {{limits.home}} hogar</span></div>
-    <div><b>{{system.queen.length}}</b><span>de {{limits.queen}} Reina</span></div>
-    <div><b>{{system.void}}</b><span>de {{limits.void}} Vacío</span></div>
-    {{#if editable}}<button type="button" data-action="lock">{{#if unlocked}}Guardar habilidades{{else}}Editar habilidades{{/if}}</button>{{/if}}
-  </div>
+  <nav class="bb-pestanas" role="tablist" aria-label="Secciones de la ficha">{{#each tabs}}<button type="button" role="tab" data-action="switchTab" data-tab="{{id}}" class="{{#if active}}active{{/if}}" aria-selected="{{active}}"><i class="fa-solid {{icon}}" aria-hidden="true"></i> <span>{{label}}</span></button>{{/each}}</nav>
 
-  <nav class="bb-tabs" aria-label="Secciones de la ficha">{{#each tabs}}<button type="button" data-action="switchTab" data-tab="{{id}}" class="{{#if active}}active{{/if}}" aria-pressed="{{active}}">{{label}}</button>{{/each}}</nav>
   <div class="bb-scroll">
     {{#if play}}
-      <div class="bb-two bb-play-layout">
+      <div class="bb-columnas">
         <main>
-          <div class="bb-section-title"><h2>Haz un movimiento</h2><span>EL APUNTE ES OPCIONAL</span></div>
-          <div class="bb-move-grid">{{#each moves}}<button type="button" class="bb-move" data-action="roll" data-move="{{key}}" data-bb-info-title="Movimiento {{label}}" data-bb-info="{{info}}"><span>{{label}}</span><small>{{#if (eq key "night")}}El peligro es peor de lo que imaginas{{else if (eq key "meddle")}}Busca una pista{{else if (eq key "occult")}}Un precio al otro lado del velo{{else}}Un riesgo a plena luz del día{{/if}}</small></button>{{/each}}</div>
-          <div class="bb-section-title"><h2>Movimientos expertos</h2><span>{{expertMoves.length}} APRENDIDOS</span></div>
-          <div class="bb-talent-grid">{{#each expertMoves}}<details class="bb-card" data-bb-info-title="{{name}}" data-bb-info="{{system.description}} {{useLabel}}."><summary><span>{{name}}</span><small>{{useLabel}}{{#if system.used}} · USADO{{/if}}</small></summary><p>{{system.description}}</p><p class="bb-source">{{system.source}}</p><div class="bb-actions"><button type="button" data-action="useMove" data-id="{{id}}" {{#if system.used}}disabled{{/if}}>Usar</button><button type="button" data-action="editMove" data-id="{{id}}">Abrir ficha</button></div></details>{{else}}<p>Añade un movimiento desde el compendio.</p>{{/each}}</div>
+          <div class="bb-titulo"><h2>Haz un movimiento</h2><span>El apunte es opcional</span></div>
+          <div class="bb-movimientos">{{#each moves}}<button type="button" class="bb-mov" data-action="{{action}}" {{#if (eq action "roll")}}data-move="{{key}}"{{/if}} data-bb-info-title="Movimiento {{label}}" data-bb-info="{{info}}"><i class="fa-solid {{icon}}" aria-hidden="true"></i><span>{{label}}</span><small>{{hint}}</small></button>{{/each}}</div>
+          {{#if system.bonus}}<p class="bb-aviso"><b>+{{system.bonus}}</b> en tu próxima tirada, por el informante de Fox Mulder. No cuenta para Teorizar.</p>{{/if}}
+          <div class="bb-titulo"><h2>Movimientos expertos</h2><span>{{expertMoves.length}} aprendidos</span></div>
+          <div class="bb-talentos">{{#each expertMoves}}<details class="bb-talento{{#if used}} gastado{{/if}}" data-memoria="mov-{{id}}"><summary><span class="nom">{{name}}</span><span class="uso">{{useLabel}}{{#if used}} · usado{{/if}}</span></summary><p>{{system.description}}</p><p class="bb-fuente">{{system.source}}</p><div class="bb-acciones"><button type="button" class="bb-primary" data-action="useMove" data-id="{{id}}" {{#if used}}disabled{{/if}}>Usar</button><button type="button" data-action="editMove" data-id="{{id}}">Abrir ficha</button></div></details>{{else}}<p class="bb-vacio">Aún no tienes movimientos expertos. Arrastra uno desde el compendio «Talentos».</p>{{/each}}</div>
         </main>
         <aside>
-          <h2>Condiciones · {{system.conditions.length}} / {{limits.conditions}}</h2>
-          {{#each conditions}}<div class="bb-condition"><span>{{text}}</span>{{#unless permanent}}<button type="button" data-action="clear" data-index="{{index}}">Resolver</button>{{/unless}}</div>{{else}}<p class="bb-muted">De maravilla, gracias.</p>{{/each}}
+          <div class="bb-titulo"><h2>Condiciones</h2><span>{{system.conditions.length}} / {{limits.conditions}}</span></div>
+          {{#each conditions}}<div class="bb-condicion"><span>{{text}}</span>{{#unless permanent}}<button type="button" data-action="clear" data-index="{{index}}">Resolver</button>{{else}}<small>Permanente</small>{{/unless}}</div>{{else}}<p class="bb-tenue">De maravilla, gracias.</p>{{/each}}
           <button type="button" data-action="condition">{{#if conditionFull}}La cuarta exige una Corona{{else}}Añadir Condición{{/if}}</button>
-          <p class="bb-note">Una Condición solo impone desventaja cuando afecta a la acción. La cuarta se sustituye por una Corona.</p>
-          <h2>Escenas pendientes</h2>
-          {{#each system.pending}}<article class="bb-card"><p>{{text}}</p><button type="button" data-action="done" data-id="{{id}}">{{#if (eq kind "crown")}}Marcar Corona{{else}}Escena narrada{{/if}}</button></article>{{else}}<p class="bb-muted">Ninguna pendiente.</p>{{/each}}
-          <button type="button" data-action="crown">Ponerse una Corona</button>
+          <p class="bb-nota">Una Condición solo da desventaja cuando afecta a la acción. El movimiento Afable la quita.</p>
+          <div class="bb-titulo"><h2>Escenas pendientes</h2><span>{{system.pending.length}}</span></div>
+          {{#each system.pending}}<article class="bb-tarjeta"><p>{{text}}</p><button type="button" data-action="done" data-id="{{id}}">{{#if (eq kind "crown")}}Marcar Corona{{else}}Escena narrada{{/if}}</button></article>{{else}}<p class="bb-tenue">Ninguna pendiente.</p>{{/each}}
+          <button type="button" data-action="crown"><i class="fa-solid fa-crown" aria-hidden="true"></i> Ponerse una Corona</button>
         </aside>
       </div>
     {{/if}}
 
     {{#if life}}
-      <div class="bb-two">
+      <div class="bb-columnas">
         <main>
-          <div class="bb-section-title"><h2>Hogar, dulce hogar</h2><span>{{system.home.length}} / {{limits.home}}</span></div>
-          <p>Marca un objeto para obtener ventaja. Permanece en casa, aunque normalmente no vuelve a dar ventaja hasta que se desmarque.</p>
-          <div class="bb-slot-meter" aria-label="{{system.home.length}} de {{limits.home}} espacios ocupados">{{#each homeSlots}}<span class="{{#if filled}}filled{{/if}}" title="Espacio {{number}}"></span>{{/each}}</div>
-          <button type="button" data-action="home" {{#if homeFull}}disabled{{/if}}>{{#if homeFull}}Los 18 espacios están ocupados{{else}}Añadir un objeto querido{{/if}}</button>
-          <div class="bb-home-grid">{{#each system.home}}<article class="bb-card {{#if marked}}spent{{/if}}"><h3>{{name}}</h3><p>{{story}}</p><small>{{#if reusable}}Siempre disponible{{else if marked}}Ya evocado{{else}}Disponible para obtener ventaja{{/if}}</small><div class="bb-actions"><button type="button" data-action="editHome" data-id="{{id}}">Editar</button><button type="button" data-action="removeHome" data-id="{{id}}">Retirar</button></div></article>{{/each}}</div>
-          <details class="bb-rules-fold"><summary>Reglas de Hogar</summary><p>Al empezar, cada jugadora puede proponer objetos. Después se añaden mediante movimientos o cuando lo indique la Guardiana.</p></details>
+          <div class="bb-titulo"><h2>Hogar, dulce hogar</h2><span>{{system.home.length}} / {{limits.home}}</span></div>
+          <div class="bb-ranuras" aria-label="{{system.home.length}} de {{limits.home}} espacios ocupados">{{#each homeSlots}}<span class="{{#if filled}}llena{{/if}}" title="Espacio {{number}}"></span>{{/each}}</div>
+          <p class="bb-tenue">Evoca un objeto sin marcar al tirar para obtener ventaja. Queda marcado, pero sigue en casa para la ficción.</p>
+          <div class="bb-hogar">{{#each home}}<article class="bb-objeto{{#if spent}} gastado{{/if}}"><h3>{{name}}</h3><p>{{story}}</p><small>{{state}}</small><div class="bb-iconos">{{#unless reusable}}<button type="button" data-action="toggleHome" data-id="{{id}}" aria-label="{{#if marked}}Desmarcar{{else}}Marcar{{/if}} {{name}}" data-bb-info="{{#if marked}}Desmarca el objeto: vuelve a dar ventaja.{{else}}Márcalo como evocado sin tirar.{{/if}}"><i class="fa-solid {{#if marked}}fa-rotate-left{{else}}fa-check{{/if}}" aria-hidden="true"></i></button>{{/unless}}<button type="button" data-action="editHome" data-id="{{id}}" aria-label="Editar {{name}}" data-bb-info="Editar nombre e historia."><i class="fa-solid fa-pen" aria-hidden="true"></i></button><button type="button" data-action="removeHome" data-id="{{id}}" aria-label="Retirar {{name}}" data-bb-info="Retirar el objeto y liberar su espacio."><i class="fa-solid fa-trash" aria-hidden="true"></i></button></div></article>{{else}}<p class="bb-vacio">Tu casa aún está vacía. Añade tu primer objeto querido.</p>{{/each}}</div>
+          <button type="button" data-action="home" {{#if homeFull}}disabled{{/if}}><i class="fa-solid fa-plus" aria-hidden="true"></i> {{#if homeFull}}Los 18 espacios están ocupados{{else}}Añadir un objeto querido{{/if}}</button>
         </main>
         <aside>
-          <h2>Experiencia · {{system.xp}} / {{limits.xp}}</h2>
-          {{#if system.xpPending}}<p class="bb-note"><b>{{system.xpPending}} PE pendientes.</b> Se incorporan al elegir un avance.</p>{{/if}}
-          <div class="bb-actions"><button type="button" data-action="advance" {{#unless xpFull}}disabled{{/unless}}>Elegir avance</button><button type="button" data-action="xp" {{#if xpFull}}disabled{{/if}}>+1 PE</button></div>
-          <h3>Avances · {{system.advances.length}} / {{limits.advances}}</h3>{{#each advances}}<p class="bb-advance {{#if marked}}marked{{/if}}">{{#if marked}}✓{{else}}○{{/if}} {{text}}</p>{{/each}}
-          <p class="bb-note">Cada avance cuesta 5 PE. Tras los cinco, ya no se obtienen más. Las habilidades no superan +3.</p>
-          <h2>Fin de sesión</h2><p>Tres preguntas: la primera siempre está elegida y escoges otras dos.</p>
-          <details class="bb-rules-fold"><summary>Ver mis preguntas</summary>{{#each questions}}<p>{{this}}</p>{{/each}}</details>
-          <button type="button" data-action="questions">Cambiar las dos preguntas</button><button type="button" data-action="end">Estrellas, deseos y PE</button>
-          <h2>Tu historia</h2><label>Estilo<input name="system.style" value="{{system.style}}"></label><label>Quehacer<input name="system.hobby" value="{{system.hobby}}"></label><label>Familia, carrera y recuerdos<textarea name="system.description" rows="5">{{system.description}}</textarea></label>
+          <div class="bb-titulo"><h2>Tu historia</h2></div>
+          <label>Estilo<input name="system.style" value="{{system.style}}"></label>
+          <label>Quehacer<input name="system.hobby" value="{{system.hobby}}"></label>
+          <label>Familia, carrera y recuerdos<textarea name="system.description" rows="9">{{system.description}}</textarea></label>
+        </aside>
+      </div>
+    {{/if}}
+
+    {{#if growth}}
+      <div class="bb-columnas">
+        <main>
+          <div class="bb-titulo"><h2>Experiencia</h2><span>{{system.xp}} / {{limits.xp}}</span></div>
+          <div class="bb-pe" aria-label="{{system.xp}} de {{limits.xp}} PE">{{#each xpPips}}<span class="{{#if on}}on{{/if}}"></span>{{/each}}{{#if system.xpPending}}<em>+{{system.xpPending}} pendiente{{#if (eq system.xpPending 1)}}{{else}}s{{/if}}</em>{{/if}}</div>
+          <div class="bb-acciones"><button type="button" class="bb-primary" data-action="advance" {{#unless xpFull}}disabled{{/unless}}>Elegir avance</button><button type="button" data-action="xp" {{#if xpFull}}disabled{{/if}}>+1 PE por un movimiento</button></div>
+          <p class="bb-tenue">Cada avance cuesta 5 PE. Las habilidades no superan +3. Tras los cinco avances no se ganan más PE.</p>
+          <div class="bb-titulo"><h2>Avances</h2><span>{{system.advances.length}} / {{limits.advances}}</span></div>
+          <ol class="bb-avances">{{#each advances}}<li class="{{#if marked}}hecho{{/if}}"><i class="{{#if marked}}fa-solid fa-circle-check{{else}}fa-regular fa-circle{{/if}}" aria-hidden="true"></i> {{text}}</li>{{/each}}</ol>
+        </main>
+        <aside>
+          <div class="bb-titulo"><h2>Fin de sesión</h2><span>{{#if sessionClosed}}Cerrada ✓{{else}}Sesión {{session}}{{/if}}</span></div>
+          <ol class="bb-preguntas">{{#each questions}}<li>{{this}}</li>{{/each}}</ol>
+          <div class="bb-acciones"><button type="button" class="bb-primary" data-action="end" {{#if sessionClosed}}disabled{{/if}}>Estrellas, deseos y PE</button><button type="button" data-action="questions">Cambiar mis preguntas</button></div>
+          <p class="bb-nota">Un «sí» a cada pregunta da 1 PE. Las escenas de Corona pendientes deben resolverse antes de cerrar.</p>
         </aside>
       </div>
     {{/if}}
 
     {{#if crowns}}
-      <div class="bb-two"><main><span class="bb-eyebrow">TU VIDA, TUS RECUERDOS</span><h2>Corona de la Reina · {{system.queen.length}} / {{limits.queen}}</h2><p>Siete escenas en libre elección.</p>{{#each queen}}<p class="bb-card {{#if marked}}spent{{/if}}">{{#if marked}}✓{{else}}○{{/if}} {{text}}</p>{{/each}}<button type="button" data-action="crown">Elegir una Corona</button></main><aside class="bb-void"><span class="bb-eyebrow">EL MAR TAMBIÉN RECUERDA</span><h2>Corona del Vacío · {{system.void}} / {{limits.void}}</h2><p>Se marca en orden; la quinta retira a la Experta.</p>{{#each void}}<article class="bb-card"><h3>{{#if marked}}✓{{else}}○{{/if}} {{text}}</h3><p>{{detail}}</p></article>{{/each}}</aside></div>
+      <div class="bb-columnas">
+        <main>
+          <div class="bb-titulo"><h2>Corona de la Reina</h2><span>{{system.queen.length}} / {{limits.queen}}</span></div>
+          <p class="bb-tenue">Escenas de tu vida. Se eligen en el orden que quieras.</p>
+          <ul class="bb-coronas">{{#each queen}}<li class="{{#if marked}}marcada{{/if}}"><i class="{{#if marked}}fa-solid fa-crown{{else}}fa-regular fa-circle{{/if}}" aria-hidden="true"></i><span>{{text}}</span></li>{{/each}}</ul>
+          <button type="button" data-action="crown"><i class="fa-solid fa-crown" aria-hidden="true"></i> Ponerse una Corona</button>
+        </main>
+        <aside class="bb-vacio-lado">
+          <div class="bb-titulo"><h2>Corona del Vacío</h2><span>{{system.void}} / {{limits.void}}</span></div>
+          <p class="bb-tenue">Se marca en orden. La quinta retira a la Experta.</p>
+          <ol class="bb-coronas oscura">{{#each void}}<li class="{{#if marked}}marcada{{/if}}{{#if next}} siguiente{{/if}}"><i class="{{#if marked}}fa-solid fa-moon{{else}}fa-regular fa-circle{{/if}}" aria-hidden="true"></i><span><b>{{text}}</b><small>{{detail}}</small></span></li>{{/each}}</ol>
+        </aside>
+      </div>
     {{/if}}
 
     {{#if history}}
-      <div class="bb-section-title"><h2>Las historias que contamos</h2><span>{{records.length}} TIRADAS</span></div><p>El dado original se conserva cuando una Corona cambia el nivel.</p>
-      <div class="bb-history-grid">{{#each records}}<article class="bb-card"><div class="bb-row"><h3>{{label}}</h3><b>{{total}} · {{tierLabel}}</b></div><p>{{context}}</p>{{#if crowned}}<p>♛ Resultado revisado.</p>{{/if}}<div class="bb-actions">{{#if occultPending}}<button type="button" data-action="resolveOccult" data-id="{{id}}">Resolver Ocultista</button>{{/if}}{{#if canCrown}}<button type="button" data-action="crown" data-record="{{id}}">Usar Corona</button>{{/if}}<button type="button" data-action="recover" data-id="{{id}}">Mostrar en chat</button></div></article>{{else}}<p class="bb-empty">Tu próxima historia empieza con dos dados.</p>{{/each}}</div>
+      <div class="bb-titulo"><h2>Las historias que contamos</h2><span>{{records.length}} tiradas</span></div>
+      <p class="bb-tenue">El dado original se conserva cuando una Corona cambia el nivel.</p>
+      <div class="bb-historial">{{#each records}}<article class="bb-tirada t{{tier}}"><div class="bb-tirada-cab"><h3>{{label}}</h3><b>{{#if crowned}}♛ {{/if}}{{total}} · {{tierLabel}}</b></div>{{#if context}}<p>{{context}}</p>{{/if}}<div class="bb-acciones">{{#if occultPending}}<button type="button" data-action="resolveOccult" data-id="{{id}}">Resolver Ocultista</button>{{/if}}{{#if canCrown}}<button type="button" data-action="crown" data-record="{{id}}">Usar Corona</button>{{/if}}<button type="button" data-action="recover" data-id="{{id}}">Mostrar en chat</button></div></article>{{else}}<p class="bb-vacio">Tu próxima historia empieza con dos dados.</p>{{/each}}</div>
     {{/if}}
   </div>
 </section>

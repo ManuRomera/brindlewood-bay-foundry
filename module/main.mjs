@@ -23,10 +23,13 @@ import { catalogName } from "./catalog.mjs";
 import { registerCaseCollaborationSocket } from "./case-collaboration.mjs";
 import { registerAccessibility, applyAccessibility } from "./accessibility.mjs";
 import { attachRollActions } from "./chat-actions.mjs";
+import { DocumentSheetConfig, requireV2 } from "./compat.mjs";
+import { pintarRetratos } from "./retrato.mjs";
 import { initJoinScreenBackground } from "./join-screen.mjs";
 initJoinScreenBackground();
 
 Hooks.once("init", () => {
+  requireV2();
   CONFIG.Actor.dataModels = {
     ...CONFIG.Actor.dataModels,
     experta: ExpertModel,
@@ -34,7 +37,7 @@ Hooks.once("init", () => {
     pnj: NPCModel,
   };
   CONFIG.Item.dataModels = { ...CONFIG.Item.dataModels, movimiento: MoveModel };
-  const sheets = foundry.applications.apps.DocumentSheetConfig;
+  const sheets = DocumentSheetConfig;
   sheets.registerSheet(Actor, ID, ExpertSheet, {
     types: ["experta"],
     makeDefault: true,
@@ -93,6 +96,7 @@ Hooks.once("init", () => {
     resetCampaign,
   };
   Handlebars.registerHelper("eq", (a, b) => a === b);
+  Handlebars.registerHelper("signed", (n) => (Number(n) >= 0 ? `+${Number(n)}` : `−${Math.abs(Number(n))}`));
 });
 Hooks.once("ready", async () => {
   registerExpertCreationSocket();
@@ -166,6 +170,7 @@ Hooks.on("renderActorDirectory", (_app, html) => {
     create.addEventListener("click", guard(openExpertCreator));
     header?.append(create);
   }
+  pintarRetratos(root);
 });
 Hooks.on("createUser", () => {
   if (game.user.isGM) guard(ensureAdvertisementMacro)();
@@ -174,6 +179,7 @@ Hooks.on("renderChatMessageHTML", (message, html) => {
   if (!html) return;
   attachInfo(html);
   attachRollActions(message, html);
+  pintarRetratos(html);
 });
 for (const hook of [
   "updateActor",

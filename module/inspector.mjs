@@ -91,18 +91,26 @@ function describe(element) {
   element.dataset.bbInfoTitle ||= title?.replace(/\s+/g, " ").trim().slice(0, 90) || "Información";
 }
 
+let infoDelay = 2000;
+/** Milisegundos que hay que dejar el cursor quieto antes de que aparezca la ayuda. */
+export function setInfoDelay(ms) {
+  infoDelay = ms;
+}
+
 export function attachInfo(root) {
-  if (!root || root.dataset.bbInfoReady) return;
-  root.dataset.bbInfoReady = "true";
+  if (!root) return;
+  // La ventana conserva su elemento raíz entre repintados, pero su contenido se sustituye: se describe siempre.
   for (const element of root.querySelectorAll(
-    "[data-bb-info], button, summary, label, .bb-card, .bb-clue, .bb-condition, .bb-status > span, .bb-stats > div, .bb-agenda li, .bb-note",
+    "[data-bb-info], button, summary, label, .bb-card, .bb-clue, .bb-condition, .bb-stats > div, .bb-agenda li, .bb-note",
   )) describe(element);
+  if (root.dataset.bbInfoReady) return;
+  root.dataset.bbInfoReady = "true";
 
   root.addEventListener("mouseenter", (event) => {
     const target = event.target.closest?.("[data-bb-info]");
     if (!target || !root.contains(target) || persistent || pinned) return;
     clearTimeout(hoverTimer);
-    hoverTimer = setTimeout(() => show(target, "hover"), 2000);
+    hoverTimer = setTimeout(() => show(target, "hover"), infoDelay);
   }, true);
   root.addEventListener("mouseleave", (event) => {
     if (event.target.closest?.("[data-bb-info]")) clearTimeout(hoverTimer);
