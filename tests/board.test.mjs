@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { planOps, BOARD } from "../module/board-rules.mjs";
+import { planOps, BOARD, BACKGROUNDS } from "../module/board-rules.mjs";
 
 const ctx = { clueIds: new Set(["pista0001"]), suspectIds: new Set(["persona01"]) };
 const empty = () => ({ items: {}, links: {} });
@@ -62,4 +62,19 @@ test("la pizarra tiene un tope de elementos", () => {
   for (let n = 0; n < 3; n++) board = planOps(board, ops.map((o) => ({ ...o, id: `lote${n}${o.id}` })), ctx).board;
   assert.equal(Object.keys(board.items).length, 120);
   assert.throws(() => planOps(board, ops.map((o) => ({ ...o, id: `lote9${o.id}` })), ctx), /llena/);
+});
+
+test("el fondo se elige entre los de la lista y se guarda en una sola ruta", () => {
+  const set = (background) => [{ op: "set", kind: "settings", id: "ajustes01", data: { background } }];
+  const plan = planOps(empty(), set("hora-del-te"), ctx);
+  assert.deepEqual(plan.update, { "system.board.background": "hora-del-te" });
+  assert.throws(() => planOps(empty(), set("../../etc"), ctx), /desconocido/);
+  assert.equal(BACKGROUNDS.length, 11);
+  assert.equal(new Set(BACKGROUNDS.map((entry) => entry.id)).size, 11);
+});
+
+test("todos los fondos con imagen existen en assets/pizarra", async () => {
+  const { existsSync } = await import("node:fs");
+  for (const entry of BACKGROUNDS.filter((fondo) => fondo.file))
+    assert.ok(existsSync(new URL(`../assets/pizarra/${entry.file}`, import.meta.url)), entry.file);
 });

@@ -63,7 +63,7 @@ Crea un mundo con **Brindlewood Bay · El club de las Expertas**. Al entrar se a
 | Conspiración siniestra | Capas a 3 / 5 / 10 / 15 pistas (una menos con Fox Mulder) con **aviso privado** a la Guardiana al cruzar cada una |
 | Inicio de sesión | Tarjeta con los movimientos que se resuelven al empezar (Dale Cooper, Jim Rockford, Espantapájaros) |
 | Movimientos ocultistas | La Guardiana los define una vez y se entregan a todas las Expertas |
-| **Pizarra de investigación** | Corcho compartido con pistas, personas, notas y fotos unidas con hilos de colores; todas pueden moverlo a la vez sin pisarse |
+| **Pizarra de investigación** | Corcho compartido (u otros diez fondos: papeles pintados, yeso, maderas) con pistas, personas, notas y fotos unidas con hilos de colores; todas pueden moverlo a la vez sin pisarse |
 | Pausa para anuncios | Indicio, regla del 10–11 y generador de guiones con más de un millón de combinaciones |
 
 Seis misterios completos con sus expedientes privados, 49 personas de interés, los 19 movimientos expertos, los siete básicos y una guía rápida del sistema en el compendio de Reglas. Lo que el manual deja a criterio de la mesa (qué Condición afecta, qué consecuencia narrar) sigue en vuestras manos. Consulta la [matriz de automatizaciones](docs/REGLAS.md) y la [auditoría](docs/AUDITORIA.md).

@@ -1,3 +1,7 @@
+# 1.2.0
+
+- **Fondos de pizarra intercambiables.** Un panel *Fondo* en la propia pizarra permite elegir entre once ambientaciones: Corcho clásico, Yeso marfil, Rosas de la abuela, La hora del té, Flores de otoño, Jardín victoriano, Verde salvia, Rosa antiguo, Pergamino, Madera encalada y Nogal oscuro. Cualquiera del grupo puede cambiarlo y todas lo ven al instante; se guarda en el caso.
+
 # 1.1.0
 
 - **Pizarra de investigación** en cada caso (botón *Pizarra* en el tablero y en el salón): un corcho donde el grupo coloca las pistas descubiertas, las personas de interés con su retrato y nombre, notas y fotos propias, y los une con hilos de colores. Cada tarjeta se mueve libremente, se puede quitar sin borrar la pista y cada hilo se quita pulsándolo. Es ambientación: no cambia ninguna regla.

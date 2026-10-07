@@ -14,7 +14,7 @@ import { ID } from "./rules.mjs";
 import { ApplicationV2, FilePicker } from "./compat.mjs";
 import { rememberWindow } from "./window-state.mjs";
 import { esc } from "./ui.mjs";
-import { planOps, BOARD, THREAD_COLORS } from "./board-rules.mjs";
+import { planOps, BOARD, THREAD_COLORS, BACKGROUNDS } from "./board-rules.mjs";
 
 const SOCKET = `system.${ID}`;
 const LOCK_MS = 10000;
@@ -164,7 +164,14 @@ export class BoardApp extends rememberWindow(ApplicationV2) {
           this.overlay.t.delete(`${kind}:${id}`);
         }
     }
+    if (this.fondoLocal && base.background === this.fondoLocal) this.fondoLocal = null;
     if (this.rendered) this.#pintar();
+  }
+
+  #fondo() {
+    if (this.fondoLocal && Date.now() - this.fondoT > OVERLAY_MS) this.fondoLocal = null;
+    const id = this.fondoLocal ?? this.actor.system.board?.background ?? "corcho";
+    return BACKGROUNDS.find((entry) => entry.id === id) ?? BACKGROUNDS[0];
   }
 
   async #commit(ops) {
@@ -178,6 +185,11 @@ export class BoardApp extends rememberWindow(ApplicationV2) {
     if (!plan.ops.length) return;
     const now = Date.now();
     for (const op of plan.ops) {
+      if (op.kind === "settings") {
+        this.fondoLocal = op.data.background;
+        this.fondoT = now;
+        continue;
+      }
       const key = `${op.kind}:${op.id}`;
       this.overlay.t.set(key, now);
       if (op.op === "set") {
@@ -194,6 +206,10 @@ export class BoardApp extends rememberWindow(ApplicationV2) {
       // La Guardiana ya tiene el dato en el Actor: la capa local sobra. El resto la ve caducar o coincidir.
       if (game.user.isGM) {
         for (const op of plan.ops) {
+          if (op.kind === "settings") {
+            this.fondoLocal = null;
+            continue;
+          }
           delete this.overlay[op.kind][op.id];
           this.overlay.rm[op.kind].delete(op.id);
           this.overlay.t.delete(`${op.kind}:${op.id}`);
@@ -308,6 +324,9 @@ export class BoardApp extends rememberWindow(ApplicationV2) {
   #pintar() {
     if (!this.capa) return;
     const view = (this._v = this.#view());
+    const fondo = this.#fondo();
+    this.lienzo.dataset.fondo = fondo.id;
+    this.lienzo.style.setProperty("--fondo", fondo.file ? `url("${new URL(`systems/${ID}/assets/pizarra/${fondo.file}`, document.baseURI).href}")` : "none");
     const seen = new Set();
     let z = 0;
     for (const it of Object.values(view.items)) z = Math.max(z, it.z ?? 0);
@@ -378,7 +397,7 @@ export class BoardApp extends rememberWindow(ApplicationV2) {
     const placed = new Set(Object.values(view.items).map((item) => item.ref).filter(Boolean));
     const clues = this.actor.system.clues.filter((clue) => !placed.has(clue.id));
     const people = this.actor.system.suspects.filter((person) => person.id && !placed.has(person.id));
-    const firma = JSON.stringify([this.color, clues.map((c) => c.id), people.map((p) => p.id), this.escala]);
+    const firma = JSON.stringify([this.color, clues.map((c) => c.id), people.map((p) => p.id), this.escala, this.#fondo().id]);
     if (this._bandeja === firma) return;
     this._bandeja = firma;
     const colors = Object.entries(THREAD_COLORS)
@@ -394,6 +413,7 @@ export class BoardApp extends rememberWindow(ApplicationV2) {
       <h3>Añadir</h3><div class="bb-acciones"><button type="button" data-acc="nota"><i class="fa-solid fa-note-sticky" aria-hidden="true"></i> Nota</button><button type="button" data-acc="foto"><i class="fa-solid fa-image" aria-hidden="true"></i> Foto</button></div>
       <h3>Pistas por poner</h3>${list(clues, "clue", (clue) => `${clue.void ? "◆ " : ""}${clue.text}`)}
       <h3>Personas por poner</h3>${list(people, "person", (person) => person.name)}
+      <h3>Fondo</h3><div class="fondos" role="group" aria-label="Fondo de la pizarra">${BACKGROUNDS.map((entry) => `<button type="button" class="fondo-op${entry.id === this.#fondo().id ? " sel" : ""}" data-fondo="${entry.id}" aria-pressed="${entry.id === this.#fondo().id}" title="${esc(entry.name)}"><span class="muestra" data-fondo-muestra="${entry.id}"${entry.file ? ` style="background-image:url('systems/${ID}/assets/pizarra/${entry.file}')"` : ""}></span><span class="nombre">${esc(entry.name)}</span></button>`).join("")}</div>
       <h3>Vista</h3><div class="bb-acciones"><button type="button" data-acc="menos" aria-label="Alejar"><i class="fa-solid fa-magnifying-glass-minus" aria-hidden="true"></i></button><button type="button" data-acc="mas" aria-label="Acercar"><i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i></button><button type="button" data-acc="ajustar">Ajustar</button></div>`;
   }
 
@@ -542,6 +562,8 @@ export class BoardApp extends rememberWindow(ApplicationV2) {
         this._bandeja = null;
         return this.#armarBandeja(this._v);
       }
+      const fondo = event.target.closest("[data-fondo]");
+      if (fondo) return this.#commit([{ op: "set", kind: "settings", id: "ajustes01", data: { background: fondo.dataset.fondo } }]);
       const button = event.target.closest("[data-acc]");
       if (!button) return;
       const { acc, ref } = button.dataset;

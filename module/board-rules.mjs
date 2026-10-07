@@ -13,6 +13,20 @@ export const THREAD_COLORS = Object.freeze({
   negro: "#2b2b2b",
 });
 export const NOTE_COLORS = Object.freeze(["amarillo", "rosa", "verde", "azul"]);
+/** Fondos de la pizarra: el corcho es CSS; el resto son papeles pintados y maderas de assets/pizarra. */
+export const BACKGROUNDS = Object.freeze([
+  { id: "corcho", name: "Corcho clásico", file: null },
+  { id: "yeso-marfil", name: "Yeso marfil", file: "yeso-marfil.webp" },
+  { id: "rosas-abuela", name: "Rosas de la abuela", file: "rosas-abuela.webp" },
+  { id: "hora-del-te", name: "La hora del té", file: "hora-del-te.webp" },
+  { id: "flores-otono", name: "Flores de otoño", file: "flores-otono.webp" },
+  { id: "jardin-victoriano", name: "Jardín victoriano", file: "jardin-victoriano.webp" },
+  { id: "verde-salvia", name: "Verde salvia", file: "verde-salvia.webp" },
+  { id: "rosa-antiguo", name: "Rosa antiguo", file: "rosa-antiguo.webp" },
+  { id: "pergamino", name: "Pergamino", file: "pergamino.webp" },
+  { id: "madera-encalada", name: "Madera encalada", file: "madera-encalada.webp" },
+  { id: "nogal-oscuro", name: "Nogal oscuro", file: "nogal-oscuro.webp" },
+]);
 export const ITEM_TYPES = Object.freeze(["clue", "person", "note", "photo"]);
 
 const ID = /^[A-Za-z0-9]{8,24}$/;
@@ -113,6 +127,12 @@ export function planOps(board, ops, ctx) {
       work.links[id] = link;
       for (const [key, value] of Object.entries(link)) update[`system.board.links.${id}.${key}`] = value;
       clean.push({ op: "set", kind: "links", id, data: link });
+    } else if (raw.kind === "settings" && raw.op === "set") {
+      const background = raw.data?.background;
+      if (!BACKGROUNDS.some((entry) => entry.id === background)) throw Error("Fondo de pizarra desconocido.");
+      work.background = background;
+      update["system.board.background"] = background;
+      clean.push({ op: "set", kind: "settings", id, data: { background } });
     } else if (raw.kind === "links" && raw.op === "remove") {
       if (work.links[id]) dropLink(id);
     } else throw Error("Operación de pizarra desconocida.");
