@@ -28,7 +28,7 @@
             <div class="bb-caso-fila">
               <span class="bb-complejidad" data-bb-info-title="Complejidad" data-bb-info="Se resta al Teorizar: 2d6 + pistas − complejidad.">{{system.complexity}}</span>
               <div><h3>{{name}}</h3><p>{{regular.length}} pistas utilizables · {{voidClues.length}} del Vacío · {{#if (eq system.status "active")}}En investigación{{else}}Resuelto{{/if}}</p></div>
-              <button type="button" class="bb-primary" data-action="open" data-id="{{id}}">Abrir tablero</button>
+              <span class="bb-acciones"><button type="button" class="bb-primary" data-action="open" data-id="{{id}}">Abrir tablero</button><button type="button" data-action="board" data-id="{{id}}"><i class="fa-solid fa-thumbtack" aria-hidden="true"></i> Pizarra</button></span>
             </div>
             <details data-memoria="pistas-{{id}}"><summary>Ver las {{system.clues.length}} pistas descubiertas</summary><ol>{{#each system.clues}}<li class="{{#if void}}vacio{{/if}}">{{text}}{{#if void}} <small>· Vacío</small>{{/if}}</li>{{else}}<li>Aún no hay pistas compartidas.</li>{{/each}}</ol></details>
           </article>

@@ -1,3 +1,10 @@
+# 1.1.0
+
+- **Pizarra de investigación** en cada caso (botón *Pizarra* en el tablero y en el salón): un corcho donde el grupo coloca las pistas descubiertas, las personas de interés con su retrato y nombre, notas y fotos propias, y los une con hilos de colores. Cada tarjeta se mueve libremente, se puede quitar sin borrar la pista y cada hilo se quita pulsándolo. Es ambientación: no cambia ninguna regla.
+- Varias personas a la vez: cada tarjeta y cada hilo se guardan por separado, así que mover cosas distintas nunca se pisa; quien arrastra o escribe en una tarjeta la bloquea para el resto (con su nombre a la vista), y los demás la ven moverse en directo.
+- El diálogo de tirada explica que ventaja y desventaja se cancelan aunque haya más fuentes de un lado (manual, p. 10).
+- Corregido: la insignia de última versión del README no se cargaba; editar el contexto de una pista o una persona ya no reescribe el resto del caso (podía pisar cambios de la pizarra hechos mientras tanto).
+
 # 1.0.0
 
 Primera versión estable. A partir de ahora se actualiza desde Foundry con el manifiesto `releases/latest/download/system.json`.

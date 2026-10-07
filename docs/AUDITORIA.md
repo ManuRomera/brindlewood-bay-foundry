@@ -6,7 +6,7 @@ Fecha: 7 de octubre de 2026. Fuente: *Brindlewood Bay* edición española 1.0 (P
 
 | Regla (página) | Estado | Notas |
 | --- | --- | --- |
-| 2d6 + habilidad; ventaja 3d6 mayores, desventaja 3d6 menores; se cancelan sin apilar (p. 10) | ✔ | Vista previa de la fórmula en el diálogo |
+| 2d6 + habilidad; ventaja 3d6 mayores, desventaja 3d6 menores; se cancelan sin apilar (p. 10) | ✔ | Revisado: el manual dice que «no se apilan ni una puede sobrepasar a la otra». Con un objeto de Hogar y una circunstancia (dos ventajas) frente a una Condición (una desventaja) la tirada es normal; la vista previa lo explica |
 | Niveles 6− / 7–9 / 10–11 / 12+ de Diurno, Nocturno, Metomentodo, Ocultista (pp. 12–14) | ✔ | Los cuatro textos en cada tarjeta |
 | Ponerse una Corona: sube un nivel, conserva el dado original (p. 11) | ✔ | Desde la tarjeta o el Historial; Teorizar excluido |
 | Corona de la Reina libre, Corona del Vacío en orden, Carruaje, Pepitas, retirada (p. 9) | ✔ | |

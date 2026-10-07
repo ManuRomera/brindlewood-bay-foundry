@@ -7,7 +7,7 @@
 El juego de misterios cozy-cósmicos de Jason Cordova, en español y con todas las reglas automatizadas.</p>
 
 <p align="center">
-  <a href="https://github.com/ManuRomera/brindlewood-bay-foundry/releases/latest"><img alt="Última versión" src="https://img.shields.io/github/v/release/ManuRomera/brindlewood-bay-foundry?style=for-the-badge&color=2a5446&label=versión"></a>
+  <a href="https://github.com/ManuRomera/brindlewood-bay-foundry/releases/latest"><img alt="Última versión" src="https://img.shields.io/github/v/release/ManuRomera/brindlewood-bay-foundry?style=for-the-badge&color=2a5446&label=version"></a>
   <a href="https://foundryvtt.com"><img alt="Foundry VTT 13" src="https://img.shields.io/badge/Foundry%20VTT-13%20%C2%B7%20preparado%20para%2014-8a6a2f?style=for-the-badge"></a>
   <a href="https://github.com/ManuRomera/brindlewood-bay-foundry/releases"><img alt="Descargas" src="https://img.shields.io/github/downloads/ManuRomera/brindlewood-bay-foundry/total?style=for-the-badge&color=4d4766"></a>
   <a href="LICENSE"><img alt="Licencia MIT" src="https://img.shields.io/badge/licencia-MIT-55615a?style=for-the-badge"></a>
@@ -42,6 +42,9 @@ Crea un mundo con **Brindlewood Bay · El club de las Expertas**. Al entrar se a
 <td width="50%"><img src="docs/tirada-foundry.png" alt="Diálogo de tirada"><br><b>Tiradas sin sorpresas.</b> Eliges habilidad, objeto del Hogar y desventajas, y ves la fórmula exacta antes de lanzar.</td>
 <td width="50%"><img src="docs/oscuro-foundry.png" alt="Perfil oscuro mate"><br><b>Cuatro perfiles visuales</b> y texto del 85 % al 160 %, a un clic desde la cabecera de cada ventana.</td>
 </tr>
+<tr>
+<td colspan="2"><img src="docs/pizarra-foundry.png" alt="Pizarra de investigación"><br><b>La pizarra de las detectives.</b> Pistas, retratos y notas sobre el corcho, unidos con hilos de colores. Todo el grupo la edita a la vez: quien arrastra una tarjeta la bloquea para los demás y se ve moverse en directo.</td>
+</tr>
 </table>
 
 ## Todo el manual, funcionando
@@ -60,6 +63,7 @@ Crea un mundo con **Brindlewood Bay · El club de las Expertas**. Al entrar se a
 | Conspiración siniestra | Capas a 3 / 5 / 10 / 15 pistas (una menos con Fox Mulder) con **aviso privado** a la Guardiana al cruzar cada una |
 | Inicio de sesión | Tarjeta con los movimientos que se resuelven al empezar (Dale Cooper, Jim Rockford, Espantapájaros) |
 | Movimientos ocultistas | La Guardiana los define una vez y se entregan a todas las Expertas |
+| **Pizarra de investigación** | Corcho compartido con pistas, personas, notas y fotos unidas con hilos de colores; todas pueden moverlo a la vez sin pisarse |
 | Pausa para anuncios | Indicio, regla del 10–11 y generador de guiones con más de un millón de combinaciones |
 
 Seis misterios completos con sus expedientes privados, 49 personas de interés, los 19 movimientos expertos, los siete básicos y una guía rápida del sistema en el compendio de Reglas. Lo que el manual deja a criterio de la mesa (qué Condición afecta, qué consecuencia narrar) sigue en vuestras manos. Consulta la [matriz de automatizaciones](docs/REGLAS.md) y la [auditoría](docs/AUDITORIA.md).
@@ -75,7 +79,7 @@ Seis misterios completos con sus expedientes privados, 49 personas de interés, 
 
 ## Para quien quiera mirar dentro
 
-DataModels, ApplicationV2 y compendios generados desde JSON legible (`_data/`) con `npm run build`. `npm test` ejecuta 55 pruebas de reglas, contenido y formularios; `npm run check` valida manifiesto, versiones y recursos. Cada versión se publica al subir una etiqueta `vX.Y.Z`.
+DataModels, ApplicationV2 y compendios generados desde JSON legible (`_data/`) con `npm run build`. `npm test` ejecuta 61 pruebas de reglas, contenido y formularios; `npm run check` valida manifiesto, versiones y recursos. Cada versión se publica al subir una etiqueta `vX.Y.Z`.
 
 ## Créditos y aviso
 

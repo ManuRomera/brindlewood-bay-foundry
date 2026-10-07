@@ -21,6 +21,7 @@ import { creationPool, randomExpert, lifeText, creationQuestionOptions } from ".
 import { syncCaseBooks } from "./salon-scene.mjs";
 import { catalogName, displayName } from "./catalog.mjs";
 import { pintarRetratos } from "./retrato.mjs";
+import { BoardApp } from "./board.mjs";
 import { identityFrom, identityIssue, lifeFrom, lifeIssue } from "./creation-form.mjs";
 const CREATION_SOCKET = `system.${ID}`;
 const pendingCreations = new Map();
@@ -298,7 +299,7 @@ export async function reveal(a) {
         description: d.get("context").trim(),
         notes: "",
       });
-      await a.update({ system: n });
+      await a.update({ "system.suspects": n.suspects });
       return;
     }
     const source =
@@ -320,7 +321,7 @@ export async function reveal(a) {
     const mulder = op.experts().some((expert) => op.has(expert, "Fox Mulder"));
     const before = op.cases().flatMap((entry) => entry.system.clues).filter((entry) => entry.void).length;
     n.clues.push(clue);
-    await a.update({ system: n });
+    await a.update({ "system.clues": n.clues });
     await op.chat(
       a,
       clue.void ? "Una Pista del Vacío" : "Una nueva pista",
@@ -618,6 +619,9 @@ export class ClubApp extends rememberWindow(foundry.applications.api.HandlebarsA
         await (await game.packs.get(`${ID}.guardiana`).getDocument("09755384ce5cc0aa"))?.sheet.render(true);
       }),
       occult: guard(op.createOccultMove),
+      board: guard(async function (_e, b) {
+        await BoardApp.abrir(game.actors.get(b.dataset.id));
+      }),
       safety: guard(async () =>
         op.chat(
           null,

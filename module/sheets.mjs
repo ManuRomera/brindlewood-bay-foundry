@@ -20,6 +20,7 @@ import { attachInfo } from "./inspector.mjs";
 import { rememberWindow } from "./window-state.mjs";
 import { saveCaseNote } from "./case-collaboration.mjs";
 import { EditorRetrato, pintarRetratos } from "./retrato.mjs";
+import { BoardApp } from "./board.mjs";
 import { catalogName, displayName } from "./catalog.mjs";
 import { HandlebarsApplicationMixin, ActorSheetV2, ItemSheetV2 } from "./compat.mjs";
 import {
@@ -361,6 +362,9 @@ export class MysterySheet extends Sheet(ActorSheetV2) {
         owner(this.actor);
         await EditorRetrato.abrir(this.actor);
       }),
+      board: guard(async function () {
+        await BoardApp.abrir(this.actor);
+      }),
       theorize: guard(async function () {
         await op.theorize(this.actor);
       }),
@@ -383,7 +387,7 @@ export class MysterySheet extends Sheet(ActorSheetV2) {
         );
         if (!d) return;
         c.context = d.get("text").trim();
-        await this.actor.update({ system: n });
+        await this.actor.update({ "system.clues": n.clues });
       }),
       editSuspect: guard(async function (_e, b) {
         if (!game.user.isGM) throw Error("Solo la Guardiana puede cambiar la presentación pública.");
@@ -399,7 +403,7 @@ export class MysterySheet extends Sheet(ActorSheetV2) {
         );
         if (!d) return;
         person.description = d.get("text").trim();
-        await this.actor.update({ system: n });
+        await this.actor.update({ "system.suspects": n.suspects });
       }),
       removeSuspect: guard(async function (_e, b) {
         if (!game.user.isGM) throw Error("Solo la Guardiana puede retirar personas del caso.");
@@ -415,7 +419,7 @@ export class MysterySheet extends Sheet(ActorSheetV2) {
         )
           return;
         n.suspects.splice(index, 1);
-        await this.actor.update({ system: n });
+        await this.actor.update({ "system.suspects": n.suspects });
       }),
       openSuspect: guard(async function (_e, b) {
         const actor = b.dataset.uuid ? await fromUuid(b.dataset.uuid) : null;
@@ -501,7 +505,7 @@ export class MysterySheet extends Sheet(ActorSheetV2) {
       description: "",
       notes: "",
     });
-    await this.actor.update({ system: n });
+    await this.actor.update({ "system.suspects": n.suspects });
     return actor;
   }
   _processFormData(e, f, d) {

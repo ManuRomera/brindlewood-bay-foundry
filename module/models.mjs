@@ -50,6 +50,8 @@ export class MysteryModel extends foundry.abstract.TypeDataModel {
       notes: str(),
       theory: str(),
       history: arr(),
+      // Pizarra de investigación: cada elemento y cada hilo bajo su propia clave (ver board-rules.mjs).
+      board: new f.ObjectField({ initial: () => ({ items: {}, links: {} }) }),
     };
   }
 }

@@ -147,9 +147,11 @@ export async function rollMove(a, move, stat) {
       const adv = d.has("adv") || Boolean(d.get("home"));
       const dis = d.has("dis");
       const text = formula({ move, modifier: s.stats[key] + s.bonus, advantage: adv, disadvantage: dis });
+      const sources = (d.has("adv") ? 1 : 0) + (d.get("home") ? 1 : 0);
+      const stacking = sources > 1 ? " Varias fuentes de ventaja cuentan como una sola: no se apilan (manual, p. 10)." : "";
       const how = adv && dis
-        ? "Ventaja y desventaja se cancelan: tirada normal."
-        : adv ? "Ventaja: tres dados, cuentan los dos mayores."
+        ? `Ventaja y desventaja se cancelan: tirada normal. Ninguna prevalece sobre la otra, ni aunque haya más fuentes de un lado (manual, p. 10).${stacking}`
+        : adv ? `Ventaja: tres dados, cuentan los dos mayores.${stacking}`
         : dis ? "Desventaja: tres dados, cuentan los dos menores."
         : "Tirada normal.";
       out.innerHTML = `<b>${esc(text.replace(/\+ -(\d+)/, "− $1"))}</b><span>${how}</span>`;

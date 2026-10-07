@@ -25,6 +25,7 @@ import { registerAccessibility, applyAccessibility } from "./accessibility.mjs";
 import { attachRollActions } from "./chat-actions.mjs";
 import { DocumentSheetConfig, requireV2 } from "./compat.mjs";
 import { pintarRetratos } from "./retrato.mjs";
+import { registerBoardSocket } from "./board.mjs";
 import { initJoinScreenBackground } from "./join-screen.mjs";
 initJoinScreenBackground();
 
@@ -101,6 +102,7 @@ Hooks.once("init", () => {
 Hooks.once("ready", async () => {
   registerExpertCreationSocket();
   registerCaseCollaborationSocket();
+  registerBoardSocket();
   if (game.user.isGM) {
     await guard(ensureSalonScene)();
     await guard(ensureAdvertisementMacro)();
