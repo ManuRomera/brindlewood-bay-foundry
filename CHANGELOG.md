@@ -1,3 +1,11 @@
+# 1.3.0
+
+- **El fondo de la pizarra es ahora un desplegable** compacto (cerrado, ocupa una sola línea); con él cerrado la bandeja deja el espacio a la investigación.
+- **Los hilos se quitan como las tarjetas:** al pasar el cursor por un hilo aparece su aspa en el centro; ningún icono de borrar se ve hasta que el cursor está sobre su elemento.
+- **Apuntes del caso en la pizarra.** Una sección nueva lista únicamente lo que el grupo ha escrito en el tablero de investigación (notas de cada pista, notas de cada persona y el cuaderno del caso). Pulsar uno lo convierte en nota de la pizarra, colocada junto a su pista o persona si ya está puesta. Nada del material interno de la Guardiana aparece en la pizarra.
+- **En los dos sentidos:** cada nota tiene un botón para enviarla de vuelta al tablero: sustituye el apunte del que venía, se añade a las notas de la pista o persona unida con un hilo, o al cuaderno del caso.
+- Corregido: los hilos no se dibujaban hasta mover algo cuando la pizarra se abría en una ventana recién creada.
+
 # 1.2.0
 
 - **Fondos de pizarra intercambiables.** Un panel *Fondo* en la propia pizarra permite elegir entre once ambientaciones: Corcho clásico, Yeso marfil, Rosas de la abuela, La hora del té, Flores de otoño, Jardín victoriano, Verde salvia, Rosa antiguo, Pergamino, Madera encalada y Nogal oscuro. Cualquiera del grupo puede cambiarlo y todas lo ven al instante; se guarda en el caso.

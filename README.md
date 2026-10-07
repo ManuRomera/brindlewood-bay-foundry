@@ -43,7 +43,7 @@ Crea un mundo con **Brindlewood Bay · El club de las Expertas**. Al entrar se a
 <td width="50%"><img src="docs/oscuro-foundry.png" alt="Perfil oscuro mate"><br><b>Cuatro perfiles visuales</b> y texto del 85 % al 160 %, a un clic desde la cabecera de cada ventana.</td>
 </tr>
 <tr>
-<td colspan="2"><img src="docs/pizarra-foundry.png" alt="Pizarra de investigación"><br><b>La pizarra de las detectives.</b> Pistas, retratos y notas sobre el corcho, unidos con hilos de colores. Todo el grupo la edita a la vez: quien arrastra una tarjeta la bloquea para los demás y se ve moverse en directo.</td>
+<td colspan="2"><img src="docs/pizarra-foundry.png" alt="Pizarra de investigación"><br><b>La pizarra de las detectives.</b> Pistas, retratos y notas sobre el corcho, unidos con hilos de colores. Los apuntes del tablero se pueden pasar a notas de la pizarra y devolverse. Todo el grupo la edita a la vez: quien arrastra una tarjeta la bloquea para los demás y se ve moverse en directo.</td>
 </tr>
 </table>
 

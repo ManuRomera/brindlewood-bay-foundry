@@ -14,6 +14,7 @@ import { ID } from "./rules.mjs";
 import { ApplicationV2, FilePicker } from "./compat.mjs";
 import { rememberWindow } from "./window-state.mjs";
 import { esc } from "./ui.mjs";
+import { saveCaseNote } from "./case-collaboration.mjs";
 import { planOps, BOARD, THREAD_COLORS, BACKGROUNDS } from "./board-rules.mjs";
 
 const SOCKET = `system.${ID}`;
@@ -121,6 +122,12 @@ export class BoardApp extends rememberWindow(ApplicationV2) {
     }
   }
 
+  async _onRender(context, options) {
+    await super._onRender(context, options);
+    // Las medidas de las tarjetas solo existen con la ventana ya en pantalla: los hilos se dibujan ahora.
+    requestAnimationFrame(() => this.#hilos());
+  }
+
   async close(options) {
     for (const [id, lock] of this.locks) if (lock.user === game.user.id) this.#soltar(id);
     return super.close(options);
@@ -153,7 +160,7 @@ export class BoardApp extends rememberWindow(ApplicationV2) {
     for (const kind of ["items", "links"]) {
       for (const [id, patch] of Object.entries(this.overlay[kind])) {
         const real = base[kind]?.[id];
-        if (real && Object.entries(patch).every(([key, value]) => real[key] === value)) {
+        if (real && Object.entries(patch).every(([key, value]) => JSON.stringify(real[key]) === JSON.stringify(value))) {
           delete this.overlay[kind][id];
           this.overlay.t.delete(`${kind}:${id}`);
         }
@@ -305,9 +312,27 @@ export class BoardApp extends rememberWindow(ApplicationV2) {
       const person = system.suspects.find((entry) => entry.id === item.ref);
       return person ? { name: person.name, img: person.img || `systems/${ID}/assets/teacup.svg`, uuid: person.actorUuid ?? "" } : null;
     }
-    if (item.type === "note") return { text: item.text ?? "", color: item.color ?? "amarillo" };
+    if (item.type === "note") return { text: item.text ?? "", color: item.color ?? "amarillo", origen: this.#etiquetaOrigen(item.origin) };
     if (item.type === "photo") return { src: item.src ?? "", text: item.text ?? "" };
     return null;
+  }
+
+  #etiquetaOrigen(origin) {
+    if (!origin) return "";
+    const system = this.actor.system;
+    if (origin.kind === "case") return "Cuaderno del caso";
+    if (origin.kind === "clue") return system.clues.some((c) => c.id === origin.ref) ? "Notas de una pista" : "";
+    return `Notas de ${system.suspects.find((p) => p.id === origin.ref)?.name ?? "una persona"}`;
+  }
+
+  /** Apuntes que el grupo ha escrito en el tablero: lo único del caso que puede pasar a la pizarra. */
+  #apuntes() {
+    const system = this.actor.system;
+    const out = [];
+    if (system.notes?.trim()) out.push({ kind: "case", ref: "", titulo: "Cuaderno del caso", texto: system.notes });
+    for (const clue of system.clues) if (clue.notes?.trim()) out.push({ kind: "clue", ref: clue.id, titulo: `Pista: ${clue.text}`, texto: clue.notes });
+    for (const person of system.suspects) if (person.id && person.notes?.trim()) out.push({ kind: "suspect", ref: person.id, titulo: person.name, texto: person.notes });
+    return out;
   }
 
   #contenido(item, d) {
@@ -317,7 +342,7 @@ export class BoardApp extends rememberWindow(ApplicationV2) {
     if (item.type === "person")
       return `${pin}${quitar}<figure><img src="${esc(d.img)}" alt="" draggable="false"><figcaption>${esc(d.name)}</figcaption></figure>${game.user.isGM && d.uuid ? '<button type="button" class="abrir" aria-label="Abrir la ficha original" title="Abrir la ficha original"><i class="fa-solid fa-address-card" aria-hidden="true"></i></button>' : ""}`;
     if (item.type === "note")
-      return `${pin}${quitar}<button type="button" class="tinte" aria-label="Cambiar el color de la nota" title="Cambiar el color"></button><textarea data-campo="text" rows="5" maxlength="${BOARD.textMax}" placeholder="Escribe una nota…" aria-label="Nota">${esc(d.text)}</textarea>`;
+      return `${pin}${quitar}<button type="button" class="tinte" aria-label="Cambiar el color de la nota" title="Cambiar el color"></button><textarea data-campo="text" rows="5" maxlength="${BOARD.textMax}" placeholder="Escribe una nota…" aria-label="Nota">${esc(d.text)}</textarea>${d.origen ? `<small class="origen">↔ ${esc(d.origen)}</small>` : ""}<button type="button" class="enviar" aria-label="Enviar al tablero de investigación" title="Enviar esta nota al tablero de investigación (a la pista o persona unida con un hilo, al apunte del que viene o al cuaderno del caso)"><i class="fa-solid fa-share" aria-hidden="true"></i></button>`;
     return `${pin}${quitar}<figure><img src="${esc(d.src)}" alt="" draggable="false"><input data-campo="text" class="pie" maxlength="120" value="${esc(d.text)}" placeholder="Pie de foto" aria-label="Pie de foto"></figure><button type="button" class="cambiar" aria-label="Cambiar la imagen" title="Cambiar la imagen"><i class="fa-solid fa-image" aria-hidden="true"></i></button>`;
   }
 
@@ -381,13 +406,9 @@ export class BoardApp extends rememberWindow(ApplicationV2) {
       const qx = (a.x + b.x) / 2;
       const qy = (a.y + b.y) / 2 + hang * 2;
       const d = `M${a.x} ${a.y} Q${qx} ${qy} ${b.x} ${b.y}`;
-      html += `<g class="${this.seleccion === id ? "sel" : ""}"><path class="sombra" d="${d}" transform="translate(2 4)"/><path class="hilo" d="${d}" stroke="${THREAD_COLORS[link.color]}"/><path class="hit" data-link="${id}" d="${d}"/>`;
-      if (this.seleccion === id) {
-        const mx = 0.25 * a.x + 0.5 * qx + 0.25 * b.x;
-        const my = 0.25 * a.y + 0.5 * qy + 0.25 * b.y;
-        html += `<g class="borrar" data-borrar="${id}" transform="translate(${mx} ${my})"><circle r="13"/><path d="M-5 -5 L5 5 M5 -5 L-5 5"/></g>`;
-      }
-      html += "</g>";
+      const mx = 0.25 * a.x + 0.5 * qx + 0.25 * b.x;
+      const my = 0.25 * a.y + 0.5 * qy + 0.25 * b.y;
+      html += `<g class="enlace${this.seleccion === id ? " sel" : ""}"><path class="sombra" d="${d}" transform="translate(2 4)"/><path class="hilo" d="${d}" stroke="${THREAD_COLORS[link.color]}"/><path class="hit" data-link="${id}" d="${d}"/><g class="borrar" data-borrar="${id}" transform="translate(${mx} ${my})"><title>Quitar este hilo</title><circle r="13"/><path d="M-5 -5 L5 5 M5 -5 L-5 5"/></g></g>`;
     }
     if (this.temp) html += `<path class="temp" d="${this.temp}" stroke="${THREAD_COLORS[this.color]}"/>`;
     this.svg.innerHTML = html;
@@ -397,9 +418,14 @@ export class BoardApp extends rememberWindow(ApplicationV2) {
     const placed = new Set(Object.values(view.items).map((item) => item.ref).filter(Boolean));
     const clues = this.actor.system.clues.filter((clue) => !placed.has(clue.id));
     const people = this.actor.system.suspects.filter((person) => person.id && !placed.has(person.id));
-    const firma = JSON.stringify([this.color, clues.map((c) => c.id), people.map((p) => p.id), this.escala, this.#fondo().id]);
+    const firma = JSON.stringify([this.color, clues.map((c) => c.id), people.map((p) => p.id), this.escala, this.#fondo().id, this.#apuntes().map((a) => [a.kind, a.ref, a.texto])]);
     if (this._bandeja === firma) return;
     this._bandeja = firma;
+    const actual = this.#fondo();
+    const notas = this.#apuntes();
+    const apuntes = notas.length
+      ? `<ul>${notas.map((n) => `<li><button type="button" data-acc="apunte" data-kind="${n.kind}" data-ref="${esc(n.ref)}" title="Poner este apunte como nota en la pizarra"><i class="fa-solid fa-note-sticky" aria-hidden="true"></i><span><b>${esc(n.titulo)}</b>${esc(n.texto)}</span></button></li>`).join("")}</ul>`
+      : '<p class="bb-tenue">Aún no hay apuntes en el tablero de investigación.</p>';
     const colors = Object.entries(THREAD_COLORS)
       .map(([key, css]) => `<button type="button" class="hilo-color${key === this.color ? " sel" : ""}" data-color="${key}" style="--c:${css}" aria-label="Hilo ${COLOR_NAMES[key]}" aria-pressed="${key === this.color}" title="${COLOR_NAMES[key]}"></button>`)
       .join("");
@@ -413,7 +439,8 @@ export class BoardApp extends rememberWindow(ApplicationV2) {
       <h3>Añadir</h3><div class="bb-acciones"><button type="button" data-acc="nota"><i class="fa-solid fa-note-sticky" aria-hidden="true"></i> Nota</button><button type="button" data-acc="foto"><i class="fa-solid fa-image" aria-hidden="true"></i> Foto</button></div>
       <h3>Pistas por poner</h3>${list(clues, "clue", (clue) => `${clue.void ? "◆ " : ""}${clue.text}`)}
       <h3>Personas por poner</h3>${list(people, "person", (person) => person.name)}
-      <h3>Fondo</h3><div class="fondos" role="group" aria-label="Fondo de la pizarra">${BACKGROUNDS.map((entry) => `<button type="button" class="fondo-op${entry.id === this.#fondo().id ? " sel" : ""}" data-fondo="${entry.id}" aria-pressed="${entry.id === this.#fondo().id}" title="${esc(entry.name)}"><span class="muestra" data-fondo-muestra="${entry.id}"${entry.file ? ` style="background-image:url('systems/${ID}/assets/pizarra/${entry.file}')"` : ""}></span><span class="nombre">${esc(entry.name)}</span></button>`).join("")}</div>
+      <h3>Apuntes del caso</h3>${apuntes}
+      <h3>Fondo</h3><details class="fondo-menu"><summary><span class="muestra"${actual.file ? ` style="background-image:url('systems/${ID}/assets/pizarra/${actual.file}')"` : ""}></span><span class="nombre">${esc(actual.name)}</span></summary><div class="fondos" role="group" aria-label="Fondo de la pizarra">${BACKGROUNDS.map((entry) => `<button type="button" class="fondo-op${entry.id === actual.id ? " sel" : ""}" data-fondo="${entry.id}" aria-pressed="${entry.id === actual.id}"><span class="muestra"${entry.file ? ` style="background-image:url('systems/${ID}/assets/pizarra/${entry.file}')"` : ""}></span><span class="nombre">${esc(entry.name)}</span></button>`).join("")}</div></details>
       <h3>Vista</h3><div class="bb-acciones"><button type="button" data-acc="menos" aria-label="Alejar"><i class="fa-solid fa-magnifying-glass-minus" aria-hidden="true"></i></button><button type="button" data-acc="mas" aria-label="Acercar"><i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i></button><button type="button" data-acc="ajustar">Ajustar</button></div>`;
   }
 
@@ -521,6 +548,7 @@ export class BoardApp extends rememberWindow(ApplicationV2) {
         const actor = person?.actorUuid ? await fromUuid(person.actorUuid) : null;
         return actor?.sheet.render(true);
       }
+      if (event.target.closest(".enviar")) return this.#enviar(id);
       if (event.target.closest(".cambiar")) {
         if (this.#bloqueadoPorOtra(id)) return;
         new (FilePicker())({ type: "image", current: item.src, callback: (src) => this.#commit([{ op: "set", kind: "items", id, data: { src } }]) }).render({ force: true });
@@ -563,11 +591,15 @@ export class BoardApp extends rememberWindow(ApplicationV2) {
         return this.#armarBandeja(this._v);
       }
       const fondo = event.target.closest("[data-fondo]");
-      if (fondo) return this.#commit([{ op: "set", kind: "settings", id: "ajustes01", data: { background: fondo.dataset.fondo } }]);
+      if (fondo) {
+        this.bandeja.querySelector(".fondo-menu")?.removeAttribute("open");
+        return this.#commit([{ op: "set", kind: "settings", id: "ajustes01", data: { background: fondo.dataset.fondo } }]);
+      }
       const button = event.target.closest("[data-acc]");
       if (!button) return;
       const { acc, ref } = button.dataset;
       if (acc === "clue" || acc === "person") return this.#nuevo({ type: acc, ref });
+      if (acc === "apunte") return this.#desdeApunte(button.dataset.kind, ref);
       if (acc === "nota") return this.#nuevo({ type: "note" }, { enfocar: true });
       if (acc === "foto")
         return new (FilePicker())({ type: "image", callback: (src) => this.#nuevo({ type: "photo", src }) }).render({ force: true });
@@ -585,6 +617,52 @@ export class BoardApp extends rememberWindow(ApplicationV2) {
       this.escala += event.deltaY < 0 ? 0.1 : -0.1;
       this.#escalar();
     }, { passive: false });
+  }
+
+  /** Convierte un apunte del tablero en una nota de la pizarra, junto a su pista o persona si ya está puesta. */
+  #desdeApunte(kind, ref) {
+    const system = this.actor.system;
+    const texto = kind === "case" ? system.notes : kind === "clue" ? system.clues.find((c) => c.id === ref)?.notes : system.suspects.find((p) => p.id === ref)?.notes;
+    if (!texto?.trim()) return ui.notifications.warn("Ese apunte ya no tiene texto.");
+    const card = Object.entries(this._v.items).find(([, it]) => kind !== "case" && it.ref === ref);
+    const data = { type: "note", text: texto.slice(0, BOARD.textMax), origin: { kind, ref } };
+    if (card) {
+      const el = this.capa.querySelector(`[data-id="${card[0]}"]`);
+      Object.assign(data, { x: (card[1].x ?? 0) + (el?.offsetWidth ?? 170) + 16, y: (card[1].y ?? 0) + 10 });
+      const id = rid();
+      return this.#commit([{ op: "set", kind: "items", id, data: { z: this._z + 1, ...data } }]);
+    }
+    return this.#nuevo(data);
+  }
+
+  /** Devuelve una nota al tablero de investigación: al apunte del que viene, a la pista o persona unida con un hilo, o al cuaderno. */
+  async #enviar(id) {
+    const item = this._v.items[id];
+    const texto = (item?.text ?? "").trim();
+    if (!texto) return ui.notifications.warn("La nota está vacía.");
+    const system = this.actor.system;
+    let dest = item.origin ? { ...item.origin, reemplazar: true } : null;
+    if (!dest)
+      for (const link of Object.values(this._v.links)) {
+        const other = this._v.items[link.from === id ? link.to : link.to === id ? link.from : null];
+        if (other && ["clue", "person"].includes(other.type)) {
+          dest = { kind: other.type === "clue" ? "clue" : "suspect", ref: other.ref };
+          break;
+        }
+      }
+    dest ??= { kind: "case", ref: "" };
+    const index = dest.kind === "suspect" ? system.suspects.findIndex((p) => p.id === dest.ref) : -1;
+    const actual = dest.kind === "case" ? system.notes : dest.kind === "clue" ? system.clues.find((c) => c.id === dest.ref)?.notes : system.suspects[index]?.notes;
+    if (actual === undefined || (dest.kind === "suspect" && index < 0)) return ui.notifications.warn("Esa pista o persona ya no está en el caso.");
+    const nombre = dest.kind === "case" ? "el cuaderno del caso" : dest.kind === "clue" ? "las notas de la pista" : `las notas de ${system.suspects[index].name}`;
+    if ((actual ?? "").includes(texto) && !dest.reemplazar) return ui.notifications.info(`Esa nota ya está en ${nombre}.`);
+    const text = dest.reemplazar || !(actual ?? "").trim() ? texto : `${actual.trim()}\n${texto}`;
+    try {
+      await saveCaseNote(this.actor, { kind: dest.kind, id: dest.kind === "clue" ? dest.ref : undefined, index: dest.kind === "suspect" ? index : undefined, text });
+      ui.notifications.info(`Nota enviada a ${nombre}.`);
+    } catch (error) {
+      ui.notifications.error(error.message);
+    }
   }
 
   #empezarHilo(event, el) {

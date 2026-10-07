@@ -78,3 +78,12 @@ test("todos los fondos con imagen existen en assets/pizarra", async () => {
   for (const entry of BACKGROUNDS.filter((fondo) => fondo.file))
     assert.ok(existsSync(new URL(`../assets/pizarra/${entry.file}`, import.meta.url)), entry.file);
 });
+
+test("una nota puede recordar de qué apunte del tablero viene, y solo de uno que existe", () => {
+  const note = (origin) => [add("abcdefgh", { type: "note", text: "x", origin })];
+  assert.deepEqual(planOps(empty(), note({ kind: "case", ref: "" }), ctx).board.items.abcdefgh.origin, { kind: "case", ref: "" });
+  assert.deepEqual(planOps(empty(), note({ kind: "clue", ref: "pista0001" }), ctx).board.items.abcdefgh.origin, { kind: "clue", ref: "pista0001" });
+  assert.throws(() => planOps(empty(), note({ kind: "clue", ref: "falsa" }), ctx), /no existe/);
+  assert.throws(() => planOps(empty(), note({ kind: "gm", ref: "" }), ctx), /no existe/);
+  assert.throws(() => planOps(empty(), [add("abcdefgh", { type: "clue", ref: "pista0001", origin: { kind: "case", ref: "" } })], ctx), /Solo las notas/);
+});

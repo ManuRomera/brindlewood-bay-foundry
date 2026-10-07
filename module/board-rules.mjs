@@ -39,7 +39,7 @@ const requireId = (id) => {
   return String(id);
 };
 
-function cleanFields(data, existing) {
+function cleanFields(data, existing, ctx) {
   const out = {};
   if ("x" in data) out.x = clamp(data.x, 0, BOARD.width - 40);
   if ("y" in data) out.y = clamp(data.y, 0, BOARD.height - 40);
@@ -52,6 +52,14 @@ function cleanFields(data, existing) {
     if (existing.type !== "note") throw Error("Solo las notas tienen color.");
     if (!NOTE_COLORS.includes(data.color)) throw Error("Color de nota desconocido.");
     out.color = data.color;
+  }
+  if ("origin" in data) {
+    // De qué apunte del tablero viene una nota: permite devolverla (solo notas de grupo, nunca material de la Guardiana).
+    if (existing.type !== "note") throw Error("Solo las notas pueden venir de un apunte.");
+    const { kind, ref } = data.origin ?? {};
+    const valid = (kind === "case" && ref === "") || (kind === "clue" && ctx.clueIds.has(ref)) || (kind === "suspect" && ctx.suspectIds.has(ref));
+    if (!valid) throw Error("Ese apunte no existe en este caso.");
+    out.origin = { kind, ref };
   }
   if ("src" in data) {
     if (existing.type !== "photo") throw Error("Solo las fotos tienen imagen.");
@@ -84,7 +92,7 @@ export function planOps(board, ops, ctx) {
       const data = raw.data ?? {};
       const existing = work.items[id];
       if (existing) {
-        const fields = cleanFields(data, existing);
+        const fields = cleanFields(data, existing, ctx);
         Object.assign(existing, fields);
         for (const [key, value] of Object.entries(fields)) update[`system.board.items.${id}.${key}`] = value;
         clean.push({ op: "set", kind: "items", id, data: fields });
@@ -102,7 +110,7 @@ export function planOps(board, ops, ctx) {
       } else if (data.type === "note") Object.assign(item, { text: "", color: "amarillo" });
       else Object.assign(item, { text: "", src: "" });
       if (data.type === "photo" && !("src" in data)) throw Error("Una foto necesita su imagen.");
-      const fields = cleanFields(data, item);
+      const fields = cleanFields(data, item, ctx);
       Object.assign(item, fields);
       work.items[id] = item;
       for (const [key, value] of Object.entries(item)) update[`system.board.items.${id}.${key}`] = value;
