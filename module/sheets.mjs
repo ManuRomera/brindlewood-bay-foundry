@@ -335,7 +335,12 @@ export class MysterySheet extends Sheet(ActorSheetV2) {
   async _onRender(c, o) {
     await super._onRender(c, o);
     const b = this.element.querySelector("[data-action=theorize]");
-    if (b && this.actor.testUserPermission(game.user, "OBSERVER")) b.disabled = false;
+    const canAnnotate = this.actor.testUserPermission(game.user, "OBSERVER");
+    if (b && canAnnotate) b.disabled = false;
+    // Foundry deshabilita todo control de una ficha que no es tuya; las observadoras sí pueden anotar y abrir la pizarra.
+    if (canAnnotate)
+      for (const control of this.element.querySelectorAll("[data-case-note], [data-action=board]"))
+        control.disabled = false;
     for (const input of this.element.querySelectorAll("[data-case-note]")) {
       input.addEventListener(
         "change",

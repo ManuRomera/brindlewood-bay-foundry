@@ -1,3 +1,7 @@
+# 1.3.1
+
+- Corregido: las jugadoras no podían escribir en las notas de cada pista, las notas del grupo de cada persona ni el cuaderno de investigación, y el botón «Pizarra» salía desactivado. Foundry deshabilita los controles de las fichas que no son propias y el sistema solo reactivaba el de Teorizar. Ahora las Observadoras del caso pueden anotar y abrir la pizarra (y, por tanto, sus apuntes aparecen en la bandeja «Apuntes del caso»).
+
 # 1.3.0
 
 - **El fondo de la pizarra es ahora un desplegable** compacto (cerrado, ocupa una sola línea); con él cerrado la bandeja deja el espacio a la investigación.
