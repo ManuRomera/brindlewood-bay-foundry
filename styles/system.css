@@ -965,3 +965,55 @@ body.bb-reduce-motion .bb-pz-item.rechazo { animation: none; }
 .bb-pz-item .origen { display: block; margin-top: 0.2em; font: 600 0.72em/1.3 var(--bb-sans); color: #5b5030; }
 .bb-pz-item .enviar { position: absolute; bottom: 0.4em; right: 0.4em; width: 1.7em; height: 1.7em; border-radius: 4px; opacity: 0; display: grid; place-items: center; }
 .bb-pz-item:hover .enviar { opacity: 1; }
+
+/* ---------- Pizarra y perfiles de accesibilidad ----------
+   Los perfiles oscuros ponen la pizarra oscura solo en la pantalla de quien los usa (el fondo elegido por el grupo no cambia).
+   Las tarjetas se oscurecen, el texto se aclara y los hilos ganan grosor, halo y brillo para que destaquen. */
+body.bb-readable-font .bb-pz-item :is(p, b, figcaption, textarea, input, small) { font-family: Arial, Helvetica, system-ui, sans-serif !important; }
+
+body:is(.bb-theme-dark, .bb-theme-contrast, .bb-theme-amber) .bb-pz-vista { background: #070909; }
+body:is(.bb-theme-dark, .bb-theme-contrast, .bb-theme-amber) .bb-pz-lienzo[data-fondo] {
+  background: radial-gradient(#ffffff0d 1px, transparent 1.6px) 0 0 / 14px 14px, #14191a;
+  box-shadow: inset 0 0 60px #000a;
+}
+body:is(.bb-theme-dark, .bb-theme-contrast, .bb-theme-amber) .bb-pz-hilos .hilo { stroke-width: 4.5; filter: brightness(1.45) saturate(1.25) drop-shadow(0 0 3px #fff9); }
+body:is(.bb-theme-dark, .bb-theme-contrast, .bb-theme-amber) .bb-pz-hilos .sombra { stroke: #ffffff; stroke-opacity: 0.4; stroke-width: 9; transform: none; }
+body:is(.bb-theme-dark, .bb-theme-contrast, .bb-theme-amber) .bb-pz-hilos .temp { stroke-width: 4; filter: brightness(1.5); }
+body:is(.bb-theme-dark, .bb-theme-contrast, .bb-theme-amber) .bb-pz-hilos path.hilo[stroke="#2b2b2b"] { stroke: #f0f0f0; filter: none; }
+body:is(.bb-theme-dark, .bb-theme-contrast, .bb-theme-amber) .bb-pz-hilos .borrar circle { fill: #14191a; stroke: #fff; }
+body:is(.bb-theme-dark, .bb-theme-contrast, .bb-theme-amber) .bb-pz-hilos .borrar path { stroke: #fff; }
+
+body.bb-theme-dark .bb-pz-item { background: #262d2f; color: #f3efe2; box-shadow: 1px 3px 8px #000c; }
+body.bb-theme-dark .bb-pz-item .et, body.bb-theme-dark .bb-pz-item .origen { color: #cfc8b8; }
+body.bb-theme-dark .bb-pz-item.vacia { background: #2c2942; }
+body.bb-theme-dark .bb-pz-item.vacia .et { color: #cbc4f0; }
+body.bb-theme-dark .bb-pz-item.t-person, body.bb-theme-dark .bb-pz-item.t-photo { background: #2d3436; }
+body.bb-theme-dark .bb-pz-item :is(figcaption, textarea, input.pie) { color: #f3efe2; }
+body.bb-theme-dark .bb-pz-item.nota-amarillo { background: #4d4620; }
+body.bb-theme-dark .bb-pz-item.nota-rosa { background: #51303c; }
+body.bb-theme-dark .bb-pz-item.nota-verde { background: #2c4a33; }
+body.bb-theme-dark .bb-pz-item.nota-azul { background: #26405a; }
+body.bb-theme-dark .bb-app .window-content .bb-pz-item button { background: #1b2123d9; color: #f3efe2; border-color: #ffffff55; }
+
+body.bb-theme-contrast .bb-pz-item { background: #fff; color: #000; border: 3px solid #000; outline: 2px solid #fff; }
+body.bb-theme-contrast .bb-pz-item :is(.et, .origen, figcaption, textarea, input.pie) { color: #000; }
+body.bb-theme-contrast .bb-pz-item.vacia { background: #fff; border-style: double; }
+body.bb-theme-contrast .bb-pz-item.nota-amarillo { background: #ffff9e; }
+body.bb-theme-contrast .bb-pz-item.nota-rosa { background: #ffd1de; }
+body.bb-theme-contrast .bb-pz-item.nota-verde { background: #c6ffc6; }
+body.bb-theme-contrast .bb-pz-item.nota-azul { background: #c4e4ff; }
+body.bb-theme-contrast .bb-pz-hilos .hilo { stroke-width: 6; }
+body.bb-theme-contrast .bb-app .window-content .bb-pz-item button { background: #fff; color: #000; border: 2px solid #000; }
+body.bb-theme-contrast .bb-pz-item.bloqueado { outline-width: 4px; }
+
+body.bb-theme-amber .bb-pz-vista { background: #0c0703; }
+body.bb-theme-amber .bb-pz-lienzo[data-fondo] { background: radial-gradient(#ffc87012 1px, transparent 1.6px) 0 0 / 14px 14px, #140d06; }
+body.bb-theme-amber .bb-pz-item { background: #2b1d0e; color: #ffd89a; box-shadow: 1px 3px 8px #000c; }
+body.bb-theme-amber .bb-pz-item :is(.et, .origen, figcaption, textarea, input.pie) { color: #ffd89a; }
+body.bb-theme-amber .bb-pz-item.vacia { background: #2c1d30; }
+body.bb-theme-amber .bb-pz-item.t-person, body.bb-theme-amber .bb-pz-item.t-photo { background: #33230f; }
+body.bb-theme-amber .bb-pz-item.nota-amarillo { background: #4f3a12; }
+body.bb-theme-amber .bb-pz-item.nota-rosa { background: #4f2a22; }
+body.bb-theme-amber .bb-pz-item.nota-verde { background: #3b4216; }
+body.bb-theme-amber .bb-pz-item.nota-azul { background: #3a3320; }
+body.bb-theme-amber .bb-app .window-content .bb-pz-item button { background: #20160ce0; color: #ffd89a; border-color: #ad7838; }

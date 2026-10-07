@@ -1,3 +1,9 @@
+# 1.3.2
+
+- **La pizarra respeta los perfiles de accesibilidad.** Con Oscuro mate, Alto contraste AAA o Ámbar, el corcho o papel pintado se sustituye en tu pantalla por un fondo oscuro (el fondo elegido por el grupo no cambia para los demás) y las pistas, personas, fotos y notas se oscurecen con texto claro, o blanco con borde negro en alto contraste.
+- Los hilos destacan en esos perfiles: más gruesos, con halo luminoso y colores más vivos; el hilo negro pasa a blanco.
+- La tipografía de alta legibilidad sustituye también la letra manuscrita de notas y pies de foto, y el tamaño del texto escala las tarjetas.
+
 # 1.3.1
 
 - Corregido: las jugadoras no podían escribir en las notas de cada pista, las notas del grupo de cada persona ni el cuaderno de investigación, y el botón «Pizarra» salía desactivado. Foundry deshabilita los controles de las fichas que no son propias y el sistema solo reactivaba el de Teorizar. Ahora las Observadoras del caso pueden anotar y abrir la pizarra (y, por tanto, sus apuntes aparecen en la bandeja «Apuntes del caso»).

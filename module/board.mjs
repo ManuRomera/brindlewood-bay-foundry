@@ -441,6 +441,7 @@ export class BoardApp extends rememberWindow(ApplicationV2) {
       <h3>Personas por poner</h3>${list(people, "person", (person) => person.name)}
       <h3>Apuntes del caso</h3>${apuntes}
       <h3>Fondo</h3><details class="fondo-menu"><summary><span class="muestra"${actual.file ? ` style="background-image:url('systems/${ID}/assets/pizarra/${actual.file}')"` : ""}></span><span class="nombre">${esc(actual.name)}</span></summary><div class="fondos" role="group" aria-label="Fondo de la pizarra">${BACKGROUNDS.map((entry) => `<button type="button" class="fondo-op${entry.id === actual.id ? " sel" : ""}" data-fondo="${entry.id}" aria-pressed="${entry.id === actual.id}"><span class="muestra"${entry.file ? ` style="background-image:url('systems/${ID}/assets/pizarra/${entry.file}')"` : ""}></span><span class="nombre">${esc(entry.name)}</span></button>`).join("")}</div></details>
+      <p class="bb-tenue">Los perfiles Oscuro, Alto contraste y Ámbar oscurecen la pizarra solo en tu pantalla.</p>
       <h3>Vista</h3><div class="bb-acciones"><button type="button" data-acc="menos" aria-label="Alejar"><i class="fa-solid fa-magnifying-glass-minus" aria-hidden="true"></i></button><button type="button" data-acc="mas" aria-label="Acercar"><i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i></button><button type="button" data-acc="ajustar">Ajustar</button></div>`;
   }
 
