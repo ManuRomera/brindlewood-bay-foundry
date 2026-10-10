@@ -19,6 +19,7 @@ for (const p of [
   ...m.styles,
   ...m.languages.map((l) => l.path),
   "assets/cover.png",
+  "assets/tarjeta.webp",
 ])
   if (!fs.existsSync(p)) throw Error(`Falta ${p}`);
 for (const f of fs.readdirSync("module").filter((f) => f.endsWith(".mjs")))

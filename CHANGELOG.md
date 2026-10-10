@@ -1,3 +1,7 @@
+# 1.3.4
+
+- **La carátula nueva ahora sí aparece en la tarjeta del sistema** (Configuración → Sistemas de juego). Foundry dibuja esa tarjeta con la miniatura del manifiesto, que seguía apuntando a la taza; ahora apunta a `assets/tarjeta.webp` (la nueva ilustración, ligera para que cargue rápido). El fondo de la pantalla de acceso al mundo ya usaba la nueva.
+
 # 1.3.3
 
 - **Carátula nueva.** El club de cuatro Expertas, con té, lupa, carta y hilo de lana, ante la bahía de Brindlewood al atardecer y un tentáculo violeta asomando por el horizonte. Se recompuso para la tarjeta de Foundry: el cielo se amplía por arriba para que el título del sistema no tape las caras. El README y la página del proyecto usan la versión con logo.

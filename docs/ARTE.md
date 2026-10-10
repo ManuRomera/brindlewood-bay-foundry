@@ -1,6 +1,6 @@
 # Dirección artística
 
-Portada (1.3.3): ilustración del club de cuatro Expertas (prompt en `docs/PROMPT-CARATULA.md`), 1672 × 941. `assets/cover.png` es la versión de tarjeta, 1672 × 904 (1,85 : 1) con el cielo ampliado por arriba y recortada por abajo; `docs/portada.jpg` lleva el logo compuesto; `docs/cover.jpg` es la versión limpia para la web. Portada anterior (1.3.2 y antes): 1536 × 1024. Creada con la herramienta integrada ImageGen; no se usó la API de pago ni la CLI. Se inspeccionó la imagen final. La imagen permanece en el repositorio y viaja dentro del ZIP.
+Portada (1.3.3): ilustración del club de cuatro Expertas (prompt en `docs/PROMPT-CARATULA.md`), 1672 × 941. `assets/cover.png` es la versión de tarjeta, 1672 × 904 (1,85 : 1) con el cielo ampliado por arriba y recortada por abajo; `docs/portada.jpg` lleva el logo compuesto; `docs/cover.jpg` es la versión limpia para la web y `assets/tarjeta.webp` (1260 × 681) es la miniatura que Foundry muestra en la lista de sistemas. Portada anterior (1.3.2 y antes): 1536 × 1024. Creada con la herramienta integrada ImageGen; no se usó la API de pago ni la CLI. Se inspeccionó la imagen final. La imagen permanece en el repositorio y viaja dentro del ZIP.
 
 Prompt final:
 

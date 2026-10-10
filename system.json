@@ -2,7 +2,7 @@
   "id": "brindlewood-bay",
   "title": "Brindlewood Bay · El club de las Expertas",
   "description": "Té, pastas y un oscuro secreto bajo la bahía. Sistema nativo en español para Foundry VTT: salón del club, seis misterios completos, fichas de Experta con todas las reglas automatizadas y accesibilidad por ventana.",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "compatibility": {
     "minimum": "13",
     "verified": "13.351"
@@ -160,7 +160,7 @@
     {
       "type": "setup",
       "url": "systems/brindlewood-bay/assets/cover.png",
-      "thumbnail": "systems/brindlewood-bay/assets/teacup.svg"
+      "thumbnail": "systems/brindlewood-bay/assets/tarjeta.webp"
     }
   ],
   "grid": {
