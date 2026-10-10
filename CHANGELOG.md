@@ -1,3 +1,7 @@
+# 1.3.3
+
+- **Carátula nueva.** El club de cuatro Expertas, con té, lupa, carta y hilo de lana, ante la bahía de Brindlewood al atardecer y un tentáculo violeta asomando por el horizonte. Se recompuso para la tarjeta de Foundry: el cielo se amplía por arriba para que el título del sistema no tape las caras. El README y la página del proyecto usan la versión con logo.
+
 # 1.3.2
 
 - **La pizarra respeta los perfiles de accesibilidad.** Con Oscuro mate, Alto contraste AAA o Ámbar, el corcho o papel pintado se sustituye en tu pantalla por un fondo oscuro (el fondo elegido por el grupo no cambia para los demás) y las pistas, personas, fotos y notas se oscurecen con texto claro, o blanco con borde negro en alto contraste.

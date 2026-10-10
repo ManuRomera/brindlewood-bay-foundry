@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/cover.png" alt="Brindlewood Bay · El club de las Expertas del Crimen" width="100%">
+  <img src="docs/portada.jpg" alt="Brindlewood Bay · El club de las Expertas del Crimen" width="100%">
 </p>
 
 <h1 align="center">Brindlewood Bay para Foundry VTT</h1>
